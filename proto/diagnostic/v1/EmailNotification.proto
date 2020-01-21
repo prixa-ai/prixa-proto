@@ -1,0 +1,16 @@
+
+syntax = "proto3";
+
+package prixa.emailnotification.v1;
+
+service NotificationService {
+    rpc EmailDiagnosticResult (EmailDiagnosticResultRequest) returns (EmailDiagnosticResultResponse);
+}
+
+message EmailDiagnosticResultRequest {
+
+}
+
+message EmailDiagnosticResultResponse {
+}
+

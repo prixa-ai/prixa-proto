@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package prixa.partner.v1;
+
+service PartnerService {
+    rpc CreatePartner (CreatePartnerRequest) returns (CreatePartnerResponse);
+    rpc DeletePartner (DeletePartnerRequest) returns (DeletePartnerResponse);
+    rpc GetPartner (GetPartnerRequest) returns (GetPartnerResponse);
+    rpc ListPartners (ListPartnersRequest) returns (ListPartnersResponse);
+}
+
+message CreatePartnerRequest {
+    
+}
+
+message CreatePartnerResponse {
+}
+
+message DeletePartnerRequest {
+
+}
+
+message DeletePartnerResponse {
+
+}
+
+message GetPartnerRequest {
+
+}
+
+message GetPartnerResponse {
+
+}
+
+message ListPartnersRequest {
+
+}
+
+message ListPartnersResponse {
+
+}

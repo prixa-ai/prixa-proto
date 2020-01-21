@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package prixa.partnerapplication.v1;
+
+service PartnerApplicationService {
+    rpc CreatePartnerApplication (CreatePartnerApplicationRequest) returns (CreatePartnerApplicationResponse);
+    rpc DeletePartnerApplication (DeletePartnerApplicationRequest) returns (DeletePartnerApplicationResponse);
+    rpc GetPartnerApplication (GetPartnerApplicationRequest) returns (GetPartnerApplicationResponse);
+    rpc ListPartnerApplications (ListPartnerApplicationsRequest) returns (ListPartnerApplicationsResponse);
+}
+
+message CreatePartnerApplicationRequest {
+    
+}
+
+message CreatePartnerApplicationResponse {
+}
+
+message DeletePartnerApplicationRequest {
+
+}
+
+message DeletePartnerApplicationResponse {
+
+}
+
+message GetPartnerApplicationRequest {
+
+}
+
+message GetPartnerApplicationResponse {
+
+}
+
+message ListPartnerApplicationsRequest {
+
+}
+
+message ListPartnerApplicationsResponse {
+
+}

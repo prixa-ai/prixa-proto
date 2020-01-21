@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package prixa.diagnostic.v1;
+
+service DiagnosticService {
+    rpc SendEmail (SendEmailRequest) returns (SendEmailResponse);
+}
+
+message SendEmailRequest {
+
+}
+
+message SendEmailResponse {
+
+}
+
