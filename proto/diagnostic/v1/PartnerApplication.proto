@@ -1,41 +1,52 @@
 syntax = "proto3";
 
 package prixa.partnerapplication.v1;
+import "proto/diagnostic/v1/Partner.proto";
+import "google/protobuf/empty.proto";
 
 service PartnerApplicationService {
     rpc CreatePartnerApplication (CreatePartnerApplicationRequest) returns (CreatePartnerApplicationResponse);
-    rpc DeletePartnerApplication (DeletePartnerApplicationRequest) returns (DeletePartnerApplicationResponse);
-    rpc GetPartnerApplication (GetPartnerApplicationRequest) returns (GetPartnerApplicationResponse);
-    rpc ListPartnerApplications (ListPartnerApplicationsRequest) returns (ListPartnerApplicationsResponse);
+    rpc DeletePartnerApplication (google.protobuf.Empty) returns (DeletePartnerApplicationResponse);
+    rpc UpdatePartnerApplication (UpdatePartnerApplicationRequest) returns (UpdatePartnerApplicationResponse);
+    rpc GetPartnerApplication (google.protobuf.Empty) returns (GetPartnerApplicationResponse);
+    rpc ListPartnerApplications (google.protobuf.Empty) returns (ListPartnerApplicationsResponse);
 }
 
+message PartnerAppResponseData {
+    string id = 1;
+    string name = 2;
+    string status = 3;
+    string secretKey = 4;
+    repeated prixa.partner.v1.DataTimestamp dataTimestamp = 5;
+}
+
+
+
 message CreatePartnerApplicationRequest {
-    
+    string name = 1;
 }
 
 message CreatePartnerApplicationResponse {
+    repeated PartnerAppResponseData data = 1;
 }
 
-message DeletePartnerApplicationRequest {
-
-}
 
 message DeletePartnerApplicationResponse {
-
+    repeated PartnerAppResponseData data = 1;
 }
 
-message GetPartnerApplicationRequest {
+message UpdatePartnerApplicationRequest {
+    string name = 1;
+}
 
+message UpdatePartnerApplicationResponse {
+    repeated PartnerAppResponseData data = 1;
 }
 
 message GetPartnerApplicationResponse {
-
-}
-
-message ListPartnerApplicationsRequest {
-
+    repeated PartnerAppResponseData data = 1;
 }
 
 message ListPartnerApplicationsResponse {
-
+    repeated PartnerAppResponseData data = 1;
 }
