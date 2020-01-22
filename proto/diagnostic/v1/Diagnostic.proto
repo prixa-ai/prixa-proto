@@ -1,16 +1,52 @@
 syntax = "proto3";
 
 package prixa.diagnostic.v1;
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
 
 service DiagnosticService {
     rpc SendEmail (SendEmailRequest) returns (SendEmailResponse);
+    rpc SendSurvey (SendSurveyRequest) returns (google.protobuf.Empty);
+    rpc GetFeedbackContent (google.protobuf.Empty) returns (FeedbackContentResponse);
+    rpc SendFeedback (SendFeedbackRequest) returns (SendFeedbackResponse);
 }
 
 message SendEmailRequest {
-
+    string email = 1;
+    string sessionId = 2;
+    string username = 3;
 }
 
 message SendEmailResponse {
-
+    string message = 1;
 }
 
+message SendSurveyRequest {
+    string applicationId = 1;
+    string feedback = 2;
+    string partnerId = 3;
+    int32 rating = 4;
+    string sessionId = 5;
+    string userId = 6;
+}
+
+message FeedbackContentResponse {
+    string question = 1;
+    string instruction = 2;
+    google.protobuf.ListValue choices = 3;
+}
+
+message SendFeedbackRequest{
+    string userId = 1;
+    string partnerId = 2;
+    string applicationId = 3;
+    string sessionId = 4;
+    string symptomId = 5;
+    string question = 6;
+    string feedbacks = 7;
+    string detail = 8;
+}
+
+message SendFeedbackResponse {
+    bool success = 1;
+}

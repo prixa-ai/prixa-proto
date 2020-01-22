@@ -2,15 +2,25 @@
 syntax = "proto3";
 
 package prixa.emailnotification.v1;
+import "google/protobuf/empty.proto";
 
 service NotificationService {
-    rpc EmailDiagnosticResult (EmailDiagnosticResultRequest) returns (EmailDiagnosticResultResponse);
+    rpc EmailDiagnosticResult (EmailDiagnosticResultRequest) returns (google.protobuf.Empty);
 }
 
 message EmailDiagnosticResultRequest {
-
+    string to = 1;
+    string name = 2;
+    string gender = 3;
+    string ageRange = 4;
+    float weightInKg = 5;
+    float heightInCm = 6;
+    float bmiIndex = 7;
+    string subject = 8;
+    string preconditions = 9;
+    string mainSymptoms = 10;
+    string symptoms = 11;
+    string notKnown = 12;
+    string unknown = 13;
+    string prixaResults = 14;
 }
-
-message EmailDiagnosticResultResponse {
-}
-

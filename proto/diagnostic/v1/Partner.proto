@@ -1,41 +1,57 @@
 syntax = "proto3";
 
 package prixa.partner.v1;
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
 
 service PartnerService {
     rpc CreatePartner (CreatePartnerRequest) returns (CreatePartnerResponse);
-    rpc DeletePartner (DeletePartnerRequest) returns (DeletePartnerResponse);
-    rpc GetPartner (GetPartnerRequest) returns (GetPartnerResponse);
-    rpc ListPartners (ListPartnersRequest) returns (ListPartnersResponse);
+    rpc DeletePartner (google.protobuf.Empty) returns (DeletePartnerResponse);
+    rpc UpdatePartner (UpdatePartnerRequest) returns (UpdatePartnerResponse);
+    rpc GetPartner (google.protobuf.Empty) returns (GetPartnerResponse);
+    rpc ListPartners (google.protobuf.Empty) returns (ListPartnersResponse);
 }
 
+message DataTimestamp {
+    google.protobuf.Timestamp createdAt = 1;
+    google.protobuf.Timestamp updatedAt = 2;
+}
+
+message PartnerResponseData {
+    string id = 1;
+    string name = 2;
+    string status = 3;
+    google.protobuf.ListValue appIds = 4;
+    repeated DataTimestamp dataTimestamp = 5;
+}
+
+
+
 message CreatePartnerRequest {
-    
+    string name = 1;
 }
 
 message CreatePartnerResponse {
-}
-
-message DeletePartnerRequest {
-
+    repeated PartnerResponseData data = 1;
 }
 
 message DeletePartnerResponse {
-
+    repeated PartnerResponseData data = 1;
 }
 
-message GetPartnerRequest {
+message UpdatePartnerRequest {
+    string name = 1;
+}
 
+message UpdatePartnerResponse {
+    repeated PartnerResponseData data = 1;
 }
 
 message GetPartnerResponse {
-
-}
-
-message ListPartnersRequest {
-
+    repeated PartnerResponseData data = 1;
 }
 
 message ListPartnersResponse {
-
+    repeated PartnerResponseData data = 1;
 }
