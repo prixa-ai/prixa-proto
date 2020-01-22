@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package prixa.partnerapplication.v1;
-import "proto/diagnostic/v1/Partner.proto";
+import "proto/support/v1/Timestamp.proto";
 import "google/protobuf/empty.proto";
 
 service PartnerApplicationService {
@@ -17,7 +17,7 @@ message PartnerAppResponseData {
     string name = 2;
     string status = 3;
     string secretKey = 4;
-    repeated prixa.partner.v1.DataTimestamp dataTimestamp = 5;
+    repeated prixa.timestamp.v1.DataTimestamp dataTimestamp = 5;
 }
 
 

@@ -3,7 +3,7 @@ syntax = "proto3";
 package prixa.partner.v1;
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
-import "google/protobuf/timestamp.proto";
+import "proto/support/v1/Timestamp.proto";
 
 service PartnerService {
     rpc CreatePartner (CreatePartnerRequest) returns (CreatePartnerResponse);
@@ -13,17 +13,13 @@ service PartnerService {
     rpc ListPartners (google.protobuf.Empty) returns (ListPartnersResponse);
 }
 
-message DataTimestamp {
-    google.protobuf.Timestamp createdAt = 1;
-    google.protobuf.Timestamp updatedAt = 2;
-}
 
 message PartnerResponseData {
     string id = 1;
     string name = 2;
     string status = 3;
     google.protobuf.ListValue appIds = 4;
-    repeated DataTimestamp dataTimestamp = 5;
+    repeated prixa.timestamp.v1.DataTimestamp dataTimestamp = 5;
 }
 
 
