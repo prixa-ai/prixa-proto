@@ -3,12 +3,61 @@ syntax = "proto3";
 package prixa.diagnostic.v1;
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
+import "google/protobuf/any.proto";
+import "google/api/annotations.proto";
 
 service DiagnosticService {
-    rpc SendEmail (SendEmailRequest) returns (SendEmailResponse);
-    rpc SendSurvey (SendSurveyRequest) returns (google.protobuf.Empty);
-    rpc GetFeedbackContent (google.protobuf.Empty) returns (FeedbackContentResponse);
-    rpc SendFeedback (SendFeedbackRequest) returns (SendFeedbackResponse);
+    rpc BotConversation (BotConversationRequest) returns (BotConversationResponse){
+        option (google.api.http) = {
+            post: "/v1/prixa"
+            body: "*"
+        };
+    }
+    rpc SendEmail (SendEmailRequest) returns (SendEmailResponse){
+        option (google.api.http) = {
+            post: "/v1/conversation/mail/send"
+            body: "*"
+        };
+    }
+    rpc SendSurvey (SendSurveyRequest) returns (google.protobuf.Empty){
+        option (google.api.http) = {
+            post: "/v1/prixa/survey"
+            body: "*"
+        };
+    }
+    rpc GetFeedbackContent (google.protobuf.Empty) returns (FeedbackContentResponse){
+        option (google.api.http) = {
+            get: "/v1/prixa/feedback"
+        };
+    }
+    rpc SendFeedback (SendFeedbackRequest) returns (SendFeedbackResponse){
+        option (google.api.http) = {
+            post: "/v1/prixa/feedback"
+            body: "*"
+        };
+    }
+}
+
+message LogEvents {
+    string answer = 1;
+    string applicationId = 2;
+    string partnerId = 3;
+    string prixaSessionId = 4;
+    string prixaUserId = 5;
+    string question = 6;
+}
+
+
+message BotConversationRequest {
+    string sessionId = 1;
+    repeated google.protobuf.Any reply = 2;
+}
+
+message BotConversationResponse {
+    string sessionId = 1;
+    repeated google.protobuf.Any result = 2;
+    float progressBarPercentage = 3;
+    repeated LogEvents logEvents = 4;
 }
 
 message SendEmailRequest {

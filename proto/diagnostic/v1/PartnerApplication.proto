@@ -2,14 +2,38 @@ syntax = "proto3";
 
 package prixa.partnerapplication.v1;
 import "proto/support/v1/Timestamp.proto";
-import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
 
 service PartnerApplicationService {
-    rpc CreatePartnerApplication (CreatePartnerApplicationRequest) returns (CreatePartnerApplicationResponse);
-    rpc DeletePartnerApplication (google.protobuf.Empty) returns (DeletePartnerApplicationResponse);
-    rpc UpdatePartnerApplication (UpdatePartnerApplicationRequest) returns (UpdatePartnerApplicationResponse);
-    rpc GetPartnerApplication (google.protobuf.Empty) returns (GetPartnerApplicationResponse);
-    rpc ListPartnerApplications (google.protobuf.Empty) returns (ListPartnerApplicationsResponse);
+    rpc CreatePartnerApplication (CreatePartnerApplicationRequest) returns (CreatePartnerApplicationResponse){
+        option (google.api.http) = {
+            post: "/api/v1/partner/{partnerId}/application"
+            body: "*"
+        };
+    }
+    rpc DeletePartnerApplication (DeletePartnerApplicationRequest) returns (DeletePartnerApplicationResponse){
+        option (google.api.http) = {
+            post: "/api/v1/partner/{partnerId}/application/{applicationId}"
+            body: "*"
+        };
+    }
+    rpc UpdatePartnerApplication (UpdatePartnerApplicationRequest) returns (UpdatePartnerApplicationResponse){
+        option (google.api.http) = {
+            post: "/api/v1/partner/{partnerId}/application/{applicationId}"
+            body: "*"
+        };
+    }
+    rpc GetPartnerApplication (GetPartnerApplicationRequest) returns (GetPartnerApplicationResponse){
+        option (google.api.http) = {
+            get: "/api/v1/partner/{partnerId}/application/{applicationId}"
+        };
+    }
+    rpc ListPartnerApplications (ListPartnerApplicationsRequest) returns (ListPartnerApplicationsResponse){
+        option (google.api.http) = {
+            post: "/api/v1/partner/{partnerId}/application"
+            body: "*"
+        };
+    }
 }
 
 message PartnerAppResponseData {
@@ -17,19 +41,24 @@ message PartnerAppResponseData {
     string name = 2;
     string status = 3;
     string secretKey = 4;
-    repeated prixa.timestamp.v1.DataTimestamp dataTimestamp = 5;
+    prixa.timestamp.v1.DataTimestamp dataTimestamp = 5;
 }
 
 
 
 message CreatePartnerApplicationRequest {
     string name = 1;
+    string partnerId = 2;
 }
 
 message CreatePartnerApplicationResponse {
     repeated PartnerAppResponseData data = 1;
 }
 
+message DeletePartnerApplicationRequest {
+    string partnerId = 1;
+    string applicationId = 2;
+}
 
 message DeletePartnerApplicationResponse {
     repeated PartnerAppResponseData data = 1;
@@ -37,14 +66,25 @@ message DeletePartnerApplicationResponse {
 
 message UpdatePartnerApplicationRequest {
     string name = 1;
+    string partnerId = 2;
+    string applicationId = 3;
 }
 
 message UpdatePartnerApplicationResponse {
     repeated PartnerAppResponseData data = 1;
 }
 
+message GetPartnerApplicationRequest {
+    string partnerId = 1;
+    string applicationId = 2;
+}
+
 message GetPartnerApplicationResponse {
     repeated PartnerAppResponseData data = 1;
+}
+
+message ListPartnerApplicationsRequest {
+    string partnerId = 1;
 }
 
 message ListPartnerApplicationsResponse {
