@@ -53,7 +53,7 @@ message CreatePartnerRequest {
 }
 
 message CreatePartnerResponse {
-    repeated PartnerResponseData data = 1;
+    PartnerResponseData data = 1;
 }
 
 message DeletePartnerRequest {
@@ -61,7 +61,7 @@ message DeletePartnerRequest {
 }
 
 message DeletePartnerResponse {
-    repeated PartnerResponseData data = 1;
+    PartnerResponseData data = 1;
 }
 
 message UpdatePartnerRequest {
@@ -70,7 +70,7 @@ message UpdatePartnerRequest {
 }
 
 message UpdatePartnerResponse {
-    repeated PartnerResponseData data = 1;
+    PartnerResponseData data = 1;
 }
 
 message GetPartnerRequest {
@@ -78,9 +78,9 @@ message GetPartnerRequest {
 }
 
 message GetPartnerResponse {
-    repeated PartnerResponseData data = 1;
+    PartnerResponseData data = 1;
 }
 
 message ListPartnersResponse {
-    repeated PartnerResponseData data = 1;
+    PartnerResponseData data = 1;
 }

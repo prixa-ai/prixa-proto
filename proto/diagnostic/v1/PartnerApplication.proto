@@ -44,15 +44,13 @@ message PartnerAppResponseData {
     prixa.timestamp.v1.DataTimestamp dataTimestamp = 5;
 }
 
-
-
 message CreatePartnerApplicationRequest {
     string name = 1;
     string partnerId = 2;
 }
 
 message CreatePartnerApplicationResponse {
-    repeated PartnerAppResponseData data = 1;
+    PartnerAppResponseData data = 1;
 }
 
 message DeletePartnerApplicationRequest {
@@ -61,7 +59,7 @@ message DeletePartnerApplicationRequest {
 }
 
 message DeletePartnerApplicationResponse {
-    repeated PartnerAppResponseData data = 1;
+    PartnerAppResponseData data = 1;
 }
 
 message UpdatePartnerApplicationRequest {
@@ -71,7 +69,7 @@ message UpdatePartnerApplicationRequest {
 }
 
 message UpdatePartnerApplicationResponse {
-    repeated PartnerAppResponseData data = 1;
+    PartnerAppResponseData data = 1;
 }
 
 message GetPartnerApplicationRequest {
@@ -80,7 +78,7 @@ message GetPartnerApplicationRequest {
 }
 
 message GetPartnerApplicationResponse {
-    repeated PartnerAppResponseData data = 1;
+    PartnerAppResponseData data = 1;
 }
 
 message ListPartnerApplicationsRequest {
@@ -88,5 +86,5 @@ message ListPartnerApplicationsRequest {
 }
 
 message ListPartnerApplicationsResponse {
-    repeated PartnerAppResponseData data = 1;
+    PartnerAppResponseData data = 1;
 }
