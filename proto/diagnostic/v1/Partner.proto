@@ -4,13 +4,37 @@ package prixa.partner.v1;
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "proto/support/v1/Timestamp.proto";
+import "google/api/annotations.proto";
 
 service PartnerService {
-    rpc CreatePartner (CreatePartnerRequest) returns (CreatePartnerResponse);
-    rpc DeletePartner (google.protobuf.Empty) returns (DeletePartnerResponse);
-    rpc UpdatePartner (UpdatePartnerRequest) returns (UpdatePartnerResponse);
-    rpc GetPartner (google.protobuf.Empty) returns (GetPartnerResponse);
-    rpc ListPartners (google.protobuf.Empty) returns (ListPartnersResponse);
+    rpc CreatePartner (CreatePartnerRequest) returns (CreatePartnerResponse){
+        option (google.api.http) = {
+            post: "/api/v1/partner"
+            body: "*"
+        };
+    }
+    rpc DeletePartner (DeletePartnerRequest) returns (DeletePartnerResponse){
+        option (google.api.http) = {
+            post: "/api/v1/partner/{partnerId}"
+            body: "*"
+        };
+    }
+    rpc UpdatePartner (UpdatePartnerRequest) returns (UpdatePartnerResponse){
+        option (google.api.http) = {
+            put: "/api/v1/partner/{partnerId}"
+            body: "*"
+        };
+    }
+    rpc GetPartner (GetPartnerRequest) returns (GetPartnerResponse){
+        option (google.api.http) = {
+            get: "/api/v1/partner/{partnerId}"
+        };
+    }
+    rpc ListPartners (google.protobuf.Empty) returns (ListPartnersResponse){
+        option (google.api.http) = {
+            get: "/api/v1/partner"
+        };
+    }
 }
 
 
@@ -19,7 +43,7 @@ message PartnerResponseData {
     string name = 2;
     string status = 3;
     google.protobuf.ListValue appIds = 4;
-    repeated prixa.timestamp.v1.DataTimestamp dataTimestamp = 5;
+    prixa.timestamp.v1.DataTimestamp dataTimestamp = 5;
 }
 
 
@@ -32,16 +56,25 @@ message CreatePartnerResponse {
     repeated PartnerResponseData data = 1;
 }
 
+message DeletePartnerRequest {
+    string partnerId = 1;
+}
+
 message DeletePartnerResponse {
     repeated PartnerResponseData data = 1;
 }
 
 message UpdatePartnerRequest {
     string name = 1;
+    string partnerId = 2;
 }
 
 message UpdatePartnerResponse {
     repeated PartnerResponseData data = 1;
+}
+
+message GetPartnerRequest {
+    string partnerId = 1;
 }
 
 message GetPartnerResponse {

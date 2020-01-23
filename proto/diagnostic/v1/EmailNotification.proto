@@ -3,9 +3,15 @@ syntax = "proto3";
 
 package prixa.emailnotification.v1;
 import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
 
 service NotificationService {
-    rpc EmailDiagnosticResult (EmailDiagnosticResultRequest) returns (google.protobuf.Empty);
+    rpc EmailDiagnosticResult (EmailDiagnosticResultRequest) returns (google.protobuf.Empty){
+        option (google.api.http) = {
+            post: "/v1/prixa/email/send"
+            body: "*"
+        };
+    }
 }
 
 message EmailDiagnosticResultRequest {
