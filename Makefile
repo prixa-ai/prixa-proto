@@ -4,26 +4,26 @@ build:
 		-I proto/support/v1:. \
 		-I${GOPATH}/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
 		--go_out=plugins=grpc:. \
-		proto/diagnostic/v1/Partner.proto
+		proto/partner/v1/Partner.proto
 	protoc -I/usr/local/include -I. \
 		-I${GOPATH}/src \
 		-I proto/support/v1:. \
 		-I${GOPATH}/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
 		--grpc-gateway_out=logtostderr=true:. \
-		proto/diagnostic/v1/Partner.proto
+		proto/partner/v1/Partner.proto
 
 	protoc -I/usr/local/include -I. \
 		-I${GOPATH}/src \
 		-I proto/support/v1:. \
 		-I${GOPATH}/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
 		--go_out=plugins=grpc:. \
-		proto/diagnostic/v1/PartnerApplication.proto
+		proto/partnerapp/v1/PartnerApplication.proto
 	protoc -I/usr/local/include -I. \
 		-I${GOPATH}/src \
 		-I proto/support/v1:. \
 		-I${GOPATH}/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
 		--grpc-gateway_out=logtostderr=true:. \
-		proto/diagnostic/v1/PartnerApplication.proto
+		proto/partnerapp/v1/PartnerApplication.proto
 
 	protoc -I/usr/local/include -I. \
 		-I${GOPATH}/src \
@@ -40,13 +40,12 @@ build:
 		-I${GOPATH}/src \
 		-I${GOPATH}/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
 		--go_out=plugins=grpc:. \
-		proto/diagnostic/v1/EmailNotification.proto
+		proto/email/v1/EmailNotification.proto
 	protoc -I/usr/local/include -I. \
 		-I${GOPATH}/src \
 		-I${GOPATH}/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
 		--grpc-gateway_out=logtostderr=true:. \
-		proto/diagnostic/v1/EmailNotification.proto
-
+		proto/email/v1/EmailNotification.proto
 	
 	protoc -I/usr/local/include -I. \
 		-I${GOPATH}/src \
