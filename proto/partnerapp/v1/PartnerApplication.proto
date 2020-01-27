@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package prixa.partnerapplication.v1;
-import "proto/support/v1/Timestamp.proto";
+import "proto/partner/v1/Timestamp.proto";
 import "google/api/annotations.proto";
 
 service PartnerApplicationService {

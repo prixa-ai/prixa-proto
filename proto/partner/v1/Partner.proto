@@ -3,7 +3,7 @@ syntax = "proto3";
 package prixa.partner.v1;
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
-import "proto/support/v1/Timestamp.proto";
+import "proto/partner/v1/Timestamp.proto";
 import "google/api/annotations.proto";
 
 service PartnerService {
