@@ -7,12 +7,12 @@ import (
 	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
+	v1 "github.com/prixa-ai/prixa-proto/proto/support/v1"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
 	math "math"
-	v1 "proto/support/v1"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
