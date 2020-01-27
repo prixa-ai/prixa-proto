@@ -41,7 +41,7 @@ message PartnerResponseData {
     string name = 2;
     string status = 3;
     repeated string appIds = 4;
-    prixa.timestamp.v1.DataTimestamp dataTimestamp = 5;
+    prixa.partner.v1.DataTimestamp dataTimestamp = 5;
 }
 
 

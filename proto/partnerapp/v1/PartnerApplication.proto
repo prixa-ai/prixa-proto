@@ -41,7 +41,7 @@ message PartnerAppResponseData {
     string name = 2;
     string status = 3;
     string secretKey = 4;
-    prixa.timestamp.v1.DataTimestamp dataTimestamp = 5;
+    prixa.partnerapplication.v1.DataTimestamp dataTimestamp = 5;
 }
 
 message CreatePartnerApplicationRequest {
