@@ -9,12 +9,12 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	empty "github.com/golang/protobuf/ptypes/empty"
 	_struct "github.com/golang/protobuf/ptypes/struct"
+	timestamp "github.com/prixa-ai/prixa-proto/proto/support/v1/timestamp"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
 	math "math"
-	v1 "proto/support/v1"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -29,14 +29,14 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type PartnerResponseData struct {
-	Id                   string             `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name                 string             `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Status               string             `protobuf:"bytes,3,opt,name=status,proto3" json:"status,omitempty"`
-	AppIds               *_struct.ListValue `protobuf:"bytes,4,opt,name=appIds,proto3" json:"appIds,omitempty"`
-	DataTimestamp        *v1.DataTimestamp  `protobuf:"bytes,5,opt,name=dataTimestamp,proto3" json:"dataTimestamp,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}           `json:"-"`
-	XXX_unrecognized     []byte             `json:"-"`
-	XXX_sizecache        int32              `json:"-"`
+	Id                   string                   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name                 string                   `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Status               string                   `protobuf:"bytes,3,opt,name=status,proto3" json:"status,omitempty"`
+	AppIds               *_struct.ListValue       `protobuf:"bytes,4,opt,name=appIds,proto3" json:"appIds,omitempty"`
+	DataTimestamp        *timestamp.DataTimestamp `protobuf:"bytes,5,opt,name=dataTimestamp,proto3" json:"dataTimestamp,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                 `json:"-"`
+	XXX_unrecognized     []byte                   `json:"-"`
+	XXX_sizecache        int32                    `json:"-"`
 }
 
 func (m *PartnerResponseData) Reset()         { *m = PartnerResponseData{} }
@@ -92,7 +92,7 @@ func (m *PartnerResponseData) GetAppIds() *_struct.ListValue {
 	return nil
 }
 
-func (m *PartnerResponseData) GetDataTimestamp() *v1.DataTimestamp {
+func (m *PartnerResponseData) GetDataTimestamp() *timestamp.DataTimestamp {
 	if m != nil {
 		return m.DataTimestamp
 	}
