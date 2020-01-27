@@ -86,5 +86,5 @@ message ListPartnerApplicationsRequest {
 }
 
 message ListPartnerApplicationsResponse {
-    PartnerAppResponseData data = 1;
+    repeated PartnerAppResponseData data = 1;
 }
