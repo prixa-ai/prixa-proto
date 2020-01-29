@@ -91,7 +91,7 @@ message SendFeedbackRequest{
     string sessionId = 4;
     string symptomId = 5;
     string question = 6;
-    string feedbacks = 7;
+    repeated string feedbacks = 7;
     string detail = 8;
 }
 
