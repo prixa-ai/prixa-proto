@@ -13,13 +13,13 @@ service PartnerApplicationService {
     }
     rpc DeletePartnerApplication (DeletePartnerApplicationRequest) returns (DeletePartnerApplicationResponse){
         option (google.api.http) = {
-            post: "/api/v1/partner/{partnerId}/application/{applicationId}"
+            delete: "/api/v1/partner/{partnerId}/application/{applicationId}"
             body: "*"
         };
     }
     rpc UpdatePartnerApplication (UpdatePartnerApplicationRequest) returns (UpdatePartnerApplicationResponse){
         option (google.api.http) = {
-            post: "/api/v1/partner/{partnerId}/application/{applicationId}"
+            put: "/api/v1/partner/{partnerId}/application/{applicationId}"
             body: "*"
         };
     }

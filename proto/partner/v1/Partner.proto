@@ -13,7 +13,7 @@ service PartnerService {
     }
     rpc DeletePartner (DeletePartnerRequest) returns (DeletePartnerResponse){
         option (google.api.http) = {
-            post: "/api/v1/partner/{partnerId}"
+            delete: "/api/v1/partner/{partnerId}"
             body: "*"
         };
     }
