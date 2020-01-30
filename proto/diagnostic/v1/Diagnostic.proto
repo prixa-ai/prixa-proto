@@ -52,9 +52,42 @@ message BotConversationRequest {
     google.protobuf.Any reply = 2;
 }
 
+message MessagesData {
+    string value = 1;
+    string description = 2;
+    string media = 3;
+    string sourceURL = 4;
+}
+
+message ValueDatas {
+    string label = 1;
+    string value = 2;
+    string tag = 3;
+    string description = 4;
+}
+
+message ActionDatas {
+    string type = 1;
+    repeated ValueDatas value = 2;
+}
+
+message PreconditionsDatas {
+    string name = 1;
+    string type = 2;
+    string nameIndo = 3;
+    string preconditionsDescription = 4;
+    string preconditionsDescriptionCopy = 5;
+}
+
+message ResultDatas {
+    MessagesData messages = 1;
+    ActionDatas actions = 2;
+    repeated PreconditionsDatas preconditions = 3;
+}
+
 message BotConversationResponse {
     string sessionId = 1;
-    google.protobuf.Any result = 2;
+    ResultDatas result = 2;
     float progressBarPercentage = 3;
     LogEvents logEvents = 4;
 }
