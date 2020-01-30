@@ -14,7 +14,6 @@ service PartnerService {
     rpc DeletePartner (DeletePartnerRequest) returns (DeletePartnerResponse){
         option (google.api.http) = {
             delete: "/api/v1/partner/{partnerId}"
-            body: "*"
         };
     }
     rpc UpdatePartner (UpdatePartnerRequest) returns (UpdatePartnerResponse){

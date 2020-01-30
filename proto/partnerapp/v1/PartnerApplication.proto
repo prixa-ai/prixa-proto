@@ -14,7 +14,6 @@ service PartnerApplicationService {
     rpc DeletePartnerApplication (DeletePartnerApplicationRequest) returns (DeletePartnerApplicationResponse){
         option (google.api.http) = {
             delete: "/api/v1/partner/{partnerId}/application/{applicationId}"
-            body: "*"
         };
     }
     rpc UpdatePartnerApplication (UpdatePartnerApplicationRequest) returns (UpdatePartnerApplicationResponse){
