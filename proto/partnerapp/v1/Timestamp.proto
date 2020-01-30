@@ -2,8 +2,7 @@ syntax = "proto3";
 
 // Timestamp.proto defines the DataTimestamp message
 // DataTimestamp contains 2 fields, createdAt, and updatedAt
-package prixa.timestamp.v1;
-option go_package = "partnerpb";
+package prixa.partnerapplication.v1;
 
 import "google/protobuf/timestamp.proto";
 

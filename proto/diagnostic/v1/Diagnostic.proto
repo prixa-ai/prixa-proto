@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package prixa.diagnostic.v1;
 import "google/protobuf/empty.proto";
-import "google/protobuf/struct.proto";
 import "google/protobuf/any.proto";
 import "google/api/annotations.proto";
 
@@ -82,7 +81,7 @@ message SendSurveyRequest {
 message FeedbackContentResponse {
     string question = 1;
     string instruction = 2;
-    google.protobuf.ListValue choices = 3;
+    repeated string choices = 3;
 }
 
 message SendFeedbackRequest{
@@ -92,7 +91,7 @@ message SendFeedbackRequest{
     string sessionId = 4;
     string symptomId = 5;
     string question = 6;
-    string feedbacks = 7;
+    repeated string feedbacks = 7;
     string detail = 8;
 }
 

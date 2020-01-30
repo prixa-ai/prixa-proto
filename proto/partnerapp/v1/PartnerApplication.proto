@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package prixa.partnerapplication.v1;
-import "proto/partner/v1/Timestamp.proto";
+import "proto/partnerapp/v1/Timestamp.proto";
 import "google/api/annotations.proto";
 
 service PartnerApplicationService {
@@ -13,13 +13,13 @@ service PartnerApplicationService {
     }
     rpc DeletePartnerApplication (DeletePartnerApplicationRequest) returns (DeletePartnerApplicationResponse){
         option (google.api.http) = {
-            post: "/api/v1/partner/{partnerId}/application/{applicationId}"
+            delete: "/api/v1/partner/{partnerId}/application/{applicationId}"
             body: "*"
         };
     }
     rpc UpdatePartnerApplication (UpdatePartnerApplicationRequest) returns (UpdatePartnerApplicationResponse){
         option (google.api.http) = {
-            post: "/api/v1/partner/{partnerId}/application/{applicationId}"
+            put: "/api/v1/partner/{partnerId}/application/{applicationId}"
             body: "*"
         };
     }
@@ -41,7 +41,7 @@ message PartnerAppResponseData {
     string name = 2;
     string status = 3;
     string secretKey = 4;
-    prixa.timestamp.v1.DataTimestamp dataTimestamp = 5;
+    prixa.partnerapplication.v1.DataTimestamp dataTimestamp = 5;
 }
 
 message CreatePartnerApplicationRequest {
@@ -86,5 +86,5 @@ message ListPartnerApplicationsRequest {
 }
 
 message ListPartnerApplicationsResponse {
-    PartnerAppResponseData data = 1;
+    repeated PartnerAppResponseData data = 1;
 }

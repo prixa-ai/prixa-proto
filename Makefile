@@ -43,3 +43,14 @@ build:
 		--grpc-gateway_out=logtostderr=true:. \
 		proto/email/v1/EmailNotification.proto
 
+	protoc -I/usr/local/include -I. \
+		-I${GOPATH}/src \
+		-I${GOPATH}/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
+		--go_out=plugins=grpc:. \
+		proto/partner/v1/Timestamp.proto
+
+	protoc -I/usr/local/include -I. \
+		-I${GOPATH}/src \
+		-I${GOPATH}/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
+		--go_out=plugins=grpc:. \
+		proto/partnerapp/v1/Timestamp.proto	
