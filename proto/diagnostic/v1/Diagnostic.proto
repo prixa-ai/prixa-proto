@@ -46,10 +46,15 @@ message LogEvents {
     string question = 6;
 }
 
+message ReplyDatas {
+    string tag = 1;
+    string type = 2;
+    string value = 3;
+}
 
 message BotConversationRequest {
     string sessionId = 1;
-    google.protobuf.Any reply = 2;
+    ReplyDatas reply = 2;
 }
 
 message MessagesData {
