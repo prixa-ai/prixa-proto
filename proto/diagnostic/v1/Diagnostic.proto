@@ -46,7 +46,7 @@ message ReplyDatas {
     string tag = 1;
     string type = 2;
     string value = 3;
-    map<string, PreconditionsDatasRequest> preconditions = 4;
+    repeated PreconditionsDatas preconditions = 4;
 }
 
 message PreconditionsDatasRequest {
@@ -68,7 +68,7 @@ message BotConversationResponse {
 message ResultDatas {
     MessagesData messages = 1;
     ActionDatas actions = 2;
-    repeated PreconditionsDatasResponse preconditions = 3;
+    repeated PreconditionsDatas preconditions = 3;
 }
 
 message MessagesData {
@@ -90,7 +90,7 @@ message ValueDatas {
     string description = 4;
 }
 
-message PreconditionsDatasResponse {
+message PreconditionsDatas {
     string id = 1;
     string type = 2;
     string nameIndo = 3;
