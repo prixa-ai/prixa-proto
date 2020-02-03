@@ -69,6 +69,7 @@ message ResultDatas {
     MessagesData messages = 1;
     ActionDatas actions = 2;
     repeated PreconditionsDatas preconditions = 3;
+    string currentState = 4;
 }
 
 message MessagesData {
