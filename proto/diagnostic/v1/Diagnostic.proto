@@ -62,7 +62,7 @@ message BotConversationResponse {
     string sessionId = 1;
     ResultDatas result = 2;
     float progressBarPercentage = 3;
-    LogEvents logEvents = 4;
+    repeated LogEvents logEvents = 4;
 }
 
 message ResultDatas {
