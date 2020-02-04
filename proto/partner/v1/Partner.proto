@@ -85,7 +85,7 @@ message PageProperty {
 }
 
 message ListPartnersRequest {
-    int32 pageNow = 1;
+    int32 page = 1;
 }
 
 message ListPartnersResponse {
