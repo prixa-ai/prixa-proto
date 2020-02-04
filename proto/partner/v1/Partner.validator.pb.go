@@ -7,11 +7,11 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/golang/protobuf/ptypes/empty"
 	_ "github.com/golang/protobuf/ptypes/struct"
 	_ "github.com/golang/protobuf/ptypes/timestamp"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/mwitkow/go-proto-validators"
+	_ "github.com/golang/protobuf/ptypes/empty"
 	regexp "regexp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
@@ -130,10 +130,23 @@ func (this *GetPartnerResponse) Validate() error {
 	}
 	return nil
 }
+func (this *PageProperty) Validate() error {
+	return nil
+}
+func (this *ListPartnersRequest) Validate() error {
+	return nil
+}
 func (this *ListPartnersResponse) Validate() error {
-	if this.Data != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Data); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
+	for _, item := range this.Data {
+		if item != nil {
+			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
+				return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
+			}
+		}
+	}
+	if this.Page != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Page); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Page", err)
 		}
 	}
 	return nil

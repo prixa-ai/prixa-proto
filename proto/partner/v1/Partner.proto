@@ -16,8 +16,7 @@ service PartnerService {
     }
     rpc DeletePartner (DeletePartnerRequest) returns (DeletePartnerResponse){
         option (google.api.http) = {
-            post: "/api/v1/partner/{partnerId}"
-            body: "*"
+            delete: "/api/v1/partner/{partnerId}"
         };
     }
     rpc UpdatePartner (UpdatePartnerRequest) returns (UpdatePartnerResponse){
@@ -31,7 +30,7 @@ service PartnerService {
             get: "/api/v1/partner/{partnerId}"
         };
     }
-    rpc ListPartners (google.protobuf.Empty) returns (ListPartnersResponse){
+    rpc ListPartners (ListPartnersRequest) returns (ListPartnersResponse){
         option (google.api.http) = {
             get: "/api/v1/partner"
         };
@@ -81,6 +80,17 @@ message GetPartnerResponse {
     PartnerResponseData data = 1;
 }
 
+message PageProperty {
+    int32 pageNo = 1;
+    int32 totalPages = 2;
+    int32 totalRecords = 3;
+}
+
+message ListPartnersRequest {
+    int32 pageNow = 1;
+}
+
 message ListPartnersResponse {
-    PartnerResponseData data = 1;
+    repeated PartnerResponseData data = 1;
+    PageProperty page = 2;
 }

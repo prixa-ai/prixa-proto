@@ -37,4 +37,3 @@ build:
 		--grpc-gateway_out=logtostderr=true:. \
 		--govalidators_out=. \
 		proto/email/v1/EmailNotification.proto
-

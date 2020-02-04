@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package prixa.diagnostic.v1;
 import "google/protobuf/empty.proto";
-import "google/protobuf/struct.proto";
 import "google/protobuf/any.proto";
 import "google/api/annotations.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
@@ -39,6 +38,68 @@ service DiagnosticService {
     }
 }
 
+message BotConversationRequest {
+    string sessionId = 1;
+    ReplyDatas reply = 2;
+}
+
+message ReplyDatas {
+    string tag = 1;
+    string type = 2;
+    string value = 3;
+    repeated PreconditionsDatas preconditions = 4;
+}
+
+message PreconditionsDatasRequest {
+    repeated PreconditionsDatasRequestProp datas = 1;
+}
+
+message PreconditionsDatasRequestProp {
+    string id = 1;
+    string values = 2;
+}
+
+message BotConversationResponse {
+    string sessionId = 1;
+    ResultDatas result = 2;
+    float progressBarPercentage = 3;
+    repeated LogEvents logEvents = 4;
+}
+
+message ResultDatas {
+    MessagesData messages = 1;
+    ActionDatas actions = 2;
+    repeated PreconditionsDatas preconditions = 3;
+    string currentState = 4;
+}
+
+message MessagesData {
+    string value = 1;
+    string description = 2;
+    string media = 3;
+    string sourceURL = 4;
+}
+
+message ActionDatas {
+    string type = 1;
+    repeated ValueDatas value = 2;
+}
+
+message ValueDatas {
+    string label = 1;
+    string value = 2;
+    string tag = 3;
+    string description = 4;
+}
+
+message PreconditionsDatas {
+    string id = 1;
+    string type = 2;
+    string nameIndo = 3;
+    string preconditionsDescription = 4;
+    string preconditionsDescriptionCopy = 5;
+}
+
 message LogEvents {
     string answer = 1;
     string applicationId = 2;
@@ -46,19 +107,6 @@ message LogEvents {
     string prixaSessionId = 4;
     string prixaUserId = 5;
     string question = 6;
-}
-
-
-message BotConversationRequest {
-    string sessionId = 1;
-    google.protobuf.Any reply = 2;
-}
-
-message BotConversationResponse {
-    string sessionId = 1;
-    google.protobuf.Any result = 2;
-    float progressBarPercentage = 3;
-    LogEvents logEvents = 4;
 }
 
 message SendEmailRequest {
@@ -83,7 +131,7 @@ message SendSurveyRequest {
 message FeedbackContentResponse {
     string question = 1 [(validator.field) = {string_not_empty: true}];
     string instruction = 2 [(validator.field) = {string_not_empty: true}];
-    google.protobuf.ListValue choices = 3;
+    repeated string choices = 3;
 }
 
 message SendFeedbackRequest{
@@ -93,7 +141,7 @@ message SendFeedbackRequest{
     string sessionId = 4 [(validator.field) = {string_not_empty: true}];
     string symptomId = 5 [(validator.field) = {string_not_empty: true}];
     string question = 6 [(validator.field) = {string_not_empty: true}];
-    string feedbacks = 7 [(validator.field) = {string_not_empty: true}];
+    repeated string feedbacks = 7;
     string detail = 8 [(validator.field) = {string_not_empty: true}];
 }
 

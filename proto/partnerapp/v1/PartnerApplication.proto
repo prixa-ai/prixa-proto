@@ -14,13 +14,12 @@ service PartnerApplicationService {
     }
     rpc DeletePartnerApplication (DeletePartnerApplicationRequest) returns (DeletePartnerApplicationResponse){
         option (google.api.http) = {
-            post: "/api/v1/partner/{partnerId}/application/{applicationId}"
-            body: "*"
+            delete: "/api/v1/partner/{partnerId}/application/{applicationId}"
         };
     }
     rpc UpdatePartnerApplication (UpdatePartnerApplicationRequest) returns (UpdatePartnerApplicationResponse){
         option (google.api.http) = {
-            post: "/api/v1/partner/{partnerId}/application/{applicationId}"
+            put: "/api/v1/partner/{partnerId}/application/{applicationId}"
             body: "*"
         };
     }
@@ -88,5 +87,5 @@ message ListPartnerApplicationsRequest {
 }
 
 message ListPartnerApplicationsResponse {
-    PartnerAppResponseData data = 1;
+    repeated PartnerAppResponseData data = 1;
 }
