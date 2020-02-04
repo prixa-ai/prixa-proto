@@ -4,6 +4,7 @@ syntax = "proto3";
 package prixa.emailnotification.v1;
 import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
+import "github.com/mwitkow/go-proto-validators/validator.proto";
 
 service NotificationService {
     rpc EmailDiagnosticResult (EmailDiagnosticResultRequest) returns (google.protobuf.Empty){
@@ -15,18 +16,18 @@ service NotificationService {
 }
 
 message EmailDiagnosticResultRequest {
-    string to = 1;
-    string name = 2;
-    string gender = 3;
-    string ageRange = 4;
-    float weightInKg = 5;
-    float heightInCm = 6;
-    float bmiIndex = 7;
-    string subject = 8;
-    string preconditions = 9;
-    string mainSymptoms = 10;
-    string symptoms = 11;
-    string notKnown = 12;
-    string unknown = 13;
-    string prixaResults = 14;
+    string to = 1 [(validator.field) = {string_not_empty: true}];
+    string name = 2 [(validator.field) = {string_not_empty: true}];
+    string gender = 3 [(validator.field) = {string_not_empty: true}];
+    string ageRange = 4 [(validator.field) = {string_not_empty: true}];
+    float weightInKg = 5 [(validator.field) = {float_gte: 1, float_lte: 999}];
+    float heightInCm = 6 [(validator.field) = {float_gte: 40, float_lte: 300}];
+    float bmiIndex = 7 [(validator.field) = {float_gte: 0, float_lte: 99}];
+    string subject = 8 [(validator.field) = {string_not_empty: true}];
+    string preconditions = 9 [(validator.field) = {string_not_empty: true}];
+    string mainSymptoms = 10 [(validator.field) = {string_not_empty: true}];
+    string symptoms = 11 [(validator.field) = {string_not_empty: true}];
+    string notKnown = 12 [(validator.field) = {string_not_empty: true}];
+    string unknown = 13 [(validator.field) = {string_not_empty: true}];
+    string prixaResults = 14 [(validator.field) = {string_not_empty: true}];
 }

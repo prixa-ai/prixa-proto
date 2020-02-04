@@ -5,6 +5,7 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/any.proto";
 import "google/api/annotations.proto";
+import "github.com/mwitkow/go-proto-validators/validator.proto";
 
 service DiagnosticService {
     rpc BotConversation (BotConversationRequest) returns (BotConversationResponse){
@@ -67,33 +68,33 @@ message SendEmailRequest {
 }
 
 message SendEmailResponse {
-    string message = 1;
+    string message = 1 [(validator.field) = {string_not_empty: true}];
 }
 
 message SendSurveyRequest {
-    string applicationId = 1;
-    string feedback = 2;
-    string partnerId = 3;
+    string applicationId = 1 [(validator.field) = {string_not_empty: true}];
+    string feedback = 2 [(validator.field) = {string_not_empty: true}];
+    string partnerId = 3 [(validator.field) = {string_not_empty: true}];
     int32 rating = 4;
-    string sessionId = 5;
-    string userId = 6;
+    string sessionId = 5 [(validator.field) = {string_not_empty: true}];
+    string userId = 6 [(validator.field) = {string_not_empty: true}];
 }
 
 message FeedbackContentResponse {
-    string question = 1;
-    string instruction = 2;
+    string question = 1 [(validator.field) = {string_not_empty: true}];
+    string instruction = 2 [(validator.field) = {string_not_empty: true}];
     google.protobuf.ListValue choices = 3;
 }
 
 message SendFeedbackRequest{
-    string userId = 1;
-    string partnerId = 2;
-    string applicationId = 3;
-    string sessionId = 4;
-    string symptomId = 5;
-    string question = 6;
-    string feedbacks = 7;
-    string detail = 8;
+    string userId = 1 [(validator.field) = {string_not_empty: true}];
+    string partnerId = 2 [(validator.field) = {string_not_empty: true}];
+    string applicationId = 3 [(validator.field) = {string_not_empty: true}];
+    string sessionId = 4 [(validator.field) = {string_not_empty: true}];
+    string symptomId = 5 [(validator.field) = {string_not_empty: true}];
+    string question = 6 [(validator.field) = {string_not_empty: true}];
+    string feedbacks = 7 [(validator.field) = {string_not_empty: true}];
+    string detail = 8 [(validator.field) = {string_not_empty: true}];
 }
 
 message SendFeedbackResponse {

@@ -3,8 +3,9 @@ syntax = "proto3";
 package prixa.partner.v1;
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
-import "proto/partner/v1/Timestamp.proto";
+import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
+import "github.com/mwitkow/go-proto-validators/validator.proto";
 
 service PartnerService {
     rpc CreatePartner (CreatePartnerRequest) returns (CreatePartnerResponse){
@@ -39,17 +40,16 @@ service PartnerService {
 
 
 message PartnerResponseData {
-    string id = 1;
-    string name = 2;
-    string status = 3;
+    string id = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+    string name = 2 [(validator.field) = {string_not_empty: true}];
+    string status = 3 [(validator.field) = {string_not_empty: true}];
     google.protobuf.ListValue appIds = 4;
-    prixa.timestamp.v1.DataTimestamp dataTimestamp = 5;
+    google.protobuf.Timestamp createdAt = 5;
+    google.protobuf.Timestamp updatedAt = 6;
 }
 
-
-
 message CreatePartnerRequest {
-    string name = 1;
+    string name = 1 [(validator.field) = {string_not_empty: true}];
 }
 
 message CreatePartnerResponse {
@@ -57,7 +57,7 @@ message CreatePartnerResponse {
 }
 
 message DeletePartnerRequest {
-    string partnerId = 1;
+    string partnerId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
 }
 
 message DeletePartnerResponse {
@@ -65,8 +65,8 @@ message DeletePartnerResponse {
 }
 
 message UpdatePartnerRequest {
-    string name = 1;
-    string partnerId = 2;
+    string name = 1 [(validator.field) = {string_not_empty: true}];
+    string partnerId = 2 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
 }
 
 message UpdatePartnerResponse {
@@ -74,7 +74,7 @@ message UpdatePartnerResponse {
 }
 
 message GetPartnerRequest {
-    string partnerId = 1;
+    string partnerId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
 }
 
 message GetPartnerResponse {

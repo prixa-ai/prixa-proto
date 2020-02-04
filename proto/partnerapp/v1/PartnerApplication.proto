@@ -1,8 +1,9 @@
 syntax = "proto3";
 
 package prixa.partnerapplication.v1;
-import "proto/partner/v1/Timestamp.proto";
+import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
+import "github.com/mwitkow/go-proto-validators/validator.proto";
 
 service PartnerApplicationService {
     rpc CreatePartnerApplication (CreatePartnerApplicationRequest) returns (CreatePartnerApplicationResponse){
@@ -37,16 +38,17 @@ service PartnerApplicationService {
 }
 
 message PartnerAppResponseData {
-    string id = 1;
-    string name = 2;
-    string status = 3;
-    string secretKey = 4;
-    prixa.timestamp.v1.DataTimestamp dataTimestamp = 5;
+    string id = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+    string name = 2 [(validator.field) = {string_not_empty: true}];
+    string status = 3 [(validator.field) = {string_not_empty: true}];
+    string secretKey = 4 [(validator.field) = {string_not_empty: true}];
+    google.protobuf.Timestamp createdAt = 5;
+    google.protobuf.Timestamp updatedAt = 6;
 }
 
 message CreatePartnerApplicationRequest {
-    string name = 1;
-    string partnerId = 2;
+    string name = 1 [(validator.field) = {string_not_empty: true}];
+    string partnerId = 2 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
 }
 
 message CreatePartnerApplicationResponse {
@@ -54,8 +56,8 @@ message CreatePartnerApplicationResponse {
 }
 
 message DeletePartnerApplicationRequest {
-    string partnerId = 1;
-    string applicationId = 2;
+    string partnerId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+    string applicationId = 2 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
 }
 
 message DeletePartnerApplicationResponse {
@@ -63,9 +65,9 @@ message DeletePartnerApplicationResponse {
 }
 
 message UpdatePartnerApplicationRequest {
-    string name = 1;
-    string partnerId = 2;
-    string applicationId = 3;
+    string name = 1 [(validator.field) = {string_not_empty: true}];
+    string partnerId = 2 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+    string applicationId = 3 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
 }
 
 message UpdatePartnerApplicationResponse {
@@ -73,8 +75,8 @@ message UpdatePartnerApplicationResponse {
 }
 
 message GetPartnerApplicationRequest {
-    string partnerId = 1;
-    string applicationId = 2;
+    string partnerId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+    string applicationId = 2 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
 }
 
 message GetPartnerApplicationResponse {
@@ -82,7 +84,7 @@ message GetPartnerApplicationResponse {
 }
 
 message ListPartnerApplicationsRequest {
-    string partnerId = 1;
+    string partnerId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
 }
 
 message ListPartnerApplicationsResponse {
