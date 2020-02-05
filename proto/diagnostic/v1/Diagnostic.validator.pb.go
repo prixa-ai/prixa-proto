@@ -8,6 +8,7 @@ import (
 	math "math"
 	proto "github.com/golang/protobuf/proto"
 	_ "github.com/golang/protobuf/ptypes/empty"
+	_ "github.com/golang/protobuf/ptypes/any"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/mwitkow/go-proto-validators"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
@@ -80,6 +81,11 @@ func (this *ResultData) Validate() error {
 			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
 				return github_com_mwitkow_go_proto_validators.FieldError("Preconditions", err)
 			}
+		}
+	}
+	if this.DiagnosisResult != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.DiagnosisResult); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("DiagnosisResult", err)
 		}
 	}
 	return nil
