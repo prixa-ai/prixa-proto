@@ -83,11 +83,6 @@ func (this *ResultData) Validate() error {
 			}
 		}
 	}
-	if this.DiagnosisResult != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.DiagnosisResult); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("DiagnosisResult", err)
-		}
-	}
 	return nil
 }
 func (this *MessagesData) Validate() error {
@@ -99,6 +94,11 @@ func (this *ActionData) Validate() error {
 			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
 				return github_com_mwitkow_go_proto_validators.FieldError("Value", err)
 			}
+		}
+	}
+	if this.DiagnosisResult != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.DiagnosisResult); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("DiagnosisResult", err)
 		}
 	}
 	return nil

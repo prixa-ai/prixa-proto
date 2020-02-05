@@ -83,7 +83,6 @@ message ResultData {
     ActionData actions = 2;
     repeated PreconditionsData preconditions = 3;
     string currentState = 4;
-    google.protobuf.Any diagnosisResult = 5;
 }
 
 message MessagesData {
@@ -96,7 +95,7 @@ message MessagesData {
 message ActionData {
     string type = 1;
     repeated ValueData value = 2;
-    
+    google.protobuf.Any diagnosisResult = 3;
 }
 
 message ValueData {
