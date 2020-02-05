@@ -113,6 +113,11 @@ func (this *LogEvents) Validate() error {
 	return nil
 }
 func (this *CreatePrixaSessionRequest) Validate() error {
+	if this.UserData != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.UserData); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("UserData", err)
+		}
+	}
 	return nil
 }
 func (this *CreatePrixaSessionResponse) Validate() error {

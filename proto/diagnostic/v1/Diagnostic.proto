@@ -130,6 +130,7 @@ message LogEvents {
 message CreatePrixaSessionRequest {
     string partnerId = 1;
     string partnerAppId = 2;
+    UserData userData = 3;
 }
 
 message CreatePrixaSessionResponse {
@@ -139,12 +140,12 @@ message CreatePrixaSessionResponse {
 
 message UserData {
     string id = 1;
-	string fullname = 2;
-	string gender = 3;
-	string birthdate = 4;
-	float weight = 5;
-	float height = 6;
-	InsuranceStatus insurance = 7;
+    string fullname = 2;
+    string gender = 3;
+    string birthdate = 4;
+    float weight = 5;
+    float height = 6;
+    InsuranceStatus insurance = 7;
 }
 
 message InsuranceStatus {
