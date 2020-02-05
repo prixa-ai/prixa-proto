@@ -7,9 +7,9 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
+	_ "github.com/golang/protobuf/ptypes/empty"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/mwitkow/go-proto-validators"
-	_ "github.com/golang/protobuf/ptypes/empty"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
 
@@ -26,7 +26,7 @@ func (this *BotConversationRequest) Validate() error {
 	}
 	return nil
 }
-func (this *ReplyDatas) Validate() error {
+func (this *ReplyData) Validate() error {
 	for _, item := range this.Preconditions {
 		if item != nil {
 			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
@@ -36,17 +36,17 @@ func (this *ReplyDatas) Validate() error {
 	}
 	return nil
 }
-func (this *PreconditionsDatasRequest) Validate() error {
-	for _, item := range this.Datas {
+func (this *PreconditionsDataRequest) Validate() error {
+	for _, item := range this.Data {
 		if item != nil {
 			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
-				return github_com_mwitkow_go_proto_validators.FieldError("Datas", err)
+				return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
 			}
 		}
 	}
 	return nil
 }
-func (this *PreconditionsDatasRequestProp) Validate() error {
+func (this *PreconditionsDataRequestProp) Validate() error {
 	return nil
 }
 func (this *BotConversationResponse) Validate() error {
@@ -64,7 +64,7 @@ func (this *BotConversationResponse) Validate() error {
 	}
 	return nil
 }
-func (this *ResultDatas) Validate() error {
+func (this *ResultData) Validate() error {
 	if this.Messages != nil {
 		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Messages); err != nil {
 			return github_com_mwitkow_go_proto_validators.FieldError("Messages", err)
@@ -87,7 +87,7 @@ func (this *ResultDatas) Validate() error {
 func (this *MessagesData) Validate() error {
 	return nil
 }
-func (this *ActionDatas) Validate() error {
+func (this *ActionData) Validate() error {
 	for _, item := range this.Value {
 		if item != nil {
 			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
@@ -97,10 +97,10 @@ func (this *ActionDatas) Validate() error {
 	}
 	return nil
 }
-func (this *ValueDatas) Validate() error {
+func (this *ValueData) Validate() error {
 	return nil
 }
-func (this *PreconditionsDatas) Validate() error {
+func (this *PreconditionsData) Validate() error {
 	return nil
 }
 func (this *LogEvents) Validate() error {
