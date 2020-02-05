@@ -8,6 +8,7 @@ import (
 	math "math"
 	proto "github.com/golang/protobuf/proto"
 	_ "github.com/golang/protobuf/ptypes/empty"
+	_ "github.com/golang/protobuf/ptypes/any"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/mwitkow/go-proto-validators"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
@@ -95,6 +96,11 @@ func (this *ActionData) Validate() error {
 			}
 		}
 	}
+	if this.DiagnosisResult != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.DiagnosisResult); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("DiagnosisResult", err)
+		}
+	}
 	return nil
 }
 func (this *ValueData) Validate() error {
@@ -104,6 +110,33 @@ func (this *PreconditionsData) Validate() error {
 	return nil
 }
 func (this *LogEvents) Validate() error {
+	return nil
+}
+func (this *CreatePrixaSessionRequest) Validate() error {
+	if this.UserData != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.UserData); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("UserData", err)
+		}
+	}
+	return nil
+}
+func (this *CreatePrixaSessionResponse) Validate() error {
+	if this.UserData != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.UserData); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("UserData", err)
+		}
+	}
+	return nil
+}
+func (this *UserData) Validate() error {
+	if this.Insurance != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Insurance); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Insurance", err)
+		}
+	}
+	return nil
+}
+func (this *InsuranceStatus) Validate() error {
 	return nil
 }
 func (this *SendEmailRequest) Validate() error {

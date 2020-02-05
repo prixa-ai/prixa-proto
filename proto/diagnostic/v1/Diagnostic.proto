@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package prixa.diagnostic.v1;
 import "google/protobuf/empty.proto";
+import "google/protobuf/any.proto";
 import "google/api/annotations.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 
@@ -15,6 +16,12 @@ service DiagnosticService {
     rpc BotConversationV2 (BotConversationRequest) returns (BotConversationResponse){
         option (google.api.http) = {
             post: "/v2/prixa"
+            body: "*"
+        };
+    }
+    rpc CreatePrixaSession (CreatePrixaSessionRequest) returns (CreatePrixaSessionResponse) {
+        option (google.api.http) = {
+            post: "/v1/prixa/user"
             body: "*"
         };
     }
@@ -88,7 +95,7 @@ message MessagesData {
 message ActionData {
     string type = 1;
     repeated ValueData value = 2;
-    
+    google.protobuf.Any diagnosisResult = 3;
 }
 
 message ValueData {
@@ -118,6 +125,32 @@ message LogEvents {
     string prixaSessionId = 4;
     string prixaUserId = 5;
     string question = 6;
+}
+
+message CreatePrixaSessionRequest {
+    string partnerId = 1;
+    string partnerAppId = 2;
+    UserData userData = 3;
+}
+
+message CreatePrixaSessionResponse {
+    string sessionId = 1;
+    UserData userData = 2;
+}
+
+message UserData {
+    string id = 1;
+    string fullname = 2;
+    string gender = 3;
+    string birthdate = 4;
+    float weight = 5;
+    float height = 6;
+    InsuranceStatus insurance = 7;
+}
+
+message InsuranceStatus {
+    bool haveInsurance = 1;
+    bool planToHaveInsurance = 2;
 }
 
 message SendEmailRequest {
