@@ -18,6 +18,12 @@ service DiagnosticService {
             body: "*"
         };
     }
+    rpc CreatePrixaSession (CreatePrixaSessionRequest) returns (CreatePrixaSessionResponse) {
+        option (google.api.http) = {
+            post: "/v1/prixa/user"
+            body: "*"
+        };
+    }
     rpc SendEmail (SendEmailRequest) returns (SendEmailResponse){
         option (google.api.http) = {
             post: "/v1/conversation/mail/send"
@@ -118,6 +124,31 @@ message LogEvents {
     string prixaSessionId = 4;
     string prixaUserId = 5;
     string question = 6;
+}
+
+message CreatePrixaSessionRequest {
+    string partnerId = 1;
+    string partnerAppId = 2;
+}
+
+message CreatePrixaSessionResponse {
+    string sessionId = 1;
+    UserData userData = 2;
+}
+
+message UserData {
+    string id = 1;
+	string fullname = 2;
+	string gender = 3;
+	string birthdate = 4;
+	float weight = 5;
+	float height = 6;
+	InsuranceStatus insurance = 7;
+}
+
+message InsuranceStatus {
+    bool haveInsurance = 1;
+    bool planToHaveInsurance = 2;
 }
 
 message SendEmailRequest {

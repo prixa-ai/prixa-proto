@@ -106,6 +106,28 @@ func (this *PreconditionsData) Validate() error {
 func (this *LogEvents) Validate() error {
 	return nil
 }
+func (this *CreatePrixaSessionRequest) Validate() error {
+	return nil
+}
+func (this *CreatePrixaSessionResponse) Validate() error {
+	if this.UserData != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.UserData); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("UserData", err)
+		}
+	}
+	return nil
+}
+func (this *UserData) Validate() error {
+	if this.Insurance != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Insurance); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Insurance", err)
+		}
+	}
+	return nil
+}
+func (this *InsuranceStatus) Validate() error {
+	return nil
+}
 func (this *SendEmailRequest) Validate() error {
 	return nil
 }
