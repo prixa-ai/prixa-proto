@@ -12,6 +12,12 @@ service DiagnosticService {
             body: "*"
         };
     }
+    rpc BotConversationV2 (BotConversationRequest) returns (BotConversationResponse){
+        option (google.api.http) = {
+            post: "/v2/prixa"
+            body: "*"
+        };
+    }
     rpc SendEmail (SendEmailRequest) returns (SendEmailResponse){
         option (google.api.http) = {
             post: "/v1/conversation/mail/send"
