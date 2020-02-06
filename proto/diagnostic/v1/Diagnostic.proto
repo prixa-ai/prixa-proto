@@ -143,7 +143,7 @@ message PotentialDisease {
 	string likeliness = 4;
 	float score = 5;
 	string url = 6;
-	TriageResult tiage = 7;
+	TriageResult triage = 7;
 	repeated LabInfo labs = 8;
 }
 

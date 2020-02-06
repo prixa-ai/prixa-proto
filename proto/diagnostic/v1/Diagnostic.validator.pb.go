@@ -7,9 +7,9 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/golang/protobuf/ptypes/empty"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/mwitkow/go-proto-validators"
+	_ "github.com/golang/protobuf/ptypes/empty"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
 
@@ -149,9 +149,9 @@ func (this *SymptomDesc) Validate() error {
 	return nil
 }
 func (this *PotentialDisease) Validate() error {
-	if this.Tiage != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Tiage); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("Tiage", err)
+	if this.Triage != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Triage); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Triage", err)
 		}
 	}
 	for _, item := range this.Labs {
