@@ -106,7 +106,7 @@ message ValueData {
 
 message DiagnosisResultData {
     UserData user = 1;
-    map<string, UserDetailsData> userDetails = 2;
+    UserDetailsData userDetails = 2;
     repeated ProfileData profiles = 3;
     repeated SymptomDesc symptoms = 4;
     repeated PotentialDisease diseases = 5;

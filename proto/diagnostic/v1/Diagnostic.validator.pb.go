@@ -111,7 +111,11 @@ func (this *DiagnosisResultData) Validate() error {
 			return github_com_mwitkow_go_proto_validators.FieldError("User", err)
 		}
 	}
-	// Validation of proto3 map<> fields is unsupported.
+	if this.UserDetails != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.UserDetails); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("UserDetails", err)
+		}
+	}
 	for _, item := range this.Profiles {
 		if item != nil {
 			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
