@@ -7,10 +7,9 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/golang/protobuf/ptypes/empty"
-	_ "github.com/golang/protobuf/ptypes/any"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/mwitkow/go-proto-validators"
+	_ "github.com/golang/protobuf/ptypes/empty"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
 
@@ -104,6 +103,70 @@ func (this *ActionData) Validate() error {
 	return nil
 }
 func (this *ValueData) Validate() error {
+	return nil
+}
+func (this *DiagnosisResultData) Validate() error {
+	if this.User != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.User); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("User", err)
+		}
+	}
+	if this.UserDetails != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.UserDetails); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("UserDetails", err)
+		}
+	}
+	for _, item := range this.Profiles {
+		if item != nil {
+			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
+				return github_com_mwitkow_go_proto_validators.FieldError("Profiles", err)
+			}
+		}
+	}
+	for _, item := range this.Symptoms {
+		if item != nil {
+			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
+				return github_com_mwitkow_go_proto_validators.FieldError("Symptoms", err)
+			}
+		}
+	}
+	for _, item := range this.Diseases {
+		if item != nil {
+			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
+				return github_com_mwitkow_go_proto_validators.FieldError("Diseases", err)
+			}
+		}
+	}
+	return nil
+}
+func (this *UserDetailsData) Validate() error {
+	return nil
+}
+func (this *ProfileData) Validate() error {
+	return nil
+}
+func (this *SymptomDesc) Validate() error {
+	return nil
+}
+func (this *PotentialDisease) Validate() error {
+	if this.Triage != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Triage); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Triage", err)
+		}
+	}
+	for _, item := range this.Labs {
+		if item != nil {
+			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
+				return github_com_mwitkow_go_proto_validators.FieldError("Labs", err)
+			}
+		}
+	}
+	return nil
+}
+func (this *TriageResult) Validate() error {
+	return nil
+}
+func (this *LabInfo) Validate() error {
 	return nil
 }
 func (this *PreconditionsData) Validate() error {

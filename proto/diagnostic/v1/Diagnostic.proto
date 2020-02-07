@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package prixa.diagnostic.v1;
 import "google/protobuf/empty.proto";
-import "google/protobuf/any.proto";
 import "google/api/annotations.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 
@@ -95,7 +94,7 @@ message MessagesData {
 message ActionData {
     string type = 1;
     repeated ValueData value = 2;
-    google.protobuf.Any diagnosisResult = 3;
+    DiagnosisResultData diagnosisResult = 3;
 }
 
 message ValueData {
@@ -103,6 +102,63 @@ message ValueData {
     string value = 2;
     string tag = 3;
     string description = 4;
+}
+
+message DiagnosisResultData {
+    UserData user = 1;
+    UserDetailsData userDetails = 2;
+    repeated ProfileData profiles = 3;
+    repeated SymptomDesc symptoms = 4;
+    repeated PotentialDisease diseases = 5;
+}
+
+message UserDetailsData {
+    int32 age = 1;
+    string firstname = 2;
+    bool isObese = 3;
+}
+
+message ProfileData {
+    string id = 1;
+    string name = 2;
+    string nameIndo = 3;
+    string description = 4;
+    string type = 5;
+    int32 order = 6;
+}
+
+message SymptomDesc {
+    string symptomID = 1;
+	string symptomName = 2;
+	repeated string propNames = 3;
+	bool chief = 4;
+	repeated string symptomsTriage = 5;
+	string answer = 6;
+}
+
+message PotentialDisease {
+    string id = 1;
+	string name = 2;
+	string description = 3;
+	string likeliness = 4;
+	float score = 5;
+	string url = 6;
+	TriageResult triage = 7;
+	repeated LabInfo labs = 8;
+}
+
+message TriageResult{
+    string id = 1;
+	string name = 2;
+	string nameIndo = 3;
+	string description = 4;
+}
+
+message LabInfo{
+    string id = 1;
+    string name = 2;
+    string sku = 3;
+    repeated string diseases = 4;
 }
 
 message PreconditionsData {
