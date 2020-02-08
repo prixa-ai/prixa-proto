@@ -47,6 +47,11 @@ service DiagnosticService {
             body: "*"
         };
     }
+    rpc GetDiseaseArticle (GetDiseaseArticleRequest) returns (GetDiseaseArticleResponse){
+        option (google.api.http) = {
+            get: "/v1/prixa/disease/article/{diseaseID}"
+        };
+    }
 }
 
 message BotConversationRequest {
@@ -247,4 +252,21 @@ message SendFeedbackRequest{
 
 message SendFeedbackResponse {
     bool success = 1;
+}
+
+message GetDiseaseArticleRequest {
+    string diseaseID = 1;
+}
+
+message GetDiseaseArticleResponse {
+    string diseaseID = 1;
+    string diseaseName = 2;
+    string diseaseNameIndo = 3;
+    string author = 4;
+    string checkedBy = 5;
+    string overview = 6;
+    string advice = 7;
+    string seeDoctor = 8;
+    string prevention = 9;
+    string reference = 10;
 }
