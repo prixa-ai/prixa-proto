@@ -260,7 +260,7 @@ message GetDiseaseArticleRequest {
 }
 
 message GetDiseaseArticleResponse {
-    string diseaseID = 1;
+    string id = 1;
     string diseaseName = 2;
     string diseaseNameIndo = 3;
     string author = 4;
