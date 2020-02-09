@@ -168,10 +168,16 @@ func (this *ListPartnerApplicationsRequest) Validate() error {
 	}
 	return nil
 }
+
+var _regex_ListPartnersRequest_PartnerId = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
+
 func (this *ListPartnersRequest) Validate() error {
-	return nil
-}
-func (this *PageProperty) Validate() error {
+	if !_regex_ListPartnersRequest_PartnerId.MatchString(this.PartnerId) {
+		return github_com_mwitkow_go_proto_validators.FieldError("PartnerId", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.PartnerId))
+	}
+	if this.PartnerId == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("PartnerId", fmt.Errorf(`value '%v' must not be an empty string`, this.PartnerId))
+	}
 	return nil
 }
 func (this *ListPartnerApplicationsResponse) Validate() error {
@@ -180,11 +186,6 @@ func (this *ListPartnerApplicationsResponse) Validate() error {
 			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
 				return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
 			}
-		}
-	}
-	if this.Page != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Page); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("Page", err)
 		}
 	}
 	return nil
