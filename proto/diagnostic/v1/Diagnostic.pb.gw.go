@@ -692,7 +692,7 @@ var (
 
 	pattern_DiagnosticService_SendFeedback_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "prixa", "feedback"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_DiagnosticService_GetDiseaseArticle_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"v1", "prixa", "disease", "article", "diseaseID"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_DiagnosticService_GetDiseaseArticle_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v1", "disease", "article", "diseaseID"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (

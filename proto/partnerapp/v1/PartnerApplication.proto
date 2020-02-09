@@ -6,32 +6,31 @@ import "google/api/annotations.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 
 service PartnerApplicationService {
-    rpc CreatePartnerApplication (CreatePartnerApplicationRequest) returns (CreatePartnerApplicationResponse){
+    rpc CreatePartnerApplication (CreatePartnerApplicationRequest) returns (CreatePartnerApplicationResponse) {
         option (google.api.http) = {
             post: "/api/v1/partner/{partnerId}/application"
             body: "*"
         };
     }
-    rpc DeletePartnerApplication (DeletePartnerApplicationRequest) returns (DeletePartnerApplicationResponse){
+    rpc DeletePartnerApplication (DeletePartnerApplicationRequest) returns (DeletePartnerApplicationResponse) {
         option (google.api.http) = {
             delete: "/api/v1/partner/{partnerId}/application/{applicationId}"
         };
     }
-    rpc UpdatePartnerApplication (UpdatePartnerApplicationRequest) returns (UpdatePartnerApplicationResponse){
+    rpc UpdatePartnerApplication (UpdatePartnerApplicationRequest) returns (UpdatePartnerApplicationResponse) {
         option (google.api.http) = {
             put: "/api/v1/partner/{partnerId}/application/{applicationId}"
             body: "*"
         };
     }
-    rpc GetPartnerApplication (GetPartnerApplicationRequest) returns (GetPartnerApplicationResponse){
+    rpc GetPartnerApplication (GetPartnerApplicationRequest) returns (GetPartnerApplicationResponse) {
         option (google.api.http) = {
             get: "/api/v1/partner/{partnerId}/application/{applicationId}"
         };
     }
-    rpc ListPartnerApplications (ListPartnerApplicationsRequest) returns (ListPartnerApplicationsResponse){
+    rpc ListPartnerApplications (ListPartnerApplicationsRequest) returns (ListPartnerApplicationsResponse) {
         option (google.api.http) = {
-            post: "/api/v1/partner/{partnerId}/application"
-            body: "*"
+            get: "/api/v1/partner/{partnerId}/application"
         };
     }
 }
@@ -86,6 +85,17 @@ message ListPartnerApplicationsRequest {
     string partnerId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
 }
 
+message ListPartnersRequest {
+    int32 page = 1;
+}
+
+message PageProperty {
+    int32 pageNo = 1;
+    int32 totalPages = 2;
+    int32 totalRecords = 3;
+}
+
 message ListPartnerApplicationsResponse {
     repeated PartnerAppResponseData data = 1;
+    PageProperty page = 2;
 }

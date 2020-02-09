@@ -6,35 +6,34 @@ import "google/api/annotations.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 
 service PartnerService {
-    rpc CreatePartner (CreatePartnerRequest) returns (CreatePartnerResponse){
+    rpc CreatePartner (CreatePartnerRequest) returns (CreatePartnerResponse) {
         option (google.api.http) = {
             post: "/api/v1/partner"
             body: "*"
         };
     }
-    rpc DeletePartner (DeletePartnerRequest) returns (DeletePartnerResponse){
+    rpc DeletePartner (DeletePartnerRequest) returns (DeletePartnerResponse) {
         option (google.api.http) = {
             delete: "/api/v1/partner/{partnerId}"
         };
     }
-    rpc UpdatePartner (UpdatePartnerRequest) returns (UpdatePartnerResponse){
+    rpc UpdatePartner (UpdatePartnerRequest) returns (UpdatePartnerResponse) {
         option (google.api.http) = {
             put: "/api/v1/partner/{partnerId}"
             body: "*"
         };
     }
-    rpc GetPartner (GetPartnerRequest) returns (GetPartnerResponse){
+    rpc GetPartner (GetPartnerRequest) returns (GetPartnerResponse) {
         option (google.api.http) = {
             get: "/api/v1/partner/{partnerId}"
         };
     }
-    rpc ListPartners (ListPartnersRequest) returns (ListPartnersResponse){
+    rpc ListPartners (ListPartnersRequest) returns (ListPartnersResponse) {
         option (google.api.http) = {
             get: "/api/v1/partner"
         };
     }
 }
-
 
 message PartnerResponseData {
     string id = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];

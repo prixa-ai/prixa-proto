@@ -7,7 +7,7 @@ import "google/api/annotations.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 
 service NotificationService {
-    rpc EmailDiagnosticResult (EmailDiagnosticResultRequest) returns (google.protobuf.Empty){
+    rpc EmailDiagnosticResult (EmailDiagnosticResultRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/v1/prixa/email/send"
             body: "*"

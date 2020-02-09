@@ -6,13 +6,13 @@ import "google/api/annotations.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 
 service DiagnosticService {
-    rpc BotConversation (BotConversationRequest) returns (BotConversationResponse){
+    rpc BotConversation (BotConversationRequest) returns (BotConversationResponse) {
         option (google.api.http) = {
             post: "/v1/prixa"
             body: "*"
         };
     }
-    rpc BotConversationV2 (BotConversationRequest) returns (BotConversationResponse){
+    rpc BotConversationV2 (BotConversationRequest) returns (BotConversationResponse) {
         option (google.api.http) = {
             post: "/v2/prixa"
             body: "*"
@@ -24,34 +24,37 @@ service DiagnosticService {
             body: "*"
         };
     }
-    rpc SendEmail (SendEmailRequest) returns (SendEmailResponse){
+    rpc SendEmail (SendEmailRequest) returns (SendEmailResponse) {
         option (google.api.http) = {
             post: "/v1/conversation/mail/send"
             body: "*"
         };
     }
-    rpc SendSurvey (SendSurveyRequest) returns (google.protobuf.Empty){
+    rpc SendSurvey (SendSurveyRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/v1/prixa/survey"
             body: "*"
         };
     }
-    rpc GetFeedbackContent (google.protobuf.Empty) returns (FeedbackContentResponse){
+    rpc GetFeedbackContent (google.protobuf.Empty) returns (FeedbackContentResponse) {
         option (google.api.http) = {
             get: "/v1/prixa/feedback"
         };
     }
-    rpc SendFeedback (SendFeedbackRequest) returns (SendFeedbackResponse){
+    rpc SendFeedback (SendFeedbackRequest) returns (SendFeedbackResponse) {
         option (google.api.http) = {
             post: "/v1/prixa/feedback"
             body: "*"
         };
     }
-    rpc GetDiseaseArticle (GetDiseaseArticleRequest) returns (GetDiseaseArticleResponse){
+    rpc GetDiseaseArticle (GetDiseaseArticleRequest) returns (GetDiseaseArticleResponse) {
         option (google.api.http) = {
-            get: "/v1/prixa/disease/article/{diseaseID}"
+            get: "/v1/disease/article/{diseaseID}"
         };
     }
+
+    // Internal GRPC API, DO NOT EXPOSE
+    rpc UpdateDiagnosticData (google.protobuf.Empty) returns (google.protobuf.Empty) {}
 }
 
 message BotConversationRequest {
