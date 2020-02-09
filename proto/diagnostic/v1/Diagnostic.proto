@@ -150,7 +150,6 @@ message PotentialDisease {
     string url = 6;
     TriageResult triage = 7;
     repeated LabInfo labs = 8;
-    string diseaseID = 9;
 }
 
 message TriageResult{
@@ -260,7 +259,7 @@ message GetDiseaseArticleRequest {
 }
 
 message GetDiseaseArticleResponse {
-    string diseaseID = 1;
+    string id = 1;
     string diseaseName = 2;
     string diseaseNameIndo = 3;
     string author = 4;
