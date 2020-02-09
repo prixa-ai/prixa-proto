@@ -134,30 +134,30 @@ message ProfileData {
 
 message SymptomDesc {
     string symptomID = 1;
-	string symptomName = 2;
-	repeated string propNames = 3;
-	bool chief = 4;
-	repeated string symptomsTriage = 5;
-	string answer = 6;
+    string symptomName = 2;
+    repeated string propNames = 3;
+    bool chief = 4;
+    repeated string symptomsTriage = 5;
+    string answer = 6;
 }
 
 message PotentialDisease {
     string id = 1;
-	string name = 2;
-	string description = 3;
-	string likeliness = 4;
-	float score = 5;
-	string url = 6;
-	TriageResult triage = 7;
+    string name = 2;
+    string description = 3;
+    string likeliness = 4;
+    float score = 5;
+    string url = 6;
+    TriageResult triage = 7;
     repeated LabInfo labs = 8;
     string diseaseID = 9;
 }
 
 message TriageResult{
     string id = 1;
-	string name = 2;
-	string nameIndo = 3;
-	string description = 4;
+    string name = 2;
+    string nameIndo = 3;
+    string description = 4;
 }
 
 message LabInfo{
