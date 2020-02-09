@@ -149,7 +149,8 @@ message PotentialDisease {
 	float score = 5;
 	string url = 6;
 	TriageResult triage = 7;
-	repeated LabInfo labs = 8;
+    repeated LabInfo labs = 8;
+    string diseaseID = 9;
 }
 
 message TriageResult{
