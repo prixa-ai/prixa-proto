@@ -94,7 +94,7 @@ message ResultData {
 
 message MessagesData {
     string value = 1;
-    string description = 2;
+    string explanation = 2;
     string media = 3;
     string sourceURL = 4;
 }
