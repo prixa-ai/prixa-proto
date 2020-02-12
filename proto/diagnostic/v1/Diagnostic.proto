@@ -121,9 +121,10 @@ message DiagnosisResultData {
 }
 
 message UserDetailsData {
-    int32 age = 1;
-    string firstname = 2;
-    bool isObese = 3;
+    int32 ageYear = 1;
+    int32 ageMonth = 2;
+    string firstname = 3;
+    bool isObese = 4;
 }
 
 message ProfileData {
