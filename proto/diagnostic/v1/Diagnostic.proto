@@ -273,4 +273,5 @@ message GetDiseaseArticleResponse {
     string seeDoctor = 8;
     string prevention = 9;
     string reference = 10;
+    repeated string relatedSymptom = 11;
 }
