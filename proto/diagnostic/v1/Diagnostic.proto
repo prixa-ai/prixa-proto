@@ -90,6 +90,7 @@ message ResultData {
     ActionData actions = 2;
     repeated PreconditionsData preconditions = 3;
     string currentState = 4;
+    string symptomID = 5;
 }
 
 message MessagesData {
@@ -273,4 +274,5 @@ message GetDiseaseArticleResponse {
     string seeDoctor = 8;
     string prevention = 9;
     string reference = 10;
+    repeated string relatedSymptom = 11;
 }
