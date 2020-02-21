@@ -4,7 +4,7 @@ install:
 	go get -u github.com/golang/protobuf/protoc-gen-go
 	go get -u github.com/mwitkow/go-proto-validators/protoc-gen-govalidators
 
-build:
+build: install
 	protoc -I/usr/local/include -I. \
 		-I${GOPATH}/src \
 		-I${GOPATH}/src/github.com/mwitkow/go-proto-validators \

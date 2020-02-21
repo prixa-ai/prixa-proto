@@ -678,21 +678,21 @@ func RegisterDiagnosticServiceHandlerClient(ctx context.Context, mux *runtime.Se
 }
 
 var (
-	pattern_DiagnosticService_BotConversation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "prixa"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_DiagnosticService_BotConversation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "prixa"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_DiagnosticService_BotConversationV2_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v2", "prixa"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_DiagnosticService_BotConversationV2_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v2", "prixa"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_DiagnosticService_CreatePrixaSession_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "prixa", "user"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_DiagnosticService_CreatePrixaSession_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "prixa", "user"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_DiagnosticService_SendEmail_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"v1", "conversation", "mail", "send"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_DiagnosticService_SendEmail_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "conversation", "mail", "send"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_DiagnosticService_SendSurvey_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "prixa", "survey"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_DiagnosticService_SendSurvey_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "prixa", "survey"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_DiagnosticService_GetFeedbackContent_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "prixa", "feedback"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_DiagnosticService_GetFeedbackContent_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "prixa", "feedback"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_DiagnosticService_SendFeedback_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "prixa", "feedback"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_DiagnosticService_SendFeedback_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "prixa", "feedback"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_DiagnosticService_GetDiseaseArticle_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v1", "disease", "article", "diseaseID"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_DiagnosticService_GetDiseaseArticle_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "disease", "article", "diseaseID"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (

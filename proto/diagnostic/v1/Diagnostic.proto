@@ -8,48 +8,48 @@ import "github.com/mwitkow/go-proto-validators/validator.proto";
 service DiagnosticService {
     rpc BotConversation (BotConversationRequest) returns (BotConversationResponse) {
         option (google.api.http) = {
-            post: "/v1/prixa"
+            post: "/api/v1/prixa"
             body: "*"
         };
     }
     rpc BotConversationV2 (BotConversationRequest) returns (BotConversationResponse) {
         option (google.api.http) = {
-            post: "/v2/prixa"
+            post: "/api/v2/prixa"
             body: "*"
         };
     }
     rpc CreatePrixaSession (CreatePrixaSessionRequest) returns (CreatePrixaSessionResponse) {
         option (google.api.http) = {
-            post: "/v1/prixa/user"
+            post: "/api/v1/prixa/user"
             body: "*"
         };
     }
     rpc SendEmail (SendEmailRequest) returns (SendEmailResponse) {
         option (google.api.http) = {
-            post: "/v1/conversation/mail/send"
+            post: "/api/v1/conversation/mail/send"
             body: "*"
         };
     }
     rpc SendSurvey (SendSurveyRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/v1/prixa/survey"
+            post: "/api/v1/prixa/survey"
             body: "*"
         };
     }
     rpc GetFeedbackContent (google.protobuf.Empty) returns (FeedbackContentResponse) {
         option (google.api.http) = {
-            get: "/v1/prixa/feedback"
+            get: "/api/v1/prixa/feedback"
         };
     }
     rpc SendFeedback (SendFeedbackRequest) returns (SendFeedbackResponse) {
         option (google.api.http) = {
-            post: "/v1/prixa/feedback"
+            post: "/api/v1/prixa/feedback"
             body: "*"
         };
     }
     rpc GetDiseaseArticle (GetDiseaseArticleRequest) returns (GetDiseaseArticleResponse) {
         option (google.api.http) = {
-            get: "/v1/disease/article/{diseaseID}"
+            get: "/api/v1/disease/article/{diseaseID}"
         };
     }
 
