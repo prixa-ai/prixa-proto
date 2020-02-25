@@ -50,8 +50,8 @@ service TelemedicineService {
 }
 
 message TMAuthData {
-    string email = 1 [(validator.field) = {string_not_empty: true}];
-    string password = 2 [(validator.field) = {string_not_empty: true}];
+    string email = 1 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}];
+    string password = 2 [(validator.field) = {regex: "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})"}];
     string diagnosticSessionID = 3 [(validator.field) = {string_not_empty: true}];
 }
 
@@ -62,7 +62,7 @@ message ChronicConditionData {
 }
 
 message TMProfileData {
-    string email = 1 [(validator.field) = {string_not_empty: true}];
+    string email = 1 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}];
     string phone = 2 [(validator.field) = {string_not_empty: true}];
     string name = 3 [(validator.field) = {string_not_empty: true}];
     string gender = 4 [(validator.field) = {string_not_empty: true}];
@@ -72,7 +72,7 @@ message TMProfileData {
     bool alcoholStatus = 8;
     bool emailStatus = 9;
     bool phoneStatus = 10;
-    string password = 11 [(validator.field) = {string_not_empty: true}];
+    string password = 11 [(validator.field) = {regex: "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})"}];
     // ChronicConditionData chronicStatus = 12;
 }
 
@@ -111,7 +111,7 @@ message TMVerifyRegisterResponse {
 }
 
 message TMForgetPasswordRequest {
-    string email = 1 [(validator.field) = {string_not_empty: true}];
+    string email = 1 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}];
     string diagnosticSessionID = 2 [(validator.field) = {string_not_empty: true}];
 }
 
@@ -128,8 +128,8 @@ message TMForgetPasswordVerifResponse {
 }
 
 message TMUpdatePasswordRequest {
-    string email = 1 [(validator.field) = {string_not_empty: true}];
-    string password = 2 [(validator.field) = {string_not_empty: true}];
+    string email = 1 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}];
+    string password = 2 [(validator.field) = {regex: "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})"}];
     string confirmPassword = 3 [(validator.field) = {string_not_empty: true}];
     string diagnosticSessionID = 4 [(validator.field) = {string_not_empty: true}];
 }
