@@ -124,7 +124,7 @@ message ForgetPasswordVerifRequest {
 }
 
 message ForgetPasswordVerifResponse {
-    string message = 2 [(validator.oneof) = {required: true}];
+    string message = 2;
 }
 
 message UpdatePasswordRequest {

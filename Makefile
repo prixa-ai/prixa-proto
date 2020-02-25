@@ -48,7 +48,7 @@ build: install
 		--go_out=plugins=grpc:. \
 		--grpc-gateway_out=logtostderr=true:. \
 		--govalidators_out=. \
-		proto/telemedicine/v1/Telemedicine.proto
+		proto/user/v1/User.proto
 
 clean:
 	rm $(find proto -name '*.pb.*')
