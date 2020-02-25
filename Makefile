@@ -41,6 +41,25 @@ build: install
 		--govalidators_out=. \
 		proto/email/v1/EmailNotification.proto
 
+	protoc -I/usr/local/include -I. \
+		-I${GOPATH}/src \
+		-I${GOPATH}/src/github.com/mwitkow/go-proto-validators \
+		-I${GOPATH}/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
+		--go_out=plugins=grpc:. \
+		--grpc-gateway_out=logtostderr=true:. \
+		--govalidators_out=. \
+		proto/siloam/v1/Siloam.proto
+
+
+	protoc -I/usr/local/include -I. \
+		-I${GOPATH}/src \
+		-I${GOPATH}/src/github.com/mwitkow/go-proto-validators \
+		-I${GOPATH}/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
+		--go_out=plugins=grpc:. \
+		--grpc-gateway_out=logtostderr=true:. \
+		--govalidators_out=. \
+		proto/myprotection/v1/MyProtection.proto		
+
 clean:
 	rm $(find proto -name '*.pb.*')
 

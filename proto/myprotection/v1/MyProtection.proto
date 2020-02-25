@@ -1,0 +1,241 @@
+syntax = "proto3";
+
+package prixa.myprotection.v1;
+
+import "google/protobuf/timestamp.proto";
+import "github.com/mwitkow/go-proto-validators/validator.proto";
+
+message PostStatusTransactionRequestData{
+    string transactionId = 1;
+}
+
+message GetListTransactionData{
+    string accessToken = 1 [(validator.field) = {string_not_empty: true}];
+}
+
+message TransactionResponseData{
+    bool status = 1;
+    bool auth = 2;
+    string message = 3;
+    StatusTransactionData statusTransaction = 4;
+}
+
+message StatusTransactionData{
+    repeated TransactionData transactionsData = 1;
+    repeated string epolis = 2;
+}
+
+message TransactionData{
+    string status = 1;
+    google.protobuf.Timestamp  createdAt = 2;
+    string transactionId = 3;
+    TransactionCartData cartData = 4;    
+}
+
+message TransactionCartData{
+    string userId = 1;
+    float totalPrice = 2;
+    string status = 3;
+    google.protobuf.Timestamp  createdAt = 4;
+    repeated TransactionMemberProductData memberProductsData = 5;
+
+}
+
+message TransactionMemberProductData{
+    string id = 1;
+    string productId = 2;
+    string cartId = 3;
+    float premi = 4;
+    string unit = 5;
+    string status = 6;
+    string policyNumber = 7;
+    string policyNumberHome = 8;
+
+}
+
+message MemberData {
+    string name = 1;
+    string gender = 2;
+    string dob = 3;
+    string relationship = 4;
+    string identity_card = 5;
+    string identity_number = 6;
+ }
+
+ message GetProductPlanResponseData{
+    bool status = 1;
+    bool auth = 2;
+    string message = 3;
+    ProductPlanData productPlan = 4;
+ }
+
+ message ProductPlanData{
+    PlanData plan = 1;
+ }
+
+ message PlanData{
+     repeated ProtectionData protectionList = 1;
+     repeated string inPatientList = 2;
+     repeated PlanOutPatientData outpatientList = 3;
+ }
+
+ message PlanOutPatientData{
+    string id = 1;
+    string name = 2;
+    string name_locale_en = 3;
+    string type = 4;
+    float premium = 5;
+    float premium_old = 6;
+    float premium_2 = 7;
+    float premium_3 = 8;
+    float premium_4 = 9;
+    float premium_5 = 10;
+    float premium_6 = 11;
+    float premium_7 = 12;
+    string limit = 13;
+    string status = 14;
+    google.protobuf.Timestamp  createdAt = 15;
+    google.protobuf.Timestamp  updatedAt = 16;
+}
+
+ message ProtectionData{
+     string id = 1;
+     string name = 2;
+     string name_locale_en = 3;
+     int32 max_member = 4;
+     google.protobuf.Timestamp  createdAt = 5;
+     google.protobuf.Timestamp  updatedAt = 6;
+ }
+
+message SubmitJalanPrimaRequestData {
+    string single_cart = 1;
+    string protection_id = 2;
+    string member_total = 3;
+    string outpatient = 4;
+    google.protobuf.Timestamp  start_date = 5;
+    google.protobuf.Timestamp  end_date = 6;
+    bool send_hard_copy = 7;
+    string full_name = 8;
+    string email = 9;
+    google.protobuf.Timestamp  dob = 10;
+    string place_of_birth = 11;
+    string gender = 12;
+    string nationality = 13;
+    string identity_card = 14;
+    string identity_number = 15;
+    string address = 16;
+    string province = 17;
+    string city = 18;
+    string pos_code = 19;
+    string mobile_number = 20;
+    string phone_number = 21;
+    repeated MemberData members = 22;
+    string chronic_declaration = 23;
+    string province_name = 24;
+    string city_name = 25;
+    string sama_alamat_lengkap = 26;
+    string sama_alamat_polis_province_city = 27;
+    string sama_alamat_polis_province = 28;
+    string bank_account = 29;
+    string bank_account_name = 30;
+    string bank = 31;
+    string customer_id = 32;
+    string polis_archive = 33;
+    string referral_code = 34;
+    string vendor_email = 35;
+ }
+
+
+ message GetPremiumStepRequestData {
+    string protection_id = 1;
+    string member_total = 2;
+    google.protobuf.Timestamp  start_date = 3;
+    google.protobuf.Timestamp  end_date = 4;
+    repeated MemberData members = 5;
+    string userId = 6;
+ }
+
+ message GetPremiumStepResponseData {
+    bool status = 1;
+    bool auth = 2;
+    string message = 3;
+    PremiumStepData premiumData = 4;
+}
+
+ message GetPremiumStep2RequestData {
+     string protection_id = 1;
+     int32 member_total = 2;
+     google.protobuf.Timestamp  start_date = 3;
+     google.protobuf.Timestamp  end_date = 4;
+     repeated MemberData members = 5;
+  }
+
+message GetPremiumStep2ResponseData {
+    bool status = 1;
+    bool auth = 2;
+    string message = 3;
+    PremiumStepData premiumData = 4;
+}
+  
+message PremiumStepData{
+    float premiumTotal = 1;
+    repeated BenefitData benefits = 2;
+    OutPatientData outPatientData = 3;
+    repeated OutPatientBenefitData OutPatientBenefits = 4;
+    StaticBenefitData staticBenefitData = 5;
+}
+
+message StaticBenefitData{
+    StaticBenefitOutPatientData outpatient = 1;
+}
+
+message StaticBenefitOutPatientData{
+    string label = 1;
+    string premi = 2;
+}
+
+message BenefitData{
+    string id = 1;
+    string name = 2;
+    string name_locale_en = 3;
+    string type = 4;
+    google.protobuf.Timestamp  createdAt = 5;
+    google.protobuf.Timestamp  updatedAt = 6;
+    repeated PivotData pivots = 7;
+}
+
+message PivotData {
+    string jalan_prima_outpatient_id = 1;
+    string jalan_prima_benefit_id = 2;
+    string information = 3;
+}
+
+message OutPatientData{
+    int32 id = 1;
+    string name = 2;
+    string name_locale_en = 3;
+    string type = 4;
+    float premium = 5;
+    float premium_old = 6;
+    float premium_2 = 7;
+    float premium_3 = 8;
+    float premium_4 = 9;
+    float premium_5 = 10;
+    float premium_6 = 11;
+    float premium_7 = 12;
+    string limit = 13;
+    string status = 14;
+    google.protobuf.Timestamp  createdAt = 15;
+    google.protobuf.Timestamp  updatedAt = 16;
+    repeated BenefitData benefits = 17;
+}
+
+message OutPatientBenefitData{
+    int32 id = 1;
+    string name = 2;
+    string name_locale_en = 3;
+    string type = 4;
+    google.protobuf.Timestamp  createdAt = 5;
+    google.protobuf.Timestamp  updatedAt = 6;
+    PivotData pivotData = 7;
+}
