@@ -1,0 +1,142 @@
+syntax = "proto3";
+
+package prixa.user.v1;
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+import "github.com/mwitkow/go-proto-validators/validator.proto";
+
+service UserService {
+    rpc Login (AuthData) returns (LoginResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/user/login"
+            body: "*"
+        };
+    }
+    rpc Consent (google.protobuf.Empty) returns (ConsentResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/user/consent"
+        };
+    }
+    rpc Register (AuthData) returns (RegisterResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/user/register"
+            body: "*"
+        };
+    }
+    rpc VerifyRegister (VerifyRegisterRequest) returns (VerifyRegisterResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/user/register/verify"
+            body: "*"
+        };
+    }
+    rpc ForgetPassword (ForgetPasswordRequest) returns (ForgetPasswordResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/user/forget-password"
+            body: "*"
+        };
+    }
+    rpc ForgetPasswordVerif (ForgetPasswordVerifRequest) returns (ForgetPasswordVerifResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/user/forget-password/verify"
+            body: "*"
+        };
+    }
+    rpc UpdatePassword (UpdatePasswordRequest) returns (UpdatePasswordResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/user/forget-password/update"
+            body: "*"
+        };
+    }
+}
+
+message AuthData {
+    string email = 1 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}];
+    string password = 2 [(validator.field) = {regex: "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})"}];
+    string diagnosticSessionID = 3 [(validator.field) = {string_not_empty: true}];
+}
+
+message ChronicConditionData {
+    bool hypertensive = 1;
+    bool diabetic = 2;
+
+}
+
+message ProfileData {
+    string email = 1 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}];
+    string phone = 2 [(validator.field) = {string_not_empty: true}];
+    string name = 3 [(validator.field) = {string_not_empty: true}];
+    string gender = 4 [(validator.field) = {string_not_empty: true}];
+    float height = 5;
+    float weight = 6;
+    bool smokingStatus = 7;
+    bool alcoholStatus = 8;
+    bool emailStatus = 9;
+    bool phoneStatus = 10;
+    string password = 11 [(validator.field) = {regex: "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})"}];
+    // ChronicConditionData chronicStatus = 12;
+}
+
+message LoginRequest {
+    AuthData authData = 1;
+}
+
+message LoginResponse {
+    string token = 1 [(validator.field) = {string_not_empty: true}];
+    string personID = 2 [(validator.field) = {string_not_empty: true}];
+    string sessionID = 3 [(validator.field) = {string_not_empty: true}];
+}
+
+
+message ConsentResponse {
+    string data = 1 [(validator.field) = {string_not_empty: true}];
+}
+
+
+message RegisterRequest {
+    AuthData authData = 1;
+    ProfileData profileData = 2;
+}
+message RegisterResponse {
+    string token = 1 [(validator.field) = {string_not_empty: true}];
+}
+
+message VerifyRegisterRequest {
+    string token = 1 [(validator.field) = {string_not_empty: true}];
+    string diagnosticSessionID = 2 [(validator.field) = {string_not_empty: true}];
+}
+
+message VerifyRegisterResponse {
+    string token = 1 [(validator.field) = {string_not_empty: true}];
+    string sessionID = 2 [(validator.field) = {string_not_empty: true}];
+}
+
+message ForgetPasswordRequest {
+    string email = 1 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}];
+    string diagnosticSessionID = 2 [(validator.field) = {string_not_empty: true}];
+}
+
+message ForgetPasswordResponse {
+    string status = 1;
+}
+
+message ForgetPasswordVerifRequest {
+    string token = 1 [(validator.field) = {string_not_empty: true}];
+}
+
+message ForgetPasswordVerifResponse {
+    string message = 2;
+}
+
+message UpdatePasswordRequest {
+    string email = 1 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}];
+    string password = 2 [(validator.field) = {regex: "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})"}];
+    string confirmPassword = 3 [(validator.field) = {regex: "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})"}];
+    string diagnosticSessionID = 4 [(validator.field) = {string_not_empty: true}];
+}
+
+message UpdatePasswordResponse {
+    string message = 1;
+    string token = 2 [(validator.field) = {string_not_empty: true}];
+    string sessionID = 3 [(validator.field) = {string_not_empty: true}];
+}
+
