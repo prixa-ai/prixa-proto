@@ -1,0 +1,142 @@
+syntax = "proto3";
+
+package prixa.telemedicine.v1;
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+import "github.com/mwitkow/go-proto-validators/validator.proto";
+
+service TelemedicineService {
+    rpc TMLogin (TMAuthData) returns (TMLoginResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/prixa/telemedicine/login"
+            body: "*"
+        };
+    }
+    rpc TMConsent (google.protobuf.Empty) returns (TMConsentResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/prixa/telemedicine/consent"
+        };
+    }
+    rpc TMRegister (TMAuthData) returns (TMRegisterResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/prixa/telemedicine/register"
+            body: "*"
+        };
+    }
+    rpc TMVerifyRegister (TMVerifyRegisterRequest) returns (TMVerifyRegisterResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/prixa/telemedicine/verifregister"
+            body: "*"
+        };
+    }
+    rpc TMForgetPassword (TMForgetPasswordRequest) returns (TMForgetPasswordResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/prixa/telemedicine/forgetpwd"
+            body: "*"
+        };
+    }
+    rpc TMForgetPasswordVerif (TMForgetPasswordVerifRequest) returns (TMForgetPasswordVerifResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/prixa/telemedicine/verifforgetpwd"
+            body: "*"
+        };
+    }
+    rpc TMUpdatePassword (TMUpdatePasswordRequest) returns (TMUpdatePasswordResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/prixa/telemedicine/updatepwd"
+            body: "*"
+        };
+    }
+}
+
+message TMAuthData {
+    string email = 1 [(validator.field) = {string_not_empty: true}];
+    string password = 2 [(validator.field) = {string_not_empty: true}];
+    string diagnosticSessionID = 3 [(validator.field) = {string_not_empty: true}];
+}
+
+message ChronicConditionData {
+    bool hypertensive = 1;
+    bool diabetic = 2;
+
+}
+
+message TMProfileData {
+    string email = 1 [(validator.field) = {string_not_empty: true}];
+    string phone = 2 [(validator.field) = {string_not_empty: true}];
+    string name = 3 [(validator.field) = {string_not_empty: true}];
+    string gender = 4 [(validator.field) = {string_not_empty: true}];
+    float height = 5;
+    float weight = 6;
+    bool smokingStatus = 7;
+    bool alcoholStatus = 8;
+    bool emailStatus = 9;
+    bool phoneStatus = 10;
+    string password = 11 [(validator.field) = {string_not_empty: true}];
+    // ChronicConditionData chronicStatus = 12;
+}
+
+message TMLoginRequest {
+    TMAuthData authData = 1;
+}
+
+message TMLoginResponse {
+    string token = 1 [(validator.field) = {string_not_empty: true}];
+    string personID = 2 [(validator.field) = {string_not_empty: true}];
+    string sessionID = 3 [(validator.field) = {string_not_empty: true}];
+}
+
+
+message TMConsentResponse {
+    string data = 1 [(validator.field) = {string_not_empty: true}];
+}
+
+
+message TMRegisterRequest {
+    TMAuthData authData = 1;
+    TMProfileData profileData = 2;
+}
+message TMRegisterResponse {
+    string token = 1 [(validator.field) = {string_not_empty: true}];
+}
+
+message TMVerifyRegisterRequest {
+    string token = 1 [(validator.field) = {string_not_empty: true}];
+    string diagnosticSessionID = 2 [(validator.field) = {string_not_empty: true}];
+}
+
+message TMVerifyRegisterResponse {
+    string token = 1 [(validator.field) = {string_not_empty: true}];
+    string sessionID = 2 [(validator.field) = {string_not_empty: true}];
+}
+
+message TMForgetPasswordRequest {
+    string email = 1 [(validator.field) = {string_not_empty: true}];
+    string diagnosticSessionID = 2 [(validator.field) = {string_not_empty: true}];
+}
+
+message TMForgetPasswordResponse {
+    string status = 1;
+}
+
+message TMForgetPasswordVerifRequest {
+    string token = 1 [(validator.field) = {string_not_empty: true}];
+}
+
+message TMForgetPasswordVerifResponse {
+    string message = 2;
+}
+
+message TMUpdatePasswordRequest {
+    string email = 1 [(validator.field) = {string_not_empty: true}];
+    string password = 2 [(validator.field) = {string_not_empty: true}];
+    string confirmPassword = 3 [(validator.field) = {string_not_empty: true}];
+    string diagnosticSessionID = 4 [(validator.field) = {string_not_empty: true}];
+}
+
+message TMUpdatePasswordResponse {
+    string message = 1;
+    string token = 2 [(validator.field) = {string_not_empty: true}];
+    string sessionID = 3 [(validator.field) = {string_not_empty: true}];
+}
+
