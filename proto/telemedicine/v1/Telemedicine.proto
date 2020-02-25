@@ -1,47 +1,47 @@
 syntax = "proto3";
 
-package prixa.telemedicine.v1;
+package prixa.user.v1;
 import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 
 service TelemedicineService {
-    rpc TMLogin (TMAuthData) returns (TMLoginResponse) {
+    rpc Login (AuthData) returns (LoginResponse) {
         option (google.api.http) = {
             post: "/api/v1/user/login"
             body: "*"
         };
     }
-    rpc TMConsent (google.protobuf.Empty) returns (TMConsentResponse) {
+    rpc Consent (google.protobuf.Empty) returns (ConsentResponse) {
         option (google.api.http) = {
             get: "/api/v1/user/consent"
         };
     }
-    rpc TMRegister (TMAuthData) returns (TMRegisterResponse) {
+    rpc Register (AuthData) returns (RegisterResponse) {
         option (google.api.http) = {
             post: "/api/v1/user/register"
             body: "*"
         };
     }
-    rpc TMVerifyRegister (TMVerifyRegisterRequest) returns (TMVerifyRegisterResponse) {
+    rpc VerifyRegister (VerifyRegisterRequest) returns (VerifyRegisterResponse) {
         option (google.api.http) = {
             post: "/api/v1/user/register/verify"
             body: "*"
         };
     }
-    rpc TMForgetPassword (TMForgetPasswordRequest) returns (TMForgetPasswordResponse) {
+    rpc ForgetPassword (ForgetPasswordRequest) returns (ForgetPasswordResponse) {
         option (google.api.http) = {
             post: "/api/v1/user/forget-password"
             body: "*"
         };
     }
-    rpc TMForgetPasswordVerif (TMForgetPasswordVerifRequest) returns (TMForgetPasswordVerifResponse) {
+    rpc ForgetPasswordVerif (ForgetPasswordVerifRequest) returns (ForgetPasswordVerifResponse) {
         option (google.api.http) = {
             post: "/api/v1/user/forget-password/verify"
             body: "*"
         };
     }
-    rpc TMUpdatePassword (TMUpdatePasswordRequest) returns (TMUpdatePasswordResponse) {
+    rpc UpdatePassword (UpdatePasswordRequest) returns (UpdatePasswordResponse) {
         option (google.api.http) = {
             post: "/api/v1/user/forget-password/update"
             body: "*"
@@ -49,7 +49,7 @@ service TelemedicineService {
     }
 }
 
-message TMAuthData {
+message AuthData {
     string email = 1 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}];
     string password = 2 [(validator.field) = {regex: "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})"}];
     string diagnosticSessionID = 3 [(validator.field) = {string_not_empty: true}];
@@ -61,7 +61,7 @@ message ChronicConditionData {
 
 }
 
-message TMProfileData {
+message ProfileData {
     string email = 1 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}];
     string phone = 2 [(validator.field) = {string_not_empty: true}];
     string name = 3 [(validator.field) = {string_not_empty: true}];
@@ -76,65 +76,65 @@ message TMProfileData {
     // ChronicConditionData chronicStatus = 12;
 }
 
-message TMLoginRequest {
-    TMAuthData authData = 1;
+message LoginRequest {
+    AuthData authData = 1;
 }
 
-message TMLoginResponse {
+message LoginResponse {
     string token = 1 [(validator.field) = {string_not_empty: true}];
     string personID = 2 [(validator.field) = {string_not_empty: true}];
     string sessionID = 3 [(validator.field) = {string_not_empty: true}];
 }
 
 
-message TMConsentResponse {
+message ConsentResponse {
     string data = 1 [(validator.field) = {string_not_empty: true}];
 }
 
 
-message TMRegisterRequest {
-    TMAuthData authData = 1;
-    TMProfileData profileData = 2;
+message RegisterRequest {
+    AuthData authData = 1;
+    ProfileData profileData = 2;
 }
-message TMRegisterResponse {
+message RegisterResponse {
     string token = 1 [(validator.field) = {string_not_empty: true}];
 }
 
-message TMVerifyRegisterRequest {
+message VerifyRegisterRequest {
     string token = 1 [(validator.field) = {string_not_empty: true}];
     string diagnosticSessionID = 2 [(validator.field) = {string_not_empty: true}];
 }
 
-message TMVerifyRegisterResponse {
+message VerifyRegisterResponse {
     string token = 1 [(validator.field) = {string_not_empty: true}];
     string sessionID = 2 [(validator.field) = {string_not_empty: true}];
 }
 
-message TMForgetPasswordRequest {
+message ForgetPasswordRequest {
     string email = 1 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}];
     string diagnosticSessionID = 2 [(validator.field) = {string_not_empty: true}];
 }
 
-message TMForgetPasswordResponse {
+message ForgetPasswordResponse {
     string status = 1;
 }
 
-message TMForgetPasswordVerifRequest {
+message ForgetPasswordVerifRequest {
     string token = 1 [(validator.field) = {string_not_empty: true}];
 }
 
-message TMForgetPasswordVerifResponse {
-    string message = 2;
+message ForgetPasswordVerifResponse {
+    string message = 2 [(validator.oneof) = {required: true}];
 }
 
-message TMUpdatePasswordRequest {
+message UpdatePasswordRequest {
     string email = 1 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}];
     string password = 2 [(validator.field) = {regex: "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})"}];
-    string confirmPassword = 3 [(validator.field) = {string_not_empty: true}];
+    string confirmPassword = 3 [(validator.field) = {regex: "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})"}];
     string diagnosticSessionID = 4 [(validator.field) = {string_not_empty: true}];
 }
 
-message TMUpdatePasswordResponse {
+message UpdatePasswordResponse {
     string message = 1;
     string token = 2 [(validator.field) = {string_not_empty: true}];
     string sessionID = 3 [(validator.field) = {string_not_empty: true}];
