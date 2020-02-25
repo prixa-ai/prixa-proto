@@ -32,7 +32,7 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = descriptor.ForMessage
 
-func request_TelemedicineService_Login_0(ctx context.Context, marshaler runtime.Marshaler, client TelemedicineServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_UserService_Login_0(ctx context.Context, marshaler runtime.Marshaler, client UserServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq AuthData
 	var metadata runtime.ServerMetadata
 
@@ -49,7 +49,7 @@ func request_TelemedicineService_Login_0(ctx context.Context, marshaler runtime.
 
 }
 
-func local_request_TelemedicineService_Login_0(ctx context.Context, marshaler runtime.Marshaler, server TelemedicineServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_UserService_Login_0(ctx context.Context, marshaler runtime.Marshaler, server UserServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq AuthData
 	var metadata runtime.ServerMetadata
 
@@ -66,7 +66,7 @@ func local_request_TelemedicineService_Login_0(ctx context.Context, marshaler ru
 
 }
 
-func request_TelemedicineService_Consent_0(ctx context.Context, marshaler runtime.Marshaler, client TelemedicineServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_UserService_Consent_0(ctx context.Context, marshaler runtime.Marshaler, client UserServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq empty.Empty
 	var metadata runtime.ServerMetadata
 
@@ -75,7 +75,7 @@ func request_TelemedicineService_Consent_0(ctx context.Context, marshaler runtim
 
 }
 
-func local_request_TelemedicineService_Consent_0(ctx context.Context, marshaler runtime.Marshaler, server TelemedicineServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_UserService_Consent_0(ctx context.Context, marshaler runtime.Marshaler, server UserServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq empty.Empty
 	var metadata runtime.ServerMetadata
 
@@ -84,7 +84,7 @@ func local_request_TelemedicineService_Consent_0(ctx context.Context, marshaler 
 
 }
 
-func request_TelemedicineService_Register_0(ctx context.Context, marshaler runtime.Marshaler, client TelemedicineServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_UserService_Register_0(ctx context.Context, marshaler runtime.Marshaler, client UserServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq AuthData
 	var metadata runtime.ServerMetadata
 
@@ -101,7 +101,7 @@ func request_TelemedicineService_Register_0(ctx context.Context, marshaler runti
 
 }
 
-func local_request_TelemedicineService_Register_0(ctx context.Context, marshaler runtime.Marshaler, server TelemedicineServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_UserService_Register_0(ctx context.Context, marshaler runtime.Marshaler, server UserServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq AuthData
 	var metadata runtime.ServerMetadata
 
@@ -118,7 +118,7 @@ func local_request_TelemedicineService_Register_0(ctx context.Context, marshaler
 
 }
 
-func request_TelemedicineService_VerifyRegister_0(ctx context.Context, marshaler runtime.Marshaler, client TelemedicineServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_UserService_VerifyRegister_0(ctx context.Context, marshaler runtime.Marshaler, client UserServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq VerifyRegisterRequest
 	var metadata runtime.ServerMetadata
 
@@ -135,7 +135,7 @@ func request_TelemedicineService_VerifyRegister_0(ctx context.Context, marshaler
 
 }
 
-func local_request_TelemedicineService_VerifyRegister_0(ctx context.Context, marshaler runtime.Marshaler, server TelemedicineServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_UserService_VerifyRegister_0(ctx context.Context, marshaler runtime.Marshaler, server UserServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq VerifyRegisterRequest
 	var metadata runtime.ServerMetadata
 
@@ -152,7 +152,7 @@ func local_request_TelemedicineService_VerifyRegister_0(ctx context.Context, mar
 
 }
 
-func request_TelemedicineService_ForgetPassword_0(ctx context.Context, marshaler runtime.Marshaler, client TelemedicineServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_UserService_ForgetPassword_0(ctx context.Context, marshaler runtime.Marshaler, client UserServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ForgetPasswordRequest
 	var metadata runtime.ServerMetadata
 
@@ -169,7 +169,7 @@ func request_TelemedicineService_ForgetPassword_0(ctx context.Context, marshaler
 
 }
 
-func local_request_TelemedicineService_ForgetPassword_0(ctx context.Context, marshaler runtime.Marshaler, server TelemedicineServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_UserService_ForgetPassword_0(ctx context.Context, marshaler runtime.Marshaler, server UserServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ForgetPasswordRequest
 	var metadata runtime.ServerMetadata
 
@@ -186,7 +186,7 @@ func local_request_TelemedicineService_ForgetPassword_0(ctx context.Context, mar
 
 }
 
-func request_TelemedicineService_ForgetPasswordVerif_0(ctx context.Context, marshaler runtime.Marshaler, client TelemedicineServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_UserService_ForgetPasswordVerif_0(ctx context.Context, marshaler runtime.Marshaler, client UserServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ForgetPasswordVerifRequest
 	var metadata runtime.ServerMetadata
 
@@ -203,7 +203,7 @@ func request_TelemedicineService_ForgetPasswordVerif_0(ctx context.Context, mars
 
 }
 
-func local_request_TelemedicineService_ForgetPasswordVerif_0(ctx context.Context, marshaler runtime.Marshaler, server TelemedicineServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_UserService_ForgetPasswordVerif_0(ctx context.Context, marshaler runtime.Marshaler, server UserServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ForgetPasswordVerifRequest
 	var metadata runtime.ServerMetadata
 
@@ -220,7 +220,7 @@ func local_request_TelemedicineService_ForgetPasswordVerif_0(ctx context.Context
 
 }
 
-func request_TelemedicineService_UpdatePassword_0(ctx context.Context, marshaler runtime.Marshaler, client TelemedicineServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_UserService_UpdatePassword_0(ctx context.Context, marshaler runtime.Marshaler, client UserServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq UpdatePasswordRequest
 	var metadata runtime.ServerMetadata
 
@@ -237,7 +237,7 @@ func request_TelemedicineService_UpdatePassword_0(ctx context.Context, marshaler
 
 }
 
-func local_request_TelemedicineService_UpdatePassword_0(ctx context.Context, marshaler runtime.Marshaler, server TelemedicineServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_UserService_UpdatePassword_0(ctx context.Context, marshaler runtime.Marshaler, server UserServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq UpdatePasswordRequest
 	var metadata runtime.ServerMetadata
 
@@ -254,12 +254,12 @@ func local_request_TelemedicineService_UpdatePassword_0(ctx context.Context, mar
 
 }
 
-// RegisterTelemedicineServiceHandlerServer registers the http handlers for service TelemedicineService to "mux".
-// UnaryRPC     :call TelemedicineServiceServer directly.
+// RegisterUserServiceHandlerServer registers the http handlers for service UserService to "mux".
+// UnaryRPC     :call UserServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
-func RegisterTelemedicineServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server TelemedicineServiceServer) error {
+func RegisterUserServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server UserServiceServer) error {
 
-	mux.Handle("POST", pattern_TelemedicineService_Login_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_UserService_Login_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -268,18 +268,18 @@ func RegisterTelemedicineServiceHandlerServer(ctx context.Context, mux *runtime.
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TelemedicineService_Login_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_UserService_Login_0(rctx, inboundMarshaler, server, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TelemedicineService_Login_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_UserService_Login_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_TelemedicineService_Consent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_UserService_Consent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -288,18 +288,18 @@ func RegisterTelemedicineServiceHandlerServer(ctx context.Context, mux *runtime.
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TelemedicineService_Consent_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_UserService_Consent_0(rctx, inboundMarshaler, server, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TelemedicineService_Consent_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_UserService_Consent_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_TelemedicineService_Register_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_UserService_Register_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -308,18 +308,18 @@ func RegisterTelemedicineServiceHandlerServer(ctx context.Context, mux *runtime.
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TelemedicineService_Register_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_UserService_Register_0(rctx, inboundMarshaler, server, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TelemedicineService_Register_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_UserService_Register_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_TelemedicineService_VerifyRegister_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_UserService_VerifyRegister_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -328,18 +328,18 @@ func RegisterTelemedicineServiceHandlerServer(ctx context.Context, mux *runtime.
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TelemedicineService_VerifyRegister_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_UserService_VerifyRegister_0(rctx, inboundMarshaler, server, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TelemedicineService_VerifyRegister_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_UserService_VerifyRegister_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_TelemedicineService_ForgetPassword_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_UserService_ForgetPassword_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -348,18 +348,18 @@ func RegisterTelemedicineServiceHandlerServer(ctx context.Context, mux *runtime.
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TelemedicineService_ForgetPassword_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_UserService_ForgetPassword_0(rctx, inboundMarshaler, server, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TelemedicineService_ForgetPassword_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_UserService_ForgetPassword_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_TelemedicineService_ForgetPasswordVerif_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_UserService_ForgetPasswordVerif_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -368,18 +368,18 @@ func RegisterTelemedicineServiceHandlerServer(ctx context.Context, mux *runtime.
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TelemedicineService_ForgetPasswordVerif_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_UserService_ForgetPasswordVerif_0(rctx, inboundMarshaler, server, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TelemedicineService_ForgetPasswordVerif_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_UserService_ForgetPasswordVerif_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_TelemedicineService_UpdatePassword_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_UserService_UpdatePassword_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -388,23 +388,23 @@ func RegisterTelemedicineServiceHandlerServer(ctx context.Context, mux *runtime.
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TelemedicineService_UpdatePassword_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_UserService_UpdatePassword_0(rctx, inboundMarshaler, server, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TelemedicineService_UpdatePassword_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_UserService_UpdatePassword_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
 	return nil
 }
 
-// RegisterTelemedicineServiceHandlerFromEndpoint is same as RegisterTelemedicineServiceHandler but
+// RegisterUserServiceHandlerFromEndpoint is same as RegisterUserServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterTelemedicineServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterUserServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.Dial(endpoint, opts...)
 	if err != nil {
 		return err
@@ -424,23 +424,23 @@ func RegisterTelemedicineServiceHandlerFromEndpoint(ctx context.Context, mux *ru
 		}()
 	}()
 
-	return RegisterTelemedicineServiceHandler(ctx, mux, conn)
+	return RegisterUserServiceHandler(ctx, mux, conn)
 }
 
-// RegisterTelemedicineServiceHandler registers the http handlers for service TelemedicineService to "mux".
+// RegisterUserServiceHandler registers the http handlers for service UserService to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterTelemedicineServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterTelemedicineServiceHandlerClient(ctx, mux, NewTelemedicineServiceClient(conn))
+func RegisterUserServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterUserServiceHandlerClient(ctx, mux, NewUserServiceClient(conn))
 }
 
-// RegisterTelemedicineServiceHandlerClient registers the http handlers for service TelemedicineService
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "TelemedicineServiceClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "TelemedicineServiceClient"
+// RegisterUserServiceHandlerClient registers the http handlers for service UserService
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "UserServiceClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "UserServiceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "TelemedicineServiceClient" to call the correct interceptors.
-func RegisterTelemedicineServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client TelemedicineServiceClient) error {
+// "UserServiceClient" to call the correct interceptors.
+func RegisterUserServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client UserServiceClient) error {
 
-	mux.Handle("POST", pattern_TelemedicineService_Login_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_UserService_Login_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -449,18 +449,18 @@ func RegisterTelemedicineServiceHandlerClient(ctx context.Context, mux *runtime.
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TelemedicineService_Login_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_UserService_Login_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TelemedicineService_Login_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_UserService_Login_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_TelemedicineService_Consent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_UserService_Consent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -469,18 +469,18 @@ func RegisterTelemedicineServiceHandlerClient(ctx context.Context, mux *runtime.
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TelemedicineService_Consent_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_UserService_Consent_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TelemedicineService_Consent_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_UserService_Consent_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_TelemedicineService_Register_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_UserService_Register_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -489,18 +489,18 @@ func RegisterTelemedicineServiceHandlerClient(ctx context.Context, mux *runtime.
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TelemedicineService_Register_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_UserService_Register_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TelemedicineService_Register_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_UserService_Register_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_TelemedicineService_VerifyRegister_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_UserService_VerifyRegister_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -509,18 +509,18 @@ func RegisterTelemedicineServiceHandlerClient(ctx context.Context, mux *runtime.
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TelemedicineService_VerifyRegister_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_UserService_VerifyRegister_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TelemedicineService_VerifyRegister_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_UserService_VerifyRegister_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_TelemedicineService_ForgetPassword_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_UserService_ForgetPassword_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -529,18 +529,18 @@ func RegisterTelemedicineServiceHandlerClient(ctx context.Context, mux *runtime.
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TelemedicineService_ForgetPassword_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_UserService_ForgetPassword_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TelemedicineService_ForgetPassword_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_UserService_ForgetPassword_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_TelemedicineService_ForgetPasswordVerif_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_UserService_ForgetPasswordVerif_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -549,18 +549,18 @@ func RegisterTelemedicineServiceHandlerClient(ctx context.Context, mux *runtime.
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TelemedicineService_ForgetPasswordVerif_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_UserService_ForgetPasswordVerif_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TelemedicineService_ForgetPasswordVerif_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_UserService_ForgetPasswordVerif_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("POST", pattern_TelemedicineService_UpdatePassword_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_UserService_UpdatePassword_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -569,14 +569,14 @@ func RegisterTelemedicineServiceHandlerClient(ctx context.Context, mux *runtime.
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TelemedicineService_UpdatePassword_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_UserService_UpdatePassword_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TelemedicineService_UpdatePassword_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_UserService_UpdatePassword_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -584,33 +584,33 @@ func RegisterTelemedicineServiceHandlerClient(ctx context.Context, mux *runtime.
 }
 
 var (
-	pattern_TelemedicineService_Login_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "user", "login"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_UserService_Login_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "user", "login"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_TelemedicineService_Consent_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "user", "consent"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_UserService_Consent_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "user", "consent"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_TelemedicineService_Register_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "user", "register"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_UserService_Register_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "user", "register"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_TelemedicineService_VerifyRegister_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "user", "register", "verify"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_UserService_VerifyRegister_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "user", "register", "verify"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_TelemedicineService_ForgetPassword_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "user", "forget-password"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_UserService_ForgetPassword_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "user", "forget-password"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_TelemedicineService_ForgetPasswordVerif_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "user", "forget-password", "verify"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_UserService_ForgetPasswordVerif_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "user", "forget-password", "verify"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_TelemedicineService_UpdatePassword_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "user", "forget-password", "update"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_UserService_UpdatePassword_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "user", "forget-password", "update"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (
-	forward_TelemedicineService_Login_0 = runtime.ForwardResponseMessage
+	forward_UserService_Login_0 = runtime.ForwardResponseMessage
 
-	forward_TelemedicineService_Consent_0 = runtime.ForwardResponseMessage
+	forward_UserService_Consent_0 = runtime.ForwardResponseMessage
 
-	forward_TelemedicineService_Register_0 = runtime.ForwardResponseMessage
+	forward_UserService_Register_0 = runtime.ForwardResponseMessage
 
-	forward_TelemedicineService_VerifyRegister_0 = runtime.ForwardResponseMessage
+	forward_UserService_VerifyRegister_0 = runtime.ForwardResponseMessage
 
-	forward_TelemedicineService_ForgetPassword_0 = runtime.ForwardResponseMessage
+	forward_UserService_ForgetPassword_0 = runtime.ForwardResponseMessage
 
-	forward_TelemedicineService_ForgetPasswordVerif_0 = runtime.ForwardResponseMessage
+	forward_UserService_ForgetPasswordVerif_0 = runtime.ForwardResponseMessage
 
-	forward_TelemedicineService_UpdatePassword_0 = runtime.ForwardResponseMessage
+	forward_UserService_UpdatePassword_0 = runtime.ForwardResponseMessage
 )

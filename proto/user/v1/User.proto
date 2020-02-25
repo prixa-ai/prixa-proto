@@ -5,7 +5,7 @@ import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 
-service TelemedicineService {
+service UserService {
     rpc Login (AuthData) returns (LoginResponse) {
         option (google.api.http) = {
             post: "/api/v1/user/login"
