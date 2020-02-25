@@ -8,42 +8,42 @@ import "github.com/mwitkow/go-proto-validators/validator.proto";
 service TelemedicineService {
     rpc TMLogin (TMAuthData) returns (TMLoginResponse) {
         option (google.api.http) = {
-            post: "/api/v1/prixa/telemedicine/login"
+            post: "/api/v1/user/login"
             body: "*"
         };
     }
     rpc TMConsent (google.protobuf.Empty) returns (TMConsentResponse) {
         option (google.api.http) = {
-            get: "/api/v1/prixa/telemedicine/consent"
+            get: "/api/v1/user/consent"
         };
     }
     rpc TMRegister (TMAuthData) returns (TMRegisterResponse) {
         option (google.api.http) = {
-            post: "/api/v1/prixa/telemedicine/register"
+            post: "/api/v1/user/register"
             body: "*"
         };
     }
     rpc TMVerifyRegister (TMVerifyRegisterRequest) returns (TMVerifyRegisterResponse) {
         option (google.api.http) = {
-            post: "/api/v1/prixa/telemedicine/verifregister"
+            post: "/api/v1/user/register/verify"
             body: "*"
         };
     }
     rpc TMForgetPassword (TMForgetPasswordRequest) returns (TMForgetPasswordResponse) {
         option (google.api.http) = {
-            post: "/api/v1/prixa/telemedicine/forgetpwd"
+            post: "/api/v1/user/forget-password"
             body: "*"
         };
     }
     rpc TMForgetPasswordVerif (TMForgetPasswordVerifRequest) returns (TMForgetPasswordVerifResponse) {
         option (google.api.http) = {
-            post: "/api/v1/prixa/telemedicine/verifforgetpwd"
+            post: "/api/v1/user/forget-password/verify"
             body: "*"
         };
     }
     rpc TMUpdatePassword (TMUpdatePasswordRequest) returns (TMUpdatePasswordResponse) {
         option (google.api.http) = {
-            post: "/api/v1/prixa/telemedicine/updatepwd"
+            post: "/api/v1/user/forget-password/update"
             body: "*"
         };
     }
