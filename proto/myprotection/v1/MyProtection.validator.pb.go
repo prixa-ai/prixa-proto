@@ -27,9 +27,9 @@ func (this *GetListTransactionData) Validate() error {
 	return nil
 }
 func (this *TransactionResponseData) Validate() error {
-	if this.StatusTransaction != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.StatusTransaction); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("StatusTransaction", err)
+	if this.Transaction != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Transaction); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Transaction", err)
 		}
 	}
 	return nil
@@ -50,9 +50,9 @@ func (this *TransactionData) Validate() error {
 			return github_com_mwitkow_go_proto_validators.FieldError("CreatedAt", err)
 		}
 	}
-	if this.CartData != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.CartData); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("CartData", err)
+	if this.Cart != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Cart); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Cart", err)
 		}
 	}
 	return nil
@@ -63,10 +63,10 @@ func (this *TransactionCartData) Validate() error {
 			return github_com_mwitkow_go_proto_validators.FieldError("CreatedAt", err)
 		}
 	}
-	for _, item := range this.MemberProductsData {
+	for _, item := range this.MemberProducts {
 		if item != nil {
 			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
-				return github_com_mwitkow_go_proto_validators.FieldError("MemberProductsData", err)
+				return github_com_mwitkow_go_proto_validators.FieldError("MemberProducts", err)
 			}
 		}
 	}
@@ -79,9 +79,9 @@ func (this *MemberData) Validate() error {
 	return nil
 }
 func (this *GetProductPlanResponseData) Validate() error {
-	if this.ProductPlan != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.ProductPlan); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("ProductPlan", err)
+	if this.GetListTransactionData != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.GetListTransactionData); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("GetListTransactionData", err)
 		}
 	}
 	return nil
@@ -95,17 +95,17 @@ func (this *ProductPlanData) Validate() error {
 	return nil
 }
 func (this *PlanData) Validate() error {
-	for _, item := range this.ProtectionList {
+	for _, item := range this.ProtectionLists {
 		if item != nil {
 			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
-				return github_com_mwitkow_go_proto_validators.FieldError("ProtectionList", err)
+				return github_com_mwitkow_go_proto_validators.FieldError("ProtectionLists", err)
 			}
 		}
 	}
-	for _, item := range this.OutpatientList {
+	for _, item := range this.OutpatientLists {
 		if item != nil {
 			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
-				return github_com_mwitkow_go_proto_validators.FieldError("OutpatientList", err)
+				return github_com_mwitkow_go_proto_validators.FieldError("OutpatientLists", err)
 			}
 		}
 	}
@@ -211,9 +211,9 @@ func (this *GetPremiumStep2RequestData) Validate() error {
 	return nil
 }
 func (this *GetPremiumStep2ResponseData) Validate() error {
-	if this.PremiumData != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.PremiumData); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("PremiumData", err)
+	if this.Data != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Data); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
 		}
 	}
 	return nil
@@ -226,21 +226,21 @@ func (this *PremiumStepData) Validate() error {
 			}
 		}
 	}
-	if this.OutPatientData != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.OutPatientData); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("OutPatientData", err)
+	if this.Outpatient != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Outpatient); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Outpatient", err)
 		}
 	}
-	for _, item := range this.OutPatientBenefits {
+	for _, item := range this.OutPatientBenefit {
 		if item != nil {
 			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
-				return github_com_mwitkow_go_proto_validators.FieldError("OutPatientBenefits", err)
+				return github_com_mwitkow_go_proto_validators.FieldError("OutPatientBenefit", err)
 			}
 		}
 	}
-	if this.StaticBenefitData != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.StaticBenefitData); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("StaticBenefitData", err)
+	if this.StaticBenefit != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.StaticBenefit); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("StaticBenefit", err)
 		}
 	}
 	return nil
@@ -267,10 +267,10 @@ func (this *BenefitData) Validate() error {
 			return github_com_mwitkow_go_proto_validators.FieldError("UpdatedAt", err)
 		}
 	}
-	for _, item := range this.Pivots {
+	for _, item := range this.Pivot {
 		if item != nil {
 			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
-				return github_com_mwitkow_go_proto_validators.FieldError("Pivots", err)
+				return github_com_mwitkow_go_proto_validators.FieldError("Pivot", err)
 			}
 		}
 	}
@@ -285,9 +285,9 @@ func (this *OutPatientData) Validate() error {
 			return github_com_mwitkow_go_proto_validators.FieldError("CreatedAt", err)
 		}
 	}
-	if this.UpdatedAt != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.UpdatedAt); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("UpdatedAt", err)
+	if this.Updated_At != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Updated_At); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Updated_At", err)
 		}
 	}
 	for _, item := range this.Benefits {
@@ -310,9 +310,9 @@ func (this *OutPatientBenefitData) Validate() error {
 			return github_com_mwitkow_go_proto_validators.FieldError("UpdatedAt", err)
 		}
 	}
-	if this.PivotData != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.PivotData); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("PivotData", err)
+	if this.Pivot != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Pivot); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Pivot", err)
 		}
 	}
 	return nil

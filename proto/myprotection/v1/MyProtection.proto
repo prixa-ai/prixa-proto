@@ -17,7 +17,7 @@ message TransactionResponseData{
     bool status = 1;
     bool auth = 2;
     string message = 3;
-    StatusTransactionData statusTransaction = 4;
+    StatusTransactionData transaction = 4;
 }
 
 message StatusTransactionData{
@@ -27,29 +27,29 @@ message StatusTransactionData{
 
 message TransactionData{
     string status = 1;
-    google.protobuf.Timestamp  createdAt = 2;
-    string transactionId = 3;
-    TransactionCartData cartData = 4;    
+    google.protobuf.Timestamp  created_at = 2;
+    string transaction_id = 3;
+    TransactionCartData cart = 4;    
 }
 
 message TransactionCartData{
-    string userId = 1;
-    float totalPrice = 2;
+    string user_id = 1;
+    float total_price = 2;
     string status = 3;
-    google.protobuf.Timestamp  createdAt = 4;
-    repeated TransactionMemberProductData memberProductsData = 5;
+    google.protobuf.Timestamp  created_at = 4;
+    repeated TransactionMemberProductData member_products = 5;
 
 }
 
 message TransactionMemberProductData{
     string id = 1;
-    string productId = 2;
-    string cartId = 3;
+    string product_id = 2;
+    string cart_id = 3;
     float premi = 4;
     string unit = 5;
     string status = 6;
-    string policyNumber = 7;
-    string policyNumberHome = 8;
+    string policy_number = 7;
+    string policy_number_home = 8;
 
 }
 
@@ -66,7 +66,7 @@ message MemberData {
     bool status = 1;
     bool auth = 2;
     string message = 3;
-    ProductPlanData productPlan = 4;
+    ProductPlanData GetListTransactionData = 4;
  }
 
  message ProductPlanData{
@@ -74,9 +74,9 @@ message MemberData {
  }
 
  message PlanData{
-     repeated ProtectionData protectionList = 1;
-     repeated string inPatientList = 2;
-     repeated PlanOutPatientData outpatientList = 3;
+     repeated ProtectionData protectionLists = 1;
+     repeated string inPatientLists = 2;
+     repeated PlanOutPatientData outpatientLists = 3;
  }
 
  message PlanOutPatientData{
@@ -94,8 +94,8 @@ message MemberData {
     float premium_7 = 12;
     string limit = 13;
     string status = 14;
-    google.protobuf.Timestamp  createdAt = 15;
-    google.protobuf.Timestamp  updatedAt = 16;
+    google.protobuf.Timestamp  created_at = 15;
+    google.protobuf.Timestamp  updated_at = 16;
 }
 
  message ProtectionData{
@@ -103,8 +103,8 @@ message MemberData {
      string name = 2;
      string name_locale_en = 3;
      int32 max_member = 4;
-     google.protobuf.Timestamp  createdAt = 5;
-     google.protobuf.Timestamp  updatedAt = 6;
+     google.protobuf.Timestamp  created_at = 5;
+     google.protobuf.Timestamp  updated_at = 6;
  }
 
 message SubmitJalanPrimaRequestData {
@@ -174,15 +174,15 @@ message GetPremiumStep2ResponseData {
     bool status = 1;
     bool auth = 2;
     string message = 3;
-    PremiumStepData premiumData = 4;
+    PremiumStepData data = 4;
 }
   
 message PremiumStepData{
     float premiumTotal = 1;
     repeated BenefitData benefits = 2;
-    OutPatientData outPatientData = 3;
-    repeated OutPatientBenefitData OutPatientBenefits = 4;
-    StaticBenefitData staticBenefitData = 5;
+    OutPatientData outpatient = 3;
+    repeated OutPatientBenefitData OutPatientBenefit = 4;
+    StaticBenefitData static_benefit = 5;
 }
 
 message StaticBenefitData{
@@ -199,9 +199,9 @@ message BenefitData{
     string name = 2;
     string name_locale_en = 3;
     string type = 4;
-    google.protobuf.Timestamp  createdAt = 5;
-    google.protobuf.Timestamp  updatedAt = 6;
-    repeated PivotData pivots = 7;
+    google.protobuf.Timestamp  created_at = 5;
+    google.protobuf.Timestamp  updated_at = 6;
+    repeated PivotData pivot = 7;
 }
 
 message PivotData {
@@ -225,8 +225,8 @@ message OutPatientData{
     float premium_7 = 12;
     string limit = 13;
     string status = 14;
-    google.protobuf.Timestamp  createdAt = 15;
-    google.protobuf.Timestamp  updatedAt = 16;
+    google.protobuf.Timestamp  created_at = 15;
+    google.protobuf.Timestamp  updated_At = 16;
     repeated BenefitData benefits = 17;
 }
 
@@ -235,7 +235,7 @@ message OutPatientBenefitData{
     string name = 2;
     string name_locale_en = 3;
     string type = 4;
-    google.protobuf.Timestamp  createdAt = 5;
-    google.protobuf.Timestamp  updatedAt = 6;
-    PivotData pivotData = 7;
+    google.protobuf.Timestamp  created_at = 5;
+    google.protobuf.Timestamp  updated_at = 6;
+    PivotData pivot = 7;
 }
