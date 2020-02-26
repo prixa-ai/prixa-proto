@@ -3,60 +3,98 @@ syntax = "proto3";
 package prixa.siloam.v1;
 import "google/protobuf/timestamp.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
+import "google/protobuf/empty.proto";
 
-message GetAreaResponseData{
+
+service SiloamService {
+    rpc GetAreasData (google.protobuf.Empty) returns (GetAreasResponseData) {
+    }
+
+    rpc GetHospitalsData (GetHospitalsRequestData) returns (GetHospitalsResponseData) {
+    }
+
+    rpc GetSpecialitiesData (GetSpecialitiesRequestData) returns (GetSpecialitiesResponseData) {
+    }
+
+    rpc GetDoctorsData (GetDoctorsRequestData) returns (GetDoctorsResponseData) {
+    }
+    
+    rpc GetDoctorLeavesHospitalData (GetDoctorsLeavesHospitalRequestData) returns (GetDoctorsLeavesHospitalResponseData) {
+    }
+
+    rpc GetSchedulesPerWeeksData (GetSchedulesPerWeeksRequestData) returns (GetSchedulesPerWeeksResponseData) {
+    }
+
+    rpc GetTimeSlotsData (GetTimeSlotsRequestData) returns (GetTimeSlotsResponseData) {
+    }
+
+    rpc PostAppointmentData (PostAppointmentRequestData) returns (PostAppointmentResponseData) {
+    }
+
+    rpc CancelAppointmentData (CancelAppointmentRequestData) returns (CancelAppointmentResponseData) {
+    }
+
+    rpc PostRescheduleAppointmentData (PostRescheduleAppointmentRequestData) returns (PostRescheduleAppointmentResponseData) {
+    }
+
+    rpc GetAppointmentsData(GetAppointmentsRequestData) returns (GetAppointmentsResponseData){        
+    }
+    
+}
+
+message GetAreasResponseData{
     string status = 1;
     string message = 2;
-    repeated AreaData areaData = 3;
+    repeated AreaData data = 3;
 }
 
 message AreaData {
-    string areaId = 1;
+    string area_id = 1;
     string name = 2;
-    string imageURL = 3;
+    string image_url = 3;
 }
 
-message GetHospitalRequestData{
+message GetHospitalsRequestData{
     bool onImplementation = 1; //query
     string areaId = 2 [(validator.field) = {uuid_ver: 4}];    
 }
 
-message GetHospitalResponseData{
+message GetHospitalsResponseData{
     string status = 1;
     string message = 2;
-    repeated HospitalData hospitalData = 3;
+    repeated HospitalData data = 3;
 }
 
 message HospitalData {
-    string hospitalId = 1;              
-    string hospitalStatusId = 2;
+    string hospital_id = 1;              
+    string hospital_status_id = 2;
     string name = 3;
     string alias = 4;
     string address = 5;
-    string phoneNumber1 = 6;
+    string phone_number_1 = 6;
     float longitude = 7;
     float lattitude = 8;
-    string areaId = 9;                  
-    string areaName = 10;
-    string imageURL = 11;               //url
+    string area_id = 9;                  
+    string area_name = 10;
+    string image_url = 11;               //url
 }
 
-message GetSpecialityRequestData{
+message GetSpecialitiesRequestData{
     string hospitalId = 1 [(validator.field) = {uuid_ver: 4}];  //query   
 }
 
-message GetSpecialityResponseData{
+message GetSpecialitiesResponseData{
     string status = 1;
     string message = 2;
-    repeated SpecialityData specialityData = 3;
+    repeated SpecialityData data = 3;
 }
 
 message SpecialityData{
-    string specialityId = 1;       
-    string specialityNameEn = 2;
-    string specialityName = 3;
-    bool isCoe = 4;
-    string imageURL = 5;
+    string speciality_id = 1;       
+    string speciality_name_en = 2;
+    string speciality_name = 3;
+    bool is_coe = 4;
+    string image_url = 5;
 }
 
 message GetDoctorsRequestData{
@@ -69,37 +107,37 @@ message GetDoctorsRequestData{
 message GetDoctorsResponseData{
     string status = 1;
     string message = 2;
-    repeated DoctorData doctorData = 3;
+    repeated DoctorData data = 3;
 }
 
 message DoctorData{
-    string doctorId = 1;                  
-    string specializationId = 2;
-    string specialityId = 3;            
-    string hospitalId = 4;              
+    string doctor_id = 1;                  
+    string specialization_id = 2;
+    string speciality_id = 3;            
+    string hospital_id = 4;              
     string name = 5;
-    string specializationName = 6;
-    string specializationNameEn = 7;
-    string hospitalName = 8;
-    string imageURL = 9;              
+    string specialization_name = 6;
+    string specialization_name_en = 7;
+    string hospital_name = 8;
+    string image_url = 9;              
 }
 
-message GetDoctorLeaveHospitalRequestData{
+message GetDoctorsLeavesHospitalRequestData{
     string hospitalId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}]; //param                  
     string doctorId = 2 [(validator.field) = {uuid_ver: 4}];   //query
 }
 
-message GetDoctorLeaveHospitalResponseData{
+message GetDoctorsLeavesHospitalResponseData{
     string status = 1;
     string message = 2;
-    repeated DoctorLeaveHospitalData doctorLeaveHospitalData = 3;
+    repeated DoctorLeaveHospitalData data = 3;
 }
 
 message DoctorLeaveHospitalData{
-    string doctorId = 1;
-    string hospitalId = 2;
-    google.protobuf.Timestamp fromDate = 3;
-    google.protobuf.Timestamp toDate = 4;    
+    string doctor_id = 1;
+    string hospital_id = 2;
+    google.protobuf.Timestamp from_date = 3;
+    google.protobuf.Timestamp to_date = 4;    
 }
 
 message GetSchedulesPerWeeksRequestData{
@@ -110,41 +148,43 @@ message GetSchedulesPerWeeksRequestData{
 message GetSchedulesPerWeeksResponseData{
     string status = 1;
     string message = 2;
-    repeated SchedulesPerWeeksData schedulesPerWeeksData = 3;
+    repeated SchedulesPerWeeksData data = 3;
 }
 
 message SchedulesPerWeeksData{
-    string scheduleId = 1;
-    string hospitalId = 2;
-    string doctorId = 3;
-    int32 scheduleStatusId = 4;
-    int32 scheduleTypeId = 5;
+    string schedule_id = 1;
+    string hospital_id = 2;
+    string doctor_id = 3;
+    int32 schedule_status_id = 4;
+    int32 schedule_type_id = 5;
     int32 day = 6;
-    google.protobuf.Timestamp fromTime = 7;
-    google.protobuf.Timestamp toTime = 8;
-    string doctorName = 9;
-    string hospitalName = 10;
-    string areaId = 11;
+    google.protobuf.Timestamp from_time = 7;
+    google.protobuf.Timestamp to_time = 8;
+    google.protobuf.Timestamp from_date = 9;
+    google.protobuf.Timestamp to_date = 10;
+    string doctor_name = 11;
+    string hospital_name = 12;
+    string area_id = 13;
 }
 
-message GetTimeSlotRequestData{
+message GetTimeSlotsRequestData{
     string hospitalId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}]; //param
     string doctorId = 2 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
     google.protobuf.Timestamp appointmentDate = 3 [(validator.field) = {msg_exists: true}];
 }
 
-message GetTimeSlotResponseData{
+message GetTimeSlotsResponseData{
     string status = 1;
     string message = 2;
     repeated TimeSlotData timeSlotData = 3;
 }
 
 message TimeSlotData{
-    string scheduleId = 1;
-    int32 hospitalTimeZone = 2;
-    bool  isFull = 3;
-    google.protobuf.Timestamp fromTime = 4;
-    google.protobuf.Timestamp toTime = 5;
+    string schedule_id = 1;
+    int32 hospital_time_zone = 2;
+    bool  is_full = 3;
+    google.protobuf.Timestamp from_time = 4;
+    google.protobuf.Timestamp to_time = 5;
 }
 
 message PostAppointmentRequestData{
@@ -168,31 +208,31 @@ message PostAppointmentRequestData{
 message PostAppointmentResponseData{
     string status = 1;
     string message = 2;
-    PostAppointmentData appointmentData = 3;
+    PostAppointmentData data = 3;
 }
 
 message PostAppointmentData{
-    string appointmentId = 1;
-    int64 appointmentNo = 2;
-    google.protobuf.Timestamp appointmentDate = 3;
-    google.protobuf.Timestamp appointmentFromTime = 4;
-    google.protobuf.Timestamp appointmentToTime = 5;
-    bool isWaitingList = 6;   
+    string appointment_id = 1;
+    int32 appointment_no = 2;
+    google.protobuf.Timestamp appointment_date = 3;
+    google.protobuf.Timestamp appointment_from_time = 4;
+    google.protobuf.Timestamp appointment_to_time = 5;
+    bool is_waiting_list = 6;   
     string note = 7;
-    string channelId = 8;
-    string scheduleId = 9;
-    string contactId = 10;
-    string contactName = 11;
-    google.protobuf.Timestamp dateOfBirth = 12;
-    string placeOfBirth = 13;
-    string phoneNumber = 14;
-    string addressLine1 = 15;
-    string addressLine2 = 16;
-    string emailAddress = 17;
-    string doctorId = 18;
-    string hospitalId = 19;
-    string doctorName = 20;
-    string hospitalName = 21;
+    string channel_id = 8;
+    string schedule_id = 9;
+    string contact_id = 10;
+    string contact_name = 11;
+    google.protobuf.Timestamp date_of_birth = 12;
+    string place_of_birth = 13;
+    string phone_number = 14;
+    string address_line_1 = 15;
+    string address_line_2 = 16;
+    string email_address = 17;
+    string doctor_id = 18;
+    string hospital_id = 19;
+    string doctor_name = 20;
+    string hospital_name = 21;
 }
 
 message CancelAppointmentRequestData{
@@ -205,13 +245,13 @@ message CancelAppointmentRequestData{
 message CancelAppointmentResponseData{
     string status = 1;
     string message = 2;
-    CancelAppointmentData cancelAppointmentData = 3;
+    CancelAppointmentData data = 3;
 
 }
 
 message CancelAppointmentData{
-    string appointmentId = 1;
-    string appointmentStatus = 2;
+    string appointment_id = 1;
+    string appointment_status = 2;
 }
 
 message PostRescheduleAppointmentRequestData{
@@ -231,25 +271,25 @@ message PostRescheduleAppointmentRequestData{
 message PostRescheduleAppointmentResponseData{
     string status = 1;
     string message = 2;
-    RescheduleAppointmentData rescheduleAppointmentData = 3;
+    RescheduleAppointmentData data = 3;
 
 }
 
 message RescheduleAppointmentData{
-    string appointmentId = 1;
-    string appointmentStatus = 2;
-    string scheduleId = 3;
-    google.protobuf.Timestamp appointmentDate = 4;
-    string doctorId = 5;
-    string createdBy = 6;
-    string createdFrom = 7;
-    string modifiedBy = 8;
-    string modifiedFrom = 9;
-    string contactId = 10;
-    string hospitalId = 11;
+    string appointment_id = 1;
+    string appointment_status = 2;
+    string schedule_id = 3;
+    google.protobuf.Timestamp appointment_date = 4;
+    string doctor_id = 5;
+    string created_by = 6;
+    string created_from = 7;
+    string modified_by = 8;
+    string modified_from = 9;
+    string contact_id = 10;
+    string hospital_id = 11;
 }
 
-message GetAppointmentRequestData{
+message GetAppointmentsRequestData{
     string contactId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}]; //param
     string hospitalId = 2 [(validator.field) = {uuid_ver: 4, string_not_empty: true}]; //query
     bool futureOnly = 3;
@@ -257,31 +297,31 @@ message GetAppointmentRequestData{
     int32 offset = 5;
 }
 
-message GetAppointmentResponseData{
+message GetAppointmentsResponseData{
     string status = 1;
     string message = 2;
-    GetAppointmentData appointmentData = 3;
+    GetAppointmentData data = 3;
 }
 
 message GetAppointmentData{
-    string appointmentId = 1;
-    string contactId = 2;
-    string hospitalId = 3;
-    string doctorId = 4;
-    string scheduleId = 5;
-    string hospitalName = 6;
-    string hospitalAlias = 7;
-    string areaId = 8;
-    string areaName = 9;
-    string doctorName = 10;
+    string appointment_id = 1;
+    string contact_id = 2;
+    string hospital_id = 3;
+    string doctor_id = 4;
+    string schedule_id = 5;
+    string hospital_name = 6;
+    string hospital_alias = 7;
+    string area_id = 8;
+    string area_name = 9;
+    string doctor_name = 10;
     string specialization = 11;
-    string specializationEn = 12;
-    string contactName = 13;
-    google.protobuf.Timestamp appointmentFromTime = 14;
-    google.protobuf.Timestamp appointmentToTime = 15;
-    google.protobuf.Timestamp appointmentDate = 16;
-    bool isDelete = 17;
-    int32 statusId = 18;
-    bool isExpired = 19;
-    int32 dayDiff = 20; 
+    string specialization_en = 12;
+    string contact_name = 13;
+    google.protobuf.Timestamp appointment_from_time = 14;
+    google.protobuf.Timestamp appointment_to_time = 15;
+    google.protobuf.Timestamp appointment_date = 16;
+    bool is_delete = 17;
+    string status_id = 18;
+    bool is_expired = 19;
+    string day_diff = 20; 
 }
