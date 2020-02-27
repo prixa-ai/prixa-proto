@@ -10,6 +10,7 @@ import (
 	_ "github.com/golang/protobuf/ptypes/timestamp"
 	_ "github.com/mwitkow/go-proto-validators"
 	_ "github.com/golang/protobuf/ptypes/empty"
+	_ "github.com/golang/protobuf/ptypes/wrappers"
 	regexp "regexp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
@@ -36,8 +37,15 @@ func (this *AreaData) Validate() error {
 var _regex_GetHospitalsRequestData_AreaId = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
 
 func (this *GetHospitalsRequestData) Validate() error {
-	if !_regex_GetHospitalsRequestData_AreaId.MatchString(this.AreaId) {
-		return github_com_mwitkow_go_proto_validators.FieldError("AreaId", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.AreaId))
+	if this.OnImplementation != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.OnImplementation); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("OnImplementation", err)
+		}
+	}
+	if this.AreaId != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.AreaId); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("AreaId", err)
+		}
 	}
 	return nil
 }
@@ -58,8 +66,10 @@ func (this *HospitalData) Validate() error {
 var _regex_GetSpecialitiesRequestData_HospitalId = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
 
 func (this *GetSpecialitiesRequestData) Validate() error {
-	if !_regex_GetSpecialitiesRequestData_HospitalId.MatchString(this.HospitalId) {
-		return github_com_mwitkow_go_proto_validators.FieldError("HospitalId", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.HospitalId))
+	if this.HospitalId != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.HospitalId); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("HospitalId", err)
+		}
 	}
 	return nil
 }
@@ -82,14 +92,25 @@ var _regex_GetDoctorsRequestData_HospitalId = regexp.MustCompile(`^([a-fA-F0-9]{
 var _regex_GetDoctorsRequestData_SpecialityId = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
 
 func (this *GetDoctorsRequestData) Validate() error {
-	if !_regex_GetDoctorsRequestData_DoctorId.MatchString(this.DoctorId) {
-		return github_com_mwitkow_go_proto_validators.FieldError("DoctorId", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.DoctorId))
+	if this.DoctorName != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.DoctorName); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("DoctorName", err)
+		}
 	}
-	if !_regex_GetDoctorsRequestData_HospitalId.MatchString(this.HospitalId) {
-		return github_com_mwitkow_go_proto_validators.FieldError("HospitalId", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.HospitalId))
+	if this.DoctorId != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.DoctorId); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("DoctorId", err)
+		}
 	}
-	if !_regex_GetDoctorsRequestData_SpecialityId.MatchString(this.SpecialityId) {
-		return github_com_mwitkow_go_proto_validators.FieldError("SpecialityId", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.SpecialityId))
+	if this.HospitalId != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.HospitalId); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("HospitalId", err)
+		}
+	}
+	if this.SpecialityId != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.SpecialityId); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("SpecialityId", err)
+		}
 	}
 	return nil
 }
@@ -117,8 +138,10 @@ func (this *GetDoctorsLeavesHospitalRequestData) Validate() error {
 	if this.HospitalId == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("HospitalId", fmt.Errorf(`value '%v' must not be an empty string`, this.HospitalId))
 	}
-	if !_regex_GetDoctorsLeavesHospitalRequestData_DoctorId.MatchString(this.DoctorId) {
-		return github_com_mwitkow_go_proto_validators.FieldError("DoctorId", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.DoctorId))
+	if this.DoctorId != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.DoctorId); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("DoctorId", err)
+		}
 	}
 	return nil
 }
@@ -306,8 +329,10 @@ func (this *PostAppointmentRequestData) Validate() error {
 	if this.PhoneNumber1 == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("PhoneNumber1", fmt.Errorf(`value '%v' must not be an empty string`, this.PhoneNumber1))
 	}
-	if !_regex_PostAppointmentRequestData_EmailAddress.MatchString(this.EmailAddress) {
-		return github_com_mwitkow_go_proto_validators.FieldError("EmailAddress", fmt.Errorf(`value '%v' must be a string conforming to regex "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"`, this.EmailAddress))
+	if this.EmailAddress != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.EmailAddress); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("EmailAddress", err)
+		}
 	}
 	if !_regex_PostAppointmentRequestData_UserId.MatchString(this.UserId) {
 		return github_com_mwitkow_go_proto_validators.FieldError("UserId", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.UserId))
@@ -455,6 +480,21 @@ func (this *GetAppointmentsRequestData) Validate() error {
 	}
 	if this.HospitalId == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("HospitalId", fmt.Errorf(`value '%v' must not be an empty string`, this.HospitalId))
+	}
+	if this.FutureOnly != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.FutureOnly); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("FutureOnly", err)
+		}
+	}
+	if this.Limit != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Limit); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Limit", err)
+		}
+	}
+	if this.Offset != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Offset); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Offset", err)
+		}
 	}
 	return nil
 }
