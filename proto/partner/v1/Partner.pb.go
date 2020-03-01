@@ -582,7 +582,9 @@ func init() {
 	proto.RegisterType((*ListPartnersResponse)(nil), "prixa.partner.v1.ListPartnersResponse")
 }
 
-func init() { proto.RegisterFile("proto/partner/v1/Partner.proto", fileDescriptor_c6f7b43f209e465d) }
+func init() {
+	proto.RegisterFile("proto/partner/v1/Partner.proto", fileDescriptor_c6f7b43f209e465d)
+}
 
 var fileDescriptor_c6f7b43f209e465d = []byte{
 	// 662 bytes of a gzipped FileDescriptorProto

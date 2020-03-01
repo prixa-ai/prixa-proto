@@ -20,14 +20,16 @@ var _ = fmt.Errorf
 var _ = math.Inf
 
 var _regex_AuthData_Email = regexp.MustCompile(`^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$`)
-var _regex_AuthData_Password = regexp.MustCompile(`^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})`)
 
 func (this *AuthData) Validate() error {
 	if !_regex_AuthData_Email.MatchString(this.Email) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Email", fmt.Errorf(`value '%v' must be a string conforming to regex "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"`, this.Email))
 	}
-	if !_regex_AuthData_Password.MatchString(this.Password) {
-		return github_com_mwitkow_go_proto_validators.FieldError("Password", fmt.Errorf(`value '%v' must be a string conforming to regex "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})"`, this.Password))
+	if this.Password == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Password", fmt.Errorf(`value '%v' must not be an empty string`, this.Password))
+	}
+	if this.PasswordConfirmation == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("PasswordConfirmation", fmt.Errorf(`value '%v' must not be an empty string`, this.PasswordConfirmation))
 	}
 	if this.DiagnosticSessionID == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("DiagnosticSessionID", fmt.Errorf(`value '%v' must not be an empty string`, this.DiagnosticSessionID))
@@ -39,7 +41,6 @@ func (this *ChronicConditionData) Validate() error {
 }
 
 var _regex_ProfileData_Email = regexp.MustCompile(`^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$`)
-var _regex_ProfileData_Password = regexp.MustCompile(`^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})`)
 
 func (this *ProfileData) Validate() error {
 	if !_regex_ProfileData_Email.MatchString(this.Email) {
@@ -54,8 +55,8 @@ func (this *ProfileData) Validate() error {
 	if this.Gender == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("Gender", fmt.Errorf(`value '%v' must not be an empty string`, this.Gender))
 	}
-	if !_regex_ProfileData_Password.MatchString(this.Password) {
-		return github_com_mwitkow_go_proto_validators.FieldError("Password", fmt.Errorf(`value '%v' must be a string conforming to regex "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})"`, this.Password))
+	if this.Password == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Password", fmt.Errorf(`value '%v' must not be an empty string`, this.Password))
 	}
 	return nil
 }
@@ -68,8 +69,8 @@ func (this *LoginRequest) Validate() error {
 	return nil
 }
 func (this *LoginResponse) Validate() error {
-	if this.Token == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Token", fmt.Errorf(`value '%v' must not be an empty string`, this.Token))
+	if this.TokenLogin == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("TokenLogin", fmt.Errorf(`value '%v' must not be an empty string`, this.TokenLogin))
 	}
 	if this.PersonID == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("PersonID", fmt.Errorf(`value '%v' must not be an empty string`, this.PersonID))
@@ -99,14 +100,11 @@ func (this *RegisterRequest) Validate() error {
 	return nil
 }
 func (this *RegisterResponse) Validate() error {
-	if this.Token == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Token", fmt.Errorf(`value '%v' must not be an empty string`, this.Token))
-	}
 	return nil
 }
 func (this *VerifyRegisterRequest) Validate() error {
-	if this.Token == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Token", fmt.Errorf(`value '%v' must not be an empty string`, this.Token))
+	if this.TokenRegister == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("TokenRegister", fmt.Errorf(`value '%v' must not be an empty string`, this.TokenRegister))
 	}
 	if this.DiagnosticSessionID == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("DiagnosticSessionID", fmt.Errorf(`value '%v' must not be an empty string`, this.DiagnosticSessionID))
@@ -114,8 +112,8 @@ func (this *VerifyRegisterRequest) Validate() error {
 	return nil
 }
 func (this *VerifyRegisterResponse) Validate() error {
-	if this.Token == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Token", fmt.Errorf(`value '%v' must not be an empty string`, this.Token))
+	if this.TokenLogin == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("TokenLogin", fmt.Errorf(`value '%v' must not be an empty string`, this.TokenLogin))
 	}
 	if this.SessionID == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("SessionID", fmt.Errorf(`value '%v' must not be an empty string`, this.SessionID))
@@ -138,8 +136,8 @@ func (this *ForgetPasswordResponse) Validate() error {
 	return nil
 }
 func (this *ForgetPasswordVerifRequest) Validate() error {
-	if this.Token == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Token", fmt.Errorf(`value '%v' must not be an empty string`, this.Token))
+	if this.TokenForgetPwd == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("TokenForgetPwd", fmt.Errorf(`value '%v' must not be an empty string`, this.TokenForgetPwd))
 	}
 	return nil
 }
@@ -148,18 +146,16 @@ func (this *ForgetPasswordVerifResponse) Validate() error {
 }
 
 var _regex_UpdatePasswordRequest_Email = regexp.MustCompile(`^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$`)
-var _regex_UpdatePasswordRequest_Password = regexp.MustCompile(`^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})`)
-var _regex_UpdatePasswordRequest_ConfirmPassword = regexp.MustCompile(`^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})`)
 
 func (this *UpdatePasswordRequest) Validate() error {
 	if !_regex_UpdatePasswordRequest_Email.MatchString(this.Email) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Email", fmt.Errorf(`value '%v' must be a string conforming to regex "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"`, this.Email))
 	}
-	if !_regex_UpdatePasswordRequest_Password.MatchString(this.Password) {
-		return github_com_mwitkow_go_proto_validators.FieldError("Password", fmt.Errorf(`value '%v' must be a string conforming to regex "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})"`, this.Password))
+	if this.Password == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Password", fmt.Errorf(`value '%v' must not be an empty string`, this.Password))
 	}
-	if !_regex_UpdatePasswordRequest_ConfirmPassword.MatchString(this.ConfirmPassword) {
-		return github_com_mwitkow_go_proto_validators.FieldError("ConfirmPassword", fmt.Errorf(`value '%v' must be a string conforming to regex "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})"`, this.ConfirmPassword))
+	if this.ConfirmPassword == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("ConfirmPassword", fmt.Errorf(`value '%v' must not be an empty string`, this.ConfirmPassword))
 	}
 	if this.DiagnosticSessionID == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("DiagnosticSessionID", fmt.Errorf(`value '%v' must not be an empty string`, this.DiagnosticSessionID))
@@ -167,11 +163,34 @@ func (this *UpdatePasswordRequest) Validate() error {
 	return nil
 }
 func (this *UpdatePasswordResponse) Validate() error {
-	if this.Token == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Token", fmt.Errorf(`value '%v' must not be an empty string`, this.Token))
+	if this.TokenLogin == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("TokenLogin", fmt.Errorf(`value '%v' must not be an empty string`, this.TokenLogin))
 	}
 	if this.SessionID == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("SessionID", fmt.Errorf(`value '%v' must not be an empty string`, this.SessionID))
 	}
+	return nil
+}
+func (this *UserInfoResponse) Validate() error {
+	if this.ProfileData != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.ProfileData); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("ProfileData", err)
+		}
+	}
+	return nil
+}
+
+var _regex_ChangePasswordRequest_Email = regexp.MustCompile(`^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$`)
+
+func (this *ChangePasswordRequest) Validate() error {
+	if !_regex_ChangePasswordRequest_Email.MatchString(this.Email) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Email", fmt.Errorf(`value '%v' must be a string conforming to regex "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"`, this.Email))
+	}
+	return nil
+}
+func (this *ChangePasswordResponse) Validate() error {
+	return nil
+}
+func (this *LogoutResponse) Validate() error {
 	return nil
 }
