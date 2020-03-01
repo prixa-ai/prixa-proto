@@ -4,6 +4,7 @@ package prixa.siloam.v1;
 import "google/protobuf/timestamp.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
 
 
 service SiloamService {
@@ -55,8 +56,8 @@ message AreaData {
 }
 
 message GetHospitalsRequestData{
-    bool onImplementation = 1; //query
-    string areaId = 2 [(validator.field) = {uuid_ver: 4}];    
+    google.protobuf.BoolValue onImplementation = 1; //query
+    google.protobuf.StringValue areaId = 2 [(validator.field) = {uuid_ver: 4}];    
 }
 
 message GetHospitalsResponseData{
@@ -80,7 +81,7 @@ message HospitalData {
 }
 
 message GetSpecialitiesRequestData{
-    string hospitalId = 1 [(validator.field) = {uuid_ver: 4}];  //query   
+    google.protobuf.StringValue hospitalId = 1 [(validator.field) = {uuid_ver: 4}];  //query   
 }
 
 message GetSpecialitiesResponseData{
@@ -98,10 +99,10 @@ message SpecialityData{
 }
 
 message GetDoctorsRequestData{
-    string doctorName = 1; //query
-    string doctorId = 2 [(validator.field) = {uuid_ver: 4}];                  
-    string hospitalId = 3 [(validator.field) = {uuid_ver: 4}];               
-    string specialityId = 4 [(validator.field) = {uuid_ver: 4}];         
+    google.protobuf.StringValue doctorName = 1; //query
+    google.protobuf.StringValue doctorId = 2 [(validator.field) = {uuid_ver: 4}];                  
+    google.protobuf.StringValue hospitalId = 3 [(validator.field) = {uuid_ver: 4}];               
+    google.protobuf.StringValue specialityId = 4 [(validator.field) = {uuid_ver: 4}];         
 }
 
 message GetDoctorsResponseData{
@@ -124,7 +125,7 @@ message DoctorData{
 
 message GetDoctorsLeavesHospitalRequestData{
     string hospitalId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}]; //param                  
-    string doctorId = 2 [(validator.field) = {uuid_ver: 4}];   //query
+    google.protobuf.StringValue doctorId = 2 [(validator.field) = {uuid_ver: 4}];   //query
 }
 
 message GetDoctorsLeavesHospitalResponseData{
@@ -198,7 +199,7 @@ message PostAppointmentRequestData{
     string name = 8 [(validator.field) = {string_not_empty: true}]; //with condition
     google.protobuf.Timestamp birthDate = 9 [(validator.field) = {msg_exists: true}];
     string phoneNumber1 = 10 [(validator.field) = {string_not_empty: true}]; //with condition
-    string emailAddress = 11 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}]; 
+    google.protobuf.StringValue emailAddress = 11 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}]; 
     string userId = 12  [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
     string source = 13;
     string userName = 14; 
@@ -292,9 +293,9 @@ message RescheduleAppointmentData{
 message GetAppointmentsRequestData{
     string contactId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}]; //param
     string hospitalId = 2 [(validator.field) = {uuid_ver: 4, string_not_empty: true}]; //query
-    bool futureOnly = 3;
-    int32 limit = 4;
-    int32 offset = 5;
+    google.protobuf.BoolValue futureOnly = 3;
+    google.protobuf.Int32Value limit = 4;
+    google.protobuf.Int32Value offset = 5;
 }
 
 message GetAppointmentsResponseData{
