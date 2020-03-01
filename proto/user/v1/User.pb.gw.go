@@ -33,7 +33,7 @@ var _ = utilities.NewDoubleArray
 var _ = descriptor.ForMessage
 
 func request_UserService_Login_0(ctx context.Context, marshaler runtime.Marshaler, client UserServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq AuthData
+	var protoReq LoginRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -50,7 +50,7 @@ func request_UserService_Login_0(ctx context.Context, marshaler runtime.Marshale
 }
 
 func local_request_UserService_Login_0(ctx context.Context, marshaler runtime.Marshaler, server UserServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq AuthData
+	var protoReq LoginRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -85,7 +85,7 @@ func local_request_UserService_Consent_0(ctx context.Context, marshaler runtime.
 }
 
 func request_UserService_Register_0(ctx context.Context, marshaler runtime.Marshaler, client UserServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq AuthData
+	var protoReq RegisterRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -102,7 +102,7 @@ func request_UserService_Register_0(ctx context.Context, marshaler runtime.Marsh
 }
 
 func local_request_UserService_Register_0(ctx context.Context, marshaler runtime.Marshaler, server UserServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq AuthData
+	var protoReq RegisterRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -130,6 +130,24 @@ func request_UserService_VerifyRegister_0(ctx context.Context, marshaler runtime
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["tokenRegister"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "tokenRegister")
+	}
+
+	protoReq.TokenRegister, err = runtime.String(val)
+
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "tokenRegister", err)
+	}
+
 	msg, err := client.VerifyRegister(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
@@ -145,6 +163,24 @@ func local_request_UserService_VerifyRegister_0(ctx context.Context, marshaler r
 	}
 	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["tokenRegister"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "tokenRegister")
+	}
+
+	protoReq.TokenRegister, err = runtime.String(val)
+
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "tokenRegister", err)
 	}
 
 	msg, err := server.VerifyRegister(ctx, &protoReq)
@@ -198,6 +234,24 @@ func request_UserService_ForgetPasswordVerif_0(ctx context.Context, marshaler ru
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["tokenForgetPwd"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "tokenForgetPwd")
+	}
+
+	protoReq.TokenForgetPwd, err = runtime.String(val)
+
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "tokenForgetPwd", err)
+	}
+
 	msg, err := client.ForgetPasswordVerif(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
@@ -213,6 +267,24 @@ func local_request_UserService_ForgetPasswordVerif_0(ctx context.Context, marsha
 	}
 	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["tokenForgetPwd"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "tokenForgetPwd")
+	}
+
+	protoReq.TokenForgetPwd, err = runtime.String(val)
+
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "tokenForgetPwd", err)
 	}
 
 	msg, err := server.ForgetPasswordVerif(ctx, &protoReq)
@@ -590,11 +662,11 @@ var (
 
 	pattern_UserService_Register_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "user", "register"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserService_VerifyRegister_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "user", "register", "verify"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_UserService_VerifyRegister_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"api", "v1", "user", "register", "verify", "tokenRegister"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_UserService_ForgetPassword_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "user", "forget-password"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserService_ForgetPasswordVerif_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "user", "forget-password", "verify"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_UserService_ForgetPasswordVerif_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"api", "v1", "user", "forget-password", "verify", "tokenForgetPwd"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_UserService_UpdatePassword_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "user", "forget-password", "update"}, "", runtime.AssumeColonVerbOpt(true)))
 )
