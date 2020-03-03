@@ -178,7 +178,7 @@
         ]
       }
     },
-    "/api/v1/user/forget-password/{tokenForgetPwd}/verify": {
+    "/api/v1/user/forget-password/{forgetPwdToken}/verify": {
       "post": {
         "summary": "Verify forget password token upon forget password action",
         "operationId": "ForgetPasswordVerif",
@@ -198,7 +198,7 @@
         },
         "parameters": [
           {
-            "name": "tokenForgetPwd",
+            "name": "forgetPwdToken",
             "in": "path",
             "required": true,
             "type": "string"
@@ -283,7 +283,7 @@
         ]
       }
     },
-    "/api/v1/user/register/{tokenRegister}/verify": {
+    "/api/v1/user/register/{registerToken}/verify": {
       "post": {
         "summary": "Verify user registration",
         "operationId": "VerifyRegister",
@@ -303,7 +303,7 @@
         },
         "parameters": [
           {
-            "name": "tokenRegister",
+            "name": "registerToken",
             "in": "path",
             "required": true,
             "type": "string"
@@ -451,7 +451,7 @@
     "v1ForgetPasswordVerifRequest": {
       "type": "object",
       "properties": {
-        "tokenForgetPwd": {
+        "forgetPwdToken": {
           "type": "string"
         }
       }
@@ -475,7 +475,7 @@
     "v1LoginResponse": {
       "type": "object",
       "properties": {
-        "tokenLogin": {
+        "loginToken": {
           "type": "string"
         },
         "personID": {
@@ -580,7 +580,7 @@
         "message": {
           "type": "string"
         },
-        "tokenLogin": {
+        "loginToken": {
           "type": "string"
         },
         "sessionID": {
@@ -599,7 +599,7 @@
     "v1VerifyRegisterRequest": {
       "type": "object",
       "properties": {
-        "tokenRegister": {
+        "registerToken": {
           "type": "string"
         },
         "diagnosticSessionID": {
@@ -610,7 +610,7 @@
     "v1VerifyRegisterResponse": {
       "type": "object",
       "properties": {
-        "tokenLogin": {
+        "loginToken": {
           "type": "string"
         },
         "sessionID": {

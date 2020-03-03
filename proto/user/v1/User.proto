@@ -78,7 +78,7 @@ service UserService {
     // Verify user registration
     rpc VerifyRegister (VerifyRegisterRequest) returns (VerifyRegisterResponse) {
         option (google.api.http) = {
-            post: "/api/v1/user/register/{tokenRegister}/verify"
+            post: "/api/v1/user/register/{registerToken}/verify"
             body: "*"
         };
     }
@@ -94,7 +94,7 @@ service UserService {
     // Verify forget password token upon forget password action
     rpc ForgetPasswordVerif (ForgetPasswordVerifRequest) returns (ForgetPasswordVerifResponse) {
         option (google.api.http) = {
-            post: "/api/v1/user/forget-password/{tokenForgetPwd}/verify"
+            post: "/api/v1/user/forget-password/{forgetPwdToken}/verify"
             body: "*"
         };
     }
@@ -186,7 +186,7 @@ message LoginRequest {
 }
 
 message LoginResponse {
-    string tokenLogin = 1 [(validator.field) = {string_not_empty: true}];
+    string loginToken = 1 [(validator.field) = {string_not_empty: true}];
     string personID = 2 [(validator.field) = {string_not_empty: true}];
     string sessionID = 3 [(validator.field) = {string_not_empty: true}];
 }
@@ -204,12 +204,12 @@ message RegisterResponse {
 }
 
 message VerifyRegisterRequest {
-    string tokenRegister = 1 [(validator.field) = {string_not_empty: true}];
+    string registerToken = 1 [(validator.field) = {string_not_empty: true}];
     string diagnosticSessionID = 2 [(validator.field) = {string_not_empty: true}];
 }
 
 message VerifyRegisterResponse {
-    string tokenLogin = 1 [(validator.field) = {string_not_empty: true}];
+    string loginToken = 1 [(validator.field) = {string_not_empty: true}];
     string sessionID = 2 [(validator.field) = {string_not_empty: true}];
 }
 
@@ -223,7 +223,7 @@ message ForgetPasswordResponse {
 }
 
 message ForgetPasswordVerifRequest {
-    string tokenForgetPwd = 1 [(validator.field) = {string_not_empty: true}];
+    string forgetPwdToken = 1 [(validator.field) = {string_not_empty: true}];
 }
 
 message ForgetPasswordVerifResponse {
@@ -239,7 +239,7 @@ message UpdatePasswordRequest {
 
 message UpdatePasswordResponse {
     string message = 1;
-    string tokenLogin = 2 [(validator.field) = {string_not_empty: true}];
+    string loginToken = 2 [(validator.field) = {string_not_empty: true}];
     string sessionID = 3 [(validator.field) = {string_not_empty: true}];
 }
 

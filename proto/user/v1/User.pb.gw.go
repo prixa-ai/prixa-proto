@@ -137,15 +137,15 @@ func request_UserService_VerifyRegister_0(ctx context.Context, marshaler runtime
 		_   = err
 	)
 
-	val, ok = pathParams["tokenRegister"]
+	val, ok = pathParams["registerToken"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "tokenRegister")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "registerToken")
 	}
 
-	protoReq.TokenRegister, err = runtime.String(val)
+	protoReq.RegisterToken, err = runtime.String(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "tokenRegister", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "registerToken", err)
 	}
 
 	msg, err := client.VerifyRegister(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -172,15 +172,15 @@ func local_request_UserService_VerifyRegister_0(ctx context.Context, marshaler r
 		_   = err
 	)
 
-	val, ok = pathParams["tokenRegister"]
+	val, ok = pathParams["registerToken"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "tokenRegister")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "registerToken")
 	}
 
-	protoReq.TokenRegister, err = runtime.String(val)
+	protoReq.RegisterToken, err = runtime.String(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "tokenRegister", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "registerToken", err)
 	}
 
 	msg, err := server.VerifyRegister(ctx, &protoReq)
@@ -241,15 +241,15 @@ func request_UserService_ForgetPasswordVerif_0(ctx context.Context, marshaler ru
 		_   = err
 	)
 
-	val, ok = pathParams["tokenForgetPwd"]
+	val, ok = pathParams["forgetPwdToken"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "tokenForgetPwd")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "forgetPwdToken")
 	}
 
-	protoReq.TokenForgetPwd, err = runtime.String(val)
+	protoReq.ForgetPwdToken, err = runtime.String(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "tokenForgetPwd", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "forgetPwdToken", err)
 	}
 
 	msg, err := client.ForgetPasswordVerif(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -276,15 +276,15 @@ func local_request_UserService_ForgetPasswordVerif_0(ctx context.Context, marsha
 		_   = err
 	)
 
-	val, ok = pathParams["tokenForgetPwd"]
+	val, ok = pathParams["forgetPwdToken"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "tokenForgetPwd")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "forgetPwdToken")
 	}
 
-	protoReq.TokenForgetPwd, err = runtime.String(val)
+	protoReq.ForgetPwdToken, err = runtime.String(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "tokenForgetPwd", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "forgetPwdToken", err)
 	}
 
 	msg, err := server.ForgetPasswordVerif(ctx, &protoReq)
@@ -852,11 +852,11 @@ var (
 
 	pattern_UserService_Register_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "user", "register"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserService_VerifyRegister_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "user", "register", "tokenRegister", "verify"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_UserService_VerifyRegister_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "user", "register", "registerToken", "verify"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_UserService_ForgetPassword_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "user", "forget-password"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserService_ForgetPasswordVerif_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "user", "forget-password", "tokenForgetPwd", "verify"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_UserService_ForgetPasswordVerif_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "user", "forget-password", "forgetPwdToken", "verify"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_UserService_UpdatePassword_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "user", "forget-password"}, "", runtime.AssumeColonVerbOpt(true)))
 

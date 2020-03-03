@@ -7,10 +7,10 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
-	_ "github.com/mwitkow/go-proto-validators"
 	_ "github.com/golang/protobuf/ptypes/empty"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
+	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
+	_ "github.com/mwitkow/go-proto-validators"
 	regexp "regexp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
@@ -70,8 +70,8 @@ func (this *LoginRequest) Validate() error {
 	return nil
 }
 func (this *LoginResponse) Validate() error {
-	if this.TokenLogin == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("TokenLogin", fmt.Errorf(`value '%v' must not be an empty string`, this.TokenLogin))
+	if this.LoginToken == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("LoginToken", fmt.Errorf(`value '%v' must not be an empty string`, this.LoginToken))
 	}
 	if this.PersonID == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("PersonID", fmt.Errorf(`value '%v' must not be an empty string`, this.PersonID))
@@ -104,8 +104,8 @@ func (this *RegisterResponse) Validate() error {
 	return nil
 }
 func (this *VerifyRegisterRequest) Validate() error {
-	if this.TokenRegister == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("TokenRegister", fmt.Errorf(`value '%v' must not be an empty string`, this.TokenRegister))
+	if this.RegisterToken == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("RegisterToken", fmt.Errorf(`value '%v' must not be an empty string`, this.RegisterToken))
 	}
 	if this.DiagnosticSessionID == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("DiagnosticSessionID", fmt.Errorf(`value '%v' must not be an empty string`, this.DiagnosticSessionID))
@@ -113,8 +113,8 @@ func (this *VerifyRegisterRequest) Validate() error {
 	return nil
 }
 func (this *VerifyRegisterResponse) Validate() error {
-	if this.TokenLogin == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("TokenLogin", fmt.Errorf(`value '%v' must not be an empty string`, this.TokenLogin))
+	if this.LoginToken == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("LoginToken", fmt.Errorf(`value '%v' must not be an empty string`, this.LoginToken))
 	}
 	if this.SessionID == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("SessionID", fmt.Errorf(`value '%v' must not be an empty string`, this.SessionID))
@@ -137,8 +137,8 @@ func (this *ForgetPasswordResponse) Validate() error {
 	return nil
 }
 func (this *ForgetPasswordVerifRequest) Validate() error {
-	if this.TokenForgetPwd == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("TokenForgetPwd", fmt.Errorf(`value '%v' must not be an empty string`, this.TokenForgetPwd))
+	if this.ForgetPwdToken == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("ForgetPwdToken", fmt.Errorf(`value '%v' must not be an empty string`, this.ForgetPwdToken))
 	}
 	return nil
 }
@@ -164,8 +164,8 @@ func (this *UpdatePasswordRequest) Validate() error {
 	return nil
 }
 func (this *UpdatePasswordResponse) Validate() error {
-	if this.TokenLogin == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("TokenLogin", fmt.Errorf(`value '%v' must not be an empty string`, this.TokenLogin))
+	if this.LoginToken == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("LoginToken", fmt.Errorf(`value '%v' must not be an empty string`, this.LoginToken))
 	}
 	if this.SessionID == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("SessionID", fmt.Errorf(`value '%v' must not be an empty string`, this.SessionID))
