@@ -3,64 +3,153 @@ syntax = "proto3";
 package prixa.user.v1;
 import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
+import "protoc-gen-swagger/options/annotations.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 
+option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
+    host: "engine2.prixa.ai";
+    info: {
+        title: "Prixa User Service API";
+        version: "1.0";
+        contact: {
+            name: "Prixa Tech";
+            url: "https://github.com/prixa-ai/prixa-proto";
+            email: "tech@prixa.com";
+        };
+        license: {
+            name: "Prixa License";
+            url: "https://github.com/prixa-ai/prixa-proto/blob/master/LICENSE.txt";
+        };
+    };
+    schemes: HTTP;
+    schemes: HTTPS;
+    consumes: "application/json";
+    produces: "application/json";
+    security_definitions: {
+        security: {
+            key: "ApiKeyAuth";
+            value: {
+                type: TYPE_API_KEY;
+                in: IN_HEADER;
+                name: "X-Prixa-API-Key";
+            }
+        }
+        security: {
+            key: "Bearer";
+            value: {
+                type: TYPE_API_KEY;
+                in: IN_HEADER;
+                name: "Authorization";
+            }
+        }
+    }
+    security: {
+        security_requirement: {
+            key: "ApiKeyAuth";
+            value: {}
+        }
+    }
+};
+
 service UserService {
+    // User login given email and password
     rpc Login (LoginRequest) returns (LoginResponse) {
         option (google.api.http) = {
             post: "/api/v1/user/login"
             body: "*"
         };
     }
+
+    // Get user consent information
     rpc Consent (google.protobuf.Empty) returns (ConsentResponse) {
         option (google.api.http) = {
             get: "/api/v1/user/consent"
         };
     }
+
+    // New user registration
     rpc Register (RegisterRequest) returns (RegisterResponse) {
         option (google.api.http) = {
             post: "/api/v1/user/register"
             body: "*"
         };
     }
+
+    // Verify user registration
     rpc VerifyRegister (VerifyRegisterRequest) returns (VerifyRegisterResponse) {
         option (google.api.http) = {
             post: "/api/v1/user/register/{tokenRegister}/verify"
             body: "*"
         };
     }
+
+    // Trigger to reset user password due to forgotten password
     rpc ForgetPassword (ForgetPasswordRequest) returns (ForgetPasswordResponse) {
         option (google.api.http) = {
             post: "/api/v1/user/forget-password"
             body: "*"
         };
     }
+
+    // Verify forget password token upon forget password action
     rpc ForgetPasswordVerif (ForgetPasswordVerifRequest) returns (ForgetPasswordVerifResponse) {
         option (google.api.http) = {
             post: "/api/v1/user/forget-password/{tokenForgetPwd}/verify"
             body: "*"
         };
     }
+
+    // Update user password upon forget password action
     rpc UpdatePassword (UpdatePasswordRequest) returns (UpdatePasswordResponse) {
         option (google.api.http) = {
             put: "/api/v1/user/forget-password"
             body: "*"
         };
     }
+
+    // User info after user logged in.
     rpc UserInfo (google.protobuf.Empty) returns (UserInfoResponse) {
         option (google.api.http) = {
             get: "/api/v1/userinfo"
         };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
     }
+
+    // Change user password after user logged in.
     rpc ChangePassword (ChangePasswordRequest) returns (ChangePasswordResponse) {
         option (google.api.http) = {
             post: "/api/v1/change-password"
             body: "*"
         };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
     }
+
+    // Logout user after user logged in
     rpc Logout (google.protobuf.Empty) returns (LogoutResponse) {
         option (google.api.http) = {
             get: "/api/v1/logout"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
         };
     }
 }

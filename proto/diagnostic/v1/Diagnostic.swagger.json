@@ -1,0 +1,888 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Prixa Diagnostic Service API",
+    "version": "1.0",
+    "contact": {
+      "name": "Prixa Tech",
+      "url": "https://github.com/prixa-ai/prixa-proto",
+      "email": "tech@prixa.com"
+    },
+    "license": {
+      "name": "Prixa License",
+      "url": "https://github.com/prixa-ai/prixa-proto/blob/master/LICENSE.txt"
+    }
+  },
+  "host": "engine2.prixa.ai",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/conversation/mail/send": {
+      "post": {
+        "operationId": "SendEmail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1SendEmailResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1SendEmailRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DiagnosticService"
+        ]
+      }
+    },
+    "/api/v1/disease/article/{diseaseID}": {
+      "get": {
+        "operationId": "GetDiseaseArticle",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetDiseaseArticleResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "diseaseID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DiagnosticService"
+        ]
+      }
+    },
+    "/api/v1/prixa": {
+      "post": {
+        "operationId": "BotConversation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1BotConversationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1BotConversationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DiagnosticService"
+        ]
+      }
+    },
+    "/api/v1/prixa/feedback": {
+      "get": {
+        "operationId": "GetFeedbackContent",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1FeedbackContentResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "DiagnosticService"
+        ]
+      },
+      "post": {
+        "operationId": "SendFeedback",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1SendFeedbackResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1SendFeedbackRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DiagnosticService"
+        ]
+      }
+    },
+    "/api/v1/prixa/survey": {
+      "post": {
+        "operationId": "SendSurvey",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1SendSurveyRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DiagnosticService"
+        ]
+      }
+    },
+    "/api/v1/prixa/user": {
+      "post": {
+        "operationId": "CreatePrixaSession",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreatePrixaSessionResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreatePrixaSessionRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DiagnosticService"
+        ]
+      }
+    },
+    "/api/v2/prixa": {
+      "post": {
+        "operationId": "BotConversationV2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1BotConversationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1BotConversationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DiagnosticService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string",
+          "description": "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics."
+        },
+        "value": {
+          "type": "string",
+          "format": "byte",
+          "description": "Must be a valid serialized protocol buffer of the above specified type."
+        }
+      },
+      "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(\u0026foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := \u0026pb.Foo{...}\n     any, err := ptypes.MarshalAny(foo)\n     ...\n     foo := \u0026pb.Foo{}\n     if err := ptypes.UnmarshalAny(any, foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": \u003cstring\u003e,\n      \"lastName\": \u003cstring\u003e\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
+    },
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1ActionData": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ValueData"
+          }
+        },
+        "diagnosisResult": {
+          "$ref": "#/definitions/v1DiagnosisResultData"
+        }
+      }
+    },
+    "v1BotConversationRequest": {
+      "type": "object",
+      "properties": {
+        "sessionId": {
+          "type": "string"
+        },
+        "reply": {
+          "$ref": "#/definitions/v1ReplyData"
+        }
+      }
+    },
+    "v1BotConversationResponse": {
+      "type": "object",
+      "properties": {
+        "sessionId": {
+          "type": "string"
+        },
+        "result": {
+          "$ref": "#/definitions/v1ResultData"
+        },
+        "progressBarPercentage": {
+          "type": "number",
+          "format": "float"
+        },
+        "logEvents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1LogEvents"
+          }
+        }
+      }
+    },
+    "v1CreatePrixaSessionRequest": {
+      "type": "object",
+      "properties": {
+        "partnerId": {
+          "type": "string"
+        },
+        "partnerAppId": {
+          "type": "string"
+        },
+        "userData": {
+          "$ref": "#/definitions/v1UserData"
+        }
+      }
+    },
+    "v1CreatePrixaSessionResponse": {
+      "type": "object",
+      "properties": {
+        "sessionId": {
+          "type": "string"
+        },
+        "userData": {
+          "$ref": "#/definitions/v1UserData"
+        }
+      }
+    },
+    "v1DiagnosisResultData": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/v1UserData"
+        },
+        "userDetails": {
+          "$ref": "#/definitions/v1UserDetailsData"
+        },
+        "profiles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ProfileData"
+          }
+        },
+        "symptoms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1SymptomDesc"
+          }
+        },
+        "diseases": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1PotentialDisease"
+          }
+        }
+      }
+    },
+    "v1FeedbackContentResponse": {
+      "type": "object",
+      "properties": {
+        "question": {
+          "type": "string"
+        },
+        "instruction": {
+          "type": "string"
+        },
+        "choices": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v1GetDiseaseArticleResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "diseaseName": {
+          "type": "string"
+        },
+        "diseaseNameIndo": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "checkedBy": {
+          "type": "string"
+        },
+        "overview": {
+          "type": "string"
+        },
+        "advice": {
+          "type": "string"
+        },
+        "seeDoctor": {
+          "type": "string"
+        },
+        "prevention": {
+          "type": "string"
+        },
+        "reference": {
+          "type": "string"
+        },
+        "relatedSymptom": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v1InsuranceStatus": {
+      "type": "object",
+      "properties": {
+        "haveInsurance": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "planToHaveInsurance": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "v1LabInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "sku": {
+          "type": "string"
+        },
+        "diseases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v1LogEvents": {
+      "type": "object",
+      "properties": {
+        "answer": {
+          "type": "string"
+        },
+        "applicationId": {
+          "type": "string"
+        },
+        "partnerId": {
+          "type": "string"
+        },
+        "prixaSessionId": {
+          "type": "string"
+        },
+        "prixaUserId": {
+          "type": "string"
+        },
+        "question": {
+          "type": "string"
+        }
+      }
+    },
+    "v1MessagesData": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "explanation": {
+          "type": "string"
+        },
+        "media": {
+          "type": "string"
+        },
+        "sourceURL": {
+          "type": "string"
+        }
+      }
+    },
+    "v1PotentialDisease": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "likeliness": {
+          "type": "string"
+        },
+        "score": {
+          "type": "number",
+          "format": "float"
+        },
+        "url": {
+          "type": "string"
+        },
+        "triage": {
+          "$ref": "#/definitions/v1TriageResult"
+        },
+        "labs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1LabInfo"
+          }
+        }
+      }
+    },
+    "v1PreconditionsData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "nameIndo": {
+          "type": "string"
+        },
+        "preconditionsDescription": {
+          "type": "string"
+        },
+        "preconditionsDescriptionCopy": {
+          "type": "string"
+        },
+        "ageMonth": {
+          "type": "string",
+          "format": "int64"
+        },
+        "ageYear": {
+          "type": "string",
+          "format": "int64"
+        },
+        "weight": {
+          "type": "number",
+          "format": "float"
+        },
+        "height": {
+          "type": "number",
+          "format": "float"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ProfileData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "nameIndo": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "order": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "v1ReplyData": {
+      "type": "object",
+      "properties": {
+        "tag": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "preconditions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1PreconditionsData"
+          }
+        }
+      }
+    },
+    "v1ResultData": {
+      "type": "object",
+      "properties": {
+        "messages": {
+          "$ref": "#/definitions/v1MessagesData"
+        },
+        "actions": {
+          "$ref": "#/definitions/v1ActionData"
+        },
+        "preconditions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1PreconditionsData"
+          }
+        },
+        "currentState": {
+          "type": "string"
+        },
+        "symptomID": {
+          "type": "string"
+        }
+      }
+    },
+    "v1SendEmailRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "sessionId": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      }
+    },
+    "v1SendEmailResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "v1SendFeedbackRequest": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "partnerId": {
+          "type": "string"
+        },
+        "applicationId": {
+          "type": "string"
+        },
+        "sessionId": {
+          "type": "string"
+        },
+        "symptomId": {
+          "type": "string"
+        },
+        "question": {
+          "type": "string"
+        },
+        "feedbacks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "detail": {
+          "type": "string"
+        }
+      }
+    },
+    "v1SendFeedbackResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "v1SendSurveyRequest": {
+      "type": "object",
+      "properties": {
+        "applicationId": {
+          "type": "string"
+        },
+        "feedback": {
+          "type": "string"
+        },
+        "partnerId": {
+          "type": "string"
+        },
+        "rating": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sessionId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1SymptomDesc": {
+      "type": "object",
+      "properties": {
+        "symptomID": {
+          "type": "string"
+        },
+        "symptomName": {
+          "type": "string"
+        },
+        "propNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "chief": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "symptomsTriage": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "answer": {
+          "type": "string"
+        }
+      }
+    },
+    "v1TriageResult": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "nameIndo": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "v1UserData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "fullname": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "birthdate": {
+          "type": "string"
+        },
+        "weight": {
+          "type": "number",
+          "format": "float"
+        },
+        "height": {
+          "type": "number",
+          "format": "float"
+        },
+        "insurance": {
+          "$ref": "#/definitions/v1InsuranceStatus"
+        }
+      }
+    },
+    "v1UserDetailsData": {
+      "type": "object",
+      "properties": {
+        "ageYear": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ageMonth": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "firstname": {
+          "type": "string"
+        },
+        "isObese": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "v1ValueData": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "tag": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "name": "X-Prixa-API-Key",
+      "in": "header"
+    }
+  }
+}

@@ -4,7 +4,29 @@ syntax = "proto3";
 package prixa.emailnotification.v1;
 import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
+import "protoc-gen-swagger/options/annotations.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
+
+option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
+    host: "engine2.prixa.ai";
+	info: {
+		title: "Prixa Email Service API";
+		version: "1.0";
+		contact: {
+			name: "Prixa Tech";
+			url: "https://github.com/prixa-ai/prixa-proto";
+			email: "tech@prixa.com";
+		};
+		license: {
+			name: "Prixa License";
+			url: "https://github.com/prixa-ai/prixa-proto/blob/master/LICENSE.txt";
+		};
+    };
+	schemes: HTTP;
+	schemes: HTTPS;
+    consumes: "application/json";
+	produces: "application/json";
+};
 
 service NotificationService {
     rpc EmailDiagnosticResult (EmailDiagnosticResultRequest) returns (google.protobuf.Empty) {

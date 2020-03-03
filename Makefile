@@ -8,6 +8,6 @@ build: install
 	./gen.sh
 
 clean:
-	rm $(find proto -name '*.pb.*')
+	rm -f $(shell find proto -name '*.pb.*') & rm -f $(shell find proto -name '*.swagger.json')
 
 .PHONY: clean build
