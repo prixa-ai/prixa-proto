@@ -571,6 +571,9 @@
         },
         "diagnosticSessionID": {
           "type": "string"
+        },
+        "forgetPasswordToken": {
+          "type": "string"
         }
       }
     },

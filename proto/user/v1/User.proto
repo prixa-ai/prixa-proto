@@ -235,6 +235,7 @@ message UpdatePasswordRequest {
     string password = 2 [(validator.field) = {string_not_empty: true}];
     string confirmPassword = 3 [(validator.field) = {string_not_empty: true}];
     string diagnosticSessionID = 4 [(validator.field) = {string_not_empty: true}];
+    string forgetPasswordToken = 5;
 }
 
 message UpdatePasswordResponse {
