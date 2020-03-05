@@ -75,6 +75,25 @@ service UserService {
         };
     }
 
+    // Resend register email verification
+    rpc ResendEmailVerification (google.protobuf.Empty) returns (ResendEmailVerificationResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/user/resend-email"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }
+
     // Verify user registration
     rpc VerifyRegister (VerifyRegisterRequest) returns (VerifyRegisterResponse) {
         option (google.api.http) = {
@@ -208,6 +227,10 @@ message RegisterRequest {
     ProfileData profileData = 2;
 }
 message RegisterResponse {
+    string message = 1;
+}
+
+message ResendEmailVerificationResponse {
     string message = 1;
 }
 
