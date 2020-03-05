@@ -58,6 +58,7 @@
         ],
         "security": [
           {
+            "ApiKeyAuth": [],
             "Bearer": []
           }
         ]
@@ -345,6 +346,7 @@
         ],
         "security": [
           {
+            "ApiKeyAuth": [],
             "Bearer": []
           }
         ]

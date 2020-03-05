@@ -115,6 +115,10 @@ service UserService {
         option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
             security: {
                 security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+                security_requirement: {
                     key: "Bearer";
                     value: {}
                 }
@@ -130,6 +134,10 @@ service UserService {
         };
         option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
             security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
                 security_requirement: {
                     key: "Bearer";
                     value: {}
@@ -168,7 +176,7 @@ message ChronicConditionData {
 
 message ProfileData {
     string email = 1 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}];
-    string phone = 2 [(validator.field) = {string_not_empty: true}];
+    string phone = 2;
     string name = 3 [(validator.field) = {string_not_empty: true}];
     string gender = 4 [(validator.field) = {string_not_empty: true}];
     float height = 5;
