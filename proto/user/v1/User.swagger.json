@@ -58,6 +58,7 @@
         ],
         "security": [
           {
+            "ApiKeyAuth": [],
             "Bearer": []
           }
         ]
@@ -322,6 +323,35 @@
         ]
       }
     },
+    "/api/v1/user/resend-email": {
+      "get": {
+        "summary": "Resend register email verification",
+        "operationId": "ResendEmailVerification",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ResendEmailVerificationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "UserService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "Bearer": []
+          }
+        ]
+      }
+    },
     "/api/v1/userinfo": {
       "get": {
         "summary": "User info after user logged in.",
@@ -345,6 +375,7 @@
         ],
         "security": [
           {
+            "ApiKeyAuth": [],
             "Bearer": []
           }
         ]
@@ -469,6 +500,10 @@
       "properties": {
         "authData": {
           "$ref": "#/definitions/v1AuthData"
+        },
+        "isVerified": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -557,12 +592,17 @@
         }
       }
     },
+    "v1ResendEmailVerificationResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
     "v1UpdatePasswordRequest": {
       "type": "object",
       "properties": {
-        "email": {
-          "type": "string"
-        },
         "password": {
           "type": "string"
         },

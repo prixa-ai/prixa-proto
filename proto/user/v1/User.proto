@@ -75,6 +75,25 @@ service UserService {
         };
     }
 
+    // Resend register email verification
+    rpc ResendEmailVerification (google.protobuf.Empty) returns (ResendEmailVerificationResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/user/resend-email"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }
+
     // Verify user registration
     rpc VerifyRegister (VerifyRegisterRequest) returns (VerifyRegisterResponse) {
         option (google.api.http) = {
@@ -115,6 +134,10 @@ service UserService {
         option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
             security: {
                 security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+                security_requirement: {
                     key: "Bearer";
                     value: {}
                 }
@@ -130,6 +153,10 @@ service UserService {
         };
         option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
             security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
                 security_requirement: {
                     key: "Bearer";
                     value: {}
@@ -168,7 +195,7 @@ message ChronicConditionData {
 
 message ProfileData {
     string email = 1 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}];
-    string phone = 2 [(validator.field) = {string_not_empty: true}];
+    string phone = 2;
     string name = 3 [(validator.field) = {string_not_empty: true}];
     string gender = 4 [(validator.field) = {string_not_empty: true}];
     float height = 5;
@@ -183,6 +210,7 @@ message ProfileData {
 
 message LoginRequest {
     AuthData authData = 1;
+    bool isVerified = 2;
 }
 
 message LoginResponse {
@@ -200,6 +228,10 @@ message RegisterRequest {
     ProfileData profileData = 2;
 }
 message RegisterResponse {
+    string message = 1;
+}
+
+message ResendEmailVerificationResponse {
     string message = 1;
 }
 
@@ -231,11 +263,10 @@ message ForgetPasswordVerifResponse {
 }
 
 message UpdatePasswordRequest {
-    string email = 1 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}];
-    string password = 2 [(validator.field) = {string_not_empty: true}];
-    string confirmPassword = 3 [(validator.field) = {string_not_empty: true}];
-    string diagnosticSessionID = 4 [(validator.field) = {string_not_empty: true}];
-    string forgetPasswordToken = 5;
+    string password = 1 [(validator.field) = {string_not_empty: true}];
+    string confirmPassword = 2 [(validator.field) = {string_not_empty: true}];
+    string diagnosticSessionID = 3 [(validator.field) = {string_not_empty: true}];
+    string forgetPasswordToken = 4;
 }
 
 message UpdatePasswordResponse {
