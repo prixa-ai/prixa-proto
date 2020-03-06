@@ -210,6 +210,7 @@ message ProfileData {
 
 message LoginRequest {
     AuthData authData = 1;
+    bool isVerified = 2;
 }
 
 message LoginResponse {

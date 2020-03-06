@@ -500,6 +500,10 @@
       "properties": {
         "authData": {
           "$ref": "#/definitions/v1AuthData"
+        },
+        "isVerified": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
