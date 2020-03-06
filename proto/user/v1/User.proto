@@ -262,11 +262,10 @@ message ForgetPasswordVerifResponse {
 }
 
 message UpdatePasswordRequest {
-    string email = 1 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}];
-    string password = 2 [(validator.field) = {string_not_empty: true}];
-    string confirmPassword = 3 [(validator.field) = {string_not_empty: true}];
-    string diagnosticSessionID = 4 [(validator.field) = {string_not_empty: true}];
-    string forgetPasswordToken = 5;
+    string password = 1 [(validator.field) = {string_not_empty: true}];
+    string confirmPassword = 2 [(validator.field) = {string_not_empty: true}];
+    string diagnosticSessionID = 3 [(validator.field) = {string_not_empty: true}];
+    string forgetPasswordToken = 4;
 }
 
 message UpdatePasswordResponse {

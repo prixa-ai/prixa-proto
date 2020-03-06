@@ -325,6 +325,7 @@
     },
     "/api/v1/user/resend-email": {
       "get": {
+        "summary": "Resend register email verification",
         "operationId": "ResendEmailVerification",
         "responses": {
           "200": {
@@ -598,9 +599,6 @@
     "v1UpdatePasswordRequest": {
       "type": "object",
       "properties": {
-        "email": {
-          "type": "string"
-        },
         "password": {
           "type": "string"
         },
