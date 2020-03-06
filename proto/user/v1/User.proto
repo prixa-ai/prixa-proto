@@ -210,13 +210,13 @@ message ProfileData {
 
 message LoginRequest {
     AuthData authData = 1;
-    bool isVerified = 2;
 }
 
 message LoginResponse {
     string loginToken = 1 [(validator.field) = {string_not_empty: true}];
     string personID = 2 [(validator.field) = {string_not_empty: true}];
     string sessionID = 3 [(validator.field) = {string_not_empty: true}];
+    bool isVerified = 4;
 }
 
 message ConsentResponse {

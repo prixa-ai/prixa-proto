@@ -500,10 +500,6 @@
       "properties": {
         "authData": {
           "$ref": "#/definitions/v1AuthData"
-        },
-        "isVerified": {
-          "type": "boolean",
-          "format": "boolean"
         }
       }
     },
@@ -518,6 +514,10 @@
         },
         "sessionID": {
           "type": "string"
+        },
+        "isVerified": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
