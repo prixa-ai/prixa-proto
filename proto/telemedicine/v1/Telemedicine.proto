@@ -1,0 +1,145 @@
+syntax = "proto3";
+
+package prixa.telemedicine.v1;
+
+import "google/protobuf/timestamp.proto";
+import "github.com/mwitkow/go-proto-validators/validator.proto";
+
+service SiloamService {
+    rpc GetAreasData (GetAreasRequestData) returns (AreasResponseData) {
+    }
+
+    rpc GetSpecialitiesData (GetSpecialitiesRequestData) returns (SpecialityResponseData) {
+    }
+
+    rpc GetHospitalData (GetHospitalRequestData) returns (HospitalResponseData) {
+    }
+
+    rpc GetDoctorData (GetDoctorRequestData) returns (DoctorsResponseData) {
+    }
+    
+    rpc FindDoctorsData (FindDoctorsRequestData) returns (DoctorsResponseData) {
+    }
+
+    rpc FindHospitalsData (FindHospitalsRequestData) returns (HospitalResponseData) {
+    }
+}
+
+message HospitalData {
+    string id = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}]; 
+    string name = 2;                              
+    string alias = 3;
+    AddressData address = 4;
+    ContactData contact  = 5;
+    CoordinateData coordinate = 6;
+    string imageUrl = 7;    
+    string accreditation = 8;     
+    repeated SpecialityData specialitiesList = 9;
+    google.protobuf.Timestamp lastUpdated = 10;
+    SourceData source = 12;  
+}
+
+message DoctorData{
+    string id = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];                  
+    string name = 2;               
+    SpecialityData speciality = 3;           
+    ContactData contact = 4;
+    string imageUrl = 5; 
+    repeated HospitalData hospitalsList = 6;      
+}
+
+message SpecialityData{
+    string id = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];        
+    string name = 2;
+    string nameIndo = 3;
+    string imageUrl = 4;
+    google.protobuf.Timestamp lastUpdated = 5;
+    SourceData source = 6;  
+}
+
+message AreaData{
+    string id = 1  [(validator.field) = {uuid_ver: 4, string_not_empty: true}];  ;
+    string name = 2;
+    string imageUrl = 3;
+    google.protobuf.Timestamp lastUpdated = 4;
+    SourceData source = 5;    
+}
+
+
+message CoordinateData{
+    string lattitude = 1;
+    string longitude = 2;
+}
+
+message AddressData{
+    string zipCode = 1;     //kode pos
+    string village = 2;     //kelurahan
+    string subDistrict = 3; //kecamatan
+    string district = 4;    //kota/kabupaten
+    string province = 5;    //provinsi
+}
+
+message SourceData{
+    string sourceId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];    
+    string sourceName = 2;
+    string originId = 3 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];    
+}
+
+message ContactData{
+    string phoneNumber = 1 [(validator.field) = {regex: "^[+]?[0-9]{10,13}$"}]; 
+    string email = 2 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}]; 
+}
+
+message GetDoctorRequestData{
+    string doctorId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];            
+}
+message FindDoctorsRequestData {
+    string areaId = 1 [(validator.field) = {uuid_ver: 4}];    
+    string searchKeyword = 2;    
+    string specialityId = 3 [(validator.field) = {uuid_ver: 4}];    
+    string hospitalId = 4 [(validator.field) = {uuid_ver: 4}];        
+}
+
+
+message GetHospitalRequestData{
+    string hospitalId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];            
+}
+
+message FindHospitalsRequestData {
+    string areaId = 1 [(validator.field) = {uuid_ver: 4}];    
+    string searchKeyword = 2;    
+    string specialityId = 3 [(validator.field) = {uuid_ver: 4}];    
+    CoordinateData coordinate = 4;             
+}
+
+message GetAreasRequestData{
+    string areaId = 1 [(validator.field) = {uuid_ver: 4}];    
+}
+
+message GetSpecialitiesRequestData{
+    string specialityId = 1 [(validator.field) = {uuid_ver: 4}];    
+}
+
+message HospitalResponseData{
+    string status = 1;
+    string message = 2;
+    repeated HospitalData data = 3;
+}
+
+message DoctorsResponseData{
+    string status = 1;
+    string message = 2;
+    repeated DoctorData data = 3;
+}
+
+message SpecialityResponseData{
+    string status = 1;
+    string message = 2;
+    repeated SpecialityData data = 3;
+}
+
+message AreasResponseData{
+    string status = 1;
+    string message = 2;
+    repeated AreaData data = 3;
+}
