@@ -7,8 +7,8 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/mwitkow/go-proto-validators"
 	_ "github.com/golang/protobuf/ptypes/timestamp"
+	_ "github.com/mwitkow/go-proto-validators"
 	regexp "regexp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
@@ -249,7 +249,20 @@ func (this *GetSpecialitiesRequestData) Validate() error {
 	}
 	return nil
 }
-func (this *HospitalResponseData) Validate() error {
+
+var _regex_FindSpecialitiesRequestData_AreaId = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
+var _regex_FindSpecialitiesRequestData_HospitalId = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
+
+func (this *FindSpecialitiesRequestData) Validate() error {
+	if !_regex_FindSpecialitiesRequestData_AreaId.MatchString(this.AreaId) {
+		return github_com_mwitkow_go_proto_validators.FieldError("AreaId", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.AreaId))
+	}
+	if !_regex_FindSpecialitiesRequestData_HospitalId.MatchString(this.HospitalId) {
+		return github_com_mwitkow_go_proto_validators.FieldError("HospitalId", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.HospitalId))
+	}
+	return nil
+}
+func (this *HospitalsResponseData) Validate() error {
 	for _, item := range this.Data {
 		if item != nil {
 			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
@@ -269,7 +282,7 @@ func (this *DoctorsResponseData) Validate() error {
 	}
 	return nil
 }
-func (this *SpecialityResponseData) Validate() error {
+func (this *SpecialitiesResponseData) Validate() error {
 	for _, item := range this.Data {
 		if item != nil {
 			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {

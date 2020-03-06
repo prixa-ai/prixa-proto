@@ -9,10 +9,10 @@ service SiloamService {
     rpc GetAreasData (GetAreasRequestData) returns (AreasResponseData) {
     }
 
-    rpc GetSpecialitiesData (GetSpecialitiesRequestData) returns (SpecialityResponseData) {
+    rpc GetSpecialitiesData (GetSpecialitiesRequestData) returns (SpecialitiesResponseData) {
     }
 
-    rpc GetHospitalData (GetHospitalRequestData) returns (HospitalResponseData) {
+    rpc GetHospitalData (GetHospitalRequestData) returns (HospitalsResponseData) {
     }
 
     rpc GetDoctorData (GetDoctorRequestData) returns (DoctorsResponseData) {
@@ -21,7 +21,10 @@ service SiloamService {
     rpc FindDoctorsData (FindDoctorsRequestData) returns (DoctorsResponseData) {
     }
 
-    rpc FindHospitalsData (FindHospitalsRequestData) returns (HospitalResponseData) {
+    rpc FindHospitalsData (FindHospitalsRequestData) returns (HospitalsResponseData) {
+    }
+
+    rpc FindSpecialitiesData (FindSpecialitiesRequestData) returns (SpecialitiesResponseData) {
     }
 }
 
@@ -120,7 +123,12 @@ message GetSpecialitiesRequestData{
     string specialityId = 1 [(validator.field) = {uuid_ver: 4}];    
 }
 
-message HospitalResponseData{
+message FindSpecialitiesRequestData{
+    string areaId = 1 [(validator.field) = {uuid_ver: 4}];    
+    string hospitalId = 2 [(validator.field) = {uuid_ver: 4}];    
+}
+
+message HospitalsResponseData{
     string status = 1;
     string message = 2;
     repeated HospitalData data = 3;
@@ -132,7 +140,7 @@ message DoctorsResponseData{
     repeated DoctorData data = 3;
 }
 
-message SpecialityResponseData{
+message SpecialitiesResponseData{
     string status = 1;
     string message = 2;
     repeated SpecialityData data = 3;
