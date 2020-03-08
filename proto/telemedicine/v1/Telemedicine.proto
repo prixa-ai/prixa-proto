@@ -3,29 +3,205 @@ syntax = "proto3";
 package prixa.telemedicine.v1;
 
 import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "protoc-gen-swagger/options/annotations.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 
-service SiloamService {
-    rpc GetAreasData (GetAreasRequestData) returns (AreasResponseData) {
+option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
+    host: "engine2.prixa.ai";
+    info: {
+        title: "Prixa User Service API";
+        version: "1.0";
+        contact: {
+            name: "Prixa Tech";
+            url: "https://github.com/prixa-ai/prixa-proto";
+            email: "tech@prixa.com";
+        };
+        license: {
+            name: "Prixa License";
+            url: "https://github.com/prixa-ai/prixa-proto/blob/master/LICENSE.txt";
+        };
+    };
+    schemes: HTTP;
+    schemes: HTTPS;
+    consumes: "application/json";
+    produces: "application/json";
+    security_definitions: {
+        security: {
+            key: "Bearer";
+            value: {
+                type: TYPE_API_KEY;
+                in: IN_HEADER;
+                name: "Authorization";
+            }
+        }
+    }
+};
+
+service TelemedicineService {
+    rpc GetAreaData (GetAreaRequestData) returns (AreaResponseData) {
+        option (google.api.http) = {
+            get: "/api/v1/telemedicine/area/{areaId}"
+        };
+    }
+
+    rpc GetAreasData (google.protobuf.Empty) returns (AreasResponseData) {
+        option (google.api.http) = {
+            get: "/api/v1/telemedicine/area"
+        };
+    }
+
+    rpc GetSpecialityData (GetSpecialityRequestData) returns (SpecialityResponseData) {
+        option (google.api.http) = {
+            get: "/api/v1/telemedicine/speciality/{specialityId}"
+        };
     }
 
     rpc GetSpecialitiesData (GetSpecialitiesRequestData) returns (SpecialitiesResponseData) {
+        option (google.api.http) = {
+            get: "/api/v1/telemedicine/speciality"
+        };
     }
 
-    rpc GetHospitalData (GetHospitalRequestData) returns (HospitalsResponseData) {
+    rpc GetHospitalData (GetHospitalRequestData) returns (HospitalResponseData) {
+        option (google.api.http) = {
+            get: "/api/v1/telemedicine/hospital/{hospitalId}"
+        };
     }
+
+    rpc GetHospitalsData (GetHospitalsRequestData) returns (HospitalsResponseData) {
+        option (google.api.http) = {
+            get: "/api/v1/telemedicine/hospital"
+        };
+    }
+
+    rpc GetDoctorsData (GetDoctorsRequestData) returns (DoctorsResponseData) {
+        option (google.api.http) = {
+            get: "/api/v1/telemedicine/doctor"
+        };
+    } 
 
     rpc GetDoctorData (GetDoctorRequestData) returns (DoctorsResponseData) {
-    }
-    
-    rpc FindDoctorsData (FindDoctorsRequestData) returns (DoctorsResponseData) {
-    }
-
-    rpc FindHospitalsData (FindHospitalsRequestData) returns (HospitalsResponseData) {
+        option (google.api.http) = {
+            get: "/api/v1/telemedicine/doctor/{doctorId}"
+        };
     }
 
-    rpc FindSpecialitiesData (FindSpecialitiesRequestData) returns (SpecialitiesResponseData) {
+    rpc PostAppointmentBookingData(PostAppointmentBookingRequestData) returns (AppointmentBookingResponseData){
+        option (google.api.http) = {
+            post: "/api/v1/telemedicine/appointment"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
     }
+
+    rpc GetBookingAppointmentData(GetAppointmentBookingRequestData) returns (AppointmentBookingResponseData){
+        option (google.api.http) = {
+            get: "/api/v1/telemedicine/appointment/{bookingId}"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }
+
+    rpc GetAppointmentBookingsData(GetAppointmentBookingsRequestData) returns (AppointmentBookingsResponseData){
+        option (google.api.http) = {
+            get: "/api/v1/telemedicine/appointments"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }
+}
+
+message GetAppointmentBookingsRequestData{
+    FindAppointmentBookingParamData param = 1 [(validator.field) = {msg_exists : true}];
+    google.protobuf.Timestamp fromDate = 2 [(validator.field) = {msg_exists : true}];
+    google.protobuf.Timestamp toDate = 3 [(validator.field) = {msg_exists : true}];
+}
+
+message FindAppointmentBookingParamData{
+    string patientName = 1;
+    string hospitalId = 2 [(validator.field) = {uuid_ver: 4}];
+    string doctorId = 3 [(validator.field) = {uuid_ver: 4}];
+}
+
+message GetAppointmentBookingRequestData{
+    string bookingId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+}
+
+message PostAppointmentBookingRequestData{
+    string name = 1 [(validator.field) = {string_not_empty: true}]; 
+    string nik = 2 [(validator.field) = {string_not_empty: true, regex: "^[0-9]{16}$"}];
+    string email = 3 [(validator.field) = {string_not_empty: true, regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}]; 
+    string phoneNumber = 4 [(validator.field) = {string_not_empty: true, regex: "^[+]?[0-9]{10,13}$"}]; 
+    string paymentMethod = 5 [(validator.field) = {string_not_empty: true}];
+    google.protobuf.Timestamp bookingTime = 6 [(validator.field) = {msg_exists : true}];
+    string doctorId = 7 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+    string hospitalId = 8 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+}
+
+message AppointmentBookingsResponseData{
+    string status = 1;
+    string message = 2;
+    repeated AppointmentBookingData data = 3;
+}
+
+message AppointmentBookingResponseData{
+    string status = 1;
+    string message = 2;
+    AppointmentBookingData data = 3;
+}
+
+message AppointmentBookingData{
+    string id = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+    string name = 2;
+    string nik = 3;
+    string email = 4;
+    string phoneNumber = 5;
+    string paymentMethod = 6;
+    google.protobuf.Timestamp bookingTime = 7;
+    string doctorId = 8;
+    string doctorName = 9;    
+    string hospitalId = 10;
+    string hospitalName = 11;
+    string hospitalAddress = 12;
+    string bookingStatus = 13;
+    google.protobuf.Timestamp createdTime = 14;
+
+}
+
+message GetHospitalRequestData{
+    string hospitalId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];            
+}
+
+message GetHospitalsRequestData {
+    GetHospitalParamData param = 1 [(validator.field) = {msg_exists : true}];
+}
+
+message GetHospitalParamData{
+    string areaId = 1 [(validator.field) = {uuid_ver: 4}];    
+    string nameKeyword = 2;    
+    string specialityId = 3 [(validator.field) = {uuid_ver: 4}];    
+    CoordinateData coordinate = 4;     
 }
 
 message HospitalData {
@@ -39,7 +215,46 @@ message HospitalData {
     string accreditation = 8;     
     repeated SpecialityData specialitiesList = 9;
     google.protobuf.Timestamp lastUpdated = 10;
-    SourceData source = 12;  
+    SourceData source = 11;     
+}
+
+message HospitalsResponseData{
+    string status = 1;
+    string message = 2;
+    repeated HospitalData data = 3;
+}
+
+message HospitalResponseData{
+    string status = 1;
+    string message = 2;
+    HospitalData data = 3;
+}
+
+message GetDoctorRequestData{
+    string doctorId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];            
+}
+message GetDoctorsRequestData {
+      GetDoctorParamData param = 1;
+}
+
+message GetDoctorParamData{
+    string areaId = 1 [(validator.field) = {uuid_ver: 4}];    
+    string nameKeyword = 2;    
+    string specialityId = 3 [(validator.field) = {uuid_ver: 4}];    
+    string hospitalId = 4 [(validator.field) = {uuid_ver: 4}];    
+}
+
+
+message DoctorsResponseData{
+    string status = 1;
+    string message = 2;
+    repeated DoctorData data = 3;
+}
+
+message DoctorResponseData{
+    string status = 1;
+    string message = 2;
+    DoctorData data = 3;
 }
 
 message DoctorData{
@@ -51,6 +266,15 @@ message DoctorData{
     repeated HospitalData hospitalsList = 6;      
 }
 
+message GetSpecialityRequestData{
+    string specialityId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];     
+}
+
+message GetSpecialitiesRequestData{
+    string areaId = 1 [(validator.field) = {uuid_ver: 4}];    
+    string hospitalId = 2 [(validator.field) = {uuid_ver: 4}];    
+}
+
 message SpecialityData{
     string id = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];        
     string name = 2;
@@ -60,6 +284,35 @@ message SpecialityData{
     SourceData source = 6;  
 }
 
+message SpecialitiesResponseData{
+    string status = 1;
+    string message = 2;
+    repeated SpecialityData data = 3;
+}
+
+message SpecialityResponseData{
+    string status = 1;
+    string message = 2;
+    SpecialityData data = 3;
+}
+
+
+message GetAreaRequestData{
+    string areaId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];     
+}
+
+message AreasResponseData{
+    string status = 1;
+    string message = 2;
+    repeated AreaData data = 3;
+}
+
+message AreaResponseData{
+    string status = 1;
+    string message = 2;
+    AreaData data = 3;
+}
+
 message AreaData{
     string id = 1  [(validator.field) = {uuid_ver: 4, string_not_empty: true}];  ;
     string name = 2;
@@ -67,7 +320,6 @@ message AreaData{
     google.protobuf.Timestamp lastUpdated = 4;
     SourceData source = 5;    
 }
-
 
 message CoordinateData{
     string lattitude = 1;
@@ -91,63 +343,4 @@ message SourceData{
 message ContactData{
     string phoneNumber = 1 [(validator.field) = {regex: "^[+]?[0-9]{10,13}$"}]; 
     string email = 2 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}]; 
-}
-
-message GetDoctorRequestData{
-    string doctorId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];            
-}
-message FindDoctorsRequestData {
-    string areaId = 1 [(validator.field) = {uuid_ver: 4}];    
-    string searchKeyword = 2;    
-    string specialityId = 3 [(validator.field) = {uuid_ver: 4}];    
-    string hospitalId = 4 [(validator.field) = {uuid_ver: 4}];        
-}
-
-
-message GetHospitalRequestData{
-    string hospitalId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];            
-}
-
-message FindHospitalsRequestData {
-    string areaId = 1 [(validator.field) = {uuid_ver: 4}];    
-    string searchKeyword = 2;    
-    string specialityId = 3 [(validator.field) = {uuid_ver: 4}];    
-    CoordinateData coordinate = 4;             
-}
-
-message GetAreasRequestData{
-    string areaId = 1 [(validator.field) = {uuid_ver: 4}];    
-}
-
-message GetSpecialitiesRequestData{
-    string specialityId = 1 [(validator.field) = {uuid_ver: 4}];    
-}
-
-message FindSpecialitiesRequestData{
-    string areaId = 1 [(validator.field) = {uuid_ver: 4}];    
-    string hospitalId = 2 [(validator.field) = {uuid_ver: 4}];    
-}
-
-message HospitalsResponseData{
-    string status = 1;
-    string message = 2;
-    repeated HospitalData data = 3;
-}
-
-message DoctorsResponseData{
-    string status = 1;
-    string message = 2;
-    repeated DoctorData data = 3;
-}
-
-message SpecialitiesResponseData{
-    string status = 1;
-    string message = 2;
-    repeated SpecialityData data = 3;
-}
-
-message AreasResponseData{
-    string status = 1;
-    string message = 2;
-    repeated AreaData data = 3;
 }
