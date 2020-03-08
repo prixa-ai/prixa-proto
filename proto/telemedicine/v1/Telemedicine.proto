@@ -11,7 +11,7 @@ import "github.com/mwitkow/go-proto-validators/validator.proto";
 option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
     host: "engine2.prixa.ai";
     info: {
-        title: "Prixa User Service API";
+        title: "Prixa Telemedicine Service API";
         version: "1.0";
         contact: {
             name: "Prixa Tech";
@@ -29,12 +29,26 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
     produces: "application/json";
     security_definitions: {
         security: {
+            key: "ApiKeyAuth";
+            value: {
+                type: TYPE_API_KEY;
+                in: IN_HEADER;
+                name: "X-Prixa-API-Key";
+            }
+        }
+        security: {
             key: "Bearer";
             value: {
                 type: TYPE_API_KEY;
                 in: IN_HEADER;
                 name: "Authorization";
             }
+        }
+    }
+    security: {
+        security_requirement: {
+            key: "ApiKeyAuth";
+            value: {}
         }
     }
 };
@@ -44,11 +58,27 @@ service TelemedicineService {
         option (google.api.http) = {
             get: "/api/v1/telemedicine/area/{areaId}"
         };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+            }
+        };
     }
 
     rpc GetAreasData (google.protobuf.Empty) returns (AreasResponseData) {
         option (google.api.http) = {
             get: "/api/v1/telemedicine/area"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+            }
         };
     }
 
@@ -56,11 +86,27 @@ service TelemedicineService {
         option (google.api.http) = {
             get: "/api/v1/telemedicine/speciality/{specialityId}"
         };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+            }
+        };
     }
 
     rpc GetSpecialitiesData (GetSpecialitiesRequestData) returns (SpecialitiesResponseData) {
         option (google.api.http) = {
             get: "/api/v1/telemedicine/speciality"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+            }
         };
     }
 
@@ -68,11 +114,27 @@ service TelemedicineService {
         option (google.api.http) = {
             get: "/api/v1/telemedicine/hospital/{hospitalId}"
         };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+            }
+        };
     }
 
     rpc GetHospitalsData (GetHospitalsRequestData) returns (HospitalsResponseData) {
         option (google.api.http) = {
             get: "/api/v1/telemedicine/hospital"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+            }
         };
     }
 
@@ -80,11 +142,27 @@ service TelemedicineService {
         option (google.api.http) = {
             get: "/api/v1/telemedicine/doctor"
         };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+            }
+        };
     } 
 
     rpc GetDoctorData (GetDoctorRequestData) returns (DoctorsResponseData) {
         option (google.api.http) = {
             get: "/api/v1/telemedicine/doctor/{doctorId}"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+            }
         };
     }
 
@@ -97,6 +175,10 @@ service TelemedicineService {
             security: {
                 security_requirement: {
                     key: "Bearer";
+                    value: {}
+                }
+                security_requirement: {
+                    key: "ApiKeyAuth";
                     value: {}
                 }
             }

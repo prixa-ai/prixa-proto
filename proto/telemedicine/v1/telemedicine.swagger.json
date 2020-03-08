@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Prixa User Service API",
+    "title": "Prixa Telemedicine Service API",
     "version": "1.0",
     "contact": {
       "name": "Prixa Tech",
@@ -57,6 +57,7 @@
         ],
         "security": [
           {
+            "ApiKeyAuth": [],
             "Bearer": []
           }
         ]
@@ -177,6 +178,11 @@
         },
         "tags": [
           "TelemedicineService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
         ]
       }
     },
@@ -207,6 +213,11 @@
         ],
         "tags": [
           "TelemedicineService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
         ]
       }
     },
@@ -255,6 +266,11 @@
         ],
         "tags": [
           "TelemedicineService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
         ]
       }
     },
@@ -285,6 +301,11 @@
         ],
         "tags": [
           "TelemedicineService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
         ]
       }
     },
@@ -339,6 +360,11 @@
         ],
         "tags": [
           "TelemedicineService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
         ]
       }
     },
@@ -369,6 +395,11 @@
         ],
         "tags": [
           "TelemedicineService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
         ]
       }
     },
@@ -405,6 +436,11 @@
         ],
         "tags": [
           "TelemedicineService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
         ]
       }
     },
@@ -435,6 +471,11 @@
         ],
         "tags": [
           "TelemedicineService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
         ]
       }
     }
@@ -915,10 +956,20 @@
     }
   },
   "securityDefinitions": {
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "name": "X-Prixa-API-Key",
+      "in": "header"
+    },
     "Bearer": {
       "type": "apiKey",
       "name": "Authorization",
       "in": "header"
     }
-  }
+  },
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ]
 }
