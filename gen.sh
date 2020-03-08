@@ -29,6 +29,7 @@ WithSwagger=(
 	proto/partnerapp/v1/PartnerApplication.proto 
 	proto/email/v1/EmailNotification.proto 
 	proto/diagnostic/v1/Diagnostic.proto 
+	proto/telemedicine/v1/Telemedicine.proto 
 )
 for protoSwaggerFile in ${WithSwagger[*]}; do
 	gen $protoSwaggerFile swagger
