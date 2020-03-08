@@ -54,118 +54,63 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
 };
 
 service TelemedicineService {
+    // Get area detail data
     rpc GetAreaData (GetAreaRequestData) returns (AreaResponseData) {
         option (google.api.http) = {
             get: "/api/v1/telemedicine/area/{areaId}"
         };
-        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
-            security: {
-                security_requirement: {
-                    key: "ApiKeyAuth";
-                    value: {}
-                }
-            }
-        };
     }
 
+    // Get areaa list data
     rpc GetAreasData (google.protobuf.Empty) returns (AreasResponseData) {
         option (google.api.http) = {
             get: "/api/v1/telemedicine/area"
         };
-        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
-            security: {
-                security_requirement: {
-                    key: "ApiKeyAuth";
-                    value: {}
-                }
-            }
-        };
     }
 
+    // Get speciality detail data
     rpc GetSpecialityData (GetSpecialityRequestData) returns (SpecialityResponseData) {
         option (google.api.http) = {
             get: "/api/v1/telemedicine/speciality/{specialityId}"
         };
-        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
-            security: {
-                security_requirement: {
-                    key: "ApiKeyAuth";
-                    value: {}
-                }
-            }
-        };
     }
 
+    // Get specialities list data
     rpc GetSpecialitiesData (GetSpecialitiesRequestData) returns (SpecialitiesResponseData) {
         option (google.api.http) = {
             get: "/api/v1/telemedicine/speciality"
         };
-        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
-            security: {
-                security_requirement: {
-                    key: "ApiKeyAuth";
-                    value: {}
-                }
-            }
-        };
     }
 
+    // Get hostpital detail data
     rpc GetHospitalData (GetHospitalRequestData) returns (HospitalResponseData) {
         option (google.api.http) = {
             get: "/api/v1/telemedicine/hospital/{hospitalId}"
         };
-        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
-            security: {
-                security_requirement: {
-                    key: "ApiKeyAuth";
-                    value: {}
-                }
-            }
-        };
     }
 
+    // Get hospitals list data
     rpc GetHospitalsData (GetHospitalsRequestData) returns (HospitalsResponseData) {
         option (google.api.http) = {
             get: "/api/v1/telemedicine/hospital"
         };
-        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
-            security: {
-                security_requirement: {
-                    key: "ApiKeyAuth";
-                    value: {}
-                }
-            }
-        };
     }
 
+    // Get doctors list data
     rpc GetDoctorsData (GetDoctorsRequestData) returns (DoctorsResponseData) {
         option (google.api.http) = {
             get: "/api/v1/telemedicine/doctor"
         };
-        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
-            security: {
-                security_requirement: {
-                    key: "ApiKeyAuth";
-                    value: {}
-                }
-            }
-        };
     } 
 
+    // Get doctor data
     rpc GetDoctorData (GetDoctorRequestData) returns (DoctorsResponseData) {
         option (google.api.http) = {
             get: "/api/v1/telemedicine/doctor/{doctorId}"
         };
-        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
-            security: {
-                security_requirement: {
-                    key: "ApiKeyAuth";
-                    value: {}
-                }
-            }
-        };
     }
 
+    // Create new appointment
     rpc PostAppointmentBookingData(PostAppointmentBookingRequestData) returns (AppointmentBookingResponseData){
         option (google.api.http) = {
             post: "/api/v1/telemedicine/appointment"
@@ -174,17 +119,18 @@ service TelemedicineService {
         option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
             security: {
                 security_requirement: {
-                    key: "Bearer";
+                    key: "ApiKeyAuth";
                     value: {}
                 }
                 security_requirement: {
-                    key: "ApiKeyAuth";
+                    key: "Bearer";
                     value: {}
                 }
             }
         };
     }
 
+    // Get booking appointment data
     rpc GetBookingAppointmentData(GetAppointmentBookingRequestData) returns (AppointmentBookingResponseData){
         option (google.api.http) = {
             get: "/api/v1/telemedicine/appointment/{bookingId}"
@@ -192,6 +138,10 @@ service TelemedicineService {
         option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
             security: {
                 security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+                security_requirement: {
                     key: "Bearer";
                     value: {}
                 }
@@ -199,12 +149,17 @@ service TelemedicineService {
         };
     }
 
+    // Get all booking appointments data
     rpc GetAppointmentBookingsData(GetAppointmentBookingsRequestData) returns (AppointmentBookingsResponseData){
         option (google.api.http) = {
             get: "/api/v1/telemedicine/appointments"
         };
         option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
             security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
                 security_requirement: {
                     key: "Bearer";
                     value: {}
