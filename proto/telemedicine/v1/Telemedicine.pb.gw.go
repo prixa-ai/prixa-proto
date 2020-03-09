@@ -399,7 +399,7 @@ func local_request_TelemedicineService_PostAppointmentBookingData_0(ctx context.
 
 }
 
-func request_TelemedicineService_GetBookingAppointmentData_0(ctx context.Context, marshaler runtime.Marshaler, client TelemedicineServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_TelemedicineService_GetAppointmentBookingData_0(ctx context.Context, marshaler runtime.Marshaler, client TelemedicineServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetAppointmentBookingRequestData
 	var metadata runtime.ServerMetadata
 
@@ -421,12 +421,12 @@ func request_TelemedicineService_GetBookingAppointmentData_0(ctx context.Context
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "bookingId", err)
 	}
 
-	msg, err := client.GetBookingAppointmentData(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetAppointmentBookingData(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_TelemedicineService_GetBookingAppointmentData_0(ctx context.Context, marshaler runtime.Marshaler, server TelemedicineServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_TelemedicineService_GetAppointmentBookingData_0(ctx context.Context, marshaler runtime.Marshaler, server TelemedicineServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetAppointmentBookingRequestData
 	var metadata runtime.ServerMetadata
 
@@ -448,7 +448,7 @@ func local_request_TelemedicineService_GetBookingAppointmentData_0(ctx context.C
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "bookingId", err)
 	}
 
-	msg, err := server.GetBookingAppointmentData(ctx, &protoReq)
+	msg, err := server.GetAppointmentBookingData(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -671,7 +671,7 @@ func RegisterTelemedicineServiceHandlerServer(ctx context.Context, mux *runtime.
 
 	})
 
-	mux.Handle("GET", pattern_TelemedicineService_GetBookingAppointmentData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_TelemedicineService_GetAppointmentBookingData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -680,14 +680,14 @@ func RegisterTelemedicineServiceHandlerServer(ctx context.Context, mux *runtime.
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TelemedicineService_GetBookingAppointmentData_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_TelemedicineService_GetAppointmentBookingData_0(rctx, inboundMarshaler, server, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TelemedicineService_GetBookingAppointmentData_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TelemedicineService_GetAppointmentBookingData_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -932,7 +932,7 @@ func RegisterTelemedicineServiceHandlerClient(ctx context.Context, mux *runtime.
 
 	})
 
-	mux.Handle("GET", pattern_TelemedicineService_GetBookingAppointmentData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_TelemedicineService_GetAppointmentBookingData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -941,14 +941,14 @@ func RegisterTelemedicineServiceHandlerClient(ctx context.Context, mux *runtime.
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TelemedicineService_GetBookingAppointmentData_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_TelemedicineService_GetAppointmentBookingData_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TelemedicineService_GetBookingAppointmentData_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TelemedicineService_GetAppointmentBookingData_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -994,7 +994,7 @@ var (
 
 	pattern_TelemedicineService_PostAppointmentBookingData_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "telemedicine", "appointment"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_TelemedicineService_GetBookingAppointmentData_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "telemedicine", "appointment", "bookingId"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_TelemedicineService_GetAppointmentBookingData_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "telemedicine", "appointment", "bookingId"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_TelemedicineService_GetAppointmentBookingsData_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "telemedicine", "appointments"}, "", runtime.AssumeColonVerbOpt(true)))
 )
@@ -1018,7 +1018,7 @@ var (
 
 	forward_TelemedicineService_PostAppointmentBookingData_0 = runtime.ForwardResponseMessage
 
-	forward_TelemedicineService_GetBookingAppointmentData_0 = runtime.ForwardResponseMessage
+	forward_TelemedicineService_GetAppointmentBookingData_0 = runtime.ForwardResponseMessage
 
 	forward_TelemedicineService_GetAppointmentBookingsData_0 = runtime.ForwardResponseMessage
 )

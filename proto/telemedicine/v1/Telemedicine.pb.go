@@ -30,12 +30,15 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type GetAppointmentBookingsRequestData struct {
-	Param                *FindAppointmentBookingParamData `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"`
-	FromDate             *timestamp.Timestamp             `protobuf:"bytes,2,opt,name=fromDate,proto3" json:"fromDate,omitempty"`
-	ToDate               *timestamp.Timestamp             `protobuf:"bytes,3,opt,name=toDate,proto3" json:"toDate,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                         `json:"-"`
-	XXX_unrecognized     []byte                           `json:"-"`
-	XXX_sizecache        int32                            `json:"-"`
+	// Param
+	Param *FindAppointmentBookingParamData `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"`
+	// From date
+	FromDate *timestamp.Timestamp `protobuf:"bytes,2,opt,name=fromDate,proto3" json:"fromDate,omitempty"`
+	// To date
+	ToDate               *timestamp.Timestamp `protobuf:"bytes,3,opt,name=toDate,proto3" json:"toDate,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *GetAppointmentBookingsRequestData) Reset()         { *m = GetAppointmentBookingsRequestData{} }
@@ -85,8 +88,11 @@ func (m *GetAppointmentBookingsRequestData) GetToDate() *timestamp.Timestamp {
 }
 
 type FindAppointmentBookingParamData struct {
-	PatientName          string   `protobuf:"bytes,1,opt,name=patientName,proto3" json:"patientName,omitempty"`
-	HospitalId           string   `protobuf:"bytes,2,opt,name=hospitalId,proto3" json:"hospitalId,omitempty"`
+	// Patient name
+	PatientName string `protobuf:"bytes,1,opt,name=patientName,proto3" json:"patientName,omitempty"`
+	// Hospital ID
+	HospitalId string `protobuf:"bytes,2,opt,name=hospitalId,proto3" json:"hospitalId,omitempty"`
+	// Doctor ID
 	DoctorId             string   `protobuf:"bytes,3,opt,name=doctorId,proto3" json:"doctorId,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -140,6 +146,7 @@ func (m *FindAppointmentBookingParamData) GetDoctorId() string {
 }
 
 type GetAppointmentBookingRequestData struct {
+	// Booking ID
 	BookingId            string   `protobuf:"bytes,1,opt,name=bookingId,proto3" json:"bookingId,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -179,17 +186,25 @@ func (m *GetAppointmentBookingRequestData) GetBookingId() string {
 }
 
 type PostAppointmentBookingRequestData struct {
-	Name                 string               `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Nik                  string               `protobuf:"bytes,2,opt,name=nik,proto3" json:"nik,omitempty"`
-	Email                string               `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
-	PhoneNumber          string               `protobuf:"bytes,4,opt,name=phoneNumber,proto3" json:"phoneNumber,omitempty"`
-	PaymentMethod        string               `protobuf:"bytes,5,opt,name=paymentMethod,proto3" json:"paymentMethod,omitempty"`
-	BookingTime          *timestamp.Timestamp `protobuf:"bytes,6,opt,name=bookingTime,proto3" json:"bookingTime,omitempty"`
-	DoctorId             string               `protobuf:"bytes,7,opt,name=doctorId,proto3" json:"doctorId,omitempty"`
-	HospitalId           string               `protobuf:"bytes,8,opt,name=hospitalId,proto3" json:"hospitalId,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
+	// Patient name
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// Patient NIk
+	Nik string `protobuf:"bytes,2,opt,name=nik,proto3" json:"nik,omitempty"`
+	// Patient email
+	Email string `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
+	// Patient phone number
+	PhoneNumber string `protobuf:"bytes,4,opt,name=phoneNumber,proto3" json:"phoneNumber,omitempty"`
+	// Payment method
+	PaymentMethod string `protobuf:"bytes,5,opt,name=paymentMethod,proto3" json:"paymentMethod,omitempty"`
+	// Booking time
+	BookingTime *timestamp.Timestamp `protobuf:"bytes,6,opt,name=bookingTime,proto3" json:"bookingTime,omitempty"`
+	// Doctor ID
+	DoctorId string `protobuf:"bytes,7,opt,name=doctorId,proto3" json:"doctorId,omitempty"`
+	// Hospital ID
+	HospitalId           string   `protobuf:"bytes,8,opt,name=hospitalId,proto3" json:"hospitalId,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *PostAppointmentBookingRequestData) Reset()         { *m = PostAppointmentBookingRequestData{} }
@@ -274,8 +289,11 @@ func (m *PostAppointmentBookingRequestData) GetHospitalId() string {
 }
 
 type AppointmentBookingsResponseData struct {
-	Status               string                    `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	Message              string                    `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	// Appointment status
+	Status string `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	// Appointment message
+	Message string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	// Appointment data
 	Data                 []*AppointmentBookingData `protobuf:"bytes,3,rep,name=data,proto3" json:"data,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}                  `json:"-"`
 	XXX_unrecognized     []byte                    `json:"-"`
@@ -329,8 +347,11 @@ func (m *AppointmentBookingsResponseData) GetData() []*AppointmentBookingData {
 }
 
 type AppointmentBookingResponseData struct {
-	Status               string                  `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	Message              string                  `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	// Appointment booking response status
+	Status string `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	// Appointment booking response message
+	Message string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	// Appointment booking response data
 	Data                 *AppointmentBookingData `protobuf:"bytes,3,opt,name=data,proto3" json:"data,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}                `json:"-"`
 	XXX_unrecognized     []byte                  `json:"-"`
@@ -384,19 +405,33 @@ func (m *AppointmentBookingResponseData) GetData() *AppointmentBookingData {
 }
 
 type AppointmentBookingData struct {
-	Id                   string               `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name                 string               `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Nik                  string               `protobuf:"bytes,3,opt,name=nik,proto3" json:"nik,omitempty"`
-	Email                string               `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
-	PhoneNumber          string               `protobuf:"bytes,5,opt,name=phoneNumber,proto3" json:"phoneNumber,omitempty"`
-	PaymentMethod        string               `protobuf:"bytes,6,opt,name=paymentMethod,proto3" json:"paymentMethod,omitempty"`
-	BookingTime          *timestamp.Timestamp `protobuf:"bytes,7,opt,name=bookingTime,proto3" json:"bookingTime,omitempty"`
-	DoctorId             string               `protobuf:"bytes,8,opt,name=doctorId,proto3" json:"doctorId,omitempty"`
-	DoctorName           string               `protobuf:"bytes,9,opt,name=doctorName,proto3" json:"doctorName,omitempty"`
-	HospitalId           string               `protobuf:"bytes,10,opt,name=hospitalId,proto3" json:"hospitalId,omitempty"`
-	HospitalName         string               `protobuf:"bytes,11,opt,name=hospitalName,proto3" json:"hospitalName,omitempty"`
-	HospitalAddress      string               `protobuf:"bytes,12,opt,name=hospitalAddress,proto3" json:"hospitalAddress,omitempty"`
-	BookingStatus        string               `protobuf:"bytes,13,opt,name=bookingStatus,proto3" json:"bookingStatus,omitempty"`
+	// Booking ID
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// Patient name
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// Patient NIK
+	Nik string `protobuf:"bytes,3,opt,name=nik,proto3" json:"nik,omitempty"`
+	// Patient email
+	Email string `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
+	// Patient phone number
+	PhoneNumber string `protobuf:"bytes,5,opt,name=phoneNumber,proto3" json:"phoneNumber,omitempty"`
+	// Patient payment method
+	PaymentMethod string `protobuf:"bytes,6,opt,name=paymentMethod,proto3" json:"paymentMethod,omitempty"`
+	// Appointment booking time
+	BookingTime *timestamp.Timestamp `protobuf:"bytes,7,opt,name=bookingTime,proto3" json:"bookingTime,omitempty"`
+	// Doctor ID
+	DoctorId string `protobuf:"bytes,8,opt,name=doctorId,proto3" json:"doctorId,omitempty"`
+	// Doctor name
+	DoctorName string `protobuf:"bytes,9,opt,name=doctorName,proto3" json:"doctorName,omitempty"`
+	// Hospital ID
+	HospitalId string `protobuf:"bytes,10,opt,name=hospitalId,proto3" json:"hospitalId,omitempty"`
+	// Hospital name
+	HospitalName string `protobuf:"bytes,11,opt,name=hospitalName,proto3" json:"hospitalName,omitempty"`
+	// Hospital address
+	HospitalAddress string `protobuf:"bytes,12,opt,name=hospitalAddress,proto3" json:"hospitalAddress,omitempty"`
+	// Appointment booking status
+	BookingStatus string `protobuf:"bytes,13,opt,name=bookingStatus,proto3" json:"bookingStatus,omitempty"`
+	// Appointment created time
 	CreatedTime          *timestamp.Timestamp `protobuf:"bytes,14,opt,name=createdTime,proto3" json:"createdTime,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
 	XXX_unrecognized     []byte               `json:"-"`
@@ -527,6 +562,7 @@ func (m *AppointmentBookingData) GetCreatedTime() *timestamp.Timestamp {
 }
 
 type GetHospitalRequestData struct {
+	// Hospital ID
 	HospitalId           string   `protobuf:"bytes,1,opt,name=hospitalId,proto3" json:"hospitalId,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -566,6 +602,7 @@ func (m *GetHospitalRequestData) GetHospitalId() string {
 }
 
 type GetHospitalsRequestData struct {
+	// Param
 	Param                *GetHospitalParamData `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
 	XXX_unrecognized     []byte                `json:"-"`
@@ -605,9 +642,13 @@ func (m *GetHospitalsRequestData) GetParam() *GetHospitalParamData {
 }
 
 type GetHospitalParamData struct {
-	AreaId               string          `protobuf:"bytes,1,opt,name=areaId,proto3" json:"areaId,omitempty"`
-	NameKeyword          string          `protobuf:"bytes,2,opt,name=nameKeyword,proto3" json:"nameKeyword,omitempty"`
-	SpecialityId         string          `protobuf:"bytes,3,opt,name=specialityId,proto3" json:"specialityId,omitempty"`
+	// Area ID
+	AreaId string `protobuf:"bytes,1,opt,name=areaId,proto3" json:"areaId,omitempty"`
+	// Hospital keyword
+	NameKeyword string `protobuf:"bytes,2,opt,name=nameKeyword,proto3" json:"nameKeyword,omitempty"`
+	// Hospital speciality ID
+	SpecialityId string `protobuf:"bytes,3,opt,name=specialityId,proto3" json:"specialityId,omitempty"`
+	// Hospital coordinate (lat,lon)
 	Coordinate           *CoordinateData `protobuf:"bytes,4,opt,name=coordinate,proto3" json:"coordinate,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
 	XXX_unrecognized     []byte          `json:"-"`
@@ -669,20 +710,30 @@ func (m *GetHospitalParamData) GetCoordinate() *CoordinateData {
 
 type HospitalData struct {
 	// Hospital id
-	Id                   string               `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name                 string               `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Alias                string               `protobuf:"bytes,3,opt,name=alias,proto3" json:"alias,omitempty"`
-	Address              *AddressData         `protobuf:"bytes,4,opt,name=address,proto3" json:"address,omitempty"`
-	Contact              *ContactData         `protobuf:"bytes,5,opt,name=contact,proto3" json:"contact,omitempty"`
-	Coordinate           *CoordinateData      `protobuf:"bytes,6,opt,name=coordinate,proto3" json:"coordinate,omitempty"`
-	ImageUrl             string               `protobuf:"bytes,7,opt,name=imageUrl,proto3" json:"imageUrl,omitempty"`
-	Accreditation        string               `protobuf:"bytes,8,opt,name=accreditation,proto3" json:"accreditation,omitempty"`
-	SpecialitiesList     []*SpecialityData    `protobuf:"bytes,9,rep,name=specialitiesList,proto3" json:"specialitiesList,omitempty"`
-	LastUpdated          *timestamp.Timestamp `protobuf:"bytes,10,opt,name=lastUpdated,proto3" json:"lastUpdated,omitempty"`
-	Source               *SourceData          `protobuf:"bytes,11,opt,name=source,proto3" json:"source,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// Hospital name
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// Hospital alias
+	Alias string `protobuf:"bytes,3,opt,name=alias,proto3" json:"alias,omitempty"`
+	// Hospital address
+	Address *AddressData `protobuf:"bytes,4,opt,name=address,proto3" json:"address,omitempty"`
+	// Hospital contact
+	Contact *ContactData `protobuf:"bytes,5,opt,name=contact,proto3" json:"contact,omitempty"`
+	// Hospital coordinate
+	Coordinate *CoordinateData `protobuf:"bytes,6,opt,name=coordinate,proto3" json:"coordinate,omitempty"`
+	// Hospital image url
+	ImageUrl string `protobuf:"bytes,7,opt,name=imageUrl,proto3" json:"imageUrl,omitempty"`
+	// Hospital accreditation
+	Accreditation string `protobuf:"bytes,8,opt,name=accreditation,proto3" json:"accreditation,omitempty"`
+	// Hospital specialities
+	SpecialitiesList []*SpecialityData `protobuf:"bytes,9,rep,name=specialitiesList,proto3" json:"specialitiesList,omitempty"`
+	// Hospital last update data
+	LastUpdated *timestamp.Timestamp `protobuf:"bytes,10,opt,name=lastUpdated,proto3" json:"lastUpdated,omitempty"`
+	// Hospital source
+	Source               *SourceData `protobuf:"bytes,11,opt,name=source,proto3" json:"source,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
+	XXX_unrecognized     []byte      `json:"-"`
+	XXX_sizecache        int32       `json:"-"`
 }
 
 func (m *HospitalData) Reset()         { *m = HospitalData{} }
@@ -788,8 +839,11 @@ func (m *HospitalData) GetSource() *SourceData {
 }
 
 type HospitalsResponseData struct {
-	Status               string          `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	Message              string          `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	// Hospitals response status
+	Status string `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	// Hospitals response message
+	Message string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	// Hospitals response data
 	Data                 []*HospitalData `protobuf:"bytes,3,rep,name=data,proto3" json:"data,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
 	XXX_unrecognized     []byte          `json:"-"`
@@ -843,8 +897,11 @@ func (m *HospitalsResponseData) GetData() []*HospitalData {
 }
 
 type HospitalResponseData struct {
-	Status               string        `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	Message              string        `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	// Hospital response status
+	Status string `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	// Hospital response message
+	Message string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	// Hospital response data
 	Data                 *HospitalData `protobuf:"bytes,3,opt,name=data,proto3" json:"data,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
 	XXX_unrecognized     []byte        `json:"-"`
@@ -898,6 +955,7 @@ func (m *HospitalResponseData) GetData() *HospitalData {
 }
 
 type GetDoctorRequestData struct {
+	// Doctor ID
 	DoctorId             string   `protobuf:"bytes,1,opt,name=doctorId,proto3" json:"doctorId,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -937,6 +995,7 @@ func (m *GetDoctorRequestData) GetDoctorId() string {
 }
 
 type GetDoctorsRequestData struct {
+	// Doctors param
 	Param                *GetDoctorParamData `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}            `json:"-"`
 	XXX_unrecognized     []byte              `json:"-"`
@@ -976,9 +1035,13 @@ func (m *GetDoctorsRequestData) GetParam() *GetDoctorParamData {
 }
 
 type GetDoctorParamData struct {
-	AreaId               string   `protobuf:"bytes,1,opt,name=areaId,proto3" json:"areaId,omitempty"`
-	NameKeyword          string   `protobuf:"bytes,2,opt,name=nameKeyword,proto3" json:"nameKeyword,omitempty"`
-	SpecialityId         string   `protobuf:"bytes,3,opt,name=specialityId,proto3" json:"specialityId,omitempty"`
+	// Area ID
+	AreaId string `protobuf:"bytes,1,opt,name=areaId,proto3" json:"areaId,omitempty"`
+	// Doctor keyword
+	NameKeyword string `protobuf:"bytes,2,opt,name=nameKeyword,proto3" json:"nameKeyword,omitempty"`
+	// Doctor speciality ID
+	SpecialityId string `protobuf:"bytes,3,opt,name=specialityId,proto3" json:"specialityId,omitempty"`
+	// Doctor hospital ID
 	HospitalId           string   `protobuf:"bytes,4,opt,name=hospitalId,proto3" json:"hospitalId,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -1039,8 +1102,11 @@ func (m *GetDoctorParamData) GetHospitalId() string {
 }
 
 type DoctorsResponseData struct {
-	Status               string        `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	Message              string        `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	// Doctors response status
+	Status string `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	// Doctors response message
+	Message string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	// Doctors response data
 	Data                 []*DoctorData `protobuf:"bytes,3,rep,name=data,proto3" json:"data,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
 	XXX_unrecognized     []byte        `json:"-"`
@@ -1094,8 +1160,11 @@ func (m *DoctorsResponseData) GetData() []*DoctorData {
 }
 
 type DoctorResponseData struct {
-	Status               string      `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	Message              string      `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	// Doctor response status
+	Status string `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	// Doctor response message
+	Message string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	// Doctor response data
 	Data                 *DoctorData `protobuf:"bytes,3,opt,name=data,proto3" json:"data,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
 	XXX_unrecognized     []byte      `json:"-"`
@@ -1149,11 +1218,17 @@ func (m *DoctorResponseData) GetData() *DoctorData {
 }
 
 type DoctorData struct {
-	Id                   string          `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name                 string          `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Speciality           *SpecialityData `protobuf:"bytes,3,opt,name=speciality,proto3" json:"speciality,omitempty"`
-	Contact              *ContactData    `protobuf:"bytes,4,opt,name=contact,proto3" json:"contact,omitempty"`
-	ImageUrl             string          `protobuf:"bytes,5,opt,name=imageUrl,proto3" json:"imageUrl,omitempty"`
+	// Doctor ID
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// Doctor name
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// Doctor speciality
+	Speciality *SpecialityData `protobuf:"bytes,3,opt,name=speciality,proto3" json:"speciality,omitempty"`
+	// Doctor contact
+	Contact *ContactData `protobuf:"bytes,4,opt,name=contact,proto3" json:"contact,omitempty"`
+	// Doctor image url
+	ImageUrl string `protobuf:"bytes,5,opt,name=imageUrl,proto3" json:"imageUrl,omitempty"`
+	// Doctor hospital list
 	HospitalsList        []*HospitalData `protobuf:"bytes,6,rep,name=hospitalsList,proto3" json:"hospitalsList,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
 	XXX_unrecognized     []byte          `json:"-"`
@@ -1228,6 +1303,7 @@ func (m *DoctorData) GetHospitalsList() []*HospitalData {
 }
 
 type GetSpecialityRequestData struct {
+	// Speciality ID
 	SpecialityId         string   `protobuf:"bytes,1,opt,name=specialityId,proto3" json:"specialityId,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -1267,7 +1343,9 @@ func (m *GetSpecialityRequestData) GetSpecialityId() string {
 }
 
 type GetSpecialitiesRequestData struct {
-	AreaId               string   `protobuf:"bytes,1,opt,name=areaId,proto3" json:"areaId,omitempty"`
+	// Area ID
+	AreaId string `protobuf:"bytes,1,opt,name=areaId,proto3" json:"areaId,omitempty"`
+	// Hospital ID
 	HospitalId           string   `protobuf:"bytes,2,opt,name=hospitalId,proto3" json:"hospitalId,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -1314,15 +1392,21 @@ func (m *GetSpecialitiesRequestData) GetHospitalId() string {
 }
 
 type SpecialityData struct {
-	Id                   string               `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name                 string               `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	NameIndo             string               `protobuf:"bytes,3,opt,name=nameIndo,proto3" json:"nameIndo,omitempty"`
-	ImageUrl             string               `protobuf:"bytes,4,opt,name=imageUrl,proto3" json:"imageUrl,omitempty"`
-	LastUpdated          *timestamp.Timestamp `protobuf:"bytes,5,opt,name=lastUpdated,proto3" json:"lastUpdated,omitempty"`
-	Source               *SourceData          `protobuf:"bytes,6,opt,name=source,proto3" json:"source,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
+	// Speciality ID
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// Speciality name
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// Speciality name indo
+	NameIndo string `protobuf:"bytes,3,opt,name=nameIndo,proto3" json:"nameIndo,omitempty"`
+	// Speciality image url
+	ImageUrl string `protobuf:"bytes,4,opt,name=imageUrl,proto3" json:"imageUrl,omitempty"`
+	// Speciality last updated
+	LastUpdated *timestamp.Timestamp `protobuf:"bytes,5,opt,name=lastUpdated,proto3" json:"lastUpdated,omitempty"`
+	// Speciality source
+	Source               *SourceData `protobuf:"bytes,6,opt,name=source,proto3" json:"source,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
+	XXX_unrecognized     []byte      `json:"-"`
+	XXX_sizecache        int32       `json:"-"`
 }
 
 func (m *SpecialityData) Reset()         { *m = SpecialityData{} }
@@ -1393,8 +1477,11 @@ func (m *SpecialityData) GetSource() *SourceData {
 }
 
 type SpecialitiesResponseData struct {
-	Status               string            `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	Message              string            `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	// Specialities response status
+	Status string `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	// Specialities response message
+	Message string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	// Specialities response data
 	Data                 []*SpecialityData `protobuf:"bytes,3,rep,name=data,proto3" json:"data,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
 	XXX_unrecognized     []byte            `json:"-"`
@@ -1448,8 +1535,11 @@ func (m *SpecialitiesResponseData) GetData() []*SpecialityData {
 }
 
 type SpecialityResponseData struct {
-	Status               string          `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	Message              string          `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	// Speciality response status
+	Status string `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	// Speciality response message
+	Message string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	// Speciality response data
 	Data                 *SpecialityData `protobuf:"bytes,3,opt,name=data,proto3" json:"data,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
 	XXX_unrecognized     []byte          `json:"-"`
@@ -1503,6 +1593,7 @@ func (m *SpecialityResponseData) GetData() *SpecialityData {
 }
 
 type GetAreaRequestData struct {
+	// Area ID
 	AreaId               string   `protobuf:"bytes,1,opt,name=areaId,proto3" json:"areaId,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -1542,8 +1633,11 @@ func (m *GetAreaRequestData) GetAreaId() string {
 }
 
 type AreasResponseData struct {
-	Status               string      `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	Message              string      `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	// Areas response status
+	Status string `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	// Areas response message
+	Message string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	// Areas response data
 	Data                 []*AreaData `protobuf:"bytes,3,rep,name=data,proto3" json:"data,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
 	XXX_unrecognized     []byte      `json:"-"`
@@ -1597,8 +1691,11 @@ func (m *AreasResponseData) GetData() []*AreaData {
 }
 
 type AreaResponseData struct {
-	Status               string    `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	Message              string    `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	// Area response status
+	Status string `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	// Area response message
+	Message string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	// Area response data
 	Data                 *AreaData `protobuf:"bytes,3,opt,name=data,proto3" json:"data,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
 	XXX_unrecognized     []byte    `json:"-"`
@@ -1652,14 +1749,19 @@ func (m *AreaResponseData) GetData() *AreaData {
 }
 
 type AreaData struct {
-	Id                   string               `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name                 string               `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	ImageUrl             string               `protobuf:"bytes,3,opt,name=imageUrl,proto3" json:"imageUrl,omitempty"`
-	LastUpdated          *timestamp.Timestamp `protobuf:"bytes,4,opt,name=lastUpdated,proto3" json:"lastUpdated,omitempty"`
-	Source               *SourceData          `protobuf:"bytes,5,opt,name=source,proto3" json:"source,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
+	// Area ID
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// Area name
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// Area image url
+	ImageUrl string `protobuf:"bytes,3,opt,name=imageUrl,proto3" json:"imageUrl,omitempty"`
+	// Area last update
+	LastUpdated *timestamp.Timestamp `protobuf:"bytes,4,opt,name=lastUpdated,proto3" json:"lastUpdated,omitempty"`
+	// Area source
+	Source               *SourceData `protobuf:"bytes,5,opt,name=source,proto3" json:"source,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
+	XXX_unrecognized     []byte      `json:"-"`
+	XXX_sizecache        int32       `json:"-"`
 }
 
 func (m *AreaData) Reset()         { *m = AreaData{} }
@@ -1723,7 +1825,9 @@ func (m *AreaData) GetSource() *SourceData {
 }
 
 type CoordinateData struct {
-	Lattitude            string   `protobuf:"bytes,1,opt,name=lattitude,proto3" json:"lattitude,omitempty"`
+	// Latitude
+	Lattitude string `protobuf:"bytes,1,opt,name=lattitude,proto3" json:"lattitude,omitempty"`
+	// Longitude
 	Longitude            string   `protobuf:"bytes,2,opt,name=longitude,proto3" json:"longitude,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -1770,10 +1874,15 @@ func (m *CoordinateData) GetLongitude() string {
 }
 
 type AddressData struct {
-	ZipCode              string   `protobuf:"bytes,1,opt,name=zipCode,proto3" json:"zipCode,omitempty"`
-	Village              string   `protobuf:"bytes,2,opt,name=village,proto3" json:"village,omitempty"`
-	SubDistrict          string   `protobuf:"bytes,3,opt,name=subDistrict,proto3" json:"subDistrict,omitempty"`
-	District             string   `protobuf:"bytes,4,opt,name=district,proto3" json:"district,omitempty"`
+	// Kode pos
+	ZipCode string `protobuf:"bytes,1,opt,name=zipCode,proto3" json:"zipCode,omitempty"`
+	// Kelurahan
+	Village string `protobuf:"bytes,2,opt,name=village,proto3" json:"village,omitempty"`
+	// Kecamatan
+	SubDistrict string `protobuf:"bytes,3,opt,name=subDistrict,proto3" json:"subDistrict,omitempty"`
+	// Kota / kabupaten
+	District string `protobuf:"bytes,4,opt,name=district,proto3" json:"district,omitempty"`
+	// Provinsi
 	Province             string   `protobuf:"bytes,5,opt,name=province,proto3" json:"province,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -1841,8 +1950,11 @@ func (m *AddressData) GetProvince() string {
 }
 
 type SourceData struct {
-	SourceId             string   `protobuf:"bytes,1,opt,name=sourceId,proto3" json:"sourceId,omitempty"`
-	SourceName           string   `protobuf:"bytes,2,opt,name=sourceName,proto3" json:"sourceName,omitempty"`
+	// Source ID
+	SourceId string `protobuf:"bytes,1,opt,name=sourceId,proto3" json:"sourceId,omitempty"`
+	// Source Name
+	SourceName string `protobuf:"bytes,2,opt,name=sourceName,proto3" json:"sourceName,omitempty"`
+	// Origin ID
 	OriginId             string   `protobuf:"bytes,3,opt,name=originId,proto3" json:"originId,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -1896,7 +2008,9 @@ func (m *SourceData) GetOriginId() string {
 }
 
 type ContactData struct {
-	PhoneNumber          string   `protobuf:"bytes,1,opt,name=phoneNumber,proto3" json:"phoneNumber,omitempty"`
+	// Phone no
+	PhoneNumber string `protobuf:"bytes,1,opt,name=phoneNumber,proto3" json:"phoneNumber,omitempty"`
+	// Email
 	Email                string   `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -1982,7 +2096,7 @@ func init() {
 }
 
 var fileDescriptor_a57dc452da626332 = []byte{
-	// 2182 bytes of a gzipped FileDescriptorProto
+	// 2180 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xbc, 0x59, 0xdd, 0x6f, 0x1b, 0x4b,
 	0x15, 0xbf, 0xe3, 0x38, 0x6e, 0x72, 0xdc, 0xa4, 0xb9, 0xd3, 0x36, 0xb8, 0xee, 0x87, 0x9d, 0x6d,
 	0x43, 0xd2, 0x24, 0xf6, 0x36, 0x29, 0xb7, 0xa5, 0x55, 0xa1, 0xd7, 0x49, 0x43, 0x31, 0x0d, 0x55,
@@ -2103,23 +2217,23 @@ var fileDescriptor_a57dc452da626332 = []byte{
 	0xd6, 0x3d, 0xbf, 0x63, 0x64, 0x3f, 0xe8, 0xfb, 0xf5, 0x58, 0xc3, 0xbf, 0xf2, 0x49, 0xe9, 0x5a,
 	0xf5, 0x0a, 0x8c, 0x02, 0x94, 0x5c, 0xf6, 0x84, 0x6e, 0x97, 0x36, 0xf9, 0x06, 0x7e, 0x0f, 0x00,
 	0x52, 0x8b, 0x94, 0x78, 0xd4, 0xc3, 0xef, 0x09, 0x05, 0x27, 0x8d, 0x7c, 0xe7, 0x8c, 0xd4, 0x5a,
-	0xfd, 0x3e, 0x9a, 0xc1, 0x07, 0x08, 0x2e, 0x3d, 0xa6, 0xd1, 0x46, 0xca, 0xd6, 0x42, 0xb9, 0xbb,
-	0x47, 0xa4, 0xeb, 0xff, 0x87, 0x6e, 0x2f, 0xfa, 0xd3, 0xad, 0x88, 0xe7, 0x7a, 0xe9, 0x66, 0xee,
-	0xc6, 0x9f, 0x95, 0xf6, 0xf0, 0x3f, 0x90, 0xb8, 0x05, 0x75, 0xf8, 0x4c, 0x71, 0xe4, 0x11, 0xf6,
-	0xfc, 0xc6, 0x98, 0xbd, 0xd3, 0xb7, 0x9a, 0xba, 0x0f, 0x7e, 0xad, 0x3f, 0x3d, 0xaf, 0xe3, 0x89,
-	0x5e, 0x7a, 0xfa, 0x8b, 0x7f, 0x4f, 0x7c, 0x52, 0xfa, 0x34, 0x81, 0xff, 0x82, 0xe0, 0xda, 0x6a,
-	0x00, 0x26, 0xaf, 0xd6, 0xe1, 0x7c, 0x58, 0x88, 0xf3, 0xa5, 0xd5, 0xb2, 0xb1, 0x0c, 0x10, 0x71,
-	0xd4, 0x36, 0xf0, 0xd4, 0x06, 0xe7, 0xae, 0x7f, 0xdf, 0x34, 0x95, 0xaf, 0xb0, 0x42, 0x9b, 0x02,
-	0x61, 0xe1, 0x1f, 0xf9, 0x99, 0x76, 0x94, 0xd3, 0xda, 0xc6, 0x87, 0x52, 0xd1, 0x9a, 0xd3, 0x9c,
-	0x59, 0x85, 0x11, 0xb9, 0xcc, 0x0a, 0xab, 0x51, 0xdb, 0xa7, 0xf8, 0x61, 0x9f, 0x2b, 0x99, 0xd5,
-	0x86, 0x53, 0x35, 0x9b, 0xc4, 0xe7, 0xd4, 0x33, 0x57, 0xca, 0x4b, 0xcb, 0x4f, 0x9f, 0x2d, 0x17,
-	0xf9, 0x47, 0x7c, 0x61, 0x60, 0xbe, 0x78, 0x2b, 0x3b, 0x46, 0xed, 0x3a, 0xb3, 0xe9, 0x42, 0x68,
-	0x52, 0xc2, 0x66, 0x12, 0x28, 0xb1, 0x30, 0x46, 0x5c, 0xb7, 0xc1, 0x6a, 0xe2, 0x79, 0xd1, 0xfc,
-	0xb6, 0xef, 0xd8, 0xf7, 0x0f, 0xcd, 0x7c, 0xf3, 0x11, 0x5c, 0xd7, 0x0c, 0x79, 0x71, 0x28, 0x91,
-	0x3d, 0xb7, 0x56, 0x10, 0x20, 0x0b, 0xa5, 0xd5, 0x72, 0xe1, 0x09, 0xdd, 0xce, 0x27, 0xe0, 0x6a,
-	0x6c, 0xdd, 0xf3, 0x43, 0x89, 0xec, 0x48, 0xc0, 0xea, 0x78, 0x6c, 0x47, 0x2c, 0x94, 0x4f, 0x54,
-	0xc7, 0xda, 0x8f, 0xa3, 0x9a, 0x12, 0xa8, 0x6f, 0xff, 0x2f, 0x00, 0x00, 0xff, 0xff, 0x01, 0x6c,
-	0x37, 0xf3, 0x73, 0x1f, 0x00, 0x00,
+	0xfd, 0x3e, 0x9a, 0xc1, 0x07, 0x08, 0x2e, 0x75, 0xfc, 0x80, 0x23, 0x94, 0xbb, 0x7b, 0x44, 0xba,
+	0xfe, 0x7f, 0xe8, 0xf6, 0xa2, 0x3f, 0xdd, 0x8a, 0x78, 0xae, 0x97, 0x6e, 0xe6, 0x6e, 0xfc, 0x59,
+	0x69, 0x0f, 0xff, 0x03, 0x89, 0x5b, 0x50, 0x87, 0xcf, 0x14, 0x47, 0x1e, 0x61, 0xcf, 0x6f, 0x8c,
+	0xd9, 0x3b, 0x7d, 0xab, 0xa9, 0xfb, 0xe0, 0xd7, 0xfa, 0xd3, 0xf3, 0x3a, 0x9e, 0xe8, 0xa5, 0xa7,
+	0xbf, 0xf8, 0xf7, 0xc4, 0x27, 0xa5, 0x4f, 0x13, 0xf8, 0x2f, 0x08, 0xae, 0xad, 0x06, 0x60, 0xf2,
+	0x6a, 0x1d, 0xce, 0x87, 0x85, 0x38, 0x5f, 0x5a, 0x2d, 0x1b, 0xcb, 0x00, 0x11, 0x47, 0x6d, 0x03,
+	0x4f, 0x6d, 0x70, 0xee, 0xfa, 0xf7, 0x4d, 0x53, 0xf9, 0x0a, 0x2b, 0xb4, 0x29, 0x10, 0x16, 0xfe,
+	0x91, 0x9f, 0x69, 0x47, 0x39, 0xad, 0x6d, 0x7c, 0x28, 0x15, 0xad, 0x39, 0xcd, 0x99, 0x55, 0x18,
+	0x91, 0xcb, 0xac, 0xb0, 0x1a, 0xb5, 0x7d, 0x8a, 0x1f, 0xf6, 0xb9, 0x92, 0x59, 0x6d, 0x38, 0x55,
+	0xb3, 0x49, 0x7c, 0x4e, 0x3d, 0x73, 0xa5, 0xbc, 0xb4, 0xfc, 0xf4, 0xd9, 0x72, 0x91, 0x7f, 0xc4,
+	0x17, 0x06, 0xe6, 0x8b, 0xb7, 0xb2, 0x63, 0xd4, 0xae, 0x33, 0x9b, 0x2e, 0x84, 0x26, 0x25, 0x6c,
+	0x26, 0x81, 0x12, 0x0b, 0x63, 0xc4, 0x75, 0x1b, 0xac, 0x26, 0x9e, 0x17, 0xcd, 0x6f, 0xfb, 0x8e,
+	0x7d, 0xff, 0xd0, 0xcc, 0x37, 0x1f, 0xc1, 0x75, 0xcd, 0x90, 0x17, 0x87, 0x12, 0xd9, 0x73, 0x6b,
+	0x05, 0x01, 0xb2, 0x50, 0x5a, 0x2d, 0x17, 0x9e, 0xd0, 0xed, 0x7c, 0x02, 0xae, 0xc6, 0xd6, 0x3d,
+	0x3f, 0x94, 0xc8, 0x8e, 0x04, 0xac, 0x8e, 0xc7, 0x76, 0xc4, 0x42, 0xf9, 0x44, 0x75, 0xac, 0xfd,
+	0x38, 0xaa, 0x29, 0x81, 0xfa, 0xf6, 0xff, 0x02, 0x00, 0x00, 0xff, 0xff, 0xb1, 0x09, 0x07, 0x6d,
+	0x73, 0x1f, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -2152,8 +2266,8 @@ type TelemedicineServiceClient interface {
 	GetDoctorData(ctx context.Context, in *GetDoctorRequestData, opts ...grpc.CallOption) (*DoctorsResponseData, error)
 	// Create new appointment
 	PostAppointmentBookingData(ctx context.Context, in *PostAppointmentBookingRequestData, opts ...grpc.CallOption) (*AppointmentBookingResponseData, error)
-	// Get booking appointment data
-	GetBookingAppointmentData(ctx context.Context, in *GetAppointmentBookingRequestData, opts ...grpc.CallOption) (*AppointmentBookingResponseData, error)
+	// Get appointment booking data
+	GetAppointmentBookingData(ctx context.Context, in *GetAppointmentBookingRequestData, opts ...grpc.CallOption) (*AppointmentBookingResponseData, error)
 	// Get all booking appointments data
 	GetAppointmentBookingsData(ctx context.Context, in *GetAppointmentBookingsRequestData, opts ...grpc.CallOption) (*AppointmentBookingsResponseData, error)
 }
@@ -2247,9 +2361,9 @@ func (c *telemedicineServiceClient) PostAppointmentBookingData(ctx context.Conte
 	return out, nil
 }
 
-func (c *telemedicineServiceClient) GetBookingAppointmentData(ctx context.Context, in *GetAppointmentBookingRequestData, opts ...grpc.CallOption) (*AppointmentBookingResponseData, error) {
+func (c *telemedicineServiceClient) GetAppointmentBookingData(ctx context.Context, in *GetAppointmentBookingRequestData, opts ...grpc.CallOption) (*AppointmentBookingResponseData, error) {
 	out := new(AppointmentBookingResponseData)
-	err := c.cc.Invoke(ctx, "/prixa.telemedicine.v1.TelemedicineService/GetBookingAppointmentData", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/prixa.telemedicine.v1.TelemedicineService/GetAppointmentBookingData", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2285,8 +2399,8 @@ type TelemedicineServiceServer interface {
 	GetDoctorData(context.Context, *GetDoctorRequestData) (*DoctorsResponseData, error)
 	// Create new appointment
 	PostAppointmentBookingData(context.Context, *PostAppointmentBookingRequestData) (*AppointmentBookingResponseData, error)
-	// Get booking appointment data
-	GetBookingAppointmentData(context.Context, *GetAppointmentBookingRequestData) (*AppointmentBookingResponseData, error)
+	// Get appointment booking data
+	GetAppointmentBookingData(context.Context, *GetAppointmentBookingRequestData) (*AppointmentBookingResponseData, error)
 	// Get all booking appointments data
 	GetAppointmentBookingsData(context.Context, *GetAppointmentBookingsRequestData) (*AppointmentBookingsResponseData, error)
 }
@@ -2322,8 +2436,8 @@ func (*UnimplementedTelemedicineServiceServer) GetDoctorData(ctx context.Context
 func (*UnimplementedTelemedicineServiceServer) PostAppointmentBookingData(ctx context.Context, req *PostAppointmentBookingRequestData) (*AppointmentBookingResponseData, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostAppointmentBookingData not implemented")
 }
-func (*UnimplementedTelemedicineServiceServer) GetBookingAppointmentData(ctx context.Context, req *GetAppointmentBookingRequestData) (*AppointmentBookingResponseData, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetBookingAppointmentData not implemented")
+func (*UnimplementedTelemedicineServiceServer) GetAppointmentBookingData(ctx context.Context, req *GetAppointmentBookingRequestData) (*AppointmentBookingResponseData, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAppointmentBookingData not implemented")
 }
 func (*UnimplementedTelemedicineServiceServer) GetAppointmentBookingsData(ctx context.Context, req *GetAppointmentBookingsRequestData) (*AppointmentBookingsResponseData, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAppointmentBookingsData not implemented")
@@ -2495,20 +2609,20 @@ func _TelemedicineService_PostAppointmentBookingData_Handler(srv interface{}, ct
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TelemedicineService_GetBookingAppointmentData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TelemedicineService_GetAppointmentBookingData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetAppointmentBookingRequestData)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TelemedicineServiceServer).GetBookingAppointmentData(ctx, in)
+		return srv.(TelemedicineServiceServer).GetAppointmentBookingData(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/prixa.telemedicine.v1.TelemedicineService/GetBookingAppointmentData",
+		FullMethod: "/prixa.telemedicine.v1.TelemedicineService/GetAppointmentBookingData",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TelemedicineServiceServer).GetBookingAppointmentData(ctx, req.(*GetAppointmentBookingRequestData))
+		return srv.(TelemedicineServiceServer).GetAppointmentBookingData(ctx, req.(*GetAppointmentBookingRequestData))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2572,8 +2686,8 @@ var _TelemedicineService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _TelemedicineService_PostAppointmentBookingData_Handler,
 		},
 		{
-			MethodName: "GetBookingAppointmentData",
-			Handler:    _TelemedicineService_GetBookingAppointmentData_Handler,
+			MethodName: "GetAppointmentBookingData",
+			Handler:    _TelemedicineService_GetAppointmentBookingData_Handler,
 		},
 		{
 			MethodName: "GetAppointmentBookingsData",
