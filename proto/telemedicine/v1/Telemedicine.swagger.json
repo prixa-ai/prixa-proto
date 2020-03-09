@@ -66,8 +66,8 @@
     },
     "/api/v1/telemedicine/appointment/{bookingId}": {
       "get": {
-        "summary": "Get booking appointment data",
-        "operationId": "GetBookingAppointmentData",
+        "summary": "Get appointment booking data",
+        "operationId": "GetAppointmentBookingData",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -85,6 +85,7 @@
         "parameters": [
           {
             "name": "bookingId",
+            "description": "Booking ID",
             "in": "path",
             "required": true,
             "type": "string"
@@ -122,24 +123,28 @@
         "parameters": [
           {
             "name": "param.patientName",
+            "description": "Patient name.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "param.hospitalId",
+            "description": "Hospital ID.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "param.doctorId",
+            "description": "Doctor ID.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "fromDate",
+            "description": "From date.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -147,6 +152,7 @@
           },
           {
             "name": "toDate",
+            "description": "To date.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -208,6 +214,7 @@
         "parameters": [
           {
             "name": "areaId",
+            "description": "Area ID",
             "in": "path",
             "required": true,
             "type": "string"
@@ -239,24 +246,28 @@
         "parameters": [
           {
             "name": "param.areaId",
+            "description": "Area ID.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "param.nameKeyword",
+            "description": "Doctor keyword.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "param.specialityId",
+            "description": "Doctor speciality ID.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "param.hospitalId",
+            "description": "Doctor hospital ID.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -288,6 +299,7 @@
         "parameters": [
           {
             "name": "doctorId",
+            "description": "Doctor ID",
             "in": "path",
             "required": true,
             "type": "string"
@@ -319,30 +331,35 @@
         "parameters": [
           {
             "name": "param.areaId",
+            "description": "Area ID.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "param.nameKeyword",
+            "description": "Hospital keyword.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "param.specialityId",
+            "description": "Hospital speciality ID.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "param.coordinate.lattitude",
+            "description": "Latitude.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "param.coordinate.longitude",
+            "description": "Longitude.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -374,6 +391,7 @@
         "parameters": [
           {
             "name": "hospitalId",
+            "description": "Hospital ID",
             "in": "path",
             "required": true,
             "type": "string"
@@ -405,12 +423,14 @@
         "parameters": [
           {
             "name": "areaId",
+            "description": "Area ID.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "hospitalId",
+            "description": "Hospital ID.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -442,6 +462,7 @@
         "parameters": [
           {
             "name": "specialityId",
+            "description": "Speciality ID",
             "in": "path",
             "required": true,
             "type": "string"
@@ -494,19 +515,24 @@
       "type": "object",
       "properties": {
         "zipCode": {
-          "type": "string"
+          "type": "string",
+          "title": "Kode pos"
         },
         "village": {
-          "type": "string"
+          "type": "string",
+          "title": "Kelurahan"
         },
         "subDistrict": {
-          "type": "string"
+          "type": "string",
+          "title": "Kecamatan"
         },
         "district": {
-          "type": "string"
+          "type": "string",
+          "title": "Kota / kabupaten"
         },
         "province": {
-          "type": "string"
+          "type": "string",
+          "title": "Provinsi"
         }
       }
     },
@@ -514,48 +540,62 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string"
+          "type": "string",
+          "title": "Booking ID"
         },
         "name": {
-          "type": "string"
+          "type": "string",
+          "title": "Patient name"
         },
         "nik": {
-          "type": "string"
+          "type": "string",
+          "title": "Patient NIK"
         },
         "email": {
-          "type": "string"
+          "type": "string",
+          "title": "Patient email"
         },
         "phoneNumber": {
-          "type": "string"
+          "type": "string",
+          "title": "Patient phone number"
         },
         "paymentMethod": {
-          "type": "string"
+          "type": "string",
+          "title": "Patient payment method"
         },
         "bookingTime": {
           "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "title": "Appointment booking time"
         },
         "doctorId": {
-          "type": "string"
+          "type": "string",
+          "title": "Doctor ID"
         },
         "doctorName": {
-          "type": "string"
+          "type": "string",
+          "title": "Doctor name"
         },
         "hospitalId": {
-          "type": "string"
+          "type": "string",
+          "title": "Hospital ID"
         },
         "hospitalName": {
-          "type": "string"
+          "type": "string",
+          "title": "Hospital name"
         },
         "hospitalAddress": {
-          "type": "string"
+          "type": "string",
+          "title": "Hospital address"
         },
         "bookingStatus": {
-          "type": "string"
+          "type": "string",
+          "title": "Appointment booking status"
         },
         "createdTime": {
           "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "title": "Appointment created time"
         }
       }
     },
@@ -563,13 +603,16 @@
       "type": "object",
       "properties": {
         "status": {
-          "type": "string"
+          "type": "string",
+          "title": "Appointment booking response status"
         },
         "message": {
-          "type": "string"
+          "type": "string",
+          "title": "Appointment booking response message"
         },
         "data": {
-          "$ref": "#/definitions/v1AppointmentBookingData"
+          "$ref": "#/definitions/v1AppointmentBookingData",
+          "title": "Appointment booking response data"
         }
       }
     },
@@ -577,16 +620,19 @@
       "type": "object",
       "properties": {
         "status": {
-          "type": "string"
+          "type": "string",
+          "title": "Appointment status"
         },
         "message": {
-          "type": "string"
+          "type": "string",
+          "title": "Appointment message"
         },
         "data": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1AppointmentBookingData"
-          }
+          },
+          "title": "Appointment data"
         }
       }
     },
@@ -594,20 +640,25 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string"
+          "type": "string",
+          "title": "Area ID"
         },
         "name": {
-          "type": "string"
+          "type": "string",
+          "title": "Area name"
         },
         "imageUrl": {
-          "type": "string"
+          "type": "string",
+          "title": "Area image url"
         },
         "lastUpdated": {
           "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "title": "Area last update"
         },
         "source": {
-          "$ref": "#/definitions/v1SourceData"
+          "$ref": "#/definitions/v1SourceData",
+          "title": "Area source"
         }
       }
     },
@@ -615,13 +666,16 @@
       "type": "object",
       "properties": {
         "status": {
-          "type": "string"
+          "type": "string",
+          "title": "Area response status"
         },
         "message": {
-          "type": "string"
+          "type": "string",
+          "title": "Area response message"
         },
         "data": {
-          "$ref": "#/definitions/v1AreaData"
+          "$ref": "#/definitions/v1AreaData",
+          "title": "Area response data"
         }
       }
     },
@@ -629,16 +683,19 @@
       "type": "object",
       "properties": {
         "status": {
-          "type": "string"
+          "type": "string",
+          "title": "Areas response status"
         },
         "message": {
-          "type": "string"
+          "type": "string",
+          "title": "Areas response message"
         },
         "data": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1AreaData"
-          }
+          },
+          "title": "Areas response data"
         }
       }
     },
@@ -646,10 +703,12 @@
       "type": "object",
       "properties": {
         "phoneNumber": {
-          "type": "string"
+          "type": "string",
+          "title": "Phone no"
         },
         "email": {
-          "type": "string"
+          "type": "string",
+          "title": "Email"
         }
       }
     },
@@ -657,10 +716,12 @@
       "type": "object",
       "properties": {
         "lattitude": {
-          "type": "string"
+          "type": "string",
+          "title": "Latitude"
         },
         "longitude": {
-          "type": "string"
+          "type": "string",
+          "title": "Longitude"
         }
       }
     },
@@ -668,25 +729,31 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string"
+          "type": "string",
+          "title": "Doctor ID"
         },
         "name": {
-          "type": "string"
+          "type": "string",
+          "title": "Doctor name"
         },
         "speciality": {
-          "$ref": "#/definitions/v1SpecialityData"
+          "$ref": "#/definitions/v1SpecialityData",
+          "title": "Doctor speciality"
         },
         "contact": {
-          "$ref": "#/definitions/v1ContactData"
+          "$ref": "#/definitions/v1ContactData",
+          "title": "Doctor contact"
         },
         "imageUrl": {
-          "type": "string"
+          "type": "string",
+          "title": "Doctor image url"
         },
         "hospitalsList": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1HospitalData"
-          }
+          },
+          "title": "Doctor hospital list"
         }
       }
     },
@@ -694,16 +761,19 @@
       "type": "object",
       "properties": {
         "status": {
-          "type": "string"
+          "type": "string",
+          "title": "Doctors response status"
         },
         "message": {
-          "type": "string"
+          "type": "string",
+          "title": "Doctors response message"
         },
         "data": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1DoctorData"
-          }
+          },
+          "title": "Doctors response data"
         }
       }
     },
@@ -711,13 +781,16 @@
       "type": "object",
       "properties": {
         "patientName": {
-          "type": "string"
+          "type": "string",
+          "title": "Patient name"
         },
         "hospitalId": {
-          "type": "string"
+          "type": "string",
+          "title": "Hospital ID"
         },
         "doctorId": {
-          "type": "string"
+          "type": "string",
+          "title": "Doctor ID"
         }
       }
     },
@@ -725,16 +798,20 @@
       "type": "object",
       "properties": {
         "areaId": {
-          "type": "string"
+          "type": "string",
+          "title": "Area ID"
         },
         "nameKeyword": {
-          "type": "string"
+          "type": "string",
+          "title": "Doctor keyword"
         },
         "specialityId": {
-          "type": "string"
+          "type": "string",
+          "title": "Doctor speciality ID"
         },
         "hospitalId": {
-          "type": "string"
+          "type": "string",
+          "title": "Doctor hospital ID"
         }
       }
     },
@@ -742,16 +819,20 @@
       "type": "object",
       "properties": {
         "areaId": {
-          "type": "string"
+          "type": "string",
+          "title": "Area ID"
         },
         "nameKeyword": {
-          "type": "string"
+          "type": "string",
+          "title": "Hospital keyword"
         },
         "specialityId": {
-          "type": "string"
+          "type": "string",
+          "title": "Hospital speciality ID"
         },
         "coordinate": {
-          "$ref": "#/definitions/v1CoordinateData"
+          "$ref": "#/definitions/v1CoordinateData",
+          "title": "Hospital coordinate (lat,lon)"
         }
       }
     },
@@ -759,41 +840,52 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string"
+          "type": "string",
+          "title": "Hospital id"
         },
         "name": {
-          "type": "string"
+          "type": "string",
+          "title": "Hospital name"
         },
         "alias": {
-          "type": "string"
+          "type": "string",
+          "title": "Hospital alias"
         },
         "address": {
-          "$ref": "#/definitions/v1AddressData"
+          "$ref": "#/definitions/v1AddressData",
+          "title": "Hospital address"
         },
         "contact": {
-          "$ref": "#/definitions/v1ContactData"
+          "$ref": "#/definitions/v1ContactData",
+          "title": "Hospital contact"
         },
         "coordinate": {
-          "$ref": "#/definitions/v1CoordinateData"
+          "$ref": "#/definitions/v1CoordinateData",
+          "title": "Hospital coordinate"
         },
         "imageUrl": {
-          "type": "string"
+          "type": "string",
+          "title": "Hospital image url"
         },
         "accreditation": {
-          "type": "string"
+          "type": "string",
+          "title": "Hospital accreditation"
         },
         "specialitiesList": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1SpecialityData"
-          }
+          },
+          "title": "Hospital specialities"
         },
         "lastUpdated": {
           "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "title": "Hospital last update data"
         },
         "source": {
-          "$ref": "#/definitions/v1SourceData"
+          "$ref": "#/definitions/v1SourceData",
+          "title": "Hospital source"
         }
       }
     },
@@ -801,13 +893,16 @@
       "type": "object",
       "properties": {
         "status": {
-          "type": "string"
+          "type": "string",
+          "title": "Hospital response status"
         },
         "message": {
-          "type": "string"
+          "type": "string",
+          "title": "Hospital response message"
         },
         "data": {
-          "$ref": "#/definitions/v1HospitalData"
+          "$ref": "#/definitions/v1HospitalData",
+          "title": "Hospital response data"
         }
       }
     },
@@ -815,16 +910,19 @@
       "type": "object",
       "properties": {
         "status": {
-          "type": "string"
+          "type": "string",
+          "title": "Hospitals response status"
         },
         "message": {
-          "type": "string"
+          "type": "string",
+          "title": "Hospitals response message"
         },
         "data": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1HospitalData"
-          }
+          },
+          "title": "Hospitals response data"
         }
       }
     },
@@ -832,29 +930,37 @@
       "type": "object",
       "properties": {
         "name": {
-          "type": "string"
+          "type": "string",
+          "title": "Patient name"
         },
         "nik": {
-          "type": "string"
+          "type": "string",
+          "title": "Patient NIk"
         },
         "email": {
-          "type": "string"
+          "type": "string",
+          "title": "Patient email"
         },
         "phoneNumber": {
-          "type": "string"
+          "type": "string",
+          "title": "Patient phone number"
         },
         "paymentMethod": {
-          "type": "string"
+          "type": "string",
+          "title": "Payment method"
         },
         "bookingTime": {
           "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "title": "Booking time"
         },
         "doctorId": {
-          "type": "string"
+          "type": "string",
+          "title": "Doctor ID"
         },
         "hospitalId": {
-          "type": "string"
+          "type": "string",
+          "title": "Hospital ID"
         }
       }
     },
@@ -862,13 +968,16 @@
       "type": "object",
       "properties": {
         "sourceId": {
-          "type": "string"
+          "type": "string",
+          "title": "Source ID"
         },
         "sourceName": {
-          "type": "string"
+          "type": "string",
+          "title": "Source Name"
         },
         "originId": {
-          "type": "string"
+          "type": "string",
+          "title": "Origin ID"
         }
       }
     },
@@ -876,16 +985,19 @@
       "type": "object",
       "properties": {
         "status": {
-          "type": "string"
+          "type": "string",
+          "title": "Specialities response status"
         },
         "message": {
-          "type": "string"
+          "type": "string",
+          "title": "Specialities response message"
         },
         "data": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1SpecialityData"
-          }
+          },
+          "title": "Specialities response data"
         }
       }
     },
@@ -893,23 +1005,29 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string"
+          "type": "string",
+          "title": "Speciality ID"
         },
         "name": {
-          "type": "string"
+          "type": "string",
+          "title": "Speciality name"
         },
         "nameIndo": {
-          "type": "string"
+          "type": "string",
+          "title": "Speciality name indo"
         },
         "imageUrl": {
-          "type": "string"
+          "type": "string",
+          "title": "Speciality image url"
         },
         "lastUpdated": {
           "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "title": "Speciality last updated"
         },
         "source": {
-          "$ref": "#/definitions/v1SourceData"
+          "$ref": "#/definitions/v1SourceData",
+          "title": "Speciality source"
         }
       }
     },
@@ -917,13 +1035,16 @@
       "type": "object",
       "properties": {
         "status": {
-          "type": "string"
+          "type": "string",
+          "title": "Speciality response status"
         },
         "message": {
-          "type": "string"
+          "type": "string",
+          "title": "Speciality response message"
         },
         "data": {
-          "$ref": "#/definitions/v1SpecialityData"
+          "$ref": "#/definitions/v1SpecialityData",
+          "title": "Speciality response data"
         }
       }
     }
