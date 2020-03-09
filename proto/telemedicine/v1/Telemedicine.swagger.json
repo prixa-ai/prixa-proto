@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Prixa User Service API",
+    "title": "Prixa Telemedicine Service API",
     "version": "1.0",
     "contact": {
       "name": "Prixa Tech",
@@ -25,15 +25,15 @@
     "application/json"
   ],
   "paths": {
-    "/api/v1/change-password": {
+    "/api/v1/telemedicine/appointment": {
       "post": {
-        "summary": "Change user password after user logged in.",
-        "operationId": "ChangePassword",
+        "summary": "Create new appointment",
+        "operationId": "PostAppointmentBookingData",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1ChangePasswordResponse"
+              "$ref": "#/definitions/v1AppointmentBookingResponseData"
             }
           },
           "default": {
@@ -49,12 +49,12 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1ChangePasswordRequest"
+              "$ref": "#/definitions/v1PostAppointmentBookingRequestData"
             }
           }
         ],
         "tags": [
-          "UserService"
+          "TelemedicineService"
         ],
         "security": [
           {
@@ -64,66 +64,15 @@
         ]
       }
     },
-    "/api/v1/logout": {
+    "/api/v1/telemedicine/appointment/{bookingId}": {
       "get": {
-        "summary": "Logout user after user logged in",
-        "operationId": "Logout",
+        "summary": "Get booking appointment data",
+        "operationId": "GetBookingAppointmentData",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1LogoutResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "tags": [
-          "UserService"
-        ],
-        "security": [
-          {
-            "Bearer": []
-          }
-        ]
-      }
-    },
-    "/api/v1/user/consent": {
-      "get": {
-        "summary": "Get user consent information",
-        "operationId": "Consent",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1ConsentResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "tags": [
-          "UserService"
-        ]
-      }
-    },
-    "/api/v1/user/forget-password": {
-      "post": {
-        "summary": "Trigger to reset user password due to forgotten password",
-        "operationId": "ForgetPassword",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1ForgetPasswordResponse"
+              "$ref": "#/definitions/v1AppointmentBookingResponseData"
             }
           },
           "default": {
@@ -135,98 +84,32 @@
         },
         "parameters": [
           {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1ForgetPasswordRequest"
-            }
-          }
-        ],
-        "tags": [
-          "UserService"
-        ]
-      },
-      "put": {
-        "summary": "Update user password upon forget password action",
-        "operationId": "UpdatePassword",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1UpdatePasswordResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1UpdatePasswordRequest"
-            }
-          }
-        ],
-        "tags": [
-          "UserService"
-        ]
-      }
-    },
-    "/api/v1/user/forget-password/{forgetPwdToken}/verify": {
-      "post": {
-        "summary": "Verify forget password token upon forget password action",
-        "operationId": "ForgetPasswordVerif",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1ForgetPasswordVerifResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "forgetPwdToken",
+            "name": "bookingId",
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1ForgetPasswordVerifRequest"
-            }
           }
         ],
         "tags": [
-          "UserService"
+          "TelemedicineService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "Bearer": []
+          }
         ]
       }
     },
-    "/api/v1/user/login": {
-      "post": {
-        "summary": "User login given email and password",
-        "operationId": "Login",
+    "/api/v1/telemedicine/appointments": {
+      "get": {
+        "summary": "Get all booking appointments data",
+        "operationId": "GetAppointmentBookingsData",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1LoginResponse"
+              "$ref": "#/definitions/v1AppointmentBookingsResponseData"
             }
           },
           "default": {
@@ -238,100 +121,112 @@
         },
         "parameters": [
           {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1LoginRequest"
-            }
-          }
-        ],
-        "tags": [
-          "UserService"
-        ]
-      }
-    },
-    "/api/v1/user/register": {
-      "post": {
-        "summary": "New user registration",
-        "operationId": "Register",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1RegisterResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1RegisterRequest"
-            }
-          }
-        ],
-        "tags": [
-          "UserService"
-        ]
-      }
-    },
-    "/api/v1/user/register/{registerToken}/verify": {
-      "post": {
-        "summary": "Verify user registration",
-        "operationId": "VerifyRegister",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1VerifyRegisterResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "registerToken",
-            "in": "path",
-            "required": true,
+            "name": "param.patientName",
+            "in": "query",
+            "required": false,
             "type": "string"
           },
           {
-            "name": "body",
-            "in": "body",
+            "name": "param.hospitalId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "param.doctorId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fromDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "toDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "tags": [
+          "TelemedicineService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/telemedicine/area": {
+      "get": {
+        "summary": "Get areaa list data",
+        "operationId": "GetAreasData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AreasResponseData"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "TelemedicineService"
+        ]
+      }
+    },
+    "/api/v1/telemedicine/area/{areaId}": {
+      "get": {
+        "summary": "Get area detail data",
+        "operationId": "GetAreaData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AreaResponseData"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "areaId",
+            "in": "path",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1VerifyRegisterRequest"
-            }
+            "type": "string"
           }
         ],
         "tags": [
-          "UserService"
+          "TelemedicineService"
         ]
       }
     },
-    "/api/v1/user/resend-email": {
+    "/api/v1/telemedicine/doctor": {
       "get": {
-        "summary": "Resend register email verification",
-        "operationId": "ResendEmailVerification",
+        "summary": "Get doctors list data",
+        "operationId": "GetDoctorsData",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1ResendEmailVerificationResponse"
+              "$ref": "#/definitions/v1DoctorsResponseData"
             }
           },
           "default": {
@@ -341,26 +236,46 @@
             }
           }
         },
-        "tags": [
-          "UserService"
-        ],
-        "security": [
+        "parameters": [
           {
-            "ApiKeyAuth": [],
-            "Bearer": []
+            "name": "param.areaId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "param.nameKeyword",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "param.specialityId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "param.hospitalId",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
+        ],
+        "tags": [
+          "TelemedicineService"
         ]
       }
     },
-    "/api/v1/userinfo": {
+    "/api/v1/telemedicine/doctor/{doctorId}": {
       "get": {
-        "summary": "User info after user logged in.",
-        "operationId": "UserInfo",
+        "summary": "Get doctor data",
+        "operationId": "GetDoctorData",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1UserInfoResponse"
+              "$ref": "#/definitions/v1DoctorsResponseData"
             }
           },
           "default": {
@@ -370,14 +285,170 @@
             }
           }
         },
-        "tags": [
-          "UserService"
-        ],
-        "security": [
+        "parameters": [
           {
-            "ApiKeyAuth": [],
-            "Bearer": []
+            "name": "doctorId",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
+        ],
+        "tags": [
+          "TelemedicineService"
+        ]
+      }
+    },
+    "/api/v1/telemedicine/hospital": {
+      "get": {
+        "summary": "Get hospitals list data",
+        "operationId": "GetHospitalsData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1HospitalsResponseData"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "param.areaId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "param.nameKeyword",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "param.specialityId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "param.coordinate.lattitude",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "param.coordinate.longitude",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TelemedicineService"
+        ]
+      }
+    },
+    "/api/v1/telemedicine/hospital/{hospitalId}": {
+      "get": {
+        "summary": "Get hostpital detail data",
+        "operationId": "GetHospitalData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1HospitalResponseData"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "hospitalId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TelemedicineService"
+        ]
+      }
+    },
+    "/api/v1/telemedicine/speciality": {
+      "get": {
+        "summary": "Get specialities list data",
+        "operationId": "GetSpecialitiesData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1SpecialitiesResponseData"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "areaId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "hospitalId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TelemedicineService"
+        ]
+      }
+    },
+    "/api/v1/telemedicine/speciality/{specialityId}": {
+      "get": {
+        "summary": "Get speciality detail data",
+        "operationId": "GetSpecialityData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1SpecialityResponseData"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "specialityId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TelemedicineService"
         ]
       }
     }
@@ -419,248 +490,440 @@
         }
       }
     },
-    "v1AuthData": {
+    "v1AddressData": {
       "type": "object",
       "properties": {
-        "email": {
+        "zipCode": {
           "type": "string"
         },
-        "password": {
+        "village": {
           "type": "string"
         },
-        "passwordConfirmation": {
+        "subDistrict": {
           "type": "string"
         },
-        "diagnosticSessionID": {
-          "type": "string"
-        }
-      }
-    },
-    "v1ChangePasswordRequest": {
-      "type": "object",
-      "properties": {
-        "password": {
+        "district": {
           "type": "string"
         },
-        "confirmPassword": {
+        "province": {
           "type": "string"
         }
       }
     },
-    "v1ChangePasswordResponse": {
+    "v1AppointmentBookingData": {
       "type": "object",
       "properties": {
-        "message": {
-          "type": "string"
-        }
-      }
-    },
-    "v1ConsentResponse": {
-      "type": "object",
-      "properties": {
-        "data": {
-          "type": "string"
-        }
-      }
-    },
-    "v1ForgetPasswordRequest": {
-      "type": "object",
-      "properties": {
-        "email": {
-          "type": "string"
-        },
-        "diagnosticSessionID": {
-          "type": "string"
-        }
-      }
-    },
-    "v1ForgetPasswordResponse": {
-      "type": "object",
-      "properties": {
-        "message": {
-          "type": "string"
-        }
-      }
-    },
-    "v1ForgetPasswordVerifRequest": {
-      "type": "object",
-      "properties": {
-        "forgetPwdToken": {
-          "type": "string"
-        }
-      }
-    },
-    "v1ForgetPasswordVerifResponse": {
-      "type": "object",
-      "properties": {
-        "message": {
-          "type": "string"
-        }
-      }
-    },
-    "v1LoginRequest": {
-      "type": "object",
-      "properties": {
-        "authData": {
-          "$ref": "#/definitions/v1AuthData"
-        }
-      }
-    },
-    "v1LoginResponse": {
-      "type": "object",
-      "properties": {
-        "loginToken": {
-          "type": "string"
-        },
-        "personID": {
-          "type": "string"
-        },
-        "sessionID": {
-          "type": "string"
-        },
-        "isVerified": {
-          "type": "boolean",
-          "format": "boolean"
-        }
-      }
-    },
-    "v1LogoutResponse": {
-      "type": "object",
-      "properties": {
-        "message": {
-          "type": "string"
-        }
-      }
-    },
-    "v1ProfileData": {
-      "type": "object",
-      "properties": {
-        "email": {
-          "type": "string"
-        },
-        "phone": {
+        "id": {
           "type": "string"
         },
         "name": {
           "type": "string"
         },
-        "gender": {
+        "nik": {
           "type": "string"
         },
-        "height": {
-          "type": "number",
-          "format": "float"
-        },
-        "weight": {
-          "type": "number",
-          "format": "float"
-        },
-        "smokingStatus": {
-          "type": "boolean",
-          "format": "boolean"
-        },
-        "alcoholStatus": {
-          "type": "boolean",
-          "format": "boolean"
-        },
-        "emailVerified": {
-          "type": "boolean",
-          "format": "boolean"
-        },
-        "phoneVerified": {
-          "type": "boolean",
-          "format": "boolean"
-        },
-        "password": {
+        "email": {
           "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "paymentMethod": {
+          "type": "string"
+        },
+        "bookingTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "doctorId": {
+          "type": "string"
+        },
+        "doctorName": {
+          "type": "string"
+        },
+        "hospitalId": {
+          "type": "string"
+        },
+        "hospitalName": {
+          "type": "string"
+        },
+        "hospitalAddress": {
+          "type": "string"
+        },
+        "bookingStatus": {
+          "type": "string"
+        },
+        "createdTime": {
+          "type": "string",
+          "format": "date-time"
         }
       }
     },
-    "v1RegisterRequest": {
+    "v1AppointmentBookingResponseData": {
       "type": "object",
       "properties": {
-        "authData": {
-          "$ref": "#/definitions/v1AuthData"
-        },
-        "profileData": {
-          "$ref": "#/definitions/v1ProfileData"
-        }
-      }
-    },
-    "v1RegisterResponse": {
-      "type": "object",
-      "properties": {
-        "message": {
-          "type": "string"
-        }
-      }
-    },
-    "v1ResendEmailVerificationResponse": {
-      "type": "object",
-      "properties": {
-        "message": {
-          "type": "string"
-        }
-      }
-    },
-    "v1UpdatePasswordRequest": {
-      "type": "object",
-      "properties": {
-        "password": {
+        "status": {
           "type": "string"
         },
-        "confirmPassword": {
-          "type": "string"
-        },
-        "diagnosticSessionID": {
-          "type": "string"
-        },
-        "forgetPasswordToken": {
-          "type": "string"
-        }
-      }
-    },
-    "v1UpdatePasswordResponse": {
-      "type": "object",
-      "properties": {
         "message": {
           "type": "string"
         },
-        "loginToken": {
+        "data": {
+          "$ref": "#/definitions/v1AppointmentBookingData"
+        }
+      }
+    },
+    "v1AppointmentBookingsResponseData": {
+      "type": "object",
+      "properties": {
+        "status": {
           "type": "string"
         },
-        "sessionID": {
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1AppointmentBookingData"
+          }
+        }
+      }
+    },
+    "v1AreaData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "type": "string"
+        },
+        "lastUpdated": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "source": {
+          "$ref": "#/definitions/v1SourceData"
+        }
+      }
+    },
+    "v1AreaResponseData": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1AreaData"
+        }
+      }
+    },
+    "v1AreasResponseData": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1AreaData"
+          }
+        }
+      }
+    },
+    "v1ContactData": {
+      "type": "object",
+      "properties": {
+        "phoneNumber": {
+          "type": "string"
+        },
+        "email": {
           "type": "string"
         }
       }
     },
-    "v1UserInfoResponse": {
+    "v1CoordinateData": {
       "type": "object",
       "properties": {
-        "profileData": {
-          "$ref": "#/definitions/v1ProfileData"
-        }
-      }
-    },
-    "v1VerifyRegisterRequest": {
-      "type": "object",
-      "properties": {
-        "registerToken": {
+        "lattitude": {
           "type": "string"
         },
-        "diagnosticSessionID": {
+        "longitude": {
           "type": "string"
         }
       }
     },
-    "v1VerifyRegisterResponse": {
+    "v1DoctorData": {
       "type": "object",
       "properties": {
-        "loginToken": {
+        "id": {
           "type": "string"
         },
-        "sessionID": {
+        "name": {
           "type": "string"
+        },
+        "speciality": {
+          "$ref": "#/definitions/v1SpecialityData"
+        },
+        "contact": {
+          "$ref": "#/definitions/v1ContactData"
+        },
+        "imageUrl": {
+          "type": "string"
+        },
+        "hospitalsList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1HospitalData"
+          }
+        }
+      }
+    },
+    "v1DoctorsResponseData": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1DoctorData"
+          }
+        }
+      }
+    },
+    "v1FindAppointmentBookingParamData": {
+      "type": "object",
+      "properties": {
+        "patientName": {
+          "type": "string"
+        },
+        "hospitalId": {
+          "type": "string"
+        },
+        "doctorId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetDoctorParamData": {
+      "type": "object",
+      "properties": {
+        "areaId": {
+          "type": "string"
+        },
+        "nameKeyword": {
+          "type": "string"
+        },
+        "specialityId": {
+          "type": "string"
+        },
+        "hospitalId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetHospitalParamData": {
+      "type": "object",
+      "properties": {
+        "areaId": {
+          "type": "string"
+        },
+        "nameKeyword": {
+          "type": "string"
+        },
+        "specialityId": {
+          "type": "string"
+        },
+        "coordinate": {
+          "$ref": "#/definitions/v1CoordinateData"
+        }
+      }
+    },
+    "v1HospitalData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "alias": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/v1AddressData"
+        },
+        "contact": {
+          "$ref": "#/definitions/v1ContactData"
+        },
+        "coordinate": {
+          "$ref": "#/definitions/v1CoordinateData"
+        },
+        "imageUrl": {
+          "type": "string"
+        },
+        "accreditation": {
+          "type": "string"
+        },
+        "specialitiesList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1SpecialityData"
+          }
+        },
+        "lastUpdated": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "source": {
+          "$ref": "#/definitions/v1SourceData"
+        }
+      }
+    },
+    "v1HospitalResponseData": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1HospitalData"
+        }
+      }
+    },
+    "v1HospitalsResponseData": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1HospitalData"
+          }
+        }
+      }
+    },
+    "v1PostAppointmentBookingRequestData": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "nik": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "paymentMethod": {
+          "type": "string"
+        },
+        "bookingTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "doctorId": {
+          "type": "string"
+        },
+        "hospitalId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1SourceData": {
+      "type": "object",
+      "properties": {
+        "sourceId": {
+          "type": "string"
+        },
+        "sourceName": {
+          "type": "string"
+        },
+        "originId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1SpecialitiesResponseData": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1SpecialityData"
+          }
+        }
+      }
+    },
+    "v1SpecialityData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "nameIndo": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "type": "string"
+        },
+        "lastUpdated": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "source": {
+          "$ref": "#/definitions/v1SourceData"
+        }
+      }
+    },
+    "v1SpecialityResponseData": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1SpecialityData"
         }
       }
     }
