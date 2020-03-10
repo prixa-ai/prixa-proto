@@ -226,7 +226,7 @@
       }
     },
     "/api/v1/telemedicine/conversation/init": {
-      "get": {
+      "post": {
         "summary": "InitConversation is initialize conversation between user and doctor",
         "operationId": "InitConversation",
         "responses": {
@@ -243,6 +243,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1InitConversationRequest"
+            }
+          }
+        ],
         "tags": [
           "TelemedicineService"
         ],
@@ -952,6 +962,14 @@
             "$ref": "#/definitions/v1HospitalData"
           },
           "title": "Hospitals response data"
+        }
+      }
+    },
+    "v1InitConversationRequest": {
+      "type": "object",
+      "properties": {
+        "diagnosticSessionID": {
+          "type": "string"
         }
       }
     },

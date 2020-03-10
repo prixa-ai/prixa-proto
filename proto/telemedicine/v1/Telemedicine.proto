@@ -169,9 +169,10 @@ service TelemedicineService {
     }
 
     // InitConversation is initialize conversation between user and doctor
-    rpc InitConversation(google.protobuf.Empty) returns (InitConversationResponse) {
+    rpc InitConversation(InitConversationRequest) returns (InitConversationResponse) {
         option (google.api.http) = {
-            get: "/api/v1/telemedicine/conversation/init"
+            post: "/api/v1/telemedicine/conversation/init"
+            body: "*"
         };
         option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
             security: {
@@ -512,6 +513,10 @@ message ContactData{
     string phoneNumber = 1 [(validator.field) = {regex: "^[+]?[0-9]{10,13}$"}];
     // Email
     string email = 2 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}]; 
+}
+
+message InitConversationRequest {
+    string diagnosticSessionID = 1 [(validator.field) = {string_not_empty: true}];
 }
 
 message InitConversationResponse {

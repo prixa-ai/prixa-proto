@@ -180,7 +180,7 @@
       }
     },
     "/api/v1/user/forget-password/{forgetPwdToken}/verify": {
-      "post": {
+      "get": {
         "summary": "Verify forget password token upon forget password action",
         "operationId": "ForgetPasswordVerif",
         "responses": {
@@ -203,14 +203,6 @@
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1ForgetPasswordVerifRequest"
-            }
           }
         ],
         "tags": [
@@ -482,14 +474,6 @@
         }
       }
     },
-    "v1ForgetPasswordVerifRequest": {
-      "type": "object",
-      "properties": {
-        "forgetPwdToken": {
-          "type": "string"
-        }
-      }
-    },
     "v1ForgetPasswordVerifResponse": {
       "type": "object",
       "properties": {
@@ -639,6 +623,10 @@
       "properties": {
         "profileData": {
           "$ref": "#/definitions/v1ProfileData"
+        },
+        "isVerified": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
