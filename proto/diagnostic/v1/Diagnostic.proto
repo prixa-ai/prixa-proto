@@ -310,9 +310,10 @@ message GetDiseaseArticleResponse {
 }
 
 message UpdateSourceRequest {
+    string url = 1;
     enum Source {
         AIRTABLE = 0;
         ELASTICSEARCH = 1;
     }
-    Source source = 1;
+    Source source = 2;
 }
