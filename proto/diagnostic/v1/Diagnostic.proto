@@ -86,7 +86,7 @@ service DiagnosticService {
     }
 
     // Internal GRPC API, DO NOT EXPOSE
-    rpc UpdateDiagnosticData (google.protobuf.Empty) returns (google.protobuf.Empty) {}
+    rpc UpdateDiagnosticData (UpdateSourceRequest) returns (google.protobuf.Empty) {}
 }
 
 message BotConversationRequest {
@@ -307,4 +307,12 @@ message GetDiseaseArticleResponse {
     string prevention = 9;
     string reference = 10;
     repeated string relatedSymptom = 11;
+}
+
+message UpdateSourceRequest {
+    enum Source {
+        AIRTABLE = 0;
+        ELASTICSEARCH = 1;
+    }
+    Source source = 1;
 }

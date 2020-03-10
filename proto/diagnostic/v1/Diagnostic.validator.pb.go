@@ -272,3 +272,6 @@ func (this *GetDiseaseArticleRequest) Validate() error {
 func (this *GetDiseaseArticleResponse) Validate() error {
 	return nil
 }
+func (this *UpdateSourceRequest) Validate() error {
+	return nil
+}

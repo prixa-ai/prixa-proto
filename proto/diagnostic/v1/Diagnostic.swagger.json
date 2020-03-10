@@ -269,6 +269,14 @@
     }
   },
   "definitions": {
+    "UpdateSourceRequestSource": {
+      "type": "string",
+      "enum": [
+        "AIRTABLE",
+        "ELASTICSEARCH"
+      ],
+      "default": "AIRTABLE"
+    },
     "protobufAny": {
       "type": "object",
       "properties": {
