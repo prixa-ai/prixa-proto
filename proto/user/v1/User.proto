@@ -113,7 +113,8 @@ service UserService {
     // Verify forget password token upon forget password action
     rpc ForgetPasswordVerif (ForgetPasswordVerifRequest) returns (ForgetPasswordVerifResponse) {
         option (google.api.http) = {
-            get: "/api/v1/user/forget-password/{forgetPwdToken}/verify"
+            post: "/api/v1/user/forget-password/{forgetPwdToken}/verify"
+            body: "*"
         };
     }
 
