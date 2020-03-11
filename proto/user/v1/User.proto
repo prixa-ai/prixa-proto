@@ -277,6 +277,7 @@ message UpdatePasswordResponse {
 
 message UserInfoResponse {
     ProfileData profileData = 1;
+    bool isVerified = 2;
 }
 
 message ChangePasswordRequest {

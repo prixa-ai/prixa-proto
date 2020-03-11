@@ -639,6 +639,10 @@
       "properties": {
         "profileData": {
           "$ref": "#/definitions/v1ProfileData"
+        },
+        "isVerified": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
