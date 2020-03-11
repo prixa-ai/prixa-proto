@@ -171,6 +171,28 @@
         ]
       }
     },
+    "/api/v1/prixa/statistics": {
+      "get": {
+        "operationId": "GetDiagnosticStatistics",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetDiagnosticStatisticsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "DiagnosticService"
+        ]
+      }
+    },
     "/api/v1/prixa/survey": {
       "post": {
         "operationId": "SendSurvey",
@@ -430,6 +452,35 @@
           "items": {
             "type": "string"
           }
+        }
+      }
+    },
+    "v1GetDiagnosticStatisticsResponse": {
+      "type": "object",
+      "properties": {
+        "symptomsCount": {
+          "type": "string"
+        },
+        "diseaseCount": {
+          "type": "string"
+        },
+        "differentialsCount": {
+          "type": "string"
+        },
+        "articlesCount": {
+          "type": "string"
+        },
+        "profilesCount": {
+          "type": "string"
+        },
+        "typesCount": {
+          "type": "string"
+        },
+        "propertiesCount": {
+          "type": "string"
+        },
+        "characteristicsCount": {
+          "type": "string"
         }
       }
     },

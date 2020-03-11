@@ -7,10 +7,10 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
 	_ "github.com/mwitkow/go-proto-validators"
 	_ "github.com/golang/protobuf/ptypes/empty"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
+	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
 
@@ -270,6 +270,9 @@ func (this *GetDiseaseArticleRequest) Validate() error {
 	return nil
 }
 func (this *GetDiseaseArticleResponse) Validate() error {
+	return nil
+}
+func (this *GetDiagnosticStatisticsResponse) Validate() error {
 	return nil
 }
 func (this *UpdateSourceRequest) Validate() error {

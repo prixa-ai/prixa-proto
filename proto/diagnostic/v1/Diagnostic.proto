@@ -85,6 +85,12 @@ service DiagnosticService {
         };
     }
 
+    rpc GetDiagnosticStatistics (google.protobuf.Empty) returns (GetDiagnosticStatisticsResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/prixa/statistics"
+        };
+    }
+
     // Internal GRPC API, DO NOT EXPOSE
     rpc UpdateDiagnosticData (UpdateSourceRequest) returns (google.protobuf.Empty) {}
 }
@@ -307,6 +313,17 @@ message GetDiseaseArticleResponse {
     string prevention = 9;
     string reference = 10;
     repeated string relatedSymptom = 11;
+}
+
+message GetDiagnosticStatisticsResponse {
+    string symptomsCount = 1;
+    string diseaseCount = 2;
+    string differentialsCount = 3;
+    string articlesCount = 4;
+    string profilesCount = 5;
+    string typesCount = 6;
+    string propertiesCount = 7;
+    string characteristicsCount = 8;
 }
 
 message UpdateSourceRequest {
