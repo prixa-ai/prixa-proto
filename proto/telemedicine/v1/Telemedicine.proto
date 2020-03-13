@@ -521,5 +521,5 @@ message InitConversationRequest {
 }
 
 message InitConversationResponse {
-    string websiteID = 2 [(validator.field) = {string_not_empty: true}];
+    string websiteID = 1 [(validator.field) = {string_not_empty: true}];
 }
