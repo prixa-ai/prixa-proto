@@ -517,9 +517,9 @@ message ContactData{
 
 message InitConversationRequest {
     string diagnosticSessionID = 1 [(validator.field) = {string_not_empty: true}];
+    string sessionID = 2 [(validator.field) = {string_not_empty: true}];
 }
 
 message InitConversationResponse {
-    string sessionID = 1 [(validator.field) = {string_not_empty: true}];
-    string websiteID = 2 [(validator.field) = {string_not_empty: true}];
+    string websiteID = 1 [(validator.field) = {string_not_empty: true}];
 }
