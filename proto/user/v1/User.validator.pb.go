@@ -174,12 +174,12 @@ func (this *UserInfoResponse) Validate() error {
 	}
 	return nil
 }
-
-var _regex_ChangePasswordRequest_Email = regexp.MustCompile(`^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$`)
-
 func (this *ChangePasswordRequest) Validate() error {
-	if !_regex_ChangePasswordRequest_Email.MatchString(this.Email) {
-		return github_com_mwitkow_go_proto_validators.FieldError("Email", fmt.Errorf(`value '%v' must be a string conforming to regex "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"`, this.Email))
+	if this.Password == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Password", fmt.Errorf(`value '%v' must not be an empty string`, this.Password))
+	}
+	if this.ConfirmPassword == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("ConfirmPassword", fmt.Errorf(`value '%v' must not be an empty string`, this.ConfirmPassword))
 	}
 	return nil
 }

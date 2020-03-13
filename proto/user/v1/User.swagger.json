@@ -439,7 +439,10 @@
     "v1ChangePasswordRequest": {
       "type": "object",
       "properties": {
-        "email": {
+        "password": {
+          "type": "string"
+        },
+        "confirmPassword": {
           "type": "string"
         }
       }
@@ -636,6 +639,10 @@
       "properties": {
         "profileData": {
           "$ref": "#/definitions/v1ProfileData"
+        },
+        "isVerified": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },

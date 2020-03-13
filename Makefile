@@ -4,7 +4,7 @@ install:
 	go get -u github.com/golang/protobuf/protoc-gen-go
 	go get -u github.com/mwitkow/go-proto-validators/protoc-gen-govalidators
 
-build: install
+build: clean install
 	./gen.sh
 
 clean:

@@ -6,41 +6,29 @@ import "github.com/mwitkow/go-proto-validators/validator.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/wrappers.proto";
 
-
 service SiloamService {
-    rpc GetAreasData (google.protobuf.Empty) returns (GetAreasResponseData) {
-    }
+    rpc GetAreasData (google.protobuf.Empty) returns (GetAreasResponseData) {}
 
-    rpc GetHospitalsData (GetHospitalsRequestData) returns (GetHospitalsResponseData) {
-    }
+    rpc GetHospitalsData (GetHospitalsRequestData) returns (GetHospitalsResponseData) {}
 
-    rpc GetSpecialitiesData (GetSpecialitiesRequestData) returns (GetSpecialitiesResponseData) {
-    }
+    rpc GetSpecialitiesData (GetSpecialitiesRequestData) returns (GetSpecialitiesResponseData) {}
 
-    rpc GetDoctorsData (GetDoctorsRequestData) returns (GetDoctorsResponseData) {
-    }
+    rpc GetDoctorsData (GetDoctorsRequestData) returns (GetDoctorsResponseData) {}
     
-    rpc GetDoctorLeavesHospitalData (GetDoctorsLeavesHospitalRequestData) returns (GetDoctorsLeavesHospitalResponseData) {
-    }
+    rpc GetDoctorLeavesHospitalData (GetDoctorsLeavesHospitalRequestData) returns (GetDoctorsLeavesHospitalResponseData) {}
 
-    rpc GetSchedulesPerWeeksData (GetSchedulesPerWeeksRequestData) returns (GetSchedulesPerWeeksResponseData) {
-    }
+    rpc GetSchedulesPerWeeksData (GetSchedulesPerWeeksRequestData) returns (GetSchedulesPerWeeksResponseData) {}
 
-    rpc GetTimeSlotsData (GetTimeSlotsRequestData) returns (GetTimeSlotsResponseData) {
-    }
+    rpc GetTimeSlotsData (GetTimeSlotsRequestData) returns (GetTimeSlotsResponseData) {}
 
-    rpc PostAppointmentData (PostAppointmentRequestData) returns (PostAppointmentResponseData) {
-    }
+    rpc PostAppointmentData (PostAppointmentRequestData) returns (PostAppointmentResponseData) {}
 
-    rpc CancelAppointmentData (CancelAppointmentRequestData) returns (CancelAppointmentResponseData) {
-    }
+    rpc CancelAppointmentData (CancelAppointmentRequestData) returns (CancelAppointmentResponseData) {}
 
-    rpc PostRescheduleAppointmentData (PostRescheduleAppointmentRequestData) returns (PostRescheduleAppointmentResponseData) {
-    }
+    rpc PostRescheduleAppointmentData (PostRescheduleAppointmentRequestData) returns (PostRescheduleAppointmentResponseData) {}
 
-    rpc GetAppointmentsData(GetAppointmentsRequestData) returns (GetAppointmentsResponseData){        
-    }
-    
+    rpc GetAppointmentsData(GetAppointmentsRequestData) returns (GetAppointmentsResponseData){        }
+
 }
 
 message GetAreasResponseData{

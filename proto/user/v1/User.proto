@@ -277,10 +277,12 @@ message UpdatePasswordResponse {
 
 message UserInfoResponse {
     ProfileData profileData = 1;
+    bool isVerified = 2;
 }
 
 message ChangePasswordRequest {
-    string email = 1 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}];
+    string password = 1 [(validator.field) = {string_not_empty: true}];
+    string confirmPassword = 2 [(validator.field) = {string_not_empty: true}];
 }
 
 message ChangePasswordResponse {

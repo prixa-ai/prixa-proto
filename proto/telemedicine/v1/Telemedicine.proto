@@ -144,8 +144,8 @@ service TelemedicineService {
         };
     }
 
-    // Get booking appointment data
-    rpc GetBookingAppointmentData(GetAppointmentBookingRequestData) returns (AppointmentBookingResponseData){
+    // Get appointment booking data
+    rpc GetAppointmentBookingData(GetAppointmentBookingRequestData) returns (AppointmentBookingResponseData){
         option (google.api.http) = {
             get: "/api/v1/telemedicine/appointment/{bookingId}"
         };
@@ -181,89 +181,158 @@ service TelemedicineService {
             }
         };
     }
+
+    // InitConversation is initialize conversation between user and doctor
+    rpc InitConversation(InitConversationRequest) returns (InitConversationResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/telemedicine/conversation/init"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }
 }
 
 message GetAppointmentBookingsRequestData{
+    // Param
     FindAppointmentBookingParamData param = 1 [(validator.field) = {msg_exists : true}];
+    // From date
     google.protobuf.Timestamp fromDate = 2 [(validator.field) = {msg_exists : true}];
+    // To date
     google.protobuf.Timestamp toDate = 3 [(validator.field) = {msg_exists : true}];
 }
 
 message FindAppointmentBookingParamData{
+    // Patient name
     string patientName = 1;
+    // Hospital ID
     string hospitalId = 2 [(validator.field) = {uuid_ver: 4}];
+    // Doctor ID
     string doctorId = 3 [(validator.field) = {uuid_ver: 4}];
 }
 
 message GetAppointmentBookingRequestData{
+    // Booking ID
     string bookingId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
 }
 
 message PostAppointmentBookingRequestData{
+    // Patient name
     string name = 1 [(validator.field) = {string_not_empty: true}]; 
+    // Patient NIk
     string nik = 2 [(validator.field) = {string_not_empty: true, regex: "^[0-9]{16}$"}];
+    // Patient email
     string email = 3 [(validator.field) = {string_not_empty: true, regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}]; 
+    // Patient phone number
     string phoneNumber = 4 [(validator.field) = {string_not_empty: true, regex: "^[+]?[0-9]{10,13}$"}]; 
+    // Payment method
     string paymentMethod = 5 [(validator.field) = {string_not_empty: true}];
+    // Booking time
     google.protobuf.Timestamp bookingTime = 6 [(validator.field) = {msg_exists : true}];
+    // Doctor ID
     string doctorId = 7 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+    // Hospital ID
     string hospitalId = 8 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
 }
 
 message AppointmentBookingsResponseData{
+    // Appointment status
     string status = 1;
+    // Appointment message
     string message = 2;
+    // Appointment data
     repeated AppointmentBookingData data = 3;
 }
 
 message AppointmentBookingResponseData{
+    // Appointment booking response status
     string status = 1;
+    // Appointment booking response message
     string message = 2;
+    // Appointment booking response data
     AppointmentBookingData data = 3;
 }
 
 message AppointmentBookingData{
+    // Booking ID
     string id = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+    // Patient name
     string name = 2;
+    // Patient NIK
     string nik = 3;
+    // Patient email
     string email = 4;
+    // Patient phone number
     string phoneNumber = 5;
+    // Patient payment method
     string paymentMethod = 6;
+    // Appointment booking time
     google.protobuf.Timestamp bookingTime = 7;
+    // Doctor ID
     string doctorId = 8;
+    // Doctor name
     string doctorName = 9;    
+    // Hospital ID
     string hospitalId = 10;
+    // Hospital name
     string hospitalName = 11;
+    // Hospital address
     string hospitalAddress = 12;
+    // Appointment booking status
     string bookingStatus = 13;
+    // Appointment created time
     google.protobuf.Timestamp createdTime = 14;
-
 }
 
 message GetHospitalRequestData{
+    // Hospital ID
     string hospitalId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];            
 }
 
 message GetHospitalsRequestData {
+    // Param
     GetHospitalParamData param = 1 [(validator.field) = {msg_exists : true}];
 }
 
 message GetHospitalParamData{
-    string areaId = 1 [(validator.field) = {uuid_ver: 4}];    
-    string nameKeyword = 2;    
-    string specialityId = 3 [(validator.field) = {uuid_ver: 4}];    
-    CoordinateData coordinate = 4;     
+    // Area ID
+    string areaId = 1 [(validator.field) = {uuid_ver: 4}];
+    // Hospital keyword
+    string nameKeyword = 2;
+    // Hospital speciality ID
+    string specialityId = 3 [(validator.field) = {uuid_ver: 4}];
+    // Hospital coordinate (lat,lon)
+    CoordinateData coordinate = 4;
 }
 
 message HospitalData {
+    // Hospital id
     string id = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}]; 
-    string name = 2;                              
+    // Hospital name
+    string name = 2;
+    // Hospital alias
     string alias = 3;
+    // Hospital address
     AddressData address = 4;
-    ContactData contact  = 5;
+    // Hospital contact
+    ContactData contact = 5;
+    // Hospital coordinate
     CoordinateData coordinate = 6;
-    string imageUrl = 7;    
-    string accreditation = 8;     
+    // Hospital image url
+    string imageUrl = 7;
+    // Hospital accreditation
+    string accreditation = 8;
+    // Hospital specialities
     string areaId = 9 [(validator.field) = {uuid_ver: 4}]; 
     repeated SpecialityData specialities = 10;
     string  lastUpdated = 11;
@@ -271,108 +340,156 @@ message HospitalData {
 }
 
 message HospitalsResponseData{
+    // Hospitals response status
     string status = 1;
+    // Hospitals response message
     string message = 2;
+    // Hospitals response data
     repeated HospitalData data = 3;
 }
 
 message HospitalResponseData{
+    // Hospital response status
     string status = 1;
+    // Hospital response message
     string message = 2;
+    // Hospital response data
     HospitalData data = 3;
 }
 
 message GetDoctorRequestData{
+    // Doctor ID
     string doctorId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];            
 }
 message GetDoctorsRequestData {
-      GetDoctorParamData param = 1;
+    // Doctors param
+    GetDoctorParamData param = 1;
 }
 
 message GetDoctorParamData{
+    // Area ID
     string areaId = 1 [(validator.field) = {uuid_ver: 4}];    
-    string nameKeyword = 2;    
+    // Doctor keyword
+    string nameKeyword = 2;
+    // Doctor speciality ID
     string specialityId = 3 [(validator.field) = {uuid_ver: 4}];    
+    // Doctor hospital ID
     string hospitalId = 4 [(validator.field) = {uuid_ver: 4}];    
 }
 
-
 message DoctorsResponseData{
+    // Doctors response status
     string status = 1;
+    // Doctors response message
     string message = 2;
+    // Doctors response data
     repeated DoctorData data = 3;
 }
 
 message DoctorResponseData{
+    // Doctor response status
     string status = 1;
+    // Doctor response message
     string message = 2;
+    // Doctor response data
     DoctorData data = 3;
 }
 
 message DoctorData{
-    string id = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];                  
-    string name = 2;               
-    SpecialityData speciality = 3;           
+    // Doctor ID
+    string id = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+    // Doctor name
+    string name = 2;
+    // Doctor speciality
+    SpecialityData speciality = 3;
+    // Doctor contact
     ContactData contact = 4;
-    string imageUrl = 5; 
+    // Doctor image url
+    string imageUrl = 5;
+    // Doctor hospital list
     repeated HospitalData hospitals = 6;
     SourceData source = 7; 
     string lastUpdated = 8;     
 }
 
 message GetSpecialityRequestData{
+    // Speciality ID
     string specialityId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];     
 }
 
 message GetSpecialitiesRequestData{
+    // Area ID
     string areaId = 1 [(validator.field) = {uuid_ver: 4}];    
+    // Hospital ID
     string hospitalId = 2 [(validator.field) = {uuid_ver: 4}];    
 }
 
 message SpecialityData{
+    // Speciality ID
     string id = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];        
+    // Speciality name
     string name = 2;
+    // Speciality name indo
     string nameIndo = 3;
+    // Speciality image url
     string imageUrl = 4;
     string lastUpdated = 5;
+    // Speciality source
     SourceData source = 6;  
 }
 
 message SpecialitiesResponseData{
+    // Specialities response status
     string status = 1;
+    // Specialities response message
     string message = 2;
+    // Specialities response data
     repeated SpecialityData data = 3;
 }
 
 message SpecialityResponseData{
+    // Speciality response status
     string status = 1;
+    // Speciality response message
     string message = 2;
+    // Speciality response data
     SpecialityData data = 3;
 }
 
 
 message GetAreaRequestData{
+    // Area ID
     string areaId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];     
 }
 
 message AreasResponseData{
+    // Areas response status
     string status = 1;
+    // Areas response message
     string message = 2;
+    // Areas response data
     repeated AreaData data = 3;
 }
 
 message AreaResponseData{
+    // Area response status
     string status = 1;
+    // Area response message
     string message = 2;
+    // Area response data
     AreaData data = 3;
 }
 
 message AreaData{
+    // Area ID
     string id = 1  [(validator.field) = {uuid_ver: 4, string_not_empty: true}];  ;
+    // Area name
     string name = 2;
+    // Area image url
     string imageUrl = 3;
     string lastUpdated = 4;
-    SourceData source = 5;    
+    // Area source
+    SourceData source = 5;
 }
 
 message DoctorScheduleData{
@@ -423,21 +540,40 @@ message CoordinateData{
 }
 
 message AddressData{
-    string zipCode = 1;     //kode pos
-    string village = 2;     //kelurahan
-    string subDistrict = 3; //kecamatan
-    string district = 4;    //kota/kabupaten
-    string province = 5;    //provinsi
+    // Kode pos
+    string zipCode = 1;
+    // Kelurahan
+    string village = 2;
+    // Kecamatan
+    string subDistrict = 3;
+    // Kota / kabupaten
+    string district = 4;
+    // Provinsi
+    string province = 5;
     string street = 6;      //street
 }
 
 message SourceData{
-    string sourceId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];    
+    // Source ID
+    string sourceId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+    // Source Name
     string sourceName = 2;
-    string originId = 3 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];    
+    // Origin ID
+    string originId = 3 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
 }
 
 message ContactData{
-    string phoneNumber = 1 [(validator.field) = {regex: "^[+]?[0-9]{10,13}$"}]; 
+    // Phone no
+    string phoneNumber = 1 [(validator.field) = {regex: "^[+]?[0-9]{10,13}$"}];
+    // Email
     string email = 2 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}]; 
+}
+
+message InitConversationRequest {
+    string diagnosticSessionID = 1 [(validator.field) = {string_not_empty: true}];
+}
+
+message InitConversationResponse {
+    string sessionID = 1 [(validator.field) = {string_not_empty: true}];
+    string websiteID = 2 [(validator.field) = {string_not_empty: true}];
 }
