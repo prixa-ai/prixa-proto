@@ -2279,7 +2279,8 @@ type AddressData struct {
 	// Kota / kabupaten
 	District string `protobuf:"bytes,4,opt,name=district,proto3" json:"district,omitempty"`
 	// Provinsi
-	Province             string   `protobuf:"bytes,5,opt,name=province,proto3" json:"province,omitempty"`
+	Province string `protobuf:"bytes,5,opt,name=province,proto3" json:"province,omitempty"`
+	//street
 	Street               string   `protobuf:"bytes,6,opt,name=street,proto3" json:"street,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`

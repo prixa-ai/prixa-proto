@@ -78,7 +78,7 @@ service TelemedicineService {
     // Get specialities list data
     rpc GetSpecialitiesData (GetSpecialitiesRequestData) returns (SpecialitiesResponseData) {
         option (google.api.http) = {
-            get: "/api/v1/telemedicine/speciality"                
+            get: "/api/v1/telemedicine/speciality"
         };
     }
 
@@ -336,7 +336,7 @@ message HospitalData {
     string areaId = 9 [(validator.field) = {uuid_ver: 4}]; 
     repeated SpecialityData specialities = 10;
     string  lastUpdated = 11;
-    SourceData source = 12;     
+    SourceData source = 12;
 }
 
 message HospitalsResponseData{
@@ -409,7 +409,7 @@ message DoctorData{
     // Doctor hospital list
     repeated HospitalData hospitals = 6;
     SourceData source = 7; 
-    string lastUpdated = 8;     
+    string lastUpdated = 8;
 }
 
 message GetSpecialityRequestData{
@@ -515,8 +515,8 @@ message GetDoctorSchedulesRequestData{
 }
 
 message GetDoctorTimeSlotRequestData{
-    string hospitalId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];      
-    string doctorId = 2 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];      
+    string hospitalId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+    string doctorId = 2 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
     google.protobuf.Timestamp appointmentDate = 3 [(validator.field) = {msg_exists: true}];
 }
 
@@ -550,7 +550,8 @@ message AddressData{
     string district = 4;
     // Provinsi
     string province = 5;
-    string street = 6;      //street
+    //street
+    string street = 6;      
 }
 
 message SourceData{

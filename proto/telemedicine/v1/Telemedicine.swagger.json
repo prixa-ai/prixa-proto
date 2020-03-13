@@ -655,7 +655,8 @@
           "title": "Provinsi"
         },
         "street": {
-          "type": "string"
+          "type": "string",
+          "title": "street"
         }
       }
     },
