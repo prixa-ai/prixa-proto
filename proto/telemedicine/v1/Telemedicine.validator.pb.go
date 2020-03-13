@@ -513,12 +513,12 @@ func (this *InitConversationRequest) Validate() error {
 	if this.DiagnosticSessionID == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("DiagnosticSessionID", fmt.Errorf(`value '%v' must not be an empty string`, this.DiagnosticSessionID))
 	}
-	return nil
-}
-func (this *InitConversationResponse) Validate() error {
 	if this.SessionID == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("SessionID", fmt.Errorf(`value '%v' must not be an empty string`, this.SessionID))
 	}
+	return nil
+}
+func (this *InitConversationResponse) Validate() error {
 	if this.WebsiteID == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("WebsiteID", fmt.Errorf(`value '%v' must not be an empty string`, this.WebsiteID))
 	}
