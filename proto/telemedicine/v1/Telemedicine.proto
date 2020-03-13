@@ -281,7 +281,7 @@ message AppointmentBookingData{
     // Doctor ID
     string doctorId = 8;
     // Doctor name
-    string doctorName = 9;    
+    string doctorName = 9;
     // Hospital ID
     string hospitalId = 10;
     // Hospital name
@@ -296,7 +296,7 @@ message AppointmentBookingData{
 
 message GetHospitalRequestData{
     // Hospital ID
-    string hospitalId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];            
+    string hospitalId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
 }
 
 message GetHospitalsRequestData {
@@ -335,7 +335,7 @@ message HospitalData {
     // Hospital specialities
     string areaId = 9 [(validator.field) = {uuid_ver: 4}]; 
     repeated SpecialityData specialities = 10;
-    string  lastUpdated = 11;
+    string lastUpdated = 11;
     SourceData source = 12;
 }
 
@@ -359,7 +359,7 @@ message HospitalResponseData{
 
 message GetDoctorRequestData{
     // Doctor ID
-    string doctorId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];            
+    string doctorId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
 }
 message GetDoctorsRequestData {
     // Doctors param
@@ -368,13 +368,13 @@ message GetDoctorsRequestData {
 
 message GetDoctorParamData{
     // Area ID
-    string areaId = 1 [(validator.field) = {uuid_ver: 4}];    
+    string areaId = 1 [(validator.field) = {uuid_ver: 4}]
     // Doctor keyword
     string nameKeyword = 2;
     // Doctor speciality ID
-    string specialityId = 3 [(validator.field) = {uuid_ver: 4}];    
+    string specialityId = 3 [(validator.field) = {uuid_ver: 4}];
     // Doctor hospital ID
-    string hospitalId = 4 [(validator.field) = {uuid_ver: 4}];    
+    string hospitalId = 4 [(validator.field) = {uuid_ver: 4}];
 }
 
 message DoctorsResponseData{
@@ -414,19 +414,19 @@ message DoctorData{
 
 message GetSpecialityRequestData{
     // Speciality ID
-    string specialityId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];     
+    string specialityId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
 }
 
 message GetSpecialitiesRequestData{
     // Area ID
-    string areaId = 1 [(validator.field) = {uuid_ver: 4}];    
+    string areaId = 1 [(validator.field) = {uuid_ver: 4}];
     // Hospital ID
-    string hospitalId = 2 [(validator.field) = {uuid_ver: 4}];    
+    string hospitalId = 2 [(validator.field) = {uuid_ver: 4}];
 }
 
 message SpecialityData{
     // Speciality ID
-    string id = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];        
+    string id = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
     // Speciality name
     string name = 2;
     // Speciality name indo
@@ -459,7 +459,7 @@ message SpecialityResponseData{
 
 message GetAreaRequestData{
     // Area ID
-    string areaId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];     
+    string areaId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
 }
 
 message AreasResponseData{
@@ -482,7 +482,7 @@ message AreaResponseData{
 
 message AreaData{
     // Area ID
-    string id = 1  [(validator.field) = {uuid_ver: 4, string_not_empty: true}];  ;
+    string id = 1  [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
     // Area name
     string name = 2;
     // Area image url
@@ -493,7 +493,7 @@ message AreaData{
 }
 
 message DoctorScheduleData{
-    string scheduleId = 1 [(validator.field) = {uuid_ver: 4}];  ;
+    string scheduleId = 1 [(validator.field) = {uuid_ver: 4}];
     DoctorData doctor = 2;
     HospitalData hospital = 3;
     int32 day = 4;
@@ -551,7 +551,7 @@ message AddressData{
     // Provinsi
     string province = 5;
     //street
-    string street = 6;      
+    string street = 6;
 }
 
 message SourceData{
