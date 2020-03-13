@@ -7,11 +7,11 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
+	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/golang/protobuf/ptypes/empty"
 	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
 	_ "github.com/mwitkow/go-proto-validators"
 	_ "github.com/golang/protobuf/ptypes/timestamp"
-	_ "google.golang.org/genproto/googleapis/api/annotations"
 	regexp "regexp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
@@ -610,12 +610,12 @@ func (this *InitConversationRequest) Validate() error {
 	if this.DiagnosticSessionID == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("DiagnosticSessionID", fmt.Errorf(`value '%v' must not be an empty string`, this.DiagnosticSessionID))
 	}
-	return nil
-}
-func (this *InitConversationResponse) Validate() error {
 	if this.SessionID == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("SessionID", fmt.Errorf(`value '%v' must not be an empty string`, this.SessionID))
 	}
+	return nil
+}
+func (this *InitConversationResponse) Validate() error {
 	if this.WebsiteID == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("WebsiteID", fmt.Errorf(`value '%v' must not be an empty string`, this.WebsiteID))
 	}

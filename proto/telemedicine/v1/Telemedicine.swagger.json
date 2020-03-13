@@ -1164,15 +1164,15 @@
       "properties": {
         "diagnosticSessionID": {
           "type": "string"
+        },
+        "sessionID": {
+          "type": "string"
         }
       }
     },
     "v1InitConversationResponse": {
       "type": "object",
       "properties": {
-        "sessionID": {
-          "type": "string"
-        },
         "websiteID": {
           "type": "string"
         }
