@@ -325,7 +325,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1DoctorsResponseData"
+              "$ref": "#/definitions/v1DoctorResponseData"
             }
           },
           "default": {
@@ -391,17 +391,17 @@
           },
           {
             "name": "param.coordinate.lattitude",
-            "description": "Latitude.",
             "in": "query",
             "required": false,
-            "type": "string"
+            "type": "number",
+            "format": "float"
           },
           {
             "name": "param.coordinate.longitude",
-            "description": "Longitude.",
             "in": "query",
             "required": false,
-            "type": "string"
+            "type": "number",
+            "format": "float"
           }
         ],
         "tags": [
@@ -431,6 +431,43 @@
           {
             "name": "hospitalId",
             "description": "Hospital ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TelemedicineService"
+        ]
+      }
+    },
+    "/api/v1/telemedicine/schedules/hospital/{hospitalId}/doctor/{doctorId}": {
+      "get": {
+        "summary": "Get doctor Schedules data",
+        "operationId": "GetDoctorSchedulesData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DoctorSchedulesResponseData"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "hospitalId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "doctorId",
             "in": "path",
             "required": true,
             "type": "string"
@@ -511,6 +548,50 @@
           "TelemedicineService"
         ]
       }
+    },
+    "/api/v1/telemedicine/timeslot/hospital/{hospitalId}/doctor/{doctorId}": {
+      "get": {
+        "summary": "Get doctor timeslot data",
+        "operationId": "GetDoctorTimeSlotsData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DoctorTimeSlotsResponseData"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "hospitalId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "doctorId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "appointmentDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "tags": [
+          "TelemedicineService"
+        ]
+      }
     }
   },
   "definitions": {
@@ -572,6 +653,10 @@
         "province": {
           "type": "string",
           "title": "Provinsi"
+        },
+        "street": {
+          "type": "string",
+          "title": "street"
         }
       }
     },
@@ -691,9 +776,7 @@
           "title": "Area image url"
         },
         "lastUpdated": {
-          "type": "string",
-          "format": "date-time",
-          "title": "Area last update"
+          "type": "string"
         },
         "source": {
           "$ref": "#/definitions/v1SourceData",
@@ -755,12 +838,12 @@
       "type": "object",
       "properties": {
         "lattitude": {
-          "type": "string",
-          "title": "Latitude"
+          "type": "number",
+          "format": "float"
         },
         "longitude": {
-          "type": "string",
-          "title": "Longitude"
+          "type": "number",
+          "format": "float"
         }
       }
     },
@@ -787,12 +870,123 @@
           "type": "string",
           "title": "Doctor image url"
         },
-        "hospitalsList": {
+        "hospitals": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1HospitalData"
           },
           "title": "Doctor hospital list"
+        },
+        "source": {
+          "$ref": "#/definitions/v1SourceData"
+        },
+        "lastUpdated": {
+          "type": "string"
+        }
+      }
+    },
+    "v1DoctorResponseData": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "title": "Doctor response status"
+        },
+        "message": {
+          "type": "string",
+          "title": "Doctor response message"
+        },
+        "data": {
+          "$ref": "#/definitions/v1DoctorData",
+          "title": "Doctor response data"
+        }
+      }
+    },
+    "v1DoctorScheduleData": {
+      "type": "object",
+      "properties": {
+        "scheduleId": {
+          "type": "string"
+        },
+        "doctor": {
+          "$ref": "#/definitions/v1DoctorData"
+        },
+        "hospital": {
+          "$ref": "#/definitions/v1HospitalData"
+        },
+        "day": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "fromTime": {
+          "type": "string"
+        },
+        "toTime": {
+          "type": "string"
+        },
+        "lastUpdated": {
+          "type": "string"
+        },
+        "source": {
+          "$ref": "#/definitions/v1SourceData"
+        }
+      }
+    },
+    "v1DoctorSchedulesResponseData": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1DoctorScheduleData"
+          }
+        }
+      }
+    },
+    "v1DoctorTimeSlotData": {
+      "type": "object",
+      "properties": {
+        "scheduleId": {
+          "type": "string"
+        },
+        "hospitalTimeZone": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isFull": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "fromTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "toTime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "v1DoctorTimeSlotsResponseData": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1DoctorTimeSlotData"
+          }
         }
       }
     },
@@ -910,21 +1104,21 @@
           "type": "string",
           "title": "Hospital accreditation"
         },
-        "specialitiesList": {
+        "areaId": {
+          "type": "string",
+          "title": "Hospital specialities"
+        },
+        "specialities": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1SpecialityData"
-          },
-          "title": "Hospital specialities"
+          }
         },
         "lastUpdated": {
-          "type": "string",
-          "format": "date-time",
-          "title": "Hospital last update data"
+          "type": "string"
         },
         "source": {
-          "$ref": "#/definitions/v1SourceData",
-          "title": "Hospital source"
+          "$ref": "#/definitions/v1SourceData"
         }
       }
     },
@@ -1079,9 +1273,7 @@
           "title": "Speciality image url"
         },
         "lastUpdated": {
-          "type": "string",
-          "format": "date-time",
-          "title": "Speciality last updated"
+          "type": "string"
         },
         "source": {
           "$ref": "#/definitions/v1SourceData",

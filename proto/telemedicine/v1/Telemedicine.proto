@@ -104,9 +104,23 @@ service TelemedicineService {
     } 
 
     // Get doctor data
-    rpc GetDoctorData (GetDoctorRequestData) returns (DoctorsResponseData) {
+    rpc GetDoctorData (GetDoctorRequestData) returns (DoctorResponseData) {
         option (google.api.http) = {
             get: "/api/v1/telemedicine/doctor/{doctorId}"
+        };
+    }
+
+    // Get doctor Schedules data
+    rpc GetDoctorSchedulesData (GetDoctorSchedulesRequestData) returns (DoctorSchedulesResponseData) {
+        option (google.api.http) = {
+            get: "/api/v1/telemedicine/schedules/hospital/{hospitalId}/doctor/{doctorId}"
+        };
+    }
+
+    // Get doctor timeslot data
+    rpc GetDoctorTimeSlotsData (GetDoctorTimeSlotRequestData) returns (DoctorTimeSlotsResponseData) {
+        option (google.api.http) = {
+            get: "/api/v1/telemedicine/timeslot/hospital/{hospitalId}/doctor/{doctorId}"
         };
     }
 
@@ -267,7 +281,7 @@ message AppointmentBookingData{
     // Doctor ID
     string doctorId = 8;
     // Doctor name
-    string doctorName = 9;    
+    string doctorName = 9;
     // Hospital ID
     string hospitalId = 10;
     // Hospital name
@@ -282,7 +296,7 @@ message AppointmentBookingData{
 
 message GetHospitalRequestData{
     // Hospital ID
-    string hospitalId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];            
+    string hospitalId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
 }
 
 message GetHospitalsRequestData {
@@ -319,11 +333,10 @@ message HospitalData {
     // Hospital accreditation
     string accreditation = 8;
     // Hospital specialities
-    repeated SpecialityData specialitiesList = 9;
-    // Hospital last update data
-    google.protobuf.Timestamp lastUpdated = 10;
-    // Hospital source
-    SourceData source = 11;
+    string areaId = 9 [(validator.field) = {uuid_ver: 4}]; 
+    repeated SpecialityData specialities = 10;
+    string lastUpdated = 11;
+    SourceData source = 12;
 }
 
 message HospitalsResponseData{
@@ -346,7 +359,7 @@ message HospitalResponseData{
 
 message GetDoctorRequestData{
     // Doctor ID
-    string doctorId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];            
+    string doctorId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
 }
 message GetDoctorsRequestData {
     // Doctors param
@@ -355,13 +368,13 @@ message GetDoctorsRequestData {
 
 message GetDoctorParamData{
     // Area ID
-    string areaId = 1 [(validator.field) = {uuid_ver: 4}];    
+    string areaId = 1 [(validator.field) = {uuid_ver: 4}];
     // Doctor keyword
     string nameKeyword = 2;
     // Doctor speciality ID
-    string specialityId = 3 [(validator.field) = {uuid_ver: 4}];    
+    string specialityId = 3 [(validator.field) = {uuid_ver: 4}];
     // Doctor hospital ID
-    string hospitalId = 4 [(validator.field) = {uuid_ver: 4}];    
+    string hospitalId = 4 [(validator.field) = {uuid_ver: 4}];
 }
 
 message DoctorsResponseData{
@@ -394,32 +407,33 @@ message DoctorData{
     // Doctor image url
     string imageUrl = 5;
     // Doctor hospital list
-    repeated HospitalData hospitalsList = 6;      
+    repeated HospitalData hospitals = 6;
+    SourceData source = 7; 
+    string lastUpdated = 8;
 }
 
 message GetSpecialityRequestData{
     // Speciality ID
-    string specialityId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];     
+    string specialityId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
 }
 
 message GetSpecialitiesRequestData{
     // Area ID
-    string areaId = 1 [(validator.field) = {uuid_ver: 4}];    
+    string areaId = 1 [(validator.field) = {uuid_ver: 4}];
     // Hospital ID
-    string hospitalId = 2 [(validator.field) = {uuid_ver: 4}];    
+    string hospitalId = 2 [(validator.field) = {uuid_ver: 4}];
 }
 
 message SpecialityData{
     // Speciality ID
-    string id = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];        
+    string id = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
     // Speciality name
     string name = 2;
     // Speciality name indo
     string nameIndo = 3;
     // Speciality image url
     string imageUrl = 4;
-    // Speciality last updated
-    google.protobuf.Timestamp lastUpdated = 5;
+    string lastUpdated = 5;
     // Speciality source
     SourceData source = 6;  
 }
@@ -445,7 +459,7 @@ message SpecialityResponseData{
 
 message GetAreaRequestData{
     // Area ID
-    string areaId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];     
+    string areaId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
 }
 
 message AreasResponseData{
@@ -468,22 +482,61 @@ message AreaResponseData{
 
 message AreaData{
     // Area ID
-    string id = 1  [(validator.field) = {uuid_ver: 4, string_not_empty: true}];  ;
+    string id = 1  [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
     // Area name
     string name = 2;
     // Area image url
     string imageUrl = 3;
-    // Area last update
-    google.protobuf.Timestamp lastUpdated = 4;
+    string lastUpdated = 4;
     // Area source
     SourceData source = 5;
 }
 
+message DoctorScheduleData{
+    string scheduleId = 1 [(validator.field) = {uuid_ver: 4}];
+    DoctorData doctor = 2;
+    HospitalData hospital = 3;
+    int32 day = 4;
+    string fromTime = 5;
+    string toTime = 6;
+    string lastUpdated = 7;
+    SourceData source = 8; 
+}
+
+message DoctorSchedulesResponseData{
+    string status = 1;
+    string message = 2;
+    repeated DoctorScheduleData data = 3;
+}
+
+message GetDoctorSchedulesRequestData{
+    string doctorId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}]; 
+    string hospitalId = 2 [(validator.field) = {uuid_ver: 4, string_not_empty: true}]; 
+}
+
+message GetDoctorTimeSlotRequestData{
+    string hospitalId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+    string doctorId = 2 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+    google.protobuf.Timestamp appointmentDate = 3 [(validator.field) = {msg_exists: true}];
+}
+
+message DoctorTimeSlotsResponseData{
+    string status = 1;
+    string message = 2;
+    repeated DoctorTimeSlotData data = 3;
+}
+
+message DoctorTimeSlotData{
+    string scheduleId = 1;
+    int32 hospitalTimeZone = 2;
+    bool  isFull = 3;
+    google.protobuf.Timestamp fromTime = 4;
+    google.protobuf.Timestamp toTime = 5;
+}
+
 message CoordinateData{
-    // Latitude
-    string lattitude = 1;
-    // Longitude
-    string longitude = 2;
+    float lattitude = 1;
+    float longitude = 2;
 }
 
 message AddressData{
@@ -497,6 +550,8 @@ message AddressData{
     string district = 4;
     // Provinsi
     string province = 5;
+    //street
+    string street = 6;
 }
 
 message SourceData{
