@@ -275,7 +275,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1DoctorsResponseData"
+              "$ref": "#/definitions/v1DoctorResponseData"
             }
           },
           "default": {
@@ -339,13 +339,15 @@
             "name": "param.coordinate.lattitude",
             "in": "query",
             "required": false,
-            "type": "string"
+            "type": "number",
+            "format": "float"
           },
           {
             "name": "param.coordinate.longitude",
             "in": "query",
             "required": false,
-            "type": "string"
+            "type": "number",
+            "format": "float"
           }
         ],
         "tags": [
@@ -374,6 +376,43 @@
         "parameters": [
           {
             "name": "hospitalId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TelemedicineService"
+        ]
+      }
+    },
+    "/api/v1/telemedicine/schedules/hospital/{hospitalId}/doctor/{doctorId}": {
+      "get": {
+        "summary": "Get doctor Schedules data",
+        "operationId": "GetDoctorSchedulesData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DoctorSchedulesResponseData"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "hospitalId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "doctorId",
             "in": "path",
             "required": true,
             "type": "string"
@@ -451,6 +490,50 @@
           "TelemedicineService"
         ]
       }
+    },
+    "/api/v1/telemedicine/timeslot/hospital/{hospitalId}/doctor/{doctorId}": {
+      "get": {
+        "summary": "Get doctor timeslot data",
+        "operationId": "GetDoctorTimeSlotsData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DoctorTimeSlotsResponseData"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "hospitalId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "doctorId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "appointmentDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "tags": [
+          "TelemedicineService"
+        ]
+      }
     }
   },
   "definitions": {
@@ -506,6 +589,9 @@
           "type": "string"
         },
         "province": {
+          "type": "string"
+        },
+        "street": {
           "type": "string"
         }
       }
@@ -603,8 +689,7 @@
           "type": "string"
         },
         "lastUpdated": {
-          "type": "string",
-          "format": "date-time"
+          "type": "string"
         },
         "source": {
           "$ref": "#/definitions/v1SourceData"
@@ -657,10 +742,12 @@
       "type": "object",
       "properties": {
         "lattitude": {
-          "type": "string"
+          "type": "number",
+          "format": "float"
         },
         "longitude": {
-          "type": "string"
+          "type": "number",
+          "format": "float"
         }
       }
     },
@@ -682,10 +769,118 @@
         "imageUrl": {
           "type": "string"
         },
-        "hospitalsList": {
+        "hospitals": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1HospitalData"
+          }
+        },
+        "source": {
+          "$ref": "#/definitions/v1SourceData"
+        },
+        "lastUpdated": {
+          "type": "string"
+        }
+      }
+    },
+    "v1DoctorResponseData": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1DoctorData"
+        }
+      }
+    },
+    "v1DoctorScheduleData": {
+      "type": "object",
+      "properties": {
+        "scheduleId": {
+          "type": "string"
+        },
+        "doctor": {
+          "$ref": "#/definitions/v1DoctorData"
+        },
+        "hospital": {
+          "$ref": "#/definitions/v1HospitalData"
+        },
+        "day": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "fromTime": {
+          "type": "string"
+        },
+        "toTime": {
+          "type": "string"
+        },
+        "lastUpdated": {
+          "type": "string"
+        },
+        "source": {
+          "$ref": "#/definitions/v1SourceData"
+        }
+      }
+    },
+    "v1DoctorSchedulesResponseData": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1DoctorScheduleData"
+          }
+        }
+      }
+    },
+    "v1DoctorTimeSlotData": {
+      "type": "object",
+      "properties": {
+        "scheduleId": {
+          "type": "string"
+        },
+        "hospitalTimeZone": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isFull": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "fromTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "toTime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "v1DoctorTimeSlotsResponseData": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1DoctorTimeSlotData"
           }
         }
       }
@@ -782,15 +977,17 @@
         "accreditation": {
           "type": "string"
         },
-        "specialitiesList": {
+        "areaId": {
+          "type": "string"
+        },
+        "specialities": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1SpecialityData"
           }
         },
         "lastUpdated": {
-          "type": "string",
-          "format": "date-time"
+          "type": "string"
         },
         "source": {
           "$ref": "#/definitions/v1SourceData"
@@ -905,8 +1102,7 @@
           "type": "string"
         },
         "lastUpdated": {
-          "type": "string",
-          "format": "date-time"
+          "type": "string"
         },
         "source": {
           "$ref": "#/definitions/v1SourceData"

@@ -78,7 +78,7 @@ service TelemedicineService {
     // Get specialities list data
     rpc GetSpecialitiesData (GetSpecialitiesRequestData) returns (SpecialitiesResponseData) {
         option (google.api.http) = {
-            get: "/api/v1/telemedicine/speciality"
+            get: "/api/v1/telemedicine/speciality"                
         };
     }
 
@@ -104,9 +104,23 @@ service TelemedicineService {
     } 
 
     // Get doctor data
-    rpc GetDoctorData (GetDoctorRequestData) returns (DoctorsResponseData) {
+    rpc GetDoctorData (GetDoctorRequestData) returns (DoctorResponseData) {
         option (google.api.http) = {
             get: "/api/v1/telemedicine/doctor/{doctorId}"
+        };
+    }
+
+    // Get doctor Schedules data
+    rpc GetDoctorSchedulesData (GetDoctorSchedulesRequestData) returns (DoctorSchedulesResponseData) {
+        option (google.api.http) = {
+            get: "/api/v1/telemedicine/schedules/hospital/{hospitalId}/doctor/{doctorId}"
+        };
+    }
+
+    // Get doctor timeslot data
+    rpc GetDoctorTimeSlotsData (GetDoctorTimeSlotRequestData) returns (DoctorTimeSlotsResponseData) {
+        option (google.api.http) = {
+            get: "/api/v1/telemedicine/timeslot/hospital/{hospitalId}/doctor/{doctorId}"
         };
     }
 
@@ -250,9 +264,10 @@ message HospitalData {
     CoordinateData coordinate = 6;
     string imageUrl = 7;    
     string accreditation = 8;     
-    repeated SpecialityData specialitiesList = 9;
-    google.protobuf.Timestamp lastUpdated = 10;
-    SourceData source = 11;     
+    string areaId = 9 [(validator.field) = {uuid_ver: 4}]; 
+    repeated SpecialityData specialities = 10;
+    string  lastUpdated = 11;
+    SourceData source = 12;     
 }
 
 message HospitalsResponseData{
@@ -300,7 +315,9 @@ message DoctorData{
     SpecialityData speciality = 3;           
     ContactData contact = 4;
     string imageUrl = 5; 
-    repeated HospitalData hospitalsList = 6;      
+    repeated HospitalData hospitals = 6;
+    SourceData source = 7; 
+    string lastUpdated = 8;     
 }
 
 message GetSpecialityRequestData{
@@ -317,7 +334,7 @@ message SpecialityData{
     string name = 2;
     string nameIndo = 3;
     string imageUrl = 4;
-    google.protobuf.Timestamp lastUpdated = 5;
+    string lastUpdated = 5;
     SourceData source = 6;  
 }
 
@@ -354,13 +371,55 @@ message AreaData{
     string id = 1  [(validator.field) = {uuid_ver: 4, string_not_empty: true}];  ;
     string name = 2;
     string imageUrl = 3;
-    google.protobuf.Timestamp lastUpdated = 4;
+    string lastUpdated = 4;
     SourceData source = 5;    
 }
 
+message DoctorScheduleData{
+    string scheduleId = 1 [(validator.field) = {uuid_ver: 4}];  ;
+    DoctorData doctor = 2;
+    HospitalData hospital = 3;
+    int32 day = 4;
+    string fromTime = 5;
+    string toTime = 6;
+    string lastUpdated = 7;
+    SourceData source = 8; 
+}
+
+message DoctorSchedulesResponseData{
+    string status = 1;
+    string message = 2;
+    repeated DoctorScheduleData data = 3;
+}
+
+message GetDoctorSchedulesRequestData{
+    string doctorId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}]; 
+    string hospitalId = 2 [(validator.field) = {uuid_ver: 4, string_not_empty: true}]; 
+}
+
+message GetDoctorTimeSlotRequestData{
+    string hospitalId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];      
+    string doctorId = 2 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];      
+    google.protobuf.Timestamp appointmentDate = 3 [(validator.field) = {msg_exists: true}];
+}
+
+message DoctorTimeSlotsResponseData{
+    string status = 1;
+    string message = 2;
+    repeated DoctorTimeSlotData data = 3;
+}
+
+message DoctorTimeSlotData{
+    string scheduleId = 1;
+    int32 hospitalTimeZone = 2;
+    bool  isFull = 3;
+    google.protobuf.Timestamp fromTime = 4;
+    google.protobuf.Timestamp toTime = 5;
+}
+
 message CoordinateData{
-    string lattitude = 1;
-    string longitude = 2;
+    float lattitude = 1;
+    float longitude = 2;
 }
 
 message AddressData{
@@ -369,6 +428,7 @@ message AddressData{
     string subDistrict = 3; //kecamatan
     string district = 4;    //kota/kabupaten
     string province = 5;    //provinsi
+    string street = 6;      //street
 }
 
 message SourceData{
