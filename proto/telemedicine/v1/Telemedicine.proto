@@ -4,7 +4,6 @@ package prixa.telemedicine.v1;
 
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
-import "google/protobuf/empty.proto";
 import "protoc-gen-swagger/options/annotations.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 
@@ -62,7 +61,7 @@ service TelemedicineService {
     }
 
     // Get areaa list data
-    rpc GetAreasData (google.protobuf.Empty) returns (AreasResponseData) {
+    rpc GetAreasData (GetAreasRequestData) returns (AreasResponseData) {
         option (google.api.http) = {
             get: "/api/v1/telemedicine/area"
         };
@@ -299,9 +298,11 @@ message GetHospitalRequestData{
     string hospitalId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
 }
 
-message GetHospitalsRequestData {
+message GetHospitalsRequestData {    
     // Param
     GetHospitalParamData param = 1 [(validator.field) = {msg_exists : true}];
+    //page
+    int32 page = 2;
 }
 
 message GetHospitalParamData{
@@ -361,9 +362,11 @@ message GetDoctorRequestData{
     // Doctor ID
     string doctorId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
 }
-message GetDoctorsRequestData {
+message GetDoctorsRequestData {    
     // Doctors param
     GetDoctorParamData param = 1;
+    // Page
+    int32 page = 2;
 }
 
 message GetDoctorParamData{
@@ -422,6 +425,8 @@ message GetSpecialitiesRequestData{
     string areaId = 1 [(validator.field) = {uuid_ver: 4}];
     // Hospital ID
     string hospitalId = 2 [(validator.field) = {uuid_ver: 4}];
+    // Page
+    int32 page = 3;
 }
 
 message SpecialityData{
@@ -460,6 +465,11 @@ message SpecialityResponseData{
 message GetAreaRequestData{
     // Area ID
     string areaId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+}
+
+message GetAreasRequestData{
+    //page
+    int32 page = 1;
 }
 
 message AreasResponseData{
@@ -512,6 +522,7 @@ message DoctorSchedulesResponseData{
 message GetDoctorSchedulesRequestData{
     string doctorId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}]; 
     string hospitalId = 2 [(validator.field) = {uuid_ver: 4, string_not_empty: true}]; 
+    int32 page = 3;
 }
 
 message GetDoctorTimeSlotRequestData{

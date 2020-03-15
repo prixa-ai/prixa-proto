@@ -7,11 +7,10 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
+	_ "github.com/golang/protobuf/ptypes/timestamp"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
-	_ "github.com/golang/protobuf/ptypes/empty"
 	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
 	_ "github.com/mwitkow/go-proto-validators"
-	_ "github.com/golang/protobuf/ptypes/timestamp"
 	regexp "regexp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
@@ -428,6 +427,9 @@ func (this *GetAreaRequestData) Validate() error {
 	if this.AreaId == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("AreaId", fmt.Errorf(`value '%v' must not be an empty string`, this.AreaId))
 	}
+	return nil
+}
+func (this *GetAreasRequestData) Validate() error {
 	return nil
 }
 func (this *AreasResponseData) Validate() error {
