@@ -4,7 +4,6 @@ package prixa.telemedicine.v1;
 
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
-import "google/protobuf/empty.proto";
 import "protoc-gen-swagger/options/annotations.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 
@@ -62,7 +61,7 @@ service TelemedicineService {
     }
 
     // Get areaa list data
-    rpc GetAreasData (google.protobuf.Empty) returns (AreasResponseData) {
+    rpc GetAreasData (GetAreasRequestData) returns (AreasResponseData) {
         option (google.api.http) = {
             get: "/api/v1/telemedicine/area"
         };
@@ -302,6 +301,8 @@ message GetHospitalRequestData{
 message GetHospitalsRequestData {
     // Param
     GetHospitalParamData param = 1 [(validator.field) = {msg_exists : true}];
+    //page
+    int32 page = 2;
 }
 
 message GetHospitalParamData{
@@ -364,6 +365,8 @@ message GetDoctorRequestData{
 message GetDoctorsRequestData {
     // Doctors param
     GetDoctorParamData param = 1;
+    // Page
+    int32 page = 2;
 }
 
 message GetDoctorParamData{
@@ -422,6 +425,8 @@ message GetSpecialitiesRequestData{
     string areaId = 1 [(validator.field) = {uuid_ver: 4}];
     // Hospital ID
     string hospitalId = 2 [(validator.field) = {uuid_ver: 4}];
+    // Page
+    int32 page = 3;
 }
 
 message SpecialityData{
@@ -435,7 +440,7 @@ message SpecialityData{
     string imageUrl = 4;
     string lastUpdated = 5;
     // Speciality source
-    SourceData source = 6;  
+    SourceData source = 6;
 }
 
 message SpecialitiesResponseData{
@@ -462,6 +467,11 @@ message GetAreaRequestData{
     string areaId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
 }
 
+message GetAreasRequestData{
+    //page
+    int32 page = 1;
+}
+
 message AreasResponseData{
     // Areas response status
     string status = 1;
@@ -482,7 +492,7 @@ message AreaResponseData{
 
 message AreaData{
     // Area ID
-    string id = 1  [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+    string id = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
     // Area name
     string name = 2;
     // Area image url
@@ -512,6 +522,7 @@ message DoctorSchedulesResponseData{
 message GetDoctorSchedulesRequestData{
     string doctorId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}]; 
     string hospitalId = 2 [(validator.field) = {uuid_ver: 4, string_not_empty: true}]; 
+    int32 page = 3;
 }
 
 message GetDoctorTimeSlotRequestData{
@@ -529,7 +540,7 @@ message DoctorTimeSlotsResponseData{
 message DoctorTimeSlotData{
     string scheduleId = 1;
     int32 hospitalTimeZone = 2;
-    bool  isFull = 3;
+    bool isFull = 3;
     google.protobuf.Timestamp fromTime = 4;
     google.protobuf.Timestamp toTime = 5;
 }

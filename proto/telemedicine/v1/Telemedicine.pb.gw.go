@@ -15,7 +15,6 @@ import (
 
 	"github.com/golang/protobuf/descriptor"
 	"github.com/golang/protobuf/proto"
-	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/utilities"
 	"google.golang.org/grpc"
@@ -86,9 +85,20 @@ func local_request_TelemedicineService_GetAreaData_0(ctx context.Context, marsha
 
 }
 
+var (
+	filter_TelemedicineService_GetAreasData_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
 func request_TelemedicineService_GetAreasData_0(ctx context.Context, marshaler runtime.Marshaler, client TelemedicineServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq empty.Empty
+	var protoReq GetAreasRequestData
 	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TelemedicineService_GetAreasData_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
 
 	msg, err := client.GetAreasData(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
@@ -96,8 +106,12 @@ func request_TelemedicineService_GetAreasData_0(ctx context.Context, marshaler r
 }
 
 func local_request_TelemedicineService_GetAreasData_0(ctx context.Context, marshaler runtime.Marshaler, server TelemedicineServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq empty.Empty
+	var protoReq GetAreasRequestData
 	var metadata runtime.ServerMetadata
+
+	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_TelemedicineService_GetAreasData_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
 
 	msg, err := server.GetAreasData(ctx, &protoReq)
 	return msg, metadata, err
@@ -365,6 +379,10 @@ func local_request_TelemedicineService_GetDoctorData_0(ctx context.Context, mars
 
 }
 
+var (
+	filter_TelemedicineService_GetDoctorSchedulesData_0 = &utilities.DoubleArray{Encoding: map[string]int{"hospitalId": 0, "doctorId": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
+)
+
 func request_TelemedicineService_GetDoctorSchedulesData_0(ctx context.Context, marshaler runtime.Marshaler, client TelemedicineServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetDoctorSchedulesRequestData
 	var metadata runtime.ServerMetadata
@@ -396,6 +414,13 @@ func request_TelemedicineService_GetDoctorSchedulesData_0(ctx context.Context, m
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "doctorId", err)
+	}
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TelemedicineService_GetDoctorSchedulesData_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
 	msg, err := client.GetDoctorSchedulesData(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -434,6 +459,10 @@ func local_request_TelemedicineService_GetDoctorSchedulesData_0(ctx context.Cont
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "doctorId", err)
+	}
+
+	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_TelemedicineService_GetDoctorSchedulesData_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
 	msg, err := server.GetDoctorSchedulesData(ctx, &protoReq)
