@@ -667,6 +667,9 @@
         "gender": {
           "type": "string"
         },
+        "address": {
+          "type": "string"
+        },
         "height": {
           "type": "number",
           "format": "float"
@@ -692,6 +695,9 @@
           "format": "boolean"
         },
         "password": {
+          "type": "string"
+        },
+        "birthdate": {
           "type": "string"
         }
       }

@@ -258,14 +258,15 @@ message ProfileData {
     string phone = 2;
     string name = 3 [(validator.field) = {string_not_empty: true}];
     string gender = 4 [(validator.field) = {string_not_empty: true}];
-    float height = 5;
-    float weight = 6;
-    bool smokingStatus = 7;
-    bool alcoholStatus = 8;
-    bool emailVerified = 9;
-    bool phoneVerified = 10;
-    string password = 11 [(validator.field) = {string_not_empty: true}];
-    // ChronicConditionData chronicStatus = 12;
+    string address = 5;
+    float height = 6;
+    float weight = 7;
+    bool smokingStatus = 8;
+    bool alcoholStatus = 9;
+    bool emailVerified = 10;
+    bool phoneVerified = 11;
+    string password = 12 [(validator.field) = {string_not_empty: true}];
+    string birthdate = 13;
 }
 
 message LoginRequest {
