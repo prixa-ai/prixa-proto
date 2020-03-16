@@ -179,6 +179,66 @@ service UserService {
             }
         };
     }
+
+    // UpdateUserInfo updates user info (name, address, contact)
+    rpc UpdateUserInfo (UpdateUserInfoRequest) returns (UpdateUserInfoResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/user/update/info"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }
+
+    // UpdateUserProfileImage updates user profile image
+    rpc UpdateUserProfileImage (UpdateUserProfileImageRequest) returns (UpdateUserProfileImageResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/user/update/image"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }
+
+    // UpdateUserBirthDate updates user birthdate
+    rpc UpdateUserBirthDate (UpdateUserBirthDateRequest) returns (UpdateUserBirthDateResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/user/update/birthdate"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }
 }
 
 message AuthData {
@@ -283,6 +343,7 @@ message UserInfoResponse {
 message ChangePasswordRequest {
     string password = 1 [(validator.field) = {string_not_empty: true}];
     string confirmPassword = 2 [(validator.field) = {string_not_empty: true}];
+    string oldPassword = 3 [(validator.field) = {string_not_empty: true}];
 }
 
 message ChangePasswordResponse {
@@ -290,5 +351,29 @@ message ChangePasswordResponse {
 }
 
 message LogoutResponse {
+    string message = 1;
+}
+
+message UpdateUserInfoRequest {
+    ProfileData profileData = 1;
+}
+
+message UpdateUserInfoResponse {
+    string message = 1;
+}
+
+message UpdateUserProfileImageRequest {
+    string url = 1 [(validator.field) = {string_not_empty: true}];
+}
+
+message UpdateUserProfileImageResponse {
+    string message = 1;
+}
+
+message UpdateUserBirthDateRequest {
+    string birthdate = 1 [(validator.field) = {string_not_empty: true}];
+}
+
+message UpdateUserBirthDateResponse {
     string message = 1;
 }

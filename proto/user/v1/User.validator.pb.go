@@ -7,10 +7,10 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/golang/protobuf/ptypes/empty"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
 	_ "github.com/mwitkow/go-proto-validators"
+	_ "github.com/golang/protobuf/ptypes/empty"
 	regexp "regexp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
@@ -181,11 +181,43 @@ func (this *ChangePasswordRequest) Validate() error {
 	if this.ConfirmPassword == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("ConfirmPassword", fmt.Errorf(`value '%v' must not be an empty string`, this.ConfirmPassword))
 	}
+	if this.OldPassword == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("OldPassword", fmt.Errorf(`value '%v' must not be an empty string`, this.OldPassword))
+	}
 	return nil
 }
 func (this *ChangePasswordResponse) Validate() error {
 	return nil
 }
 func (this *LogoutResponse) Validate() error {
+	return nil
+}
+func (this *UpdateUserInfoRequest) Validate() error {
+	if this.ProfileData != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.ProfileData); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("ProfileData", err)
+		}
+	}
+	return nil
+}
+func (this *UpdateUserInfoResponse) Validate() error {
+	return nil
+}
+func (this *UpdateUserProfileImageRequest) Validate() error {
+	if this.Url == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Url", fmt.Errorf(`value '%v' must not be an empty string`, this.Url))
+	}
+	return nil
+}
+func (this *UpdateUserProfileImageResponse) Validate() error {
+	return nil
+}
+func (this *UpdateUserBirthDateRequest) Validate() error {
+	if this.Birthdate == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Birthdate", fmt.Errorf(`value '%v' must not be an empty string`, this.Birthdate))
+	}
+	return nil
+}
+func (this *UpdateUserBirthDateResponse) Validate() error {
 	return nil
 }
