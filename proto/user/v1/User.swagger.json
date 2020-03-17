@@ -251,6 +251,45 @@
         ]
       }
     },
+    "/api/v1/user/profile/update": {
+      "post": {
+        "summary": "UpdateUserInfo updates user info (name, address, contact)",
+        "operationId": "UpdateUserInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateUserInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdateUserInfoRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "Bearer": []
+          }
+        ]
+      }
+    },
     "/api/v1/user/register": {
       "post": {
         "summary": "New user registration",
@@ -444,6 +483,9 @@
         },
         "confirmPassword": {
           "type": "string"
+        },
+        "oldPassword": {
+          "type": "string"
         }
       }
     },
@@ -547,6 +589,9 @@
         "gender": {
           "type": "string"
         },
+        "address": {
+          "type": "string"
+        },
         "height": {
           "type": "number",
           "format": "float"
@@ -572,6 +617,12 @@
           "format": "boolean"
         },
         "password": {
+          "type": "string"
+        },
+        "birthdate": {
+          "type": "string"
+        },
+        "avatarURL": {
           "type": "string"
         }
       }
@@ -630,6 +681,22 @@
           "type": "string"
         },
         "sessionID": {
+          "type": "string"
+        }
+      }
+    },
+    "v1UpdateUserInfoRequest": {
+      "type": "object",
+      "properties": {
+        "profileData": {
+          "$ref": "#/definitions/v1ProfileData"
+        }
+      }
+    },
+    "v1UpdateUserInfoResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
           "type": "string"
         }
       }

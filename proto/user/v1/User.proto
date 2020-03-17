@@ -179,13 +179,33 @@ service UserService {
             }
         };
     }
+
+    // UpdateUserInfo updates user info (name, address, contact)
+    rpc UpdateUserInfo (UpdateUserInfoRequest) returns (UpdateUserInfoResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/user/profile/update"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }
 }
 
 message AuthData {
     string email = 1 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}];
     string password = 2 [(validator.field) = {string_not_empty: true}];
     string passwordConfirmation = 3 [(validator.field) = {string_not_empty: true}];
-    string diagnosticSessionID = 4 [(validator.field) = {string_not_empty: true}];
+    string diagnosticSessionID = 4;
 }
 
 message ChronicConditionData {
@@ -198,14 +218,16 @@ message ProfileData {
     string phone = 2;
     string name = 3 [(validator.field) = {string_not_empty: true}];
     string gender = 4 [(validator.field) = {string_not_empty: true}];
-    float height = 5;
-    float weight = 6;
-    bool smokingStatus = 7;
-    bool alcoholStatus = 8;
-    bool emailVerified = 9;
-    bool phoneVerified = 10;
-    string password = 11 [(validator.field) = {string_not_empty: true}];
-    // ChronicConditionData chronicStatus = 12;
+    string address = 5;
+    float height = 6;
+    float weight = 7;
+    bool smokingStatus = 8;
+    bool alcoholStatus = 9;
+    bool emailVerified = 10;
+    bool phoneVerified = 11;
+    string password = 12 [(validator.field) = {string_not_empty: true}];
+    string birthdate = 13;
+    string avatarURL = 14;
 }
 
 message LoginRequest {
@@ -237,7 +259,7 @@ message ResendEmailVerificationResponse {
 
 message VerifyRegisterRequest {
     string registerToken = 1 [(validator.field) = {string_not_empty: true}];
-    string diagnosticSessionID = 2 [(validator.field) = {string_not_empty: true}];
+    string diagnosticSessionID = 2;
 }
 
 message VerifyRegisterResponse {
@@ -247,7 +269,7 @@ message VerifyRegisterResponse {
 
 message ForgetPasswordRequest {
     string email = 1 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}];
-    string diagnosticSessionID = 2 [(validator.field) = {string_not_empty: true}];
+    string diagnosticSessionID = 2;
 }
 
 message ForgetPasswordResponse {
@@ -265,7 +287,7 @@ message ForgetPasswordVerifResponse {
 message UpdatePasswordRequest {
     string password = 1 [(validator.field) = {string_not_empty: true}];
     string confirmPassword = 2 [(validator.field) = {string_not_empty: true}];
-    string diagnosticSessionID = 3 [(validator.field) = {string_not_empty: true}];
+    string diagnosticSessionID = 3;
     string forgetPasswordToken = 4;
 }
 
@@ -283,6 +305,7 @@ message UserInfoResponse {
 message ChangePasswordRequest {
     string password = 1 [(validator.field) = {string_not_empty: true}];
     string confirmPassword = 2 [(validator.field) = {string_not_empty: true}];
+    string oldPassword = 3 [(validator.field) = {string_not_empty: true}];
 }
 
 message ChangePasswordResponse {
@@ -290,5 +313,13 @@ message ChangePasswordResponse {
 }
 
 message LogoutResponse {
+    string message = 1;
+}
+
+message UpdateUserInfoRequest {
+    ProfileData profileData = 1;
+}
+
+message UpdateUserInfoResponse {
     string message = 1;
 }
