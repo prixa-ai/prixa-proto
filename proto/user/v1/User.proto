@@ -267,6 +267,7 @@ message ProfileData {
     bool phoneVerified = 11;
     string password = 12 [(validator.field) = {string_not_empty: true}];
     string birthdate = 13;
+    string avatarURL = 14;
 }
 
 message LoginRequest {
