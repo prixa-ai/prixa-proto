@@ -7,10 +7,10 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/golang/protobuf/ptypes/empty"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
 	_ "github.com/mwitkow/go-proto-validators"
+	_ "github.com/golang/protobuf/ptypes/empty"
 	regexp "regexp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
@@ -31,9 +31,6 @@ func (this *AuthData) Validate() error {
 	}
 	if this.PasswordConfirmation == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("PasswordConfirmation", fmt.Errorf(`value '%v' must not be an empty string`, this.PasswordConfirmation))
-	}
-	if this.DiagnosticSessionID == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("DiagnosticSessionID", fmt.Errorf(`value '%v' must not be an empty string`, this.DiagnosticSessionID))
 	}
 	return nil
 }
@@ -107,9 +104,6 @@ func (this *VerifyRegisterRequest) Validate() error {
 	if this.RegisterToken == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("RegisterToken", fmt.Errorf(`value '%v' must not be an empty string`, this.RegisterToken))
 	}
-	if this.DiagnosticSessionID == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("DiagnosticSessionID", fmt.Errorf(`value '%v' must not be an empty string`, this.DiagnosticSessionID))
-	}
 	return nil
 }
 func (this *VerifyRegisterResponse) Validate() error {
@@ -127,9 +121,6 @@ var _regex_ForgetPasswordRequest_Email = regexp.MustCompile(`^[a-z0-9._%+-]+@[a-
 func (this *ForgetPasswordRequest) Validate() error {
 	if !_regex_ForgetPasswordRequest_Email.MatchString(this.Email) {
 		return github_com_mwitkow_go_proto_validators.FieldError("Email", fmt.Errorf(`value '%v' must be a string conforming to regex "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"`, this.Email))
-	}
-	if this.DiagnosticSessionID == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("DiagnosticSessionID", fmt.Errorf(`value '%v' must not be an empty string`, this.DiagnosticSessionID))
 	}
 	return nil
 }
@@ -151,9 +142,6 @@ func (this *UpdatePasswordRequest) Validate() error {
 	}
 	if this.ConfirmPassword == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("ConfirmPassword", fmt.Errorf(`value '%v' must not be an empty string`, this.ConfirmPassword))
-	}
-	if this.DiagnosticSessionID == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("DiagnosticSessionID", fmt.Errorf(`value '%v' must not be an empty string`, this.DiagnosticSessionID))
 	}
 	return nil
 }
@@ -201,23 +189,5 @@ func (this *UpdateUserInfoRequest) Validate() error {
 	return nil
 }
 func (this *UpdateUserInfoResponse) Validate() error {
-	return nil
-}
-func (this *UpdateUserProfileImageRequest) Validate() error {
-	if this.Url == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Url", fmt.Errorf(`value '%v' must not be an empty string`, this.Url))
-	}
-	return nil
-}
-func (this *UpdateUserProfileImageResponse) Validate() error {
-	return nil
-}
-func (this *UpdateUserBirthDateRequest) Validate() error {
-	if this.Birthdate == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Birthdate", fmt.Errorf(`value '%v' must not be an empty string`, this.Birthdate))
-	}
-	return nil
-}
-func (this *UpdateUserBirthDateResponse) Validate() error {
 	return nil
 }

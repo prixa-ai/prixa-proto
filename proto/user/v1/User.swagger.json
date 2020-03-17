@@ -251,6 +251,45 @@
         ]
       }
     },
+    "/api/v1/user/profile/update": {
+      "post": {
+        "summary": "UpdateUserInfo updates user info (name, address, contact)",
+        "operationId": "UpdateUserInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateUserInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdateUserInfoRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "Bearer": []
+          }
+        ]
+      }
+    },
     "/api/v1/user/register": {
       "post": {
         "summary": "New user registration",
@@ -341,123 +380,6 @@
             }
           }
         },
-        "tags": [
-          "UserService"
-        ],
-        "security": [
-          {
-            "ApiKeyAuth": [],
-            "Bearer": []
-          }
-        ]
-      }
-    },
-    "/api/v1/user/update/birthdate": {
-      "post": {
-        "summary": "UpdateUserBirthDate updates user birthdate",
-        "operationId": "UpdateUserBirthDate",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1UpdateUserBirthDateResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1UpdateUserBirthDateRequest"
-            }
-          }
-        ],
-        "tags": [
-          "UserService"
-        ],
-        "security": [
-          {
-            "ApiKeyAuth": [],
-            "Bearer": []
-          }
-        ]
-      }
-    },
-    "/api/v1/user/update/image": {
-      "post": {
-        "summary": "UpdateUserProfileImage updates user profile image",
-        "operationId": "UpdateUserProfileImage",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1UpdateUserProfileImageResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1UpdateUserProfileImageRequest"
-            }
-          }
-        ],
-        "tags": [
-          "UserService"
-        ],
-        "security": [
-          {
-            "ApiKeyAuth": [],
-            "Bearer": []
-          }
-        ]
-      }
-    },
-    "/api/v1/user/update/info": {
-      "post": {
-        "summary": "UpdateUserInfo updates user info (name, address, contact)",
-        "operationId": "UpdateUserInfo",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1UpdateUserInfoResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1UpdateUserInfoRequest"
-            }
-          }
-        ],
         "tags": [
           "UserService"
         ],
@@ -763,22 +685,6 @@
         }
       }
     },
-    "v1UpdateUserBirthDateRequest": {
-      "type": "object",
-      "properties": {
-        "birthdate": {
-          "type": "string"
-        }
-      }
-    },
-    "v1UpdateUserBirthDateResponse": {
-      "type": "object",
-      "properties": {
-        "message": {
-          "type": "string"
-        }
-      }
-    },
     "v1UpdateUserInfoRequest": {
       "type": "object",
       "properties": {
@@ -788,22 +694,6 @@
       }
     },
     "v1UpdateUserInfoResponse": {
-      "type": "object",
-      "properties": {
-        "message": {
-          "type": "string"
-        }
-      }
-    },
-    "v1UpdateUserProfileImageRequest": {
-      "type": "object",
-      "properties": {
-        "url": {
-          "type": "string"
-        }
-      }
-    },
-    "v1UpdateUserProfileImageResponse": {
       "type": "object",
       "properties": {
         "message": {
