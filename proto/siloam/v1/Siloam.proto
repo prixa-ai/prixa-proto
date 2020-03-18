@@ -27,7 +27,7 @@ service SiloamService {
 
     rpc PostRescheduleAppointmentData (PostRescheduleAppointmentRequestData) returns (PostRescheduleAppointmentResponseData) {}
 
-    rpc GetAppointmentsData(GetAppointmentsRequestData) returns (GetAppointmentsResponseData){        }
+    rpc GetAppointmentsData(GetAppointmentsRequestData) returns (GetAppointmentsResponseData){}
 
 }
 
@@ -44,8 +44,8 @@ message AreaData {
 }
 
 message GetHospitalsRequestData{
-    google.protobuf.BoolValue onImplementation = 1; //query
-    google.protobuf.StringValue areaId = 2 [(validator.field) = {uuid_ver: 4}];    
+    google.protobuf.BoolValue onImplementation = 1;
+    google.protobuf.StringValue areaId = 2 [(validator.field) = {uuid_ver: 4}];
 }
 
 message GetHospitalsResponseData{
@@ -55,7 +55,7 @@ message GetHospitalsResponseData{
 }
 
 message HospitalData {
-    string hospital_id = 1;              
+    string hospital_id = 1;
     string hospital_status_id = 2;
     string name = 3;
     string alias = 4;
@@ -63,13 +63,13 @@ message HospitalData {
     string phone_number_1 = 6;
     float longitude = 7;
     float lattitude = 8;
-    string area_id = 9;                  
+    string area_id = 9;
     string area_name = 10;
-    string image_url = 11;               //url
+    string image_url = 11; 
 }
 
 message GetSpecialitiesRequestData{
-    google.protobuf.StringValue hospitalId = 1 [(validator.field) = {uuid_ver: 4}];  //query   
+    google.protobuf.StringValue hospitalId = 1 [(validator.field) = {uuid_ver: 4}];
 }
 
 message GetSpecialitiesResponseData{
@@ -79,7 +79,7 @@ message GetSpecialitiesResponseData{
 }
 
 message SpecialityData{
-    string speciality_id = 1;       
+    string speciality_id = 1;
     string speciality_name_en = 2;
     string speciality_name = 3;
     bool is_coe = 4;
@@ -87,10 +87,10 @@ message SpecialityData{
 }
 
 message GetDoctorsRequestData{
-    google.protobuf.StringValue doctorName = 1; //query
-    google.protobuf.StringValue doctorId = 2 [(validator.field) = {uuid_ver: 4}];                  
-    google.protobuf.StringValue hospitalId = 3 [(validator.field) = {uuid_ver: 4}];               
-    google.protobuf.StringValue specialityId = 4 [(validator.field) = {uuid_ver: 4}];         
+    google.protobuf.StringValue doctorName = 1;
+    google.protobuf.StringValue doctorId = 2 [(validator.field) = {uuid_ver: 4}];
+    google.protobuf.StringValue hospitalId = 3 [(validator.field) = {uuid_ver: 4}];
+    google.protobuf.StringValue specialityId = 4 [(validator.field) = {uuid_ver: 4}];
 }
 
 message GetDoctorsResponseData{
@@ -100,20 +100,20 @@ message GetDoctorsResponseData{
 }
 
 message DoctorData{
-    string doctor_id = 1;                  
+    string doctor_id = 1;
     string specialization_id = 2;
-    string speciality_id = 3;            
-    string hospital_id = 4;              
+    string speciality_id = 3;
+    string hospital_id = 4;
     string name = 5;
     string specialization_name = 6;
     string specialization_name_en = 7;
     string hospital_name = 8;
-    string image_url = 9;              
+    string image_url = 9;
 }
 
 message GetDoctorsLeavesHospitalRequestData{
-    string hospitalId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}]; //param                  
-    google.protobuf.StringValue doctorId = 2 [(validator.field) = {uuid_ver: 4}];   //query
+    string hospitalId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+    google.protobuf.StringValue doctorId = 2 [(validator.field) = {uuid_ver: 4}];
 }
 
 message GetDoctorsLeavesHospitalResponseData{
@@ -126,11 +126,11 @@ message DoctorLeaveHospitalData{
     string doctor_id = 1;
     string hospital_id = 2;
     string from_date = 3;
-    string to_date = 4;    
+    string to_date = 4;
 }
 
 message GetSchedulesPerWeeksRequestData{
-    string hospitalId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}]; //param
+    string hospitalId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
     string doctorId = 2 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
 }
 
@@ -157,7 +157,7 @@ message SchedulesPerWeeksData{
 }
 
 message GetTimeSlotsRequestData{
-    string hospitalId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}]; //param
+    string hospitalId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
     string doctorId = 2 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
     string appointmentDate = 3 [(validator.field) = {regex: "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$", string_not_empty: true}];
 }
@@ -171,13 +171,13 @@ message GetTimeSlotsResponseData{
 message TimeSlotData{
     string schedule_id = 1;
     int32 hospital_time_zone = 2;
-    bool  is_full = 3;
+    bool is_full = 3;
     string from_time = 4;
     string to_time = 5;
 }
 
 message PostAppointmentRequestData{
-    string channelId = 1  [(validator.field) = {string_not_empty: true}];
+    string channelId = 1 [(validator.field) = {string_not_empty: true}];
     google.protobuf.Timestamp appointmentDate = 2 [(validator.field) = {msg_exists: true}];
     google.protobuf.Timestamp appointmentFromTime = 3 [(validator.field) = {msg_exists: true}];
     string scheduleId = 4 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
@@ -188,7 +188,7 @@ message PostAppointmentRequestData{
     google.protobuf.Timestamp birthDate = 9 [(validator.field) = {msg_exists: true}];
     string phoneNumber1 = 10 [(validator.field) = {string_not_empty: true}]; //with condition
     google.protobuf.StringValue emailAddress = 11 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}]; 
-    string userId = 12  [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+    string userId = 12 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
     string source = 13;
     string userName = 14; 
 
@@ -206,7 +206,7 @@ message PostAppointmentData{
     google.protobuf.Timestamp appointment_date = 3;
     google.protobuf.Timestamp appointment_from_time = 4;
     google.protobuf.Timestamp appointment_to_time = 5;
-    bool is_waiting_list = 6;   
+    bool is_waiting_list = 6; 
     string note = 7;
     string channel_id = 8;
     string schedule_id = 9;
@@ -225,7 +225,7 @@ message PostAppointmentData{
 }
 
 message CancelAppointmentRequestData{
-    string appointmentId = 1 [(validator.field) = {string_not_empty: true}];  //param
+    string appointmentId = 1 [(validator.field) = {string_not_empty: true}];
     string userId = 2 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
     string userName = 3;
     string source = 4;
@@ -249,7 +249,7 @@ message PostRescheduleAppointmentRequestData{
     google.protobuf.Timestamp appointmentDate = 3 [(validator.field) = {msg_exists: true}];
     google.protobuf.Timestamp appointmentFromTime = 4 [(validator.field) = {msg_exists: true}];
     string hospitalId = 5 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
-    bool isWaitingList = 6  [(validator.field) = {msg_exists: true}];
+    bool isWaitingList = 6 [(validator.field) = {msg_exists: true}];
     string note = 7;
     int32 chanelId = 8 [(validator.field) = {msg_exists: true}];
     string userId = 9 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
