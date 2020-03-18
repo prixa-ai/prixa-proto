@@ -510,13 +510,13 @@ message ScheduleData{
     string fromTime = 5;
     string toTime = 6;
     string lastUpdated = 7;
-    SourceData source = 8;     
+    SourceData source = 8;
 }
 
 message DoctorSchedulesResponseData{
     string status = 1;
     string message = 2;
-    DoctorScheduleData data = 3;    
+    DoctorScheduleData data = 3;
 }
 
 message DoctorScheduleData{
@@ -531,7 +531,7 @@ message DoctorLeaveHospitalData{
     string doctorId = 1;
     string hospitalId = 2;
     string fromDate = 3;
-    string toDate = 4;    
+    string toDate = 4;
 }
 
 message GetDoctorSchedulesRequestData{
@@ -556,7 +556,7 @@ message DoctorTimeSlotsResponseData{
 message DoctorTimeSlotData{
     string scheduleId = 1;
     int32 hospitalTimeZone = 2;
-    bool isFull = 3  [(validator.field) = {msg_exists : true}];
+    bool isFull = 3 [(validator.field) = {msg_exists : true}];
     string fromTime = 4 [(validator.field) = {string_not_empty: true}];
     string toTime = 5 [(validator.field) = {string_not_empty: true}];
 }
