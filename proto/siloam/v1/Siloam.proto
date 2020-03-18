@@ -125,8 +125,8 @@ message GetDoctorsLeavesHospitalResponseData{
 message DoctorLeaveHospitalData{
     string doctor_id = 1;
     string hospital_id = 2;
-    google.protobuf.Timestamp from_date = 3;
-    google.protobuf.Timestamp to_date = 4;    
+    string from_date = 3;
+    string to_date = 4;    
 }
 
 message GetSchedulesPerWeeksRequestData{
@@ -159,21 +159,21 @@ message SchedulesPerWeeksData{
 message GetTimeSlotsRequestData{
     string hospitalId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}]; //param
     string doctorId = 2 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
-    google.protobuf.Timestamp appointmentDate = 3 [(validator.field) = {msg_exists: true}];
+    string appointmentDate = 3 [(validator.field) = {regex: "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$", string_not_empty: true}];
 }
 
 message GetTimeSlotsResponseData{
     string status = 1;
     string message = 2;
-    repeated TimeSlotData timeSlotData = 3;
+    repeated TimeSlotData data = 3;
 }
 
 message TimeSlotData{
     string schedule_id = 1;
     int32 hospital_time_zone = 2;
     bool  is_full = 3;
-    google.protobuf.Timestamp from_time = 4;
-    google.protobuf.Timestamp to_time = 5;
+    string from_time = 4;
+    string to_time = 5;
 }
 
 message PostAppointmentRequestData{

@@ -119,7 +119,7 @@ service TelemedicineService {
     // Get doctor timeslot data
     rpc GetDoctorTimeSlotsData (GetDoctorTimeSlotRequestData) returns (DoctorTimeSlotsResponseData) {
         option (google.api.http) = {
-            get: "/api/v1/telemedicine/timeslot/hospital/{hospitalId}/doctor/{doctorId}"
+            get: "/api/v1/telemedicine/timeslot/hospital/{hospitalId}/doctor/{doctorId}/appointment-date/{appointmentDate}"
         };
     }
 
@@ -502,7 +502,7 @@ message AreaData{
     SourceData source = 5;
 }
 
-message DoctorScheduleData{
+message ScheduleData{
     string scheduleId = 1 [(validator.field) = {uuid_ver: 4}];
     DoctorData doctor = 2;
     HospitalData hospital = 3;
@@ -510,13 +510,28 @@ message DoctorScheduleData{
     string fromTime = 5;
     string toTime = 6;
     string lastUpdated = 7;
-    SourceData source = 8; 
+    SourceData source = 8;     
 }
 
 message DoctorSchedulesResponseData{
     string status = 1;
     string message = 2;
-    repeated DoctorScheduleData data = 3;
+    DoctorScheduleData data = 3;    
+}
+
+message DoctorScheduleData{
+    string doctorId = 1;
+    string hospitalId = 2;
+    repeated ScheduleData schedules = 3;
+    repeated DoctorLeaveHospitalData leaves = 4;
+}
+
+
+message DoctorLeaveHospitalData{
+    string doctorId = 1;
+    string hospitalId = 2;
+    string fromDate = 3;
+    string toDate = 4;    
 }
 
 message GetDoctorSchedulesRequestData{
@@ -528,8 +543,9 @@ message GetDoctorSchedulesRequestData{
 message GetDoctorTimeSlotRequestData{
     string hospitalId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
     string doctorId = 2 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
-    google.protobuf.Timestamp appointmentDate = 3 [(validator.field) = {msg_exists: true}];
+    string appointmentDate = 3 [(validator.field) = {regex: "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$", string_not_empty: true}];
 }
+
 
 message DoctorTimeSlotsResponseData{
     string status = 1;
@@ -540,9 +556,9 @@ message DoctorTimeSlotsResponseData{
 message DoctorTimeSlotData{
     string scheduleId = 1;
     int32 hospitalTimeZone = 2;
-    bool isFull = 3;
-    google.protobuf.Timestamp fromTime = 4;
-    google.protobuf.Timestamp toTime = 5;
+    bool isFull = 3  [(validator.field) = {msg_exists : true}];
+    string fromTime = 4 [(validator.field) = {string_not_empty: true}];
+    string toTime = 5 [(validator.field) = {string_not_empty: true}];
 }
 
 message CoordinateData{

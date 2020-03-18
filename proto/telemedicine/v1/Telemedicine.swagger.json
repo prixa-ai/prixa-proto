@@ -590,7 +590,7 @@
         ]
       }
     },
-    "/api/v1/telemedicine/timeslot/hospital/{hospitalId}/doctor/{doctorId}": {
+    "/api/v1/telemedicine/timeslot/hospital/{hospitalId}/doctor/{doctorId}/appointment-date/{appointmentDate}": {
       "get": {
         "summary": "Get doctor timeslot data",
         "operationId": "GetDoctorTimeSlotsData",
@@ -623,10 +623,9 @@
           },
           {
             "name": "appointmentDate",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "date-time"
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
         ],
         "tags": [
@@ -926,6 +925,23 @@
         }
       }
     },
+    "v1DoctorLeaveHospitalData": {
+      "type": "object",
+      "properties": {
+        "doctorId": {
+          "type": "string"
+        },
+        "hospitalId": {
+          "type": "string"
+        },
+        "fromDate": {
+          "type": "string"
+        },
+        "toDate": {
+          "type": "string"
+        }
+      }
+    },
     "v1DoctorResponseData": {
       "type": "object",
       "properties": {
@@ -946,30 +962,23 @@
     "v1DoctorScheduleData": {
       "type": "object",
       "properties": {
-        "scheduleId": {
+        "doctorId": {
           "type": "string"
         },
-        "doctor": {
-          "$ref": "#/definitions/v1DoctorData"
-        },
-        "hospital": {
-          "$ref": "#/definitions/v1HospitalData"
-        },
-        "day": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "fromTime": {
+        "hospitalId": {
           "type": "string"
         },
-        "toTime": {
-          "type": "string"
+        "schedules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ScheduleData"
+          }
         },
-        "lastUpdated": {
-          "type": "string"
-        },
-        "source": {
-          "$ref": "#/definitions/v1SourceData"
+        "leaves": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1DoctorLeaveHospitalData"
+          }
         }
       }
     },
@@ -983,10 +992,7 @@
           "type": "string"
         },
         "data": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1DoctorScheduleData"
-          }
+          "$ref": "#/definitions/v1DoctorScheduleData"
         }
       }
     },
@@ -1005,12 +1011,10 @@
           "format": "boolean"
         },
         "fromTime": {
-          "type": "string",
-          "format": "date-time"
+          "type": "string"
         },
         "toTime": {
-          "type": "string",
-          "format": "date-time"
+          "type": "string"
         }
       }
     },
@@ -1254,6 +1258,36 @@
         "hospitalId": {
           "type": "string",
           "title": "Hospital ID"
+        }
+      }
+    },
+    "v1ScheduleData": {
+      "type": "object",
+      "properties": {
+        "scheduleId": {
+          "type": "string"
+        },
+        "doctor": {
+          "$ref": "#/definitions/v1DoctorData"
+        },
+        "hospital": {
+          "$ref": "#/definitions/v1HospitalData"
+        },
+        "day": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "fromTime": {
+          "type": "string"
+        },
+        "toTime": {
+          "type": "string"
+        },
+        "lastUpdated": {
+          "type": "string"
+        },
+        "source": {
+          "$ref": "#/definitions/v1SourceData"
         }
       }
     },
