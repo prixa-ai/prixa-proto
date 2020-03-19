@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package prixa.analytics.v1;
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/any.proto";
 
 message EventLog {
     string logID = 1;
@@ -17,5 +18,5 @@ message EventLog {
     string type = 11;
     string hostname = 12;
     string description = 13;
-    string metadata = 14;
+    google.protobuf.Any metadata = 14;
 }
