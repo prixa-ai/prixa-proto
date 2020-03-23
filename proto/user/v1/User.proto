@@ -199,6 +199,26 @@ service UserService {
             }
         };
     }
+
+    // GetSignedURL gets the sign url to gain access to uploads files on google cloud storage
+    rpc GetSignedURL (google.protobuf.Empty) returns (GetSignedURLResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/user/signedurl"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }
 }
 
 message AuthData {
@@ -322,4 +342,8 @@ message UpdateUserInfoRequest {
 
 message UpdateUserInfoResponse {
     string message = 1;
+}
+
+message GetSignedURLResponse {
+    string url = 1;
 }

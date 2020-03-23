@@ -191,3 +191,6 @@ func (this *UpdateUserInfoRequest) Validate() error {
 func (this *UpdateUserInfoResponse) Validate() error {
 	return nil
 }
+func (this *GetSignedURLResponse) Validate() error {
+	return nil
+}

@@ -7,10 +7,10 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
+	_ "github.com/golang/protobuf/ptypes/empty"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
 	_ "github.com/mwitkow/go-proto-validators"
-	_ "github.com/golang/protobuf/ptypes/empty"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
 
@@ -276,5 +276,41 @@ func (this *GetDiagnosticStatisticsResponse) Validate() error {
 	return nil
 }
 func (this *UpdateSourceRequest) Validate() error {
+	return nil
+}
+func (this *SendCovidFormRequest) Validate() error {
+	if this.PartnerID == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("PartnerID", fmt.Errorf(`value '%v' must not be an empty string`, this.PartnerID))
+	}
+	if this.AppID == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("AppID", fmt.Errorf(`value '%v' must not be an empty string`, this.AppID))
+	}
+	if this.DiagnosticSessionID == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("DiagnosticSessionID", fmt.Errorf(`value '%v' must not be an empty string`, this.DiagnosticSessionID))
+	}
+	if this.Name == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Name", fmt.Errorf(`value '%v' must not be an empty string`, this.Name))
+	}
+	if this.Phone == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Phone", fmt.Errorf(`value '%v' must not be an empty string`, this.Phone))
+	}
+	if this.Address == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Address", fmt.Errorf(`value '%v' must not be an empty string`, this.Address))
+	}
+	if this.City == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("City", fmt.Errorf(`value '%v' must not be an empty string`, this.City))
+	}
+	if this.PostalCode == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("PostalCode", fmt.Errorf(`value '%v' must not be an empty string`, this.PostalCode))
+	}
+	if this.EmergencyContact == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("EmergencyContact", fmt.Errorf(`value '%v' must not be an empty string`, this.EmergencyContact))
+	}
+	if this.EmergencyContactRelation == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("EmergencyContactRelation", fmt.Errorf(`value '%v' must not be an empty string`, this.EmergencyContactRelation))
+	}
+	return nil
+}
+func (this *SendCovidFormResponse) Validate() error {
 	return nil
 }
