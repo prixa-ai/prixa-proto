@@ -52,6 +52,12 @@
         ],
         "tags": [
           "PartnerApplicationService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "Bearer": []
+          }
         ]
       },
       "post": {
@@ -88,17 +94,23 @@
         ],
         "tags": [
           "PartnerApplicationService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "Bearer": []
+          }
         ]
       }
     },
     "/api/v1/partner/{partnerId}/application/{applicationId}": {
       "get": {
-        "operationId": "GetPartnerApplication",
+        "operationId": "UpdateAppMetadata",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1GetPartnerApplicationResponse"
+              "$ref": "#/definitions/v1UpdateAppMetadataResponse"
             }
           },
           "default": {
@@ -120,10 +132,28 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "metadata.formURL",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "metadata.hotline",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
           "PartnerApplicationService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "Bearer": []
+          }
         ]
       },
       "delete": {
@@ -158,6 +188,12 @@
         ],
         "tags": [
           "PartnerApplicationService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "Bearer": []
+          }
         ]
       },
       "put": {
@@ -241,6 +277,17 @@
         }
       }
     },
+    "v1AppMetadata": {
+      "type": "object",
+      "properties": {
+        "formURL": {
+          "type": "string"
+        },
+        "hotline": {
+          "type": "string"
+        }
+      }
+    },
     "v1CreatePartnerApplicationRequest": {
       "type": "object",
       "properties": {
@@ -265,6 +312,14 @@
       "properties": {
         "data": {
           "$ref": "#/definitions/v1PartnerAppResponseData"
+        }
+      }
+    },
+    "v1GetAppMetadataResponse": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/v1AppMetadata"
         }
       }
     },
@@ -312,6 +367,14 @@
         }
       }
     },
+    "v1UpdateAppMetadataResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
     "v1UpdatePartnerApplicationRequest": {
       "type": "object",
       "properties": {
@@ -339,6 +402,11 @@
     "ApiKeyAuth": {
       "type": "apiKey",
       "name": "X-Prixa-API-Key",
+      "in": "header"
+    },
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
       "in": "header"
     }
   }

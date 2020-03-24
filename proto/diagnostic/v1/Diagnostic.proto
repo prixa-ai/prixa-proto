@@ -91,6 +91,12 @@ service DiagnosticService {
         };
     }
 
+    rpc SendCovidForm (SendCovidFormRequest) returns (SendCovidFormResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/prixa/covidform"
+        };
+    }
+
     // Internal GRPC API, DO NOT EXPOSE
     rpc UpdateDiagnosticData (UpdateSourceRequest) returns (google.protobuf.Empty) {}
 }
@@ -333,4 +339,22 @@ message UpdateSourceRequest {
         ELASTICSEARCH = 1;
     }
     Source source = 2;
+}
+
+message SendCovidFormRequest {
+    string partnerID = 1 [(validator.field) = {string_not_empty: true}];
+    string appID = 2 [(validator.field) = {string_not_empty: true}];
+    string diagnosticSessionID = 3 [(validator.field) = {string_not_empty: true}];
+    string name = 4 [(validator.field) = {string_not_empty: true}];
+    string phone = 5 [(validator.field) = {string_not_empty: true}];
+    string email = 6;
+    string address = 7 [(validator.field) = {string_not_empty: true}];
+    string city = 8 [(validator.field) = {string_not_empty: true}];
+    string postalCode = 9 [(validator.field) = {string_not_empty: true}];
+    string emergencyContact = 10 [(validator.field) = {string_not_empty: true}];
+    string emergencyContactRelation = 11 [(validator.field) = {string_not_empty: true}];
+}
+
+message SendCovidFormResponse {
+    string message = 1;
 }

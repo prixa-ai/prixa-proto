@@ -34,6 +34,14 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
                 name: "X-Prixa-API-Key";
             }
         }
+        security: {
+            key: "Bearer";
+            value: {
+                type: TYPE_API_KEY;
+                in: IN_HEADER;
+                name: "Authorization";
+            }
+        }
     }
 };
 
@@ -43,10 +51,34 @@ service PartnerApplicationService {
             post: "/api/v1/partner/{partnerId}/application"
             body: "*"
         };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
     }
     rpc DeletePartnerApplication (DeletePartnerApplicationRequest) returns (DeletePartnerApplicationResponse) {
         option (google.api.http) = {
             delete: "/api/v1/partner/{partnerId}/application/{applicationId}"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
         };
     }
     rpc UpdatePartnerApplication (UpdatePartnerApplicationRequest) returns (UpdatePartnerApplicationResponse) {
@@ -63,6 +95,48 @@ service PartnerApplicationService {
     rpc ListPartnerApplications (ListPartnerApplicationsRequest) returns (ListPartnerApplicationsResponse) {
         option (google.api.http) = {
             get: "/api/v1/partner/{partnerId}/application"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }
+    rpc GetAppMetadata (GetAppMetadataRequest) returns (GetAppMetadataResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/partner/{partnerId}/application/{applicationId}"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+            }
+        };
+    }
+    rpc UpdateAppMetadata (UpdateAppMetadataRequest) returns (UpdateAppMetadataResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/partner/{partnerId}/application/{applicationId}"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
         };
     }
 }
@@ -123,4 +197,28 @@ message ListPartnersRequest {
 
 message ListPartnerApplicationsResponse {
     repeated PartnerAppResponseData data = 1;
+}
+
+message GetAppMetadataRequest {
+    string partnerId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+    string applicationId = 2 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+}
+
+message AppMetadata {
+    string formURL = 1;
+    string hotline = 2;
+}
+
+message GetAppMetadataResponse {
+    AppMetadata metadata = 1;
+}
+
+message UpdateAppMetadataRequest {
+    string partnerId = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+    string applicationId = 2 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+    AppMetadata metadata = 3;
+}
+
+message UpdateAppMetadataResponse {
+    string message = 1;
 }

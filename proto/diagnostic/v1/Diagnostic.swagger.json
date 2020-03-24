@@ -119,6 +119,28 @@
         ]
       }
     },
+    "/api/v1/prixa/covidform": {
+      "post": {
+        "operationId": "SendCovidForm",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1SendCovidFormResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "DiagnosticService"
+        ]
+      }
+    },
     "/api/v1/prixa/feedback": {
       "get": {
         "operationId": "GetFeedbackContent",
@@ -733,6 +755,14 @@
           "type": "string"
         },
         "symptomID": {
+          "type": "string"
+        }
+      }
+    },
+    "v1SendCovidFormResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
           "type": "string"
         }
       }

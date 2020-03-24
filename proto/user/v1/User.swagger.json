@@ -391,6 +391,45 @@
         ]
       }
     },
+    "/api/v1/user/signedurl": {
+      "post": {
+        "summary": "GetSignedURL gets the sign url to gain access to uploads files on google cloud storage",
+        "operationId": "GetSignedURL",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetSignedURLResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "properties": {}
+            }
+          }
+        ],
+        "tags": [
+          "UserService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "Bearer": []
+          }
+        ]
+      }
+    },
     "/api/v1/userinfo": {
       "get": {
         "summary": "User info after user logged in.",
@@ -536,6 +575,14 @@
       "type": "object",
       "properties": {
         "message": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetSignedURLResponse": {
+      "type": "object",
+      "properties": {
+        "url": {
           "type": "string"
         }
       }
