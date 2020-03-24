@@ -6,6 +6,8 @@ package prixa_siloam_v1
 import (
 	context "context"
 	fmt "fmt"
+	math "math"
+
 	proto "github.com/golang/protobuf/proto"
 	empty "github.com/golang/protobuf/ptypes/empty"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
@@ -14,7 +16,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	math "math"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -1329,23 +1330,23 @@ func (m *TimeSlotData) GetToTime() string {
 }
 
 type PostAppointmentRequestData struct {
-	ChannelId            string                `protobuf:"bytes,1,opt,name=channelId,proto3" json:"channelId,omitempty"`
-	AppointmentDate      *timestamp.Timestamp  `protobuf:"bytes,2,opt,name=appointmentDate,proto3" json:"appointmentDate,omitempty"`
-	AppointmentFromTime  *timestamp.Timestamp  `protobuf:"bytes,3,opt,name=appointmentFromTime,proto3" json:"appointmentFromTime,omitempty"`
-	ScheduleId           string                `protobuf:"bytes,4,opt,name=scheduleId,proto3" json:"scheduleId,omitempty"`
-	HospitalId           string                `protobuf:"bytes,5,opt,name=hospitalId,proto3" json:"hospitalId,omitempty"`
-	DoctorId             string                `protobuf:"bytes,6,opt,name=doctorId,proto3" json:"doctorId,omitempty"`
-	IsWaitingList        bool                  `protobuf:"varint,7,opt,name=isWaitingList,proto3" json:"isWaitingList,omitempty"`
-	Name                 string                `protobuf:"bytes,8,opt,name=name,proto3" json:"name,omitempty"`
-	BirthDate            *timestamp.Timestamp  `protobuf:"bytes,9,opt,name=birthDate,proto3" json:"birthDate,omitempty"`
-	PhoneNumber1         string                `protobuf:"bytes,10,opt,name=phoneNumber1,proto3" json:"phoneNumber1,omitempty"`
-	EmailAddress         *wrappers.StringValue `protobuf:"bytes,11,opt,name=emailAddress,proto3" json:"emailAddress,omitempty"`
-	UserId               string                `protobuf:"bytes,12,opt,name=userId,proto3" json:"userId,omitempty"`
-	Source               string                `protobuf:"bytes,13,opt,name=source,proto3" json:"source,omitempty"`
-	UserName             string                `protobuf:"bytes,14,opt,name=userName,proto3" json:"userName,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
-	XXX_unrecognized     []byte                `json:"-"`
-	XXX_sizecache        int32                 `json:"-"`
+	ChannelId            string   `protobuf:"bytes,1,opt,name=channelId,proto3" json:"channelId,omitempty"`
+	AppointmentDate      string   `protobuf:"bytes,2,opt,name=appointmentDate,proto3" json:"appointmentDate,omitempty"`
+	AppointmentFromTime  string   `protobuf:"bytes,3,opt,name=appointmentFromTime,proto3" json:"appointmentFromTime,omitempty"`
+	ScheduleId           string   `protobuf:"bytes,4,opt,name=scheduleId,proto3" json:"scheduleId,omitempty"`
+	HospitalId           string   `protobuf:"bytes,5,opt,name=hospitalId,proto3" json:"hospitalId,omitempty"`
+	DoctorId             string   `protobuf:"bytes,6,opt,name=doctorId,proto3" json:"doctorId,omitempty"`
+	IsWaitingList        bool     `protobuf:"varint,7,opt,name=isWaitingList,proto3" json:"isWaitingList,omitempty"`
+	Name                 string   `protobuf:"bytes,8,opt,name=name,proto3" json:"name,omitempty"`
+	BirthDate            string   `protobuf:"bytes,9,opt,name=birthDate,proto3" json:"birthDate,omitempty"`
+	PhoneNumber1         string   `protobuf:"bytes,10,opt,name=phoneNumber1,proto3" json:"phoneNumber1,omitempty"`
+	EmailAddress         string   `protobuf:"bytes,11,opt,name=emailAddress,proto3" json:"emailAddress,omitempty"`
+	UserId               string   `protobuf:"bytes,12,opt,name=userId,proto3" json:"userId,omitempty"`
+	Source               string   `protobuf:"bytes,13,opt,name=source,proto3" json:"source,omitempty"`
+	UserName             string   `protobuf:"bytes,14,opt,name=userName,proto3" json:"userName,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *PostAppointmentRequestData) Reset()         { *m = PostAppointmentRequestData{} }
@@ -1380,18 +1381,18 @@ func (m *PostAppointmentRequestData) GetChannelId() string {
 	return ""
 }
 
-func (m *PostAppointmentRequestData) GetAppointmentDate() *timestamp.Timestamp {
+func (m *PostAppointmentRequestData) GetAppointmentDate() string {
 	if m != nil {
 		return m.AppointmentDate
 	}
-	return nil
+	return ""
 }
 
-func (m *PostAppointmentRequestData) GetAppointmentFromTime() *timestamp.Timestamp {
+func (m *PostAppointmentRequestData) GetAppointmentFromTime() string {
 	if m != nil {
 		return m.AppointmentFromTime
 	}
-	return nil
+	return ""
 }
 
 func (m *PostAppointmentRequestData) GetScheduleId() string {
@@ -1429,11 +1430,11 @@ func (m *PostAppointmentRequestData) GetName() string {
 	return ""
 }
 
-func (m *PostAppointmentRequestData) GetBirthDate() *timestamp.Timestamp {
+func (m *PostAppointmentRequestData) GetBirthDate() string {
 	if m != nil {
 		return m.BirthDate
 	}
-	return nil
+	return ""
 }
 
 func (m *PostAppointmentRequestData) GetPhoneNumber1() string {
@@ -1443,11 +1444,11 @@ func (m *PostAppointmentRequestData) GetPhoneNumber1() string {
 	return ""
 }
 
-func (m *PostAppointmentRequestData) GetEmailAddress() *wrappers.StringValue {
+func (m *PostAppointmentRequestData) GetEmailAddress() string {
 	if m != nil {
 		return m.EmailAddress
 	}
-	return nil
+	return ""
 }
 
 func (m *PostAppointmentRequestData) GetUserId() string {
@@ -1474,7 +1475,8 @@ func (m *PostAppointmentRequestData) GetUserName() string {
 type PostAppointmentResponseData struct {
 	Status               string               `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
 	Message              string               `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	Data                 *PostAppointmentData `protobuf:"bytes,3,opt,name=data,proto3" json:"data,omitempty"`
+	StatusCode           int32                `protobuf:"varint,3,opt,name=statusCode,proto3" json:"statusCode,omitempty"`
+	Data                 *PostAppointmentData `protobuf:"bytes,4,opt,name=data,proto3" json:"data,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
 	XXX_unrecognized     []byte               `json:"-"`
 	XXX_sizecache        int32                `json:"-"`
@@ -1519,6 +1521,13 @@ func (m *PostAppointmentResponseData) GetMessage() string {
 	return ""
 }
 
+func (m *PostAppointmentResponseData) GetStatusCode() int32 {
+	if m != nil {
+		return m.StatusCode
+	}
+	return 0
+}
+
 func (m *PostAppointmentResponseData) GetData() *PostAppointmentData {
 	if m != nil {
 		return m.Data
@@ -1527,30 +1536,30 @@ func (m *PostAppointmentResponseData) GetData() *PostAppointmentData {
 }
 
 type PostAppointmentData struct {
-	AppointmentId        string               `protobuf:"bytes,1,opt,name=appointment_id,json=appointmentId,proto3" json:"appointment_id,omitempty"`
-	AppointmentNo        int32                `protobuf:"varint,2,opt,name=appointment_no,json=appointmentNo,proto3" json:"appointment_no,omitempty"`
-	AppointmentDate      *timestamp.Timestamp `protobuf:"bytes,3,opt,name=appointment_date,json=appointmentDate,proto3" json:"appointment_date,omitempty"`
-	AppointmentFromTime  *timestamp.Timestamp `protobuf:"bytes,4,opt,name=appointment_from_time,json=appointmentFromTime,proto3" json:"appointment_from_time,omitempty"`
-	AppointmentToTime    *timestamp.Timestamp `protobuf:"bytes,5,opt,name=appointment_to_time,json=appointmentToTime,proto3" json:"appointment_to_time,omitempty"`
-	IsWaitingList        bool                 `protobuf:"varint,6,opt,name=is_waiting_list,json=isWaitingList,proto3" json:"is_waiting_list,omitempty"`
-	Note                 string               `protobuf:"bytes,7,opt,name=note,proto3" json:"note,omitempty"`
-	ChannelId            string               `protobuf:"bytes,8,opt,name=channel_id,json=channelId,proto3" json:"channel_id,omitempty"`
-	ScheduleId           string               `protobuf:"bytes,9,opt,name=schedule_id,json=scheduleId,proto3" json:"schedule_id,omitempty"`
-	ContactId            string               `protobuf:"bytes,10,opt,name=contact_id,json=contactId,proto3" json:"contact_id,omitempty"`
-	ContactName          string               `protobuf:"bytes,11,opt,name=contact_name,json=contactName,proto3" json:"contact_name,omitempty"`
-	DateOfBirth          *timestamp.Timestamp `protobuf:"bytes,12,opt,name=date_of_birth,json=dateOfBirth,proto3" json:"date_of_birth,omitempty"`
-	PlaceOfBirth         string               `protobuf:"bytes,13,opt,name=place_of_birth,json=placeOfBirth,proto3" json:"place_of_birth,omitempty"`
-	PhoneNumber          string               `protobuf:"bytes,14,opt,name=phone_number,json=phoneNumber,proto3" json:"phone_number,omitempty"`
-	AddressLine_1        string               `protobuf:"bytes,15,opt,name=address_line_1,json=addressLine1,proto3" json:"address_line_1,omitempty"`
-	AddressLine_2        string               `protobuf:"bytes,16,opt,name=address_line_2,json=addressLine2,proto3" json:"address_line_2,omitempty"`
-	EmailAddress         string               `protobuf:"bytes,17,opt,name=email_address,json=emailAddress,proto3" json:"email_address,omitempty"`
-	DoctorId             string               `protobuf:"bytes,18,opt,name=doctor_id,json=doctorId,proto3" json:"doctor_id,omitempty"`
-	HospitalId           string               `protobuf:"bytes,19,opt,name=hospital_id,json=hospitalId,proto3" json:"hospital_id,omitempty"`
-	DoctorName           string               `protobuf:"bytes,20,opt,name=doctor_name,json=doctorName,proto3" json:"doctor_name,omitempty"`
-	HospitalName         string               `protobuf:"bytes,21,opt,name=hospital_name,json=hospitalName,proto3" json:"hospital_name,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
+	AppointmentId        string   `protobuf:"bytes,1,opt,name=appointment_id,json=appointmentId,proto3" json:"appointment_id,omitempty"`
+	AppointmentNo        int32    `protobuf:"varint,2,opt,name=appointment_no,json=appointmentNo,proto3" json:"appointment_no,omitempty"`
+	AppointmentDate      string   `protobuf:"bytes,3,opt,name=appointment_date,json=appointmentDate,proto3" json:"appointment_date,omitempty"`
+	AppointmentFromTime  string   `protobuf:"bytes,4,opt,name=appointment_from_time,json=appointmentFromTime,proto3" json:"appointment_from_time,omitempty"`
+	AppointmentToTime    string   `protobuf:"bytes,5,opt,name=appointment_to_time,json=appointmentToTime,proto3" json:"appointment_to_time,omitempty"`
+	IsWaitingList        bool     `protobuf:"varint,6,opt,name=is_waiting_list,json=isWaitingList,proto3" json:"is_waiting_list,omitempty"`
+	Note                 string   `protobuf:"bytes,7,opt,name=note,proto3" json:"note,omitempty"`
+	ChannelId            string   `protobuf:"bytes,8,opt,name=channel_id,json=channelId,proto3" json:"channel_id,omitempty"`
+	ScheduleId           string   `protobuf:"bytes,9,opt,name=schedule_id,json=scheduleId,proto3" json:"schedule_id,omitempty"`
+	ContactId            string   `protobuf:"bytes,10,opt,name=contact_id,json=contactId,proto3" json:"contact_id,omitempty"`
+	ContactName          string   `protobuf:"bytes,11,opt,name=contact_name,json=contactName,proto3" json:"contact_name,omitempty"`
+	DateOfBirth          string   `protobuf:"bytes,12,opt,name=date_of_birth,json=dateOfBirth,proto3" json:"date_of_birth,omitempty"`
+	PlaceOfBirth         string   `protobuf:"bytes,13,opt,name=place_of_birth,json=placeOfBirth,proto3" json:"place_of_birth,omitempty"`
+	PhoneNumber          string   `protobuf:"bytes,14,opt,name=phone_number,json=phoneNumber,proto3" json:"phone_number,omitempty"`
+	AddressLine_1        string   `protobuf:"bytes,15,opt,name=address_line_1,json=addressLine1,proto3" json:"address_line_1,omitempty"`
+	AddressLine_2        string   `protobuf:"bytes,16,opt,name=address_line_2,json=addressLine2,proto3" json:"address_line_2,omitempty"`
+	EmailAddress         string   `protobuf:"bytes,17,opt,name=email_address,json=emailAddress,proto3" json:"email_address,omitempty"`
+	DoctorId             string   `protobuf:"bytes,18,opt,name=doctor_id,json=doctorId,proto3" json:"doctor_id,omitempty"`
+	HospitalId           string   `protobuf:"bytes,19,opt,name=hospital_id,json=hospitalId,proto3" json:"hospital_id,omitempty"`
+	DoctorName           string   `protobuf:"bytes,20,opt,name=doctor_name,json=doctorName,proto3" json:"doctor_name,omitempty"`
+	HospitalName         string   `protobuf:"bytes,21,opt,name=hospital_name,json=hospitalName,proto3" json:"hospital_name,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *PostAppointmentData) Reset()         { *m = PostAppointmentData{} }
@@ -1592,25 +1601,25 @@ func (m *PostAppointmentData) GetAppointmentNo() int32 {
 	return 0
 }
 
-func (m *PostAppointmentData) GetAppointmentDate() *timestamp.Timestamp {
+func (m *PostAppointmentData) GetAppointmentDate() string {
 	if m != nil {
 		return m.AppointmentDate
 	}
-	return nil
+	return ""
 }
 
-func (m *PostAppointmentData) GetAppointmentFromTime() *timestamp.Timestamp {
+func (m *PostAppointmentData) GetAppointmentFromTime() string {
 	if m != nil {
 		return m.AppointmentFromTime
 	}
-	return nil
+	return ""
 }
 
-func (m *PostAppointmentData) GetAppointmentToTime() *timestamp.Timestamp {
+func (m *PostAppointmentData) GetAppointmentToTime() string {
 	if m != nil {
 		return m.AppointmentToTime
 	}
-	return nil
+	return ""
 }
 
 func (m *PostAppointmentData) GetIsWaitingList() bool {
@@ -1655,11 +1664,11 @@ func (m *PostAppointmentData) GetContactName() string {
 	return ""
 }
 
-func (m *PostAppointmentData) GetDateOfBirth() *timestamp.Timestamp {
+func (m *PostAppointmentData) GetDateOfBirth() string {
 	if m != nil {
 		return m.DateOfBirth
 	}
-	return nil
+	return ""
 }
 
 func (m *PostAppointmentData) GetPlaceOfBirth() string {

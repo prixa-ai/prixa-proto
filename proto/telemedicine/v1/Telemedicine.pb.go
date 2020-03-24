@@ -6,6 +6,8 @@ package prixa_telemedicine_v1
 import (
 	context "context"
 	fmt "fmt"
+	math "math"
+
 	proto "github.com/golang/protobuf/proto"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
@@ -14,7 +16,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	math "math"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -195,12 +196,18 @@ type PostAppointmentBookingRequestData struct {
 	PhoneNumber string `protobuf:"bytes,4,opt,name=phoneNumber,proto3" json:"phoneNumber,omitempty"`
 	// Payment method
 	PaymentMethod string `protobuf:"bytes,5,opt,name=paymentMethod,proto3" json:"paymentMethod,omitempty"`
-	// Booking time
-	BookingTime *timestamp.Timestamp `protobuf:"bytes,6,opt,name=bookingTime,proto3" json:"bookingTime,omitempty"`
+	//AppoinmentDate
+	AppointmentDate string `protobuf:"bytes,6,opt,name=appointmentDate,proto3" json:"appointmentDate,omitempty"`
+	//Appointment time
+	AppointmentTime string `protobuf:"bytes,7,opt,name=appointmentTime,proto3" json:"appointmentTime,omitempty"`
 	// Doctor ID
-	DoctorId string `protobuf:"bytes,7,opt,name=doctorId,proto3" json:"doctorId,omitempty"`
+	DoctorId string `protobuf:"bytes,8,opt,name=doctorId,proto3" json:"doctorId,omitempty"`
 	// Hospital ID
-	HospitalId           string   `protobuf:"bytes,8,opt,name=hospitalId,proto3" json:"hospitalId,omitempty"`
+	HospitalId string `protobuf:"bytes,9,opt,name=hospitalId,proto3" json:"hospitalId,omitempty"`
+	// Schedule ID
+	ScheduleId string `protobuf:"bytes,10,opt,name=scheduleId,proto3" json:"scheduleId,omitempty"`
+	// birthdate
+	BirthDate            string   `protobuf:"bytes,11,opt,name=birthDate,proto3" json:"birthDate,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -266,11 +273,18 @@ func (m *PostAppointmentBookingRequestData) GetPaymentMethod() string {
 	return ""
 }
 
-func (m *PostAppointmentBookingRequestData) GetBookingTime() *timestamp.Timestamp {
+func (m *PostAppointmentBookingRequestData) GetAppointmentDate() string {
 	if m != nil {
-		return m.BookingTime
+		return m.AppointmentDate
 	}
-	return nil
+	return ""
+}
+
+func (m *PostAppointmentBookingRequestData) GetAppointmentTime() string {
+	if m != nil {
+		return m.AppointmentTime
+	}
+	return ""
 }
 
 func (m *PostAppointmentBookingRequestData) GetDoctorId() string {
@@ -283,6 +297,20 @@ func (m *PostAppointmentBookingRequestData) GetDoctorId() string {
 func (m *PostAppointmentBookingRequestData) GetHospitalId() string {
 	if m != nil {
 		return m.HospitalId
+	}
+	return ""
+}
+
+func (m *PostAppointmentBookingRequestData) GetScheduleId() string {
+	if m != nil {
+		return m.ScheduleId
+	}
+	return ""
+}
+
+func (m *PostAppointmentBookingRequestData) GetBirthDate() string {
+	if m != nil {
+		return m.BirthDate
 	}
 	return ""
 }
@@ -416,25 +444,27 @@ type AppointmentBookingData struct {
 	PhoneNumber string `protobuf:"bytes,5,opt,name=phoneNumber,proto3" json:"phoneNumber,omitempty"`
 	// Patient payment method
 	PaymentMethod string `protobuf:"bytes,6,opt,name=paymentMethod,proto3" json:"paymentMethod,omitempty"`
-	// Appointment booking time
-	BookingTime *timestamp.Timestamp `protobuf:"bytes,7,opt,name=bookingTime,proto3" json:"bookingTime,omitempty"`
-	// Doctor ID
-	DoctorId string `protobuf:"bytes,8,opt,name=doctorId,proto3" json:"doctorId,omitempty"`
-	// Doctor name
-	DoctorName string `protobuf:"bytes,9,opt,name=doctorName,proto3" json:"doctorName,omitempty"`
-	// Hospital ID
-	HospitalId string `protobuf:"bytes,10,opt,name=hospitalId,proto3" json:"hospitalId,omitempty"`
-	// Hospital name
-	HospitalName string `protobuf:"bytes,11,opt,name=hospitalName,proto3" json:"hospitalName,omitempty"`
-	// Hospital address
-	HospitalAddress string `protobuf:"bytes,12,opt,name=hospitalAddress,proto3" json:"hospitalAddress,omitempty"`
-	// Appointment booking status
-	BookingStatus string `protobuf:"bytes,13,opt,name=bookingStatus,proto3" json:"bookingStatus,omitempty"`
+	//AppoinmentDate
+	AppointmentDate string `protobuf:"bytes,7,opt,name=appointmentDate,proto3" json:"appointmentDate,omitempty"`
+	//Appointment time
+	AppointmentTime string `protobuf:"bytes,8,opt,name=appointmentTime,proto3" json:"appointmentTime,omitempty"`
+	// Doctor
+	Doctor *DoctorData `protobuf:"bytes,9,opt,name=doctor,proto3" json:"doctor,omitempty"`
+	// Hospital
+	Hospital *HospitalData `protobuf:"bytes,10,opt,name=hospital,proto3" json:"hospital,omitempty"`
+	// Booking Status
+	BookingStatus string `protobuf:"bytes,11,opt,name=bookingStatus,proto3" json:"bookingStatus,omitempty"`
 	// Appointment created time
-	CreatedTime          *timestamp.Timestamp `protobuf:"bytes,14,opt,name=createdTime,proto3" json:"createdTime,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
+	CreatedTime string `protobuf:"bytes,12,opt,name=createdTime,proto3" json:"createdTime,omitempty"`
+	//ID of patient registered
+	ContactId string `protobuf:"bytes,13,opt,name=contactId,proto3" json:"contactId,omitempty"`
+	//name of patient registered
+	ContactName string `protobuf:"bytes,14,opt,name=contactName,proto3" json:"contactName,omitempty"`
+	//birthDate
+	BirthDate            string   `protobuf:"bytes,15,opt,name=birthDate,proto3" json:"birthDate,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *AppointmentBookingData) Reset()         { *m = AppointmentBookingData{} }
@@ -504,46 +534,32 @@ func (m *AppointmentBookingData) GetPaymentMethod() string {
 	return ""
 }
 
-func (m *AppointmentBookingData) GetBookingTime() *timestamp.Timestamp {
+func (m *AppointmentBookingData) GetAppointmentDate() string {
 	if m != nil {
-		return m.BookingTime
+		return m.AppointmentDate
+	}
+	return ""
+}
+
+func (m *AppointmentBookingData) GetAppointmentTime() string {
+	if m != nil {
+		return m.AppointmentTime
+	}
+	return ""
+}
+
+func (m *AppointmentBookingData) GetDoctor() *DoctorData {
+	if m != nil {
+		return m.Doctor
 	}
 	return nil
 }
 
-func (m *AppointmentBookingData) GetDoctorId() string {
+func (m *AppointmentBookingData) GetHospital() *HospitalData {
 	if m != nil {
-		return m.DoctorId
+		return m.Hospital
 	}
-	return ""
-}
-
-func (m *AppointmentBookingData) GetDoctorName() string {
-	if m != nil {
-		return m.DoctorName
-	}
-	return ""
-}
-
-func (m *AppointmentBookingData) GetHospitalId() string {
-	if m != nil {
-		return m.HospitalId
-	}
-	return ""
-}
-
-func (m *AppointmentBookingData) GetHospitalName() string {
-	if m != nil {
-		return m.HospitalName
-	}
-	return ""
-}
-
-func (m *AppointmentBookingData) GetHospitalAddress() string {
-	if m != nil {
-		return m.HospitalAddress
-	}
-	return ""
+	return nil
 }
 
 func (m *AppointmentBookingData) GetBookingStatus() string {
@@ -553,11 +569,32 @@ func (m *AppointmentBookingData) GetBookingStatus() string {
 	return ""
 }
 
-func (m *AppointmentBookingData) GetCreatedTime() *timestamp.Timestamp {
+func (m *AppointmentBookingData) GetCreatedTime() string {
 	if m != nil {
 		return m.CreatedTime
 	}
-	return nil
+	return ""
+}
+
+func (m *AppointmentBookingData) GetContactId() string {
+	if m != nil {
+		return m.ContactId
+	}
+	return ""
+}
+
+func (m *AppointmentBookingData) GetContactName() string {
+	if m != nil {
+		return m.ContactName
+	}
+	return ""
+}
+
+func (m *AppointmentBookingData) GetBirthDate() string {
+	if m != nil {
+		return m.BirthDate
+	}
+	return ""
 }
 
 type GetHospitalRequestData struct {

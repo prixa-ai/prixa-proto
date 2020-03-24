@@ -236,12 +236,18 @@ message PostAppointmentBookingRequestData{
     string phoneNumber = 4 [(validator.field) = {string_not_empty: true, regex: "^[+]?[0-9]{10,13}$"}]; 
     // Payment method
     string paymentMethod = 5 [(validator.field) = {string_not_empty: true}];
-    // Booking time
-    google.protobuf.Timestamp bookingTime = 6 [(validator.field) = {msg_exists : true}];
+    //AppoinmentDate
+    string appointmentDate = 6 [(validator.field) = {regex: "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$", string_not_empty: true}];
+    //Appointment time
+    string appointmentTime = 7 [(validator.field) = {regex: "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$", string_not_empty: true}];
     // Doctor ID
-    string doctorId = 7 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+    string doctorId = 8 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
     // Hospital ID
-    string hospitalId = 8 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+    string hospitalId = 9 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+    // Schedule ID
+    string scheduleId = 10 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+    // birthdate
+    string birthDate  = 11 [(validator.field) = {regex: "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$", string_not_empty: true}];
 }
 
 message AppointmentBookingsResponseData{
@@ -275,22 +281,24 @@ message AppointmentBookingData{
     string phoneNumber = 5;
     // Patient payment method
     string paymentMethod = 6;
-    // Appointment booking time
-    google.protobuf.Timestamp bookingTime = 7;
-    // Doctor ID
-    string doctorId = 8;
-    // Doctor name
-    string doctorName = 9;
-    // Hospital ID
-    string hospitalId = 10;
-    // Hospital name
-    string hospitalName = 11;
-    // Hospital address
-    string hospitalAddress = 12;
-    // Appointment booking status
-    string bookingStatus = 13;
+    //AppoinmentDate
+    string appointmentDate = 7 [(validator.field) = {regex: "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$", string_not_empty: true}];
+    //Appointment time
+    string appointmentTime = 8 [(validator.field) = {regex: "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$", string_not_empty: true}];
+    // Doctor
+    DoctorData doctor = 9;
+    // Hospital 
+    HospitalData hospital = 10;
+    // Booking Status
+    string bookingStatus = 11;
     // Appointment created time
-    google.protobuf.Timestamp createdTime = 14;
+    string createdTime = 12;
+    //ID of patient registered
+    string contactId = 13;
+    //name of patient registered
+    string contactName = 14;
+    //birthDate
+    string birthDate = 15;
 }
 
 message GetHospitalRequestData{
