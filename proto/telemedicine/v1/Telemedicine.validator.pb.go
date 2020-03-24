@@ -7,10 +7,10 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/golang/protobuf/ptypes/timestamp"
-	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
 	_ "github.com/mwitkow/go-proto-validators"
+	_ "github.com/golang/protobuf/ptypes/timestamp"
+	_ "google.golang.org/genproto/googleapis/api/annotations"
 	regexp "regexp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
@@ -76,8 +76,12 @@ func (this *GetAppointmentBookingRequestData) Validate() error {
 var _regex_PostAppointmentBookingRequestData_Nik = regexp.MustCompile(`^[0-9]{16}$`)
 var _regex_PostAppointmentBookingRequestData_Email = regexp.MustCompile(`^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$`)
 var _regex_PostAppointmentBookingRequestData_PhoneNumber = regexp.MustCompile(`^[+]?[0-9]{10,13}$`)
+var _regex_PostAppointmentBookingRequestData_AppointmentDate = regexp.MustCompile(`^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$`)
+var _regex_PostAppointmentBookingRequestData_AppointmentTime = regexp.MustCompile(`^([0-1]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$`)
 var _regex_PostAppointmentBookingRequestData_DoctorId = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
 var _regex_PostAppointmentBookingRequestData_HospitalId = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
+var _regex_PostAppointmentBookingRequestData_ScheduleId = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
+var _regex_PostAppointmentBookingRequestData_BirthDate = regexp.MustCompile(`^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$`)
 
 func (this *PostAppointmentBookingRequestData) Validate() error {
 	if this.Name == "" {
@@ -104,13 +108,17 @@ func (this *PostAppointmentBookingRequestData) Validate() error {
 	if this.PaymentMethod == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("PaymentMethod", fmt.Errorf(`value '%v' must not be an empty string`, this.PaymentMethod))
 	}
-	if nil == this.BookingTime {
-		return github_com_mwitkow_go_proto_validators.FieldError("BookingTime", fmt.Errorf("message must exist"))
+	if !_regex_PostAppointmentBookingRequestData_AppointmentDate.MatchString(this.AppointmentDate) {
+		return github_com_mwitkow_go_proto_validators.FieldError("AppointmentDate", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$"`, this.AppointmentDate))
 	}
-	if this.BookingTime != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.BookingTime); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("BookingTime", err)
-		}
+	if this.AppointmentDate == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("AppointmentDate", fmt.Errorf(`value '%v' must not be an empty string`, this.AppointmentDate))
+	}
+	if !_regex_PostAppointmentBookingRequestData_AppointmentTime.MatchString(this.AppointmentTime) {
+		return github_com_mwitkow_go_proto_validators.FieldError("AppointmentTime", fmt.Errorf(`value '%v' must be a string conforming to regex "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$"`, this.AppointmentTime))
+	}
+	if this.AppointmentTime == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("AppointmentTime", fmt.Errorf(`value '%v' must not be an empty string`, this.AppointmentTime))
 	}
 	if !_regex_PostAppointmentBookingRequestData_DoctorId.MatchString(this.DoctorId) {
 		return github_com_mwitkow_go_proto_validators.FieldError("DoctorId", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.DoctorId))
@@ -123,6 +131,18 @@ func (this *PostAppointmentBookingRequestData) Validate() error {
 	}
 	if this.HospitalId == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("HospitalId", fmt.Errorf(`value '%v' must not be an empty string`, this.HospitalId))
+	}
+	if !_regex_PostAppointmentBookingRequestData_ScheduleId.MatchString(this.ScheduleId) {
+		return github_com_mwitkow_go_proto_validators.FieldError("ScheduleId", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.ScheduleId))
+	}
+	if this.ScheduleId == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("ScheduleId", fmt.Errorf(`value '%v' must not be an empty string`, this.ScheduleId))
+	}
+	if !_regex_PostAppointmentBookingRequestData_BirthDate.MatchString(this.BirthDate) {
+		return github_com_mwitkow_go_proto_validators.FieldError("BirthDate", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$"`, this.BirthDate))
+	}
+	if this.BirthDate == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("BirthDate", fmt.Errorf(`value '%v' must not be an empty string`, this.BirthDate))
 	}
 	return nil
 }
@@ -146,6 +166,8 @@ func (this *AppointmentBookingResponseData) Validate() error {
 }
 
 var _regex_AppointmentBookingData_Id = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
+var _regex_AppointmentBookingData_AppointmentDate = regexp.MustCompile(`^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$`)
+var _regex_AppointmentBookingData_AppointmentTime = regexp.MustCompile(`^([0-1]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$`)
 
 func (this *AppointmentBookingData) Validate() error {
 	if !_regex_AppointmentBookingData_Id.MatchString(this.Id) {
@@ -154,14 +176,26 @@ func (this *AppointmentBookingData) Validate() error {
 	if this.Id == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("Id", fmt.Errorf(`value '%v' must not be an empty string`, this.Id))
 	}
-	if this.BookingTime != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.BookingTime); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("BookingTime", err)
+	if !_regex_AppointmentBookingData_AppointmentDate.MatchString(this.AppointmentDate) {
+		return github_com_mwitkow_go_proto_validators.FieldError("AppointmentDate", fmt.Errorf(`value '%v' must be a string conforming to regex "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$"`, this.AppointmentDate))
+	}
+	if this.AppointmentDate == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("AppointmentDate", fmt.Errorf(`value '%v' must not be an empty string`, this.AppointmentDate))
+	}
+	if !_regex_AppointmentBookingData_AppointmentTime.MatchString(this.AppointmentTime) {
+		return github_com_mwitkow_go_proto_validators.FieldError("AppointmentTime", fmt.Errorf(`value '%v' must be a string conforming to regex "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$"`, this.AppointmentTime))
+	}
+	if this.AppointmentTime == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("AppointmentTime", fmt.Errorf(`value '%v' must not be an empty string`, this.AppointmentTime))
+	}
+	if this.Doctor != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Doctor); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Doctor", err)
 		}
 	}
-	if this.CreatedTime != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.CreatedTime); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("CreatedTime", err)
+	if this.Hospital != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Hospital); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Hospital", err)
 		}
 	}
 	return nil

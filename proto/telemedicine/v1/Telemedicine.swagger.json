@@ -727,39 +727,41 @@
           "type": "string",
           "title": "Patient payment method"
         },
-        "bookingTime": {
+        "appointmentDate": {
           "type": "string",
-          "format": "date-time",
-          "title": "Appointment booking time"
+          "title": "AppoinmentDate"
         },
-        "doctorId": {
+        "appointmentTime": {
           "type": "string",
-          "title": "Doctor ID"
+          "title": "Appointment time"
         },
-        "doctorName": {
-          "type": "string",
-          "title": "Doctor name"
+        "doctor": {
+          "$ref": "#/definitions/v1DoctorData",
+          "title": "Doctor"
         },
-        "hospitalId": {
-          "type": "string",
-          "title": "Hospital ID"
-        },
-        "hospitalName": {
-          "type": "string",
-          "title": "Hospital name"
-        },
-        "hospitalAddress": {
-          "type": "string",
-          "title": "Hospital address"
+        "hospital": {
+          "$ref": "#/definitions/v1HospitalData",
+          "title": "Hospital"
         },
         "bookingStatus": {
           "type": "string",
-          "title": "Appointment booking status"
+          "title": "Booking Status"
         },
         "createdTime": {
           "type": "string",
-          "format": "date-time",
           "title": "Appointment created time"
+        },
+        "contactId": {
+          "type": "string",
+          "title": "ID of patient registered"
+        },
+        "contactName": {
+          "type": "string",
+          "title": "name of patient registered"
+        },
+        "birthDate": {
+          "type": "string",
+          "title": "birthDate"
         }
       }
     },
@@ -1246,10 +1248,13 @@
           "type": "string",
           "title": "Payment method"
         },
-        "bookingTime": {
+        "appointmentDate": {
           "type": "string",
-          "format": "date-time",
-          "title": "Booking time"
+          "title": "AppoinmentDate"
+        },
+        "appointmentTime": {
+          "type": "string",
+          "title": "Appointment time"
         },
         "doctorId": {
           "type": "string",
@@ -1258,6 +1263,14 @@
         "hospitalId": {
           "type": "string",
           "title": "Hospital ID"
+        },
+        "scheduleId": {
+          "type": "string",
+          "title": "Schedule ID"
+        },
+        "birthDate": {
+          "type": "string",
+          "title": "birthdate"
         }
       }
     },
