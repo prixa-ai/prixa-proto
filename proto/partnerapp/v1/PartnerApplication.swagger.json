@@ -105,12 +105,12 @@
     },
     "/api/v1/partner/{partnerId}/application/{applicationId}": {
       "get": {
-        "operationId": "GetPartnerApplication",
+        "operationId": "UpdateAppMetadata",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1GetPartnerApplicationResponse"
+              "$ref": "#/definitions/v1UpdateAppMetadataResponse"
             }
           },
           "default": {
@@ -132,10 +132,28 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "metadata.formURL",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "metadata.hotline",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
           "PartnerApplicationService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "Bearer": []
+          }
         ]
       },
       "delete": {
@@ -259,6 +277,17 @@
         }
       }
     },
+    "v1AppMetadata": {
+      "type": "object",
+      "properties": {
+        "formURL": {
+          "type": "string"
+        },
+        "hotline": {
+          "type": "string"
+        }
+      }
+    },
     "v1CreatePartnerApplicationRequest": {
       "type": "object",
       "properties": {
@@ -283,6 +312,14 @@
       "properties": {
         "data": {
           "$ref": "#/definitions/v1PartnerAppResponseData"
+        }
+      }
+    },
+    "v1GetAppMetadataResponse": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "$ref": "#/definitions/v1AppMetadata"
         }
       }
     },
@@ -327,6 +364,14 @@
         "updatedAt": {
           "type": "string",
           "format": "date-time"
+        }
+      }
+    },
+    "v1UpdateAppMetadataResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
         }
       }
     },
