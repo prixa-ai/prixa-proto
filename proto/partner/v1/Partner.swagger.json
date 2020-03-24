@@ -53,6 +53,12 @@
         ],
         "tags": [
           "PartnerService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "Bearer": []
+          }
         ]
       },
       "post": {
@@ -83,6 +89,12 @@
         ],
         "tags": [
           "PartnerService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "Bearer": []
+          }
         ]
       }
     },
@@ -141,6 +153,12 @@
         ],
         "tags": [
           "PartnerService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "Bearer": []
+          }
         ]
       },
       "put": {
@@ -333,6 +351,11 @@
     "ApiKeyAuth": {
       "type": "apiKey",
       "name": "X-Prixa-API-Key",
+      "in": "header"
+    },
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
       "in": "header"
     }
   }
