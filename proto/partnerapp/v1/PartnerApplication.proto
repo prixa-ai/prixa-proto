@@ -111,7 +111,7 @@ service PartnerApplicationService {
     }
     rpc GetAppMetadata (GetAppMetadataRequest) returns (GetAppMetadataResponse) {
         option (google.api.http) = {
-            get: "/api/v1/partner/{partnerId}/application/{applicationId}"
+            get: "/api/v1/partner/{partnerId}/application/{applicationId}/metadata"
         };
         option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
             security: {
@@ -124,7 +124,8 @@ service PartnerApplicationService {
     }
     rpc UpdateAppMetadata (UpdateAppMetadataRequest) returns (UpdateAppMetadataResponse) {
         option (google.api.http) = {
-            get: "/api/v1/partner/{partnerId}/application/{applicationId}"
+            put: "/api/v1/partner/{partnerId}/application/{applicationId}/metadata"
+            body: "*"
         };
         option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
             security: {

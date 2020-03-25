@@ -105,12 +105,12 @@
     },
     "/api/v1/partner/{partnerId}/application/{applicationId}": {
       "get": {
-        "operationId": "UpdateAppMetadata",
+        "operationId": "GetPartnerApplication",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1UpdateAppMetadataResponse"
+              "$ref": "#/definitions/v1GetPartnerApplicationResponse"
             }
           },
           "default": {
@@ -132,28 +132,10 @@
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "metadata.formURL",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "metadata.hotline",
-            "in": "query",
-            "required": false,
-            "type": "string"
           }
         ],
         "tags": [
           "PartnerApplicationService"
-        ],
-        "security": [
-          {
-            "ApiKeyAuth": [],
-            "Bearer": []
-          }
         ]
       },
       "delete": {
@@ -236,6 +218,95 @@
         ],
         "tags": [
           "PartnerApplicationService"
+        ]
+      }
+    },
+    "/api/v1/partner/{partnerId}/application/{applicationId}/metadata": {
+      "get": {
+        "operationId": "GetAppMetadata",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetAppMetadataResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "partnerId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "applicationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "PartnerApplicationService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      },
+      "put": {
+        "operationId": "UpdateAppMetadata",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateAppMetadataResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "partnerId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "applicationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdateAppMetadataRequest"
+            }
+          }
+        ],
+        "tags": [
+          "PartnerApplicationService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "Bearer": []
+          }
         ]
       }
     }
@@ -364,6 +435,20 @@
         "updatedAt": {
           "type": "string",
           "format": "date-time"
+        }
+      }
+    },
+    "v1UpdateAppMetadataRequest": {
+      "type": "object",
+      "properties": {
+        "partnerId": {
+          "type": "string"
+        },
+        "applicationId": {
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "#/definitions/v1AppMetadata"
         }
       }
     },
