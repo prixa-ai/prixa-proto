@@ -5,7 +5,6 @@ import "google/protobuf/timestamp.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/wrappers.proto";
-import "github.com/gogo/protobuf";
 
 service SiloamService {
     rpc GetAreasData (google.protobuf.Empty) returns (GetAreasResponseData) {}
@@ -184,7 +183,7 @@ message PostAppointmentRequestData{
     string scheduleId = 4 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
     string hospitalId = 5 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
     string doctorId = 6 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
-    bool isWaitingList = 7 [(validator.field) = {msg_exists: true}, (gogoproto.jsontag) = false];
+    bool isWaitingList = 7 [(validator.field) = {msg_exists: true}];
     string name = 8 [(validator.field) = {string_not_empty: true}];
     string birthDate = 9 [(validator.field) = {regex: "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$", string_not_empty: true}];
     string phoneNumber1 = 10 [(validator.field) = {regex: "^[+]?[0-9]{10,13}$", string_not_empty: true}];
