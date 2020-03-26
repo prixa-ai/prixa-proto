@@ -11,6 +11,7 @@ import (
 	_ "github.com/mwitkow/go-proto-validators"
 	_ "github.com/golang/protobuf/ptypes/empty"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
+	regexp "regexp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
 
@@ -203,7 +204,26 @@ func (this *UserData) Validate() error {
 func (this *InsuranceStatus) Validate() error {
 	return nil
 }
+
+var _regex_SendEmailRequest_Email = regexp.MustCompile(`^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$`)
+var _regex_SendEmailRequest_SessionId = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
+
 func (this *SendEmailRequest) Validate() error {
+	if !_regex_SendEmailRequest_Email.MatchString(this.Email) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Email", fmt.Errorf(`value '%v' must be a string conforming to regex "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"`, this.Email))
+	}
+	if this.Email == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Email", fmt.Errorf(`value '%v' must not be an empty string`, this.Email))
+	}
+	if !_regex_SendEmailRequest_SessionId.MatchString(this.SessionId) {
+		return github_com_mwitkow_go_proto_validators.FieldError("SessionId", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.SessionId))
+	}
+	if this.SessionId == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("SessionId", fmt.Errorf(`value '%v' must not be an empty string`, this.SessionId))
+	}
+	if this.Username == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Username", fmt.Errorf(`value '%v' must not be an empty string`, this.Username))
+	}
 	return nil
 }
 func (this *SendEmailResponse) Validate() error {
@@ -212,21 +232,35 @@ func (this *SendEmailResponse) Validate() error {
 	}
 	return nil
 }
+
+var _regex_SendSurveyRequest_ApplicationId = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
+var _regex_SendSurveyRequest_PartnerId = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
+var _regex_SendSurveyRequest_SessionId = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
+
 func (this *SendSurveyRequest) Validate() error {
+	if !_regex_SendSurveyRequest_ApplicationId.MatchString(this.ApplicationId) {
+		return github_com_mwitkow_go_proto_validators.FieldError("ApplicationId", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.ApplicationId))
+	}
 	if this.ApplicationId == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("ApplicationId", fmt.Errorf(`value '%v' must not be an empty string`, this.ApplicationId))
 	}
-	if this.Feedback == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Feedback", fmt.Errorf(`value '%v' must not be an empty string`, this.Feedback))
+	if !_regex_SendSurveyRequest_PartnerId.MatchString(this.PartnerId) {
+		return github_com_mwitkow_go_proto_validators.FieldError("PartnerId", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.PartnerId))
 	}
 	if this.PartnerId == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("PartnerId", fmt.Errorf(`value '%v' must not be an empty string`, this.PartnerId))
 	}
+	if !(this.Rating > 0) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Rating", fmt.Errorf(`value '%v' must be greater than '0'`, this.Rating))
+	}
+	if !(this.Rating < 5) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Rating", fmt.Errorf(`value '%v' must be less than '5'`, this.Rating))
+	}
+	if !_regex_SendSurveyRequest_SessionId.MatchString(this.SessionId) {
+		return github_com_mwitkow_go_proto_validators.FieldError("SessionId", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.SessionId))
+	}
 	if this.SessionId == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("SessionId", fmt.Errorf(`value '%v' must not be an empty string`, this.SessionId))
-	}
-	if this.UserId == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("UserId", fmt.Errorf(`value '%v' must not be an empty string`, this.UserId))
 	}
 	return nil
 }
@@ -239,27 +273,32 @@ func (this *FeedbackContentResponse) Validate() error {
 	}
 	return nil
 }
+
+var _regex_SendFeedbackRequest_PartnerId = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
+var _regex_SendFeedbackRequest_ApplicationId = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
+var _regex_SendFeedbackRequest_SessionId = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
+
 func (this *SendFeedbackRequest) Validate() error {
-	if this.UserId == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("UserId", fmt.Errorf(`value '%v' must not be an empty string`, this.UserId))
+	if !_regex_SendFeedbackRequest_PartnerId.MatchString(this.PartnerId) {
+		return github_com_mwitkow_go_proto_validators.FieldError("PartnerId", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.PartnerId))
 	}
 	if this.PartnerId == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("PartnerId", fmt.Errorf(`value '%v' must not be an empty string`, this.PartnerId))
 	}
+	if !_regex_SendFeedbackRequest_ApplicationId.MatchString(this.ApplicationId) {
+		return github_com_mwitkow_go_proto_validators.FieldError("ApplicationId", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.ApplicationId))
+	}
 	if this.ApplicationId == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("ApplicationId", fmt.Errorf(`value '%v' must not be an empty string`, this.ApplicationId))
+	}
+	if !_regex_SendFeedbackRequest_SessionId.MatchString(this.SessionId) {
+		return github_com_mwitkow_go_proto_validators.FieldError("SessionId", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.SessionId))
 	}
 	if this.SessionId == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("SessionId", fmt.Errorf(`value '%v' must not be an empty string`, this.SessionId))
 	}
-	if this.SymptomId == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("SymptomId", fmt.Errorf(`value '%v' must not be an empty string`, this.SymptomId))
-	}
 	if this.Question == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("Question", fmt.Errorf(`value '%v' must not be an empty string`, this.Question))
-	}
-	if this.Detail == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Detail", fmt.Errorf(`value '%v' must not be an empty string`, this.Detail))
 	}
 	return nil
 }
