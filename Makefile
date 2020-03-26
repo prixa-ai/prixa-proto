@@ -10,4 +10,4 @@ build: clean install
 clean:
 	rm -f $(shell find proto -name '*.pb.*') & rm -f $(shell find proto -name '*.swagger.json')
 
-.PHONY: clean build
+.PHONY: build
