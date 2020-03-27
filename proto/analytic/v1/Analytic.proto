@@ -50,6 +50,7 @@ service AnalyticsService {
 message TrackDataRequest {
     string description = 1;
     string eventType = 2;
+    string sessionId = 3;
 }
 
 message EventLog {
