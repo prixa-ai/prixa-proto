@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package prixa.analytic.v1;
+import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/any.proto";
 import "google/api/annotations.proto";
@@ -38,7 +39,7 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
 };
 
 service AnalyticsService {
-    rpc TrackArticle (TrackArticleRequest) returns (TrackArticleResponse) {
+    rpc TrackArticle (TrackArticleRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             get: "/api/v1/analytics/article/{id}"
         };
@@ -46,10 +47,6 @@ service AnalyticsService {
 }
 
 message TrackArticleRequest {
-    string id = 1;
-}
-
-message TrackArticleResponse {
     string id = 1;
 }
 
