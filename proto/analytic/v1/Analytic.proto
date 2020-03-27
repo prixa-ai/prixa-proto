@@ -39,15 +39,16 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
 };
 
 service AnalyticsService {
-    rpc TrackArticle (TrackArticleRequest) returns (google.protobuf.Empty) {
+    rpc TrackData (TrackDataRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            get: "/api/v1/analytics/article/{id}"
+            get: "/api/v1/analytics/track"
         };
     }
 }
 
-message TrackArticleRequest {
-    string id = 1;
+message TrackDataRequest {
+    string description = 1;
+    string eventType = 2;
 }
 
 message EventLog {
