@@ -346,4 +346,5 @@ message UpdateUserInfoResponse {
 
 message GetSignedURLResponse {
     string url = 1;
+    string name = 2;
 }
