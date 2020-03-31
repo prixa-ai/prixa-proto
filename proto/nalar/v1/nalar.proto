@@ -1,14 +1,14 @@
 syntax = "proto3";
 
 message RecordSymptomsData{
-    string id = 1;
-    Symptom fields = 2;
-    string createdTime = 3;
-    string lastUpdated  = 4;
+	string id = 1;
+	Symptom fields = 2;
+	string createdTime = 3;
+	string lastUpdated  = 4;
 }   
 
 message Symptom {
-    string ID = 1 [json_name="id"];
+	string ID = 1 [json_name="id"];
 	string Name = 2 [json_name="Name"];
 	string NameIndo = 3 [json_name = "Name Indo"];
 	string Description = 4  [json_name="Symptoms Description"];
@@ -29,12 +29,11 @@ message Symptom {
 }
 
 message RecordDiseaseData{
-    string id = 1;
-    Disease fields = 2;
-    string createdTime = 3;
-    string lastUpdated  = 4;
+	string id = 1;
+	Disease fields = 2;
+	string createdTime = 3;
+	string lastUpdated  = 4;
 }   
-
 
 message Disease{
 	string ID = 1 [json_name="id"];
@@ -53,10 +52,10 @@ message Disease{
 }
 
 message RecordLabData{
-    string id = 1;
-    Lab fields = 2;
-    string createdTime = 3;
-    string lastUpdated  = 4;
+	string id = 1;
+	Lab fields = 2;
+	string createdTime = 3;
+	string lastUpdated  = 4;
 }   
 
 message Lab{
@@ -67,10 +66,10 @@ message Lab{
 }
 
 message RecordDifferentialData{
-    string id = 1;
-    Differential fields = 2;
-    string createdTime = 3;
-    string lastUpdated  = 4;
+	string id = 1;
+	Differential fields = 2;
+	string createdTime = 3;
+	string lastUpdated  = 4;
 }   
 
 message Differential{
@@ -89,11 +88,11 @@ message Differential{
 }
 
 message RecordTriageData{
-    string id = 1;
-    Triage fields = 2;
-    string createdTime = 3;
-    string lastUpdated  = 4;
-}   
+	string id = 1;
+	Triage fields = 2;
+	string createdTime = 3;
+	string lastUpdated  = 4;
+}
 
 message Triage{
 	string ID =  1 [json_name="id"];
@@ -106,10 +105,10 @@ message Triage{
 }
 
 message RecordProfileData{
-    string id = 1;
-    Profile fields = 2;
-    string createdTime = 3;
-    string lastUpdated  = 4;
+	string id = 1;
+	Profile fields = 2;
+	string createdTime = 3;
+	string lastUpdated  = 4;
 }
 
 message Profile{
