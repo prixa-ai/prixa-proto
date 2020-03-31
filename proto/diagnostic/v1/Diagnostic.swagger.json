@@ -382,6 +382,9 @@
         },
         "reply": {
           "$ref": "#/definitions/v1ReplyData"
+        },
+        "geoLocation": {
+          "$ref": "#/definitions/v1GeoLocation"
         }
       }
     },
@@ -474,6 +477,19 @@
           "items": {
             "type": "string"
           }
+        }
+      }
+    },
+    "v1GeoLocation": {
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "type": "number",
+          "format": "float"
+        },
+        "longitude": {
+          "type": "number",
+          "format": "float"
         }
       }
     },
