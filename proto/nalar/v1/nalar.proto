@@ -1,0 +1,126 @@
+syntax = "proto3";
+
+message RecordSymptomsData{
+    string id = 1;
+    Symptom fields = 2;
+    string createdTime = 3;
+    string lastUpdated  = 4;
+}   
+
+message Symptom {
+    string ID = 1 [json_name="id"];
+	string Name = 2 [json_name="Name"];
+	string NameIndo = 3 [json_name = "Name Indo"];
+	string Description = 4  [json_name="Symptoms Description"];
+	string Explanation = 5 [json_name="Symptoms Explanation"];
+	string Question = 6  [json_name="Question"];
+	string Characteristic = 7 [json_name="Characteristic"];
+	string MediaFilesLink = 8 [json_name="MediaFilesLink"];
+	string SourceURL = 9  [json_name="SourceURL"];
+	repeated string AssociatedDiseases = 10 [json_name = "Diseases"];
+	string Keywords = 11 [json_name="Keyword"];
+	repeated string Differentials = 12 [json_name="Differential"];
+	string Triage = 13 [json_name="Triage"];
+	repeated string NiceToKnows = 14 [json_name="Nice To Know"];
+	repeated string MustKnows = 15 [json_name="Must Know"];
+	repeated string PreConditions = 16 [json_name="Precondition"];
+	repeated string SymptomsTriage = 17 [json_name="Symptoms-Triage"];
+	string SID = 18 [json_name="Symptom_ID"];
+}
+
+message RecordDiseaseData{
+    string id = 1;
+    Disease fields = 2;
+    string createdTime = 3;
+    string lastUpdated  = 4;
+}   
+
+
+message Disease{
+	string ID = 1 [json_name="id"];
+	string Name = 2  [json_name = "Name"];
+	string NameIndo = 3    [json_name = "Name Indo"];
+	string Description = 4  [json_name = "Description"];
+	repeated string AssociatedSymptoms = 5 [json_name = "Symptoms"];
+	repeated string Differentials = 6     [json_name = "Differential"];
+	repeated string RiskFactors = 7 [json_name = "Risk Factor"];
+	string Likeliness = 8 [json_name = "Likeliness"];
+	int32 Triage = 9 [json_name ="Triage"];
+	repeated string PreConditions = 10     [json_name = "Pre Condition"];
+	string MustHave = 11   [json_name = "Must Have"];
+	string URL = 12   [json_name = "Article link"];
+	string Labs = 13  [json_name = "Labs"];
+}
+
+message RecordLabData{
+    string id = 1;
+    Lab fields = 2;
+    string createdTime = 3;
+    string lastUpdated  = 4;
+}   
+
+message Lab{
+	string ID = 1 [json_name="id"];
+	string Name = 2 [json_name="Name"];
+	string SKU = 3 [json_name="SKU"];
+	repeated string Diseases = 4 [json_name="Diseases"];
+}
+
+message RecordDifferentialData{
+    string id = 1;
+    Differential fields = 2;
+    string createdTime = 3;
+    string lastUpdated  = 4;
+}   
+
+message Differential{
+	string ID = 1 [json_name="id"];
+	repeated string Disease = 2 [json_name="Disease"];
+	repeated string Symptom = 3 [json_name="Symptom"];
+	repeated string Site = 4 [json_name="Site"];
+	repeated string Onset = 5 [json_name="Onset"];
+	repeated string Characteristic = 6  [json_name="Characteristic"];
+	repeated string Timing = 7 [json_name="Timing"];
+	repeated string Progressivity = 8 [json_name="Progressivity"];
+	repeated string Severity = 9 [json_name="Severity"];
+	repeated string WorseningFactors = 10 [json_name="Worsening Factors"];
+	repeated string Radiation = 11 [json_name="Radiation"];
+	repeated string PregnancyState = 12 [json_name="Pregnancy State"];	
+}
+
+message RecordTriageData{
+    string id = 1;
+    Triage fields = 2;
+    string createdTime = 3;
+    string lastUpdated  = 4;
+}   
+
+message Triage{
+	string ID =  1 [json_name="id"];
+	string Name =  2 [json_name="Name"];
+	string NameIndo = 3 [json_name="Name Indo"];
+	string Description = 4 [json_name="Description"];
+	repeated string Symptoms =  5 [json_name="Symptoms"];
+	repeated string Properties = 6  [json_name="Properties"];
+	repeated string Diseases =  7 [json_name="Diseases"];
+}
+
+message RecordProfileData{
+    string id = 1;
+    Profile fields = 2;
+    string createdTime = 3;
+    string lastUpdated  = 4;
+}
+
+message Profile{
+	string ID = 1 [json_name="id"];
+	string Name = 2  [json_name="Name"];
+	string NameIndo = 3[json_name="Name Indo"];
+	string Description = 4 [json_name="Description"];
+	string  PreconditionDescription = 5 [json_name="preconditionDescription"];
+	string  PreconditionDescriptionCopy = 6 [json_name="preconditionDescriptionCopy"];
+	string Type = 7 [json_name="Type"];
+	int32 Order = 8 [json_name="Order"];
+	float CustomValue1 = 9 [json_name="customValue1"];
+	float CustomValue2 = 10 [json_name="customValue2"];
+}
