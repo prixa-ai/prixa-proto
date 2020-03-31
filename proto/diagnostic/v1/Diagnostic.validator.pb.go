@@ -20,10 +20,18 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
+func (this *GeoLocation) Validate() error {
+	return nil
+}
 func (this *BotConversationRequest) Validate() error {
 	if this.Reply != nil {
 		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Reply); err != nil {
 			return github_com_mwitkow_go_proto_validators.FieldError("Reply", err)
+		}
+	}
+	if this.GeoLocation != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.GeoLocation); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("GeoLocation", err)
 		}
 	}
 	return nil

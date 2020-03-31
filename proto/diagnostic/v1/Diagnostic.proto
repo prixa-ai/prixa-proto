@@ -101,9 +101,15 @@ service DiagnosticService {
     rpc UpdateDiagnosticData (UpdateSourceRequest) returns (google.protobuf.Empty) {}
 }
 
+message GeoLocation {
+    float latitude = 1;
+    float longitude = 2;
+}
+
 message BotConversationRequest {
     string sessionId = 1;
     ReplyData reply = 2;
+    GeoLocation geoLocation = 3;
 }
 
 message ReplyData {
@@ -241,8 +247,6 @@ message CreatePrixaSessionRequest {
     string partnerId = 1;
     string partnerAppId = 2;
     UserData userData = 3;
-    float latitude = 4;
-    float longitude = 5;
 }
 
 message CreatePrixaSessionResponse {
