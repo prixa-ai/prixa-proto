@@ -241,6 +241,8 @@ message CreatePrixaSessionRequest {
     string partnerId = 1;
     string partnerAppId = 2;
     UserData userData = 3;
+    float latitude = 4;
+    float longitude = 5;
 }
 
 message CreatePrixaSessionResponse {

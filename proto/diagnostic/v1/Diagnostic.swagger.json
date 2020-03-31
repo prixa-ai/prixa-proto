@@ -417,6 +417,14 @@
         },
         "userData": {
           "$ref": "#/definitions/v1UserData"
+        },
+        "latitude": {
+          "type": "number",
+          "format": "float"
+        },
+        "longitude": {
+          "type": "number",
+          "format": "float"
         }
       }
     },
