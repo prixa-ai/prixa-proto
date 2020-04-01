@@ -187,7 +187,7 @@ message PostAppointmentRequestData{
     string name = 8 [(validator.field) = {string_not_empty: true}];
     string birthDate = 9 [(validator.field) = {regex: "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$", string_not_empty: true}];
     string phoneNumber1 = 10 [(validator.field) = {regex: "^[+]?[0-9]{10,13}$", string_not_empty: true}];
-    string emailAddress = 11 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}]; 
+    string emailAddress = 11 [(validator.field) = {regex: "^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}]; 
     string userId = 12 [(validator.field) = {string_not_empty: true}];
     string source = 13;
     string userName = 14; 

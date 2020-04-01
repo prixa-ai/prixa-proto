@@ -231,7 +231,7 @@ message PostAppointmentBookingRequestData{
     // Patient NIk
     string nik = 2 [(validator.field) = {string_not_empty: true, regex: "^[0-9]{16}$"}];
     // Patient email
-    string email = 3 [(validator.field) = {string_not_empty: true, regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}]; 
+    string email = 3 [(validator.field) = {string_not_empty: true, regex: "^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}]; 
     // Patient phone number
     string phoneNumber = 4 [(validator.field) = {string_not_empty: true, regex: "^[+]?[0-9]{10,13}$"}]; 
     // Payment method
@@ -602,7 +602,7 @@ message ContactData{
     // Phone no
     string phoneNumber = 1 [(validator.field) = {regex: "^[+]?[0-9]{10,13}$"}];
     // Email
-    string email = 2 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}]; 
+    string email = 2 [(validator.field) = {regex: "^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}]; 
 }
 
 message InitConversationRequest {
