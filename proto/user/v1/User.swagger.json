@@ -28,7 +28,7 @@
     "/api/v1/change-password": {
       "post": {
         "summary": "Change user password after user logged in.",
-        "operationId": "ChangePassword",
+        "operationId": "UserService_ChangePassword",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -67,7 +67,7 @@
     "/api/v1/logout": {
       "get": {
         "summary": "Logout user after user logged in",
-        "operationId": "Logout",
+        "operationId": "UserService_Logout",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -95,7 +95,7 @@
     "/api/v1/user/consent": {
       "get": {
         "summary": "Get user consent information",
-        "operationId": "Consent",
+        "operationId": "UserService_Consent",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -118,7 +118,7 @@
     "/api/v1/user/forget-password": {
       "post": {
         "summary": "Trigger to reset user password due to forgotten password",
-        "operationId": "ForgetPassword",
+        "operationId": "UserService_ForgetPassword",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -149,7 +149,7 @@
       },
       "put": {
         "summary": "Update user password upon forget password action",
-        "operationId": "UpdatePassword",
+        "operationId": "UserService_UpdatePassword",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -182,7 +182,7 @@
     "/api/v1/user/forget-password/{forgetPwdToken}/verify": {
       "post": {
         "summary": "Verify forget password token upon forget password action",
-        "operationId": "ForgetPasswordVerif",
+        "operationId": "UserService_ForgetPasswordVerif",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -221,7 +221,7 @@
     "/api/v1/user/login": {
       "post": {
         "summary": "User login given email and password",
-        "operationId": "Login",
+        "operationId": "UserService_Login",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -253,7 +253,7 @@
     },
     "/api/v1/user/login/google": {
       "get": {
-        "operationId": "LoginByGoogle",
+        "operationId": "UserService_LoginByGoogle",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -275,7 +275,7 @@
     },
     "/api/v1/user/login/google/callback": {
       "get": {
-        "operationId": "CallbackLoginByGoogle",
+        "operationId": "UserService_CallbackLoginByGoogle",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -312,7 +312,7 @@
     "/api/v1/user/profile/update": {
       "post": {
         "summary": "UpdateUserInfo updates user info (name, address, contact)",
-        "operationId": "UpdateUserInfo",
+        "operationId": "UserService_UpdateUserInfo",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -351,7 +351,7 @@
     "/api/v1/user/register": {
       "post": {
         "summary": "New user registration",
-        "operationId": "Register",
+        "operationId": "UserService_Register",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -383,7 +383,7 @@
     },
     "/api/v1/user/register/google": {
       "get": {
-        "operationId": "RegisterByGoogle",
+        "operationId": "UserService_RegisterByGoogle",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -405,7 +405,7 @@
     },
     "/api/v1/user/register/google/callback": {
       "get": {
-        "operationId": "CallbackRegisterByGoogle",
+        "operationId": "UserService_CallbackRegisterByGoogle",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -442,7 +442,7 @@
     "/api/v1/user/register/{registerToken}/verify": {
       "post": {
         "summary": "Verify user registration",
-        "operationId": "VerifyRegister",
+        "operationId": "UserService_VerifyRegister",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -481,7 +481,7 @@
     "/api/v1/user/resend-email": {
       "get": {
         "summary": "Resend register email verification",
-        "operationId": "ResendEmailVerification",
+        "operationId": "UserService_ResendEmailVerification",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -510,7 +510,7 @@
     "/api/v1/user/signedurl": {
       "post": {
         "summary": "GetSignedURL gets the sign url to gain access to uploads files on google cloud storage",
-        "operationId": "GetSignedURL",
+        "operationId": "UserService_GetSignedURL",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -549,7 +549,7 @@
     "/api/v1/userinfo": {
       "get": {
         "summary": "User info after user logged in.",
-        "operationId": "UserInfo",
+        "operationId": "UserService_UserInfo",
         "responses": {
           "200": {
             "description": "A successful response.",

@@ -246,7 +246,7 @@ service UserService {
 }
 
 message AuthData {
-    string email = 1 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}];
+    string email = 1 [(validator.field) = {regex: "^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}];
     string password = 2 [(validator.field) = {string_not_empty: true}];
     string passwordConfirmation = 3 [(validator.field) = {string_not_empty: true}];
     string diagnosticSessionID = 4;
@@ -258,7 +258,7 @@ message ChronicConditionData {
 }
 
 message ProfileData {
-    string email = 1 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}];
+    string email = 1 [(validator.field) = {regex: "^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}];
     string phone = 2;
     string name = 3 [(validator.field) = {string_not_empty: true}];
     string gender = 4 [(validator.field) = {string_not_empty: true}];
@@ -312,7 +312,7 @@ message VerifyRegisterResponse {
 }
 
 message ForgetPasswordRequest {
-    string email = 1 [(validator.field) = {regex: "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}];
+    string email = 1 [(validator.field) = {regex: "^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}];
     string diagnosticSessionID = 2;
 }
 
