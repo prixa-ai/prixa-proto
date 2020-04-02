@@ -7,10 +7,10 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/golang/protobuf/ptypes/timestamp"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
 	_ "github.com/mwitkow/go-proto-validators"
+	_ "github.com/golang/protobuf/ptypes/timestamp"
 	regexp "regexp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
@@ -74,7 +74,7 @@ func (this *GetAppointmentBookingRequestData) Validate() error {
 }
 
 var _regex_PostAppointmentBookingRequestData_Nik = regexp.MustCompile(`^[0-9]{16}$`)
-var _regex_PostAppointmentBookingRequestData_Email = regexp.MustCompile(`^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$`)
+var _regex_PostAppointmentBookingRequestData_Email = regexp.MustCompile(`^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$`)
 var _regex_PostAppointmentBookingRequestData_PhoneNumber = regexp.MustCompile(`^[+]?[0-9]{10,13}$`)
 var _regex_PostAppointmentBookingRequestData_AppointmentDate = regexp.MustCompile(`^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$`)
 var _regex_PostAppointmentBookingRequestData_AppointmentTime = regexp.MustCompile(`^([0-1]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$`)
@@ -94,7 +94,7 @@ func (this *PostAppointmentBookingRequestData) Validate() error {
 		return github_com_mwitkow_go_proto_validators.FieldError("Nik", fmt.Errorf(`value '%v' must not be an empty string`, this.Nik))
 	}
 	if !_regex_PostAppointmentBookingRequestData_Email.MatchString(this.Email) {
-		return github_com_mwitkow_go_proto_validators.FieldError("Email", fmt.Errorf(`value '%v' must be a string conforming to regex "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"`, this.Email))
+		return github_com_mwitkow_go_proto_validators.FieldError("Email", fmt.Errorf(`value '%v' must be a string conforming to regex "^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"`, this.Email))
 	}
 	if this.Email == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("Email", fmt.Errorf(`value '%v' must not be an empty string`, this.Email))
@@ -644,14 +644,14 @@ func (this *SourceData) Validate() error {
 }
 
 var _regex_ContactData_PhoneNumber = regexp.MustCompile(`^[+]?[0-9]{10,13}$`)
-var _regex_ContactData_Email = regexp.MustCompile(`^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$`)
+var _regex_ContactData_Email = regexp.MustCompile(`^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$`)
 
 func (this *ContactData) Validate() error {
 	if !_regex_ContactData_PhoneNumber.MatchString(this.PhoneNumber) {
 		return github_com_mwitkow_go_proto_validators.FieldError("PhoneNumber", fmt.Errorf(`value '%v' must be a string conforming to regex "^[+]?[0-9]{10,13}$"`, this.PhoneNumber))
 	}
 	if !_regex_ContactData_Email.MatchString(this.Email) {
-		return github_com_mwitkow_go_proto_validators.FieldError("Email", fmt.Errorf(`value '%v' must be a string conforming to regex "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"`, this.Email))
+		return github_com_mwitkow_go_proto_validators.FieldError("Email", fmt.Errorf(`value '%v' must be a string conforming to regex "^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"`, this.Email))
 	}
 	return nil
 }

@@ -213,12 +213,12 @@ func (this *InsuranceStatus) Validate() error {
 	return nil
 }
 
-var _regex_SendEmailRequest_Email = regexp.MustCompile(`^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$`)
+var _regex_SendEmailRequest_Email = regexp.MustCompile(`^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$`)
 var _regex_SendEmailRequest_SessionId = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
 
 func (this *SendEmailRequest) Validate() error {
 	if !_regex_SendEmailRequest_Email.MatchString(this.Email) {
-		return github_com_mwitkow_go_proto_validators.FieldError("Email", fmt.Errorf(`value '%v' must be a string conforming to regex "^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"`, this.Email))
+		return github_com_mwitkow_go_proto_validators.FieldError("Email", fmt.Errorf(`value '%v' must be a string conforming to regex "^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"`, this.Email))
 	}
 	if this.Email == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("Email", fmt.Errorf(`value '%v' must not be an empty string`, this.Email))
