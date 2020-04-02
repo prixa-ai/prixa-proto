@@ -20,3 +20,12 @@ message EventLog {
     string description = 13;
     google.protobuf.Any metadata = 14;
 }
+
+message NalarEvent {
+    EventLog eventLog = 1;
+    float latitude = 2;
+    float longitue = 3;
+    string city = 4;
+    string region = 5;
+    string sessionID = 6;
+}

@@ -30,3 +30,11 @@ func (this *EventLog) Validate() error {
 	}
 	return nil
 }
+func (this *NalarEvent) Validate() error {
+	if this.EventLog != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.EventLog); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("EventLog", err)
+		}
+	}
+	return nil
+}
