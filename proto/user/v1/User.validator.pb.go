@@ -201,5 +201,29 @@ func (this *CallbackRegisterByGoogleRequest) Validate() error {
 	return nil
 }
 func (this *CallbackRegisterByGoogleResponse) Validate() error {
+	if this.LoginToken == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("LoginToken", fmt.Errorf(`value '%v' must not be an empty string`, this.LoginToken))
+	}
+	if this.SessionID == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("SessionID", fmt.Errorf(`value '%v' must not be an empty string`, this.SessionID))
+	}
+	return nil
+}
+func (this *LoginByGoogleResponse) Validate() error {
+	return nil
+}
+func (this *CallbackLoginByGoogleRequest) Validate() error {
+	return nil
+}
+func (this *CallbackLoginByGoogleResponse) Validate() error {
+	if this.LoginToken == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("LoginToken", fmt.Errorf(`value '%v' must not be an empty string`, this.LoginToken))
+	}
+	if this.PersonID == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("PersonID", fmt.Errorf(`value '%v' must not be an empty string`, this.PersonID))
+	}
+	if this.SessionID == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("SessionID", fmt.Errorf(`value '%v' must not be an empty string`, this.SessionID))
+	}
 	return nil
 }

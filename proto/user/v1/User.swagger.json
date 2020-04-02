@@ -251,6 +251,64 @@
         ]
       }
     },
+    "/api/v1/user/login/google": {
+      "get": {
+        "operationId": "LoginByGoogle",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1LoginByGoogleResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "UserService"
+        ]
+      }
+    },
+    "/api/v1/user/login/google/callback": {
+      "get": {
+        "operationId": "CallbackLoginByGoogle",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CallbackLoginByGoogleResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "state",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "UserService"
+        ]
+      }
+    },
     "/api/v1/user/profile/update": {
       "post": {
         "summary": "UpdateUserInfo updates user info (name, address, contact)",
@@ -572,10 +630,31 @@
         }
       }
     },
+    "v1CallbackLoginByGoogleResponse": {
+      "type": "object",
+      "properties": {
+        "loginToken": {
+          "type": "string"
+        },
+        "personID": {
+          "type": "string"
+        },
+        "sessionID": {
+          "type": "string"
+        },
+        "isVerified": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
     "v1CallbackRegisterByGoogleResponse": {
       "type": "object",
       "properties": {
-        "message": {
+        "loginToken": {
+          "type": "string"
+        },
+        "sessionID": {
           "type": "string"
         }
       }
@@ -652,6 +731,14 @@
           "type": "string"
         },
         "name": {
+          "type": "string"
+        }
+      }
+    },
+    "v1LoginByGoogleResponse": {
+      "type": "object",
+      "properties": {
+        "authURL": {
           "type": "string"
         }
       }
