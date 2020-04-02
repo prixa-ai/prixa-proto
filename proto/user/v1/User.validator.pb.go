@@ -7,10 +7,10 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
+	_ "github.com/mwitkow/go-proto-validators"
 	_ "github.com/golang/protobuf/ptypes/empty"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
-	_ "github.com/mwitkow/go-proto-validators"
 	regexp "regexp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
@@ -201,5 +201,29 @@ func (this *CallbackRegisterByGoogleRequest) Validate() error {
 	return nil
 }
 func (this *CallbackRegisterByGoogleResponse) Validate() error {
+	if this.LoginToken == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("LoginToken", fmt.Errorf(`value '%v' must not be an empty string`, this.LoginToken))
+	}
+	if this.SessionID == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("SessionID", fmt.Errorf(`value '%v' must not be an empty string`, this.SessionID))
+	}
+	return nil
+}
+func (this *LoginByGoogleResponse) Validate() error {
+	return nil
+}
+func (this *CallbackLoginByGoogleRequest) Validate() error {
+	return nil
+}
+func (this *CallbackLoginByGoogleResponse) Validate() error {
+	if this.LoginToken == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("LoginToken", fmt.Errorf(`value '%v' must not be an empty string`, this.LoginToken))
+	}
+	if this.PersonID == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("PersonID", fmt.Errorf(`value '%v' must not be an empty string`, this.PersonID))
+	}
+	if this.SessionID == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("SessionID", fmt.Errorf(`value '%v' must not be an empty string`, this.SessionID))
+	}
 	return nil
 }

@@ -60,6 +60,18 @@ service UserService {
         };
     }
 
+    rpc LoginByGoogle (google.protobuf.Empty) returns (LoginByGoogleResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/user/login/google"
+        };
+    }
+
+    rpc CallbackLoginByGoogle (CallbackLoginByGoogleRequest) returns (CallbackLoginByGoogleResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/user/login/google/callback"
+        };
+    } 
+
     // Get user consent information
     rpc Consent (google.protobuf.Empty) returns (ConsentResponse) {
         option (google.api.http) = {
@@ -371,5 +383,22 @@ message CallbackRegisterByGoogleRequest {
 }
 
 message CallbackRegisterByGoogleResponse {
-    string message = 1;
+    string loginToken = 1 [(validator.field) = {string_not_empty: true}];
+    string sessionID = 2 [(validator.field) = {string_not_empty: true}];
+}
+
+message LoginByGoogleResponse {
+    string authURL = 1;
+}
+
+message CallbackLoginByGoogleRequest {
+    string state = 1;
+    string code = 2;
+}
+
+message CallbackLoginByGoogleResponse {
+    string loginToken = 1 [(validator.field) = {string_not_empty: true}];
+    string personID = 2 [(validator.field) = {string_not_empty: true}];
+    string sessionID = 3 [(validator.field) = {string_not_empty: true}];
+    bool isVerified = 4;
 }
