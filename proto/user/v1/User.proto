@@ -74,6 +74,18 @@ service UserService {
             body: "*"
         };
     }
+    
+    rpc RegisterByGoogle (google.protobuf.Empty) returns (RegisterByGoogleResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/user/register/google"
+        };
+    }
+
+    rpc CallbackRegisterByGoogle (CallbackRegisterByGoogleRequest) returns (CallbackRegisterByGoogleResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/user/register/google/callback"
+        };
+    }
 
     // Resend register email verification
     rpc ResendEmailVerification (google.protobuf.Empty) returns (ResendEmailVerificationResponse) {
@@ -347,4 +359,17 @@ message UpdateUserInfoResponse {
 message GetSignedURLResponse {
     string url = 1;
     string name = 2;
+}
+
+message RegisterByGoogleResponse {
+    string authURL = 1;
+}
+
+message CallbackRegisterByGoogleRequest {
+    string state = 1;
+    string code = 2;
+}
+
+message CallbackRegisterByGoogleResponse {
+    string message = 1;
 }

@@ -6,6 +6,8 @@ package prixa_user_v1
 import (
 	context "context"
 	fmt "fmt"
+	math "math"
+
 	proto "github.com/golang/protobuf/proto"
 	empty "github.com/golang/protobuf/ptypes/empty"
 	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
@@ -14,7 +16,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	math "math"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -1228,6 +1229,131 @@ func (m *GetSignedURLResponse) GetName() string {
 	return ""
 }
 
+type RegisterByGoogleResponse struct {
+	AuthURL              string   `protobuf:"bytes,1,opt,name=authURL,proto3" json:"authURL,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *RegisterByGoogleResponse) Reset()         { *m = RegisterByGoogleResponse{} }
+func (m *RegisterByGoogleResponse) String() string { return proto.CompactTextString(m) }
+func (*RegisterByGoogleResponse) ProtoMessage()    {}
+func (*RegisterByGoogleResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_453e8749a117a63a, []int{24}
+}
+
+func (m *RegisterByGoogleResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RegisterByGoogleResponse.Unmarshal(m, b)
+}
+func (m *RegisterByGoogleResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RegisterByGoogleResponse.Marshal(b, m, deterministic)
+}
+func (m *RegisterByGoogleResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RegisterByGoogleResponse.Merge(m, src)
+}
+func (m *RegisterByGoogleResponse) XXX_Size() int {
+	return xxx_messageInfo_RegisterByGoogleResponse.Size(m)
+}
+func (m *RegisterByGoogleResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_RegisterByGoogleResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RegisterByGoogleResponse proto.InternalMessageInfo
+
+func (m *RegisterByGoogleResponse) GetAuthURL() string {
+	if m != nil {
+		return m.AuthURL
+	}
+	return ""
+}
+
+type CallbackRegisterByGoogleRequest struct {
+	State                string   `protobuf:"bytes,1,opt,name=state,proto3" json:"state,omitempty"`
+	Code                 string   `protobuf:"bytes,2,opt,name=code,proto3" json:"code,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CallbackRegisterByGoogleRequest) Reset()         { *m = CallbackRegisterByGoogleRequest{} }
+func (m *CallbackRegisterByGoogleRequest) String() string { return proto.CompactTextString(m) }
+func (*CallbackRegisterByGoogleRequest) ProtoMessage()    {}
+func (*CallbackRegisterByGoogleRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_453e8749a117a63a, []int{25}
+}
+
+func (m *CallbackRegisterByGoogleRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CallbackRegisterByGoogleRequest.Unmarshal(m, b)
+}
+func (m *CallbackRegisterByGoogleRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CallbackRegisterByGoogleRequest.Marshal(b, m, deterministic)
+}
+func (m *CallbackRegisterByGoogleRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CallbackRegisterByGoogleRequest.Merge(m, src)
+}
+func (m *CallbackRegisterByGoogleRequest) XXX_Size() int {
+	return xxx_messageInfo_CallbackRegisterByGoogleRequest.Size(m)
+}
+func (m *CallbackRegisterByGoogleRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CallbackRegisterByGoogleRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CallbackRegisterByGoogleRequest proto.InternalMessageInfo
+
+func (m *CallbackRegisterByGoogleRequest) GetState() string {
+	if m != nil {
+		return m.State
+	}
+	return ""
+}
+
+func (m *CallbackRegisterByGoogleRequest) GetCode() string {
+	if m != nil {
+		return m.Code
+	}
+	return ""
+}
+
+type CallbackRegisterByGoogleResponse struct {
+	Message              string   `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CallbackRegisterByGoogleResponse) Reset()         { *m = CallbackRegisterByGoogleResponse{} }
+func (m *CallbackRegisterByGoogleResponse) String() string { return proto.CompactTextString(m) }
+func (*CallbackRegisterByGoogleResponse) ProtoMessage()    {}
+func (*CallbackRegisterByGoogleResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_453e8749a117a63a, []int{26}
+}
+
+func (m *CallbackRegisterByGoogleResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CallbackRegisterByGoogleResponse.Unmarshal(m, b)
+}
+func (m *CallbackRegisterByGoogleResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CallbackRegisterByGoogleResponse.Marshal(b, m, deterministic)
+}
+func (m *CallbackRegisterByGoogleResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CallbackRegisterByGoogleResponse.Merge(m, src)
+}
+func (m *CallbackRegisterByGoogleResponse) XXX_Size() int {
+	return xxx_messageInfo_CallbackRegisterByGoogleResponse.Size(m)
+}
+func (m *CallbackRegisterByGoogleResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CallbackRegisterByGoogleResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CallbackRegisterByGoogleResponse proto.InternalMessageInfo
+
+func (m *CallbackRegisterByGoogleResponse) GetMessage() string {
+	if m != nil {
+		return m.Message
+	}
+	return ""
+}
+
 func init() {
 	proto.RegisterType((*AuthData)(nil), "prixa.user.v1.AuthData")
 	proto.RegisterType((*ChronicConditionData)(nil), "prixa.user.v1.ChronicConditionData")
@@ -1253,6 +1379,9 @@ func init() {
 	proto.RegisterType((*UpdateUserInfoRequest)(nil), "prixa.user.v1.UpdateUserInfoRequest")
 	proto.RegisterType((*UpdateUserInfoResponse)(nil), "prixa.user.v1.UpdateUserInfoResponse")
 	proto.RegisterType((*GetSignedURLResponse)(nil), "prixa.user.v1.GetSignedURLResponse")
+	proto.RegisterType((*RegisterByGoogleResponse)(nil), "prixa.user.v1.RegisterByGoogleResponse")
+	proto.RegisterType((*CallbackRegisterByGoogleRequest)(nil), "prixa.user.v1.CallbackRegisterByGoogleRequest")
+	proto.RegisterType((*CallbackRegisterByGoogleResponse)(nil), "prixa.user.v1.CallbackRegisterByGoogleResponse")
 }
 
 func init() {
@@ -1383,6 +1512,8 @@ type UserServiceClient interface {
 	Consent(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ConsentResponse, error)
 	// New user registration
 	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error)
+	RegisterByGoogle(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*RegisterByGoogleResponse, error)
+	CallbackRegisterByGoogle(ctx context.Context, in *CallbackRegisterByGoogleRequest, opts ...grpc.CallOption) (*CallbackRegisterByGoogleResponse, error)
 	// Resend register email verification
 	ResendEmailVerification(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*ResendEmailVerificationResponse, error)
 	// Verify user registration
@@ -1434,6 +1565,24 @@ func (c *userServiceClient) Consent(ctx context.Context, in *empty.Empty, opts .
 func (c *userServiceClient) Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error) {
 	out := new(RegisterResponse)
 	err := c.cc.Invoke(ctx, "/prixa.user.v1.UserService/Register", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) RegisterByGoogle(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*RegisterByGoogleResponse, error) {
+	out := new(RegisterByGoogleResponse)
+	err := c.cc.Invoke(ctx, "/prixa.user.v1.UserService/RegisterByGoogle", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) CallbackRegisterByGoogle(ctx context.Context, in *CallbackRegisterByGoogleRequest, opts ...grpc.CallOption) (*CallbackRegisterByGoogleResponse, error) {
+	out := new(CallbackRegisterByGoogleResponse)
+	err := c.cc.Invoke(ctx, "/prixa.user.v1.UserService/CallbackRegisterByGoogle", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1538,6 +1687,8 @@ type UserServiceServer interface {
 	Consent(context.Context, *empty.Empty) (*ConsentResponse, error)
 	// New user registration
 	Register(context.Context, *RegisterRequest) (*RegisterResponse, error)
+	RegisterByGoogle(context.Context, *empty.Empty) (*RegisterByGoogleResponse, error)
+	CallbackRegisterByGoogle(context.Context, *CallbackRegisterByGoogleRequest) (*CallbackRegisterByGoogleResponse, error)
 	// Resend register email verification
 	ResendEmailVerification(context.Context, *empty.Empty) (*ResendEmailVerificationResponse, error)
 	// Verify user registration
@@ -1572,6 +1723,12 @@ func (*UnimplementedUserServiceServer) Consent(ctx context.Context, req *empty.E
 }
 func (*UnimplementedUserServiceServer) Register(ctx context.Context, req *RegisterRequest) (*RegisterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Register not implemented")
+}
+func (*UnimplementedUserServiceServer) RegisterByGoogle(ctx context.Context, req *empty.Empty) (*RegisterByGoogleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RegisterByGoogle not implemented")
+}
+func (*UnimplementedUserServiceServer) CallbackRegisterByGoogle(ctx context.Context, req *CallbackRegisterByGoogleRequest) (*CallbackRegisterByGoogleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CallbackRegisterByGoogle not implemented")
 }
 func (*UnimplementedUserServiceServer) ResendEmailVerification(ctx context.Context, req *empty.Empty) (*ResendEmailVerificationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResendEmailVerification not implemented")
@@ -1658,6 +1815,42 @@ func _UserService_Register_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).Register(ctx, req.(*RegisterRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_RegisterByGoogle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).RegisterByGoogle(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/prixa.user.v1.UserService/RegisterByGoogle",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).RegisterByGoogle(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_CallbackRegisterByGoogle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CallbackRegisterByGoogleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).CallbackRegisterByGoogle(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/prixa.user.v1.UserService/CallbackRegisterByGoogle",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).CallbackRegisterByGoogle(ctx, req.(*CallbackRegisterByGoogleRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1857,6 +2050,14 @@ var _UserService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Register",
 			Handler:    _UserService_Register_Handler,
+		},
+		{
+			MethodName: "RegisterByGoogle",
+			Handler:    _UserService_RegisterByGoogle_Handler,
+		},
+		{
+			MethodName: "CallbackRegisterByGoogle",
+			Handler:    _UserService_CallbackRegisterByGoogle_Handler,
 		},
 		{
 			MethodName: "ResendEmailVerification",

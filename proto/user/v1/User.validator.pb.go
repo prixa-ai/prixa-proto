@@ -194,3 +194,12 @@ func (this *UpdateUserInfoResponse) Validate() error {
 func (this *GetSignedURLResponse) Validate() error {
 	return nil
 }
+func (this *RegisterByGoogleResponse) Validate() error {
+	return nil
+}
+func (this *CallbackRegisterByGoogleRequest) Validate() error {
+	return nil
+}
+func (this *CallbackRegisterByGoogleResponse) Validate() error {
+	return nil
+}
