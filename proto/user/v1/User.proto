@@ -60,18 +60,6 @@ service UserService {
         };
     }
 
-    rpc LoginByGoogle (google.protobuf.Empty) returns (LoginByGoogleResponse) {
-        option (google.api.http) = {
-            get: "/api/v1/user/login/google"
-        };
-    }
-
-    rpc CallbackLoginByGoogle (CallbackLoginByGoogleRequest) returns (CallbackLoginByGoogleResponse) {
-        option (google.api.http) = {
-            get: "/api/v1/user/login/google/callback"
-        };
-    } 
-
     // Get user consent information
     rpc Consent (google.protobuf.Empty) returns (ConsentResponse) {
         option (google.api.http) = {
@@ -86,16 +74,18 @@ service UserService {
             body: "*"
         };
     }
-    
-    rpc RegisterByGoogle (google.protobuf.Empty) returns (RegisterByGoogleResponse) {
+
+    // Get oauth google url
+    rpc OauthGoogle (google.protobuf.Empty) returns (OauthGoogleURL) {
         option (google.api.http) = {
-            get: "/api/v1/user/register/google"
+            get: "/api/v1/user/oauth/google"
         };
     }
 
-    rpc CallbackRegisterByGoogle (CallbackRegisterByGoogleRequest) returns (CallbackRegisterByGoogleResponse) {
+    // Oauth google callback
+    rpc CallbackOauthGoogle (CallbackGoogleRequest) returns (LoginResponse) {
         option (google.api.http) = {
-            get: "/api/v1/user/register/google/callback"
+            get: "/api/v1/user/oauth/google/callback"
         };
     }
 
@@ -373,32 +363,11 @@ message GetSignedURLResponse {
     string name = 2;
 }
 
-message RegisterByGoogleResponse {
+message OauthGoogleURL {
     string authURL = 1;
 }
 
-message CallbackRegisterByGoogleRequest {
+message CallbackGoogleRequest {
     string state = 1;
     string code = 2;
-}
-
-message CallbackRegisterByGoogleResponse {
-    string loginToken = 1 [(validator.field) = {string_not_empty: true}];
-    string sessionID = 2 [(validator.field) = {string_not_empty: true}];
-}
-
-message LoginByGoogleResponse {
-    string authURL = 1;
-}
-
-message CallbackLoginByGoogleRequest {
-    string state = 1;
-    string code = 2;
-}
-
-message CallbackLoginByGoogleResponse {
-    string loginToken = 1 [(validator.field) = {string_not_empty: true}];
-    string personID = 2 [(validator.field) = {string_not_empty: true}];
-    string sessionID = 3 [(validator.field) = {string_not_empty: true}];
-    bool isVerified = 4;
 }
