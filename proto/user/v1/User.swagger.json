@@ -251,14 +251,15 @@
         ]
       }
     },
-    "/api/v1/user/login/google": {
+    "/api/v1/user/oauth/google": {
       "get": {
-        "operationId": "UserService_LoginByGoogle",
+        "summary": "Get oauth google url",
+        "operationId": "UserService_OauthGoogle",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1LoginByGoogleResponse"
+              "$ref": "#/definitions/v1OauthGoogleURL"
             }
           },
           "default": {
@@ -273,14 +274,15 @@
         ]
       }
     },
-    "/api/v1/user/login/google/callback": {
+    "/api/v1/user/oauth/google/callback": {
       "get": {
-        "operationId": "UserService_CallbackLoginByGoogle",
+        "summary": "Oauth google callback",
+        "operationId": "UserService_CallbackOauthGoogle",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1CallbackLoginByGoogleResponse"
+              "$ref": "#/definitions/v1LoginResponse"
             }
           },
           "default": {
@@ -374,64 +376,6 @@
             "schema": {
               "$ref": "#/definitions/v1RegisterRequest"
             }
-          }
-        ],
-        "tags": [
-          "UserService"
-        ]
-      }
-    },
-    "/api/v1/user/register/google": {
-      "get": {
-        "operationId": "UserService_RegisterByGoogle",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1RegisterByGoogleResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "tags": [
-          "UserService"
-        ]
-      }
-    },
-    "/api/v1/user/register/google/callback": {
-      "get": {
-        "operationId": "UserService_CallbackRegisterByGoogle",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1CallbackRegisterByGoogleResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "state",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "code",
-            "in": "query",
-            "required": false,
-            "type": "string"
           }
         ],
         "tags": [
@@ -630,35 +574,6 @@
         }
       }
     },
-    "v1CallbackLoginByGoogleResponse": {
-      "type": "object",
-      "properties": {
-        "loginToken": {
-          "type": "string"
-        },
-        "personID": {
-          "type": "string"
-        },
-        "sessionID": {
-          "type": "string"
-        },
-        "isVerified": {
-          "type": "boolean",
-          "format": "boolean"
-        }
-      }
-    },
-    "v1CallbackRegisterByGoogleResponse": {
-      "type": "object",
-      "properties": {
-        "loginToken": {
-          "type": "string"
-        },
-        "sessionID": {
-          "type": "string"
-        }
-      }
-    },
     "v1ChangePasswordRequest": {
       "type": "object",
       "properties": {
@@ -735,14 +650,6 @@
         }
       }
     },
-    "v1LoginByGoogleResponse": {
-      "type": "object",
-      "properties": {
-        "authURL": {
-          "type": "string"
-        }
-      }
-    },
     "v1LoginRequest": {
       "type": "object",
       "properties": {
@@ -773,6 +680,14 @@
       "type": "object",
       "properties": {
         "message": {
+          "type": "string"
+        }
+      }
+    },
+    "v1OauthGoogleURL": {
+      "type": "object",
+      "properties": {
+        "authURL": {
           "type": "string"
         }
       }
@@ -826,14 +741,6 @@
           "type": "string"
         },
         "avatarURL": {
-          "type": "string"
-        }
-      }
-    },
-    "v1RegisterByGoogleResponse": {
-      "type": "object",
-      "properties": {
-        "authURL": {
           "type": "string"
         }
       }
