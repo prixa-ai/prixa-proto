@@ -308,7 +308,7 @@ message GetHospitalRequestData{
 
 message GetHospitalsRequestData {
     // Param
-    GetHospitalParamData param = 1 [(validator.field) = {msg_exists : true}];
+    GetHospitalParamData param = 1;
     //page
     int32 page = 2;
 }
