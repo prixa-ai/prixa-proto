@@ -775,7 +775,7 @@
         },
         "covidScore": {
           "type": "number",
-          "format": "float"
+          "format": "double"
         }
       }
     },
