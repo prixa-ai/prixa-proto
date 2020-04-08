@@ -87,6 +87,28 @@
         ]
       }
     },
+    "/api/v1/localtransmission": {
+      "get": {
+        "operationId": "DiagnosticService_GetLocalTransmissionData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1LocalTransmissionData"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "DiagnosticService"
+        ]
+      }
+    },
     "/api/v1/prixa": {
       "post": {
         "operationId": "DiagnosticService_BotConversation",
@@ -593,6 +615,17 @@
           "items": {
             "type": "string"
           }
+        }
+      }
+    },
+    "v1LocalTransmissionData": {
+      "type": "object",
+      "properties": {
+        "province": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
         }
       }
     },

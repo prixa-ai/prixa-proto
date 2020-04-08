@@ -361,3 +361,6 @@ func (this *SendCovidFormRequest) Validate() error {
 func (this *SendCovidFormResponse) Validate() error {
 	return nil
 }
+func (this *LocalTransmissionData) Validate() error {
+	return nil
+}
