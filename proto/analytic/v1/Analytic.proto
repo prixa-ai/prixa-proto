@@ -11,12 +11,14 @@ message EventLog {
     string environment = 4;
     string partnerID = 5;
     string partnerName = 6;
-    string ip = 7;
-    string userID = 8;
-    string userName = 9;
-    string userAgent = 10;
-    string type = 11;
-    string hostname = 12;
-    string description = 13;
-    google.protobuf.Any metadata = 14;
+    string partnerAppID = 7;
+    string partnerAppName = 8;
+    string ip = 9;
+    string email = 10;
+    string userName = 11;
+    string userAgent = 12;
+    string type = 13;
+    string hostname = 14;
+    string description = 15;
+    google.protobuf.Any metadata = 16;
 }
