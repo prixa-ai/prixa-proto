@@ -27,7 +27,7 @@
   "paths": {
     "/api/v1/partner/{partnerId}/application": {
       "get": {
-        "operationId": "ListPartnerApplications",
+        "operationId": "PartnerApplicationService_ListPartnerApplications",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -61,7 +61,7 @@
         ]
       },
       "post": {
-        "operationId": "CreatePartnerApplication",
+        "operationId": "PartnerApplicationService_CreatePartnerApplication",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -105,7 +105,7 @@
     },
     "/api/v1/partner/{partnerId}/application/{applicationId}": {
       "get": {
-        "operationId": "GetPartnerApplication",
+        "operationId": "PartnerApplicationService_GetPartnerApplication",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -139,7 +139,7 @@
         ]
       },
       "delete": {
-        "operationId": "DeletePartnerApplication",
+        "operationId": "PartnerApplicationService_DeletePartnerApplication",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -179,7 +179,7 @@
         ]
       },
       "put": {
-        "operationId": "UpdatePartnerApplication",
+        "operationId": "PartnerApplicationService_UpdatePartnerApplication",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -223,7 +223,7 @@
     },
     "/api/v1/partner/{partnerId}/application/{applicationId}/metadata": {
       "get": {
-        "operationId": "GetAppMetadata",
+        "operationId": "PartnerApplicationService_GetAppMetadata",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -262,7 +262,7 @@
         ]
       },
       "put": {
-        "operationId": "UpdateAppMetadata",
+        "operationId": "PartnerApplicationService_UpdateAppMetadata",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -355,6 +355,9 @@
           "type": "string"
         },
         "hotline": {
+          "type": "string"
+        },
+        "rdtURL": {
           "type": "string"
         }
       }

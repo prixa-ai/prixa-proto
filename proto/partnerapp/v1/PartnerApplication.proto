@@ -208,6 +208,7 @@ message GetAppMetadataRequest {
 message AppMetadata {
     string formURL = 1;
     string hotline = 2;
+    string rdtURL = 3;
 }
 
 message GetAppMetadataResponse {
