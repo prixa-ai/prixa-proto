@@ -97,7 +97,7 @@ service DiagnosticService {
         };
     }
 
-    rpc GetLocalTransmissionData (google.protobuf.Empty) returns (LocalTransmissionData) {
+    rpc GetLocalTransmissionData (google.protobuf.Empty) returns (GetLocalTransmissionDataResponse) {
         option (google.api.http) = {
             get: "/api/v1/localtransmission"
         };
@@ -370,6 +370,10 @@ message SendCovidFormRequest {
 
 message SendCovidFormResponse {
     string message = 1;
+}
+
+message GetLocalTransmissionDataResponse {
+    repeated LocalTransmissionData localTransmissionData = 1;
 }
 
 message LocalTransmissionData {

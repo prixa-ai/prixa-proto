@@ -94,7 +94,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1LocalTransmissionData"
+              "$ref": "#/definitions/v1GetLocalTransmissionDataResponse"
             }
           },
           "default": {
@@ -581,6 +581,17 @@
           "type": "array",
           "items": {
             "type": "string"
+          }
+        }
+      }
+    },
+    "v1GetLocalTransmissionDataResponse": {
+      "type": "object",
+      "properties": {
+        "localTransmissionData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1LocalTransmissionData"
           }
         }
       }
