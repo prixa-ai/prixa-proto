@@ -27,7 +27,7 @@
   "paths": {
     "/api/v1/conversation/mail/send": {
       "post": {
-        "operationId": "SendEmail",
+        "operationId": "DiagnosticService_SendEmail",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -59,7 +59,7 @@
     },
     "/api/v1/disease/article/{diseaseID}": {
       "get": {
-        "operationId": "GetDiseaseArticle",
+        "operationId": "DiagnosticService_GetDiseaseArticle",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -89,7 +89,7 @@
     },
     "/api/v1/prixa": {
       "post": {
-        "operationId": "BotConversation",
+        "operationId": "DiagnosticService_BotConversation",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -121,7 +121,7 @@
     },
     "/api/v1/prixa/covidform": {
       "post": {
-        "operationId": "SendCovidForm",
+        "operationId": "DiagnosticService_SendCovidForm",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -143,7 +143,7 @@
     },
     "/api/v1/prixa/feedback": {
       "get": {
-        "operationId": "GetFeedbackContent",
+        "operationId": "DiagnosticService_GetFeedbackContent",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -163,7 +163,7 @@
         ]
       },
       "post": {
-        "operationId": "SendFeedback",
+        "operationId": "DiagnosticService_SendFeedback",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -195,7 +195,7 @@
     },
     "/api/v1/prixa/statistics": {
       "get": {
-        "operationId": "GetDiagnosticStatistics",
+        "operationId": "DiagnosticService_GetDiagnosticStatistics",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -217,7 +217,7 @@
     },
     "/api/v1/prixa/survey": {
       "post": {
-        "operationId": "SendSurvey",
+        "operationId": "DiagnosticService_SendSurvey",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -249,7 +249,7 @@
     },
     "/api/v1/prixa/user": {
       "post": {
-        "operationId": "CreatePrixaSession",
+        "operationId": "DiagnosticService_CreatePrixaSession",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -281,7 +281,7 @@
     },
     "/api/v2/prixa": {
       "post": {
-        "operationId": "BotConversationV2",
+        "operationId": "DiagnosticService_BotConversationV2",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -772,6 +772,10 @@
         },
         "symptomID": {
           "type": "string"
+        },
+        "covidScore": {
+          "type": "number",
+          "format": "double"
         }
       }
     },

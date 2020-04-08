@@ -141,6 +141,7 @@ message ResultData {
     repeated PreconditionsData preconditions = 3;
     string currentState = 4;
     string symptomID = 5;
+    double covidScore = 6;
 }
 
 message MessagesData {
