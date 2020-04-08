@@ -373,6 +373,7 @@ message SendCovidFormResponse {
 }
 
 message LocalTransmissionData {
-    string province = 1;
-    string city = 2;
+    string id = 1;
+    string province = 2;
+    string city = 3;
 }

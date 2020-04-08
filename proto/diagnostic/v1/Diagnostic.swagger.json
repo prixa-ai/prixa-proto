@@ -621,6 +621,9 @@
     "v1LocalTransmissionData": {
       "type": "object",
       "properties": {
+        "id": {
+          "type": "string"
+        },
         "province": {
           "type": "string"
         },
