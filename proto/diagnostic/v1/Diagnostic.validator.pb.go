@@ -361,3 +361,16 @@ func (this *SendCovidFormRequest) Validate() error {
 func (this *SendCovidFormResponse) Validate() error {
 	return nil
 }
+func (this *GetLocalTransmissionDataResponse) Validate() error {
+	for _, item := range this.LocalTransmissionData {
+		if item != nil {
+			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
+				return github_com_mwitkow_go_proto_validators.FieldError("LocalTransmissionData", err)
+			}
+		}
+	}
+	return nil
+}
+func (this *LocalTransmissionData) Validate() error {
+	return nil
+}

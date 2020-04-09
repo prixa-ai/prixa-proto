@@ -97,6 +97,12 @@ service DiagnosticService {
         };
     }
 
+    rpc GetLocalTransmissionData (google.protobuf.Empty) returns (GetLocalTransmissionDataResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/localtransmission"
+        };
+    }
+
     // Internal GRPC API, DO NOT EXPOSE
     rpc UpdateDiagnosticData (UpdateSourceRequest) returns (google.protobuf.Empty) {}
 }
@@ -364,4 +370,14 @@ message SendCovidFormRequest {
 
 message SendCovidFormResponse {
     string message = 1;
+}
+
+message GetLocalTransmissionDataResponse {
+    repeated LocalTransmissionData localTransmissionData = 1;
+}
+
+message LocalTransmissionData {
+    string id = 1;
+    string province = 2;
+    string city = 3;
 }

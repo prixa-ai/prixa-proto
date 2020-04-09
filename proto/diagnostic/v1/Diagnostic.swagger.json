@@ -87,6 +87,28 @@
         ]
       }
     },
+    "/api/v1/localtransmission": {
+      "get": {
+        "operationId": "DiagnosticService_GetLocalTransmissionData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetLocalTransmissionDataResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "DiagnosticService"
+        ]
+      }
+    },
     "/api/v1/prixa": {
       "post": {
         "operationId": "DiagnosticService_BotConversation",
@@ -563,6 +585,17 @@
         }
       }
     },
+    "v1GetLocalTransmissionDataResponse": {
+      "type": "object",
+      "properties": {
+        "localTransmissionData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1LocalTransmissionData"
+          }
+        }
+      }
+    },
     "v1InsuranceStatus": {
       "type": "object",
       "properties": {
@@ -593,6 +626,20 @@
           "items": {
             "type": "string"
           }
+        }
+      }
+    },
+    "v1LocalTransmissionData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "province": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
         }
       }
     },
