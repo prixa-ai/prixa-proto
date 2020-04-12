@@ -30,3 +30,21 @@ func (this *EventLog) Validate() error {
 	}
 	return nil
 }
+func (this *NalarEvent) Validate() error {
+	if this.EventLog != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.EventLog); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("EventLog", err)
+		}
+	}
+	if this.Reply != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Reply); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Reply", err)
+		}
+	}
+	if this.Result != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Result); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Result", err)
+		}
+	}
+	return nil
+}
