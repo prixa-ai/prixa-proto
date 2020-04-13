@@ -4,6 +4,7 @@ package prixa.telemedicine.v1;
 
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
 import "protoc-gen-swagger/options/annotations.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 
@@ -181,6 +182,13 @@ service TelemedicineService {
         };
     }
 
+    // Get Valid Payment Method data
+    rpc GetValidPaymentMethodsData (google.protobuf.Empty) returns (PaymentMethodResponseData) {
+        option (google.api.http) = {
+            get: "/api/v1/telemedicine/payment-method"
+        };
+    }
+
     // InitConversation is initialize conversation between user and doctor
     rpc InitConversation(InitConversationRequest) returns (InitConversationResponse) {
         option (google.api.http) = {
@@ -251,13 +259,27 @@ message PostAppointmentBookingRequestData{
 }
 
 message AppointmentBookingsResponseData{
-    // Appointment status
+    // response status
     string status = 1;
-    // Appointment message
+    // response message
     string message = 2;
     // Appointment data
     repeated AppointmentBookingData data = 3;
 }
+
+message PaymentMethodResponseData{
+      // response status
+      string status = 1;
+      // response message
+      string message = 2;
+      // PaymentMethod data
+      repeated PaymentMethodData data = 3;
+}
+
+message PaymentMethodData{
+    //payment method name
+    string name = 1 [(validator.field) = {string_not_empty: true}];;
+}   
 
 message AppointmentBookingResponseData{
     // Appointment booking response status
@@ -319,7 +341,7 @@ message GetHospitalParamData{
     // Hospital keyword
     string nameKeyword = 2;
     // Hospital speciality ID
-    string specialityId = 3 [(validator.field) = {uuid_ver: 4}];
+    repeated string specialities = 3;
     // Hospital coordinate (lat,lon)
     CoordinateData coordinate = 4;
 }
@@ -383,9 +405,9 @@ message GetDoctorParamData{
     // Doctor keyword
     string nameKeyword = 2;
     // Doctor speciality ID
-    string specialityId = 3 [(validator.field) = {uuid_ver: 4}];
+    repeated string specialities = 3;
     // Doctor hospital ID
-    string hospitalId = 4 [(validator.field) = {uuid_ver: 4}];
+    repeated string hospitals = 4;
 }
 
 message DoctorsResponseData{

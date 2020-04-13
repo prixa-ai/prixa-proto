@@ -308,18 +308,26 @@
             "type": "string"
           },
           {
-            "name": "param.specialityId",
+            "name": "param.specialities",
             "description": "Doctor speciality ID.",
             "in": "query",
             "required": false,
-            "type": "string"
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
           },
           {
-            "name": "param.hospitalId",
+            "name": "param.hospitals",
             "description": "Doctor hospital ID.",
             "in": "query",
             "required": false,
-            "type": "string"
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
           },
           {
             "name": "page",
@@ -401,11 +409,15 @@
             "type": "string"
           },
           {
-            "name": "param.specialityId",
+            "name": "param.specialities",
             "description": "Hospital speciality ID.",
             "in": "query",
             "required": false,
-            "type": "string"
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
           },
           {
             "name": "param.coordinate.lattitude",
@@ -462,6 +474,29 @@
             "type": "string"
           }
         ],
+        "tags": [
+          "TelemedicineService"
+        ]
+      }
+    },
+    "/api/v1/telemedicine/payment-method": {
+      "get": {
+        "summary": "Get Valid Payment Method data",
+        "operationId": "GetValidPaymentMethodsData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1PaymentMethodResponseData"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
         "tags": [
           "TelemedicineService"
         ]
@@ -787,11 +822,11 @@
       "properties": {
         "status": {
           "type": "string",
-          "title": "Appointment status"
+          "title": "response status"
         },
         "message": {
           "type": "string",
-          "title": "Appointment message"
+          "title": "response message"
         },
         "data": {
           "type": "array",
@@ -1085,12 +1120,18 @@
           "type": "string",
           "title": "Doctor keyword"
         },
-        "specialityId": {
-          "type": "string",
+        "specialities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
           "title": "Doctor speciality ID"
         },
-        "hospitalId": {
-          "type": "string",
+        "hospitals": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
           "title": "Doctor hospital ID"
         }
       }
@@ -1106,8 +1147,11 @@
           "type": "string",
           "title": "Hospital keyword"
         },
-        "specialityId": {
-          "type": "string",
+        "specialities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
           "title": "Hospital speciality ID"
         },
         "coordinate": {
@@ -1222,6 +1266,35 @@
       "properties": {
         "websiteID": {
           "type": "string"
+        }
+      }
+    },
+    "v1PaymentMethodData": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "payment method name"
+        }
+      }
+    },
+    "v1PaymentMethodResponseData": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "title": "response status"
+        },
+        "message": {
+          "type": "string",
+          "title": "response message"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1PaymentMethodData"
+          },
+          "title": "PaymentMethod data"
         }
       }
     },
