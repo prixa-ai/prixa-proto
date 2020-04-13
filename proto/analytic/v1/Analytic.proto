@@ -26,8 +26,8 @@ message EventLog {
 message NalarEvent {
     EventLog eventLog = 1;
     string ID = 2;
-	string sessionID = 3;
-	float latitude = 4;
+    string sessionID = 3;
+    float latitude = 4;
     float longitude = 5;
     string kabupaten = 6;
     string kecamatan = 7;
