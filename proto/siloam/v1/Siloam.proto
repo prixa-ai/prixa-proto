@@ -235,7 +235,8 @@ message CancelAppointmentRequestData{
 message CancelAppointmentResponseData{
     string status = 1;
     string message = 2;
-    CancelAppointmentData data = 3;
+    int32 statusCode = 3;
+    CancelAppointmentData data = 4;
 
 }
 
@@ -261,7 +262,8 @@ message PostRescheduleAppointmentRequestData{
 message PostRescheduleAppointmentResponseData{
     string status = 1;
     string message = 2;
-    RescheduleAppointmentData data = 3;
+    int32 statusCode = 3;
+    RescheduleAppointmentData data = 4;
 
 }
 
