@@ -25,6 +25,58 @@
     "application/json"
   ],
   "paths": {
+    "/api/v1/contentcard": {
+      "get": {
+        "operationId": "DiagnosticService_GetAllContentCard",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetContentCardResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "DiagnosticService"
+        ]
+      }
+    },
+    "/api/v1/contentcard/{type}": {
+      "get": {
+        "operationId": "DiagnosticService_GetContentCard",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetContentCardResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DiagnosticService"
+        ]
+      }
+    },
     "/api/v1/conversation/mail/send": {
       "post": {
         "operationId": "DiagnosticService_SendEmail",
@@ -431,6 +483,63 @@
         }
       }
     },
+    "v1ContentCard": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "sort": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "string"
+        },
+        "imageURL": {
+          "type": "string"
+        },
+        "snippet": {
+          "type": "string"
+        },
+        "externalLink": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CovidForm": {
+      "type": "object",
+      "properties": {
+        "partnerID": {
+          "type": "string"
+        },
+        "appID": {
+          "type": "string"
+        },
+        "diagnosticSessionID": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "province": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
     "v1CreatePrixaSessionRequest": {
       "type": "object",
       "properties": {
@@ -512,6 +621,17 @@
         "longitude": {
           "type": "number",
           "format": "float"
+        }
+      }
+    },
+    "v1GetContentCardResponse": {
+      "type": "object",
+      "properties": {
+        "contentCard": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ContentCard"
+          }
         }
       }
     },
@@ -713,6 +833,9 @@
           "items": {
             "$ref": "#/definitions/v1LabInfo"
           }
+        },
+        "prognosis": {
+          "type": "string"
         }
       }
     },

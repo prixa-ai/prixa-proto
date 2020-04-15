@@ -7,10 +7,11 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/golang/protobuf/ptypes/empty"
-	_ "google.golang.org/genproto/googleapis/api/annotations"
+	_ "github.com/golang/protobuf/ptypes/timestamp"
 	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
 	_ "github.com/mwitkow/go-proto-validators"
+	_ "github.com/golang/protobuf/ptypes/empty"
+	_ "google.golang.org/genproto/googleapis/api/annotations"
 	regexp "regexp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
@@ -325,7 +326,10 @@ func (this *GetDiagnosticStatisticsResponse) Validate() error {
 func (this *UpdateSourceRequest) Validate() error {
 	return nil
 }
-func (this *SendCovidFormRequest) Validate() error {
+
+var _regex_CovidForm_Email = regexp.MustCompile(`^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$`)
+
+func (this *CovidForm) Validate() error {
 	if this.PartnerID == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("PartnerID", fmt.Errorf(`value '%v' must not be an empty string`, this.PartnerID))
 	}
@@ -341,20 +345,27 @@ func (this *SendCovidFormRequest) Validate() error {
 	if this.Phone == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("Phone", fmt.Errorf(`value '%v' must not be an empty string`, this.Phone))
 	}
-	if this.Address == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Address", fmt.Errorf(`value '%v' must not be an empty string`, this.Address))
+	if !_regex_CovidForm_Email.MatchString(this.Email) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Email", fmt.Errorf(`value '%v' must be a string conforming to regex "^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"`, this.Email))
 	}
 	if this.City == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("City", fmt.Errorf(`value '%v' must not be an empty string`, this.City))
 	}
-	if this.PostalCode == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("PostalCode", fmt.Errorf(`value '%v' must not be an empty string`, this.PostalCode))
+	if this.Province == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Province", fmt.Errorf(`value '%v' must not be an empty string`, this.Province))
 	}
-	if this.EmergencyContact == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("EmergencyContact", fmt.Errorf(`value '%v' must not be an empty string`, this.EmergencyContact))
+	if this.Timestamp != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Timestamp); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Timestamp", err)
+		}
 	}
-	if this.EmergencyContactRelation == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("EmergencyContactRelation", fmt.Errorf(`value '%v' must not be an empty string`, this.EmergencyContactRelation))
+	return nil
+}
+func (this *SendCovidFormRequest) Validate() error {
+	if this.CovidForm != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.CovidForm); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("CovidForm", err)
+		}
 	}
 	return nil
 }
@@ -372,5 +383,21 @@ func (this *GetLocalTransmissionDataResponse) Validate() error {
 	return nil
 }
 func (this *LocalTransmissionData) Validate() error {
+	return nil
+}
+func (this *ContentCard) Validate() error {
+	return nil
+}
+func (this *GetContentCardRequest) Validate() error {
+	return nil
+}
+func (this *GetContentCardResponse) Validate() error {
+	for _, item := range this.ContentCard {
+		if item != nil {
+			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
+				return github_com_mwitkow_go_proto_validators.FieldError("ContentCard", err)
+			}
+		}
+	}
 	return nil
 }
