@@ -382,7 +382,6 @@ message CovidForm {
 
 message SendCovidFormRequest {
     CovidForm covidForm = 1;
-    int64 timestamp = 2;
 }
 
 message SendCovidFormResponse {
@@ -400,12 +399,13 @@ message LocalTransmissionData {
 }
 
 message ContentCard {
-    string title = 1;
-    int32 sort = 2;
-    string type = 3;
-    string imageURL = 4;
-    string snippet = 5;
-    string externalLink = 6;
+    string id = 1;
+    string title = 2;
+    int32 sort = 3;
+    string type = 4;
+    string imageURL = 5;
+    string snippet = 6;
+    string externalLink = 7;
 }
 
 message GetContentCardRequest {
