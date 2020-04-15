@@ -7,11 +7,11 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
+	_ "github.com/mwitkow/go-proto-validators"
 	_ "github.com/golang/protobuf/ptypes/timestamp"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/golang/protobuf/ptypes/empty"
 	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
-	_ "github.com/mwitkow/go-proto-validators"
 	regexp "regexp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
@@ -669,6 +669,35 @@ func (this *InitConversationRequest) Validate() error {
 func (this *InitConversationResponse) Validate() error {
 	if this.WebsiteID == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("WebsiteID", fmt.Errorf(`value '%v' must not be an empty string`, this.WebsiteID))
+	}
+	return nil
+}
+func (this *CancelAppointmentBookingRequestData) Validate() error {
+	if this.BookingId == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("BookingId", fmt.Errorf(`value '%v' must not be an empty string`, this.BookingId))
+	}
+	if this.Reason == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Reason", fmt.Errorf(`value '%v' must not be an empty string`, this.Reason))
+	}
+	return nil
+}
+func (this *CancelAppointmentBookingResponseData) Validate() error {
+	if this.Data != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Data); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
+		}
+	}
+	return nil
+}
+
+var _regex_CancelAppointmentBookingData_BookingId = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
+
+func (this *CancelAppointmentBookingData) Validate() error {
+	if !_regex_CancelAppointmentBookingData_BookingId.MatchString(this.BookingId) {
+		return github_com_mwitkow_go_proto_validators.FieldError("BookingId", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.BookingId))
+	}
+	if this.BookingId == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("BookingId", fmt.Errorf(`value '%v' must not be an empty string`, this.BookingId))
 	}
 	return nil
 }
