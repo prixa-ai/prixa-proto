@@ -227,15 +227,16 @@ message PostAppointmentData{
 
 message CancelAppointmentRequestData{
     string appointmentId = 1 [(validator.field) = {string_not_empty: true}];
-    string userId = 2 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+    string userId = 2 [(validator.field) = {string_not_empty: true}];
     string userName = 3;
-    string source = 4;
+    string source = 4  [(validator.field) = {string_not_empty: true}];
 }
 
 message CancelAppointmentResponseData{
     string status = 1;
     string message = 2;
-    CancelAppointmentData data = 3;
+    int32 statusCode = 3;
+    CancelAppointmentData data = 4;
 
 }
 
@@ -261,7 +262,8 @@ message PostRescheduleAppointmentRequestData{
 message PostRescheduleAppointmentResponseData{
     string status = 1;
     string message = 2;
-    RescheduleAppointmentData data = 3;
+    int32 statusCode = 3;
+    RescheduleAppointmentData data = 4;
 
 }
 

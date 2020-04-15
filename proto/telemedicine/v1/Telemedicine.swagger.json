@@ -100,6 +100,50 @@
             "Bearer": []
           }
         ]
+      },
+      "put": {
+        "summary": "Cancel appointment booking data",
+        "operationId": "CancelAppointmentBookingData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CancelAppointmentBookingResponseData"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "bookingId",
+            "description": "Booking ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CancelAppointmentBookingRequestData"
+            }
+          }
+        ],
+        "tags": [
+          "TelemedicineService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "Bearer": []
+          }
+        ]
       }
     },
     "/api/v1/telemedicine/appointments": {
@@ -797,6 +841,10 @@
         "birthDate": {
           "type": "string",
           "title": "birthDate"
+        },
+        "scheduleId": {
+          "type": "string",
+          "title": "scheduleId"
         }
       }
     },
@@ -895,6 +943,50 @@
             "$ref": "#/definitions/v1AreaData"
           },
           "title": "Areas response data"
+        }
+      }
+    },
+    "v1CancelAppointmentBookingData": {
+      "type": "object",
+      "properties": {
+        "bookingId": {
+          "type": "string",
+          "title": "Booking ID"
+        },
+        "bookingStatus": {
+          "type": "string",
+          "title": "Booking Status"
+        },
+        "reason": {
+          "type": "string",
+          "title": "reason"
+        }
+      }
+    },
+    "v1CancelAppointmentBookingRequestData": {
+      "type": "object",
+      "properties": {
+        "bookingId": {
+          "type": "string",
+          "title": "Booking ID"
+        },
+        "reason": {
+          "type": "string",
+          "title": "Reason"
+        }
+      }
+    },
+    "v1CancelAppointmentBookingResponseData": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1CancelAppointmentBookingData"
         }
       }
     },
