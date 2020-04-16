@@ -294,6 +294,39 @@ func local_request_TelemedicineService_GetHospitalsData_0(ctx context.Context, m
 }
 
 var (
+	filter_TelemedicineService_GetHospitalsDataByCoordinate_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
+func request_TelemedicineService_GetHospitalsDataByCoordinate_0(ctx context.Context, marshaler runtime.Marshaler, client TelemedicineServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetHospitalsByCoordinateRequestData
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TelemedicineService_GetHospitalsDataByCoordinate_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.GetHospitalsDataByCoordinate(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_TelemedicineService_GetHospitalsDataByCoordinate_0(ctx context.Context, marshaler runtime.Marshaler, server TelemedicineServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetHospitalsByCoordinateRequestData
+	var metadata runtime.ServerMetadata
+
+	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_TelemedicineService_GetHospitalsDataByCoordinate_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.GetHospitalsDataByCoordinate(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+var (
 	filter_TelemedicineService_GetDoctorsData_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
@@ -937,6 +970,26 @@ func RegisterTelemedicineServiceHandlerServer(ctx context.Context, mux *runtime.
 
 	})
 
+	mux.Handle("GET", pattern_TelemedicineService_GetHospitalsDataByCoordinate_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_TelemedicineService_GetHospitalsDataByCoordinate_0(rctx, inboundMarshaler, server, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_TelemedicineService_GetHospitalsDataByCoordinate_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	mux.Handle("GET", pattern_TelemedicineService_GetDoctorsData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -1298,6 +1351,26 @@ func RegisterTelemedicineServiceHandlerClient(ctx context.Context, mux *runtime.
 
 	})
 
+	mux.Handle("GET", pattern_TelemedicineService_GetHospitalsDataByCoordinate_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_TelemedicineService_GetHospitalsDataByCoordinate_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_TelemedicineService_GetHospitalsDataByCoordinate_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	mux.Handle("GET", pattern_TelemedicineService_GetDoctorsData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -1514,6 +1587,8 @@ var (
 
 	pattern_TelemedicineService_GetHospitalsData_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "telemedicine", "hospital"}, "", runtime.AssumeColonVerbOpt(true)))
 
+	pattern_TelemedicineService_GetHospitalsDataByCoordinate_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "telemedicine", "hospital-coordinate"}, "", runtime.AssumeColonVerbOpt(true)))
+
 	pattern_TelemedicineService_GetDoctorsData_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "telemedicine", "doctor"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_TelemedicineService_GetDoctorData_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "telemedicine", "doctor", "doctorId"}, "", runtime.AssumeColonVerbOpt(true)))
@@ -1547,6 +1622,8 @@ var (
 	forward_TelemedicineService_GetHospitalData_0 = runtime.ForwardResponseMessage
 
 	forward_TelemedicineService_GetHospitalsData_0 = runtime.ForwardResponseMessage
+
+	forward_TelemedicineService_GetHospitalsDataByCoordinate_0 = runtime.ForwardResponseMessage
 
 	forward_TelemedicineService_GetDoctorsData_0 = runtime.ForwardResponseMessage
 
