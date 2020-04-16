@@ -210,6 +210,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1SendCovidFormRequest"
+            }
+          }
+        ],
         "tags": [
           "DiagnosticService"
         ]
@@ -949,6 +959,14 @@
         "covidScore": {
           "type": "number",
           "format": "double"
+        }
+      }
+    },
+    "v1SendCovidFormRequest": {
+      "type": "object",
+      "properties": {
+        "covidForm": {
+          "$ref": "#/definitions/v1CovidForm"
         }
       }
     },

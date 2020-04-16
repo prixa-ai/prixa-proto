@@ -95,6 +95,7 @@ service DiagnosticService {
     rpc SendCovidForm (SendCovidFormRequest) returns (SendCovidFormResponse) {
         option (google.api.http) = {
             post: "/api/v1/prixa/covidform"
+            body: "*"
         };
     }
 
