@@ -7,11 +7,11 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/mwitkow/go-proto-validators"
 	_ "github.com/golang/protobuf/ptypes/timestamp"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/golang/protobuf/ptypes/empty"
 	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
+	_ "github.com/mwitkow/go-proto-validators"
 	regexp "regexp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
@@ -237,17 +237,33 @@ func (this *GetHospitalsRequestData) Validate() error {
 	}
 	return nil
 }
+func (this *GetHospitalsByCoordinateRequestData) Validate() error {
+	return nil
+}
+func (this *HospitalsByCoordinateResponseData) Validate() error {
+	for _, item := range this.Data {
+		if item != nil {
+			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
+				return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
+			}
+		}
+	}
+	return nil
+}
+func (this *HospitalByCoordinateData) Validate() error {
+	if this.Hospital != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Hospital); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Hospital", err)
+		}
+	}
+	return nil
+}
 
 var _regex_GetHospitalParamData_AreaId = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
 
 func (this *GetHospitalParamData) Validate() error {
 	if !_regex_GetHospitalParamData_AreaId.MatchString(this.AreaId) {
 		return github_com_mwitkow_go_proto_validators.FieldError("AreaId", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.AreaId))
-	}
-	if this.Coordinate != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Coordinate); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("Coordinate", err)
-		}
 	}
 	return nil
 }

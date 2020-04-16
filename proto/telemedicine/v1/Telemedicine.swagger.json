@@ -464,19 +464,38 @@
             "collectionFormat": "multi"
           },
           {
-            "name": "param.coordinate.lattitude",
+            "name": "page",
+            "description": "page.",
             "in": "query",
             "required": false,
-            "type": "number",
-            "format": "float"
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "TelemedicineService"
+        ]
+      }
+    },
+    "/api/v1/telemedicine/hospital-coordinate": {
+      "get": {
+        "summary": "Get hospitals list data",
+        "operationId": "GetHospitalsDataByCoordinate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1HospitalsByCoordinateResponseData"
+            }
           },
-          {
-            "name": "param.coordinate.longitude",
-            "in": "query",
-            "required": false,
-            "type": "number",
-            "format": "float"
-          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
           {
             "name": "page",
             "description": "page.",
@@ -484,6 +503,30 @@
             "required": false,
             "type": "integer",
             "format": "int32"
+          },
+          {
+            "name": "latitude",
+            "description": "latitude.",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "float"
+          },
+          {
+            "name": "longitude",
+            "description": "longitude.",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "float"
+          },
+          {
+            "name": "filterInKm",
+            "description": "filterInKm.",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "float"
           }
         ],
         "tags": [
@@ -1006,11 +1049,11 @@
     "v1CoordinateData": {
       "type": "object",
       "properties": {
-        "lattitude": {
+        "lat": {
           "type": "number",
           "format": "float"
         },
-        "longitude": {
+        "lon": {
           "type": "number",
           "format": "float"
         }
@@ -1245,10 +1288,18 @@
             "type": "string"
           },
           "title": "Hospital speciality ID"
+        }
+      }
+    },
+    "v1HospitalByCoordinateData": {
+      "type": "object",
+      "properties": {
+        "hospital": {
+          "$ref": "#/definitions/v1HospitalData"
         },
-        "coordinate": {
-          "$ref": "#/definitions/v1CoordinateData",
-          "title": "Hospital coordinate (lat,lon)"
+        "distanceInKm": {
+          "type": "number",
+          "format": "float"
         }
       }
     },
@@ -1319,6 +1370,26 @@
         "data": {
           "$ref": "#/definitions/v1HospitalData",
           "title": "Hospital response data"
+        }
+      }
+    },
+    "v1HospitalsByCoordinateResponseData": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "title": "Hospitals response status"
+        },
+        "message": {
+          "type": "string",
+          "title": "Hospitals response message"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1HospitalByCoordinateData"
+          },
+          "title": "Hospitals response data"
         }
       }
     },

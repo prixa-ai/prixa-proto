@@ -96,6 +96,14 @@ service TelemedicineService {
         };
     }
 
+    // Get hospitals list data
+    rpc GetHospitalsDataByCoordinate (GetHospitalsByCoordinateRequestData) returns (HospitalsByCoordinateResponseData) {
+        option (google.api.http) = {
+            get: "/api/v1/telemedicine/hospital-coordinate"
+        };
+    }
+    
+
     // Get doctors list data
     rpc GetDoctorsData (GetDoctorsRequestData) returns (DoctorsResponseData) {
         option (google.api.http) = {
@@ -357,6 +365,31 @@ message GetHospitalsRequestData {
     int32 page = 2;
 }
 
+message GetHospitalsByCoordinateRequestData {
+    // page
+    int32 page = 1;
+    // latitude
+    float latitude = 2;
+    //longitude
+    float longitude = 3;
+    //filterInKm
+    float filterInKm = 4;
+}
+
+message HospitalsByCoordinateResponseData{
+    // Hospitals response status
+    string status = 1;
+    // Hospitals response message
+    string message = 2;
+    // Hospitals response data
+    repeated HospitalByCoordinateData data = 3;
+}
+
+message HospitalByCoordinateData {
+    HospitalData hospital = 1;
+    float distanceInKm = 2;
+}
+
 message GetHospitalParamData{
     // Area ID
     string areaId = 1 [(validator.field) = {uuid_ver: 4}];
@@ -364,8 +397,6 @@ message GetHospitalParamData{
     string nameKeyword = 2;
     // Hospital speciality ID
     repeated string specialities = 3;
-    // Hospital coordinate (lat,lon)
-    CoordinateData coordinate = 4;
 }
 
 message HospitalData {
@@ -614,8 +645,8 @@ message DoctorTimeSlotData{
 }
 
 message CoordinateData{
-    float lattitude = 1;
-    float longitude = 2;
+    float lat = 1;
+    float lon = 2;
 }
 
 message AddressData{
