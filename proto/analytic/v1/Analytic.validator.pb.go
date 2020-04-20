@@ -6,10 +6,9 @@ package prixa_analytics_v1
 import (
 	fmt "fmt"
 	math "math"
-
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/golang/protobuf/ptypes/any"
 	_ "github.com/golang/protobuf/ptypes/timestamp"
+	_ "github.com/golang/protobuf/ptypes/any"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
 
@@ -24,11 +23,7 @@ func (this *EventLog) Validate() error {
 			return github_com_mwitkow_go_proto_validators.FieldError("Date", err)
 		}
 	}
-	if this.Metadata != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Metadata); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("Metadata", err)
-		}
-	}
+	// Validation of proto3 map<> fields is unsupported.
 	return nil
 }
 func (this *NalarEvent) Validate() error {

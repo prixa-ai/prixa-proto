@@ -20,7 +20,7 @@ message EventLog {
     string type = 13;
     string hostname = 14;
     string description = 15;
-    google.protobuf.Any metadata = 16;
+    map<string, string> metadata = 16;
 }
 
 message NalarEvent {
