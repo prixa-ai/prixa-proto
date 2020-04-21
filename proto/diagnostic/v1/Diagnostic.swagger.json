@@ -956,9 +956,9 @@
         "symptomID": {
           "type": "string"
         },
-        "covidScore": {
-          "type": "number",
-          "format": "double"
+        "isValidForRDT": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
