@@ -1418,6 +1418,9 @@
       "properties": {
         "diagnosticSessionID": {
           "type": "string"
+        },
+        "sessionID": {
+          "type": "string"
         }
       }
     },
