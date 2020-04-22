@@ -343,10 +343,14 @@ message GetDiseaseArticleResponse {
     string checkedBy = 5;
     string overview = 6;
     string advice = 7;
-    string seeDoctor = 8;
-    string prevention = 9;
-    string reference = 10;
-    repeated string relatedSymptom = 11;
+    string nonMedicalTreatment = 8;
+    string medicalTreatment = 9;
+    string supportingLabs = 10;
+    string seeDoctor = 11;
+    string howToPrevent = 12;
+    string prevention = 13;
+    string reference = 14;
+    repeated string relatedSymptom = 15;
 }
 
 message GetDiagnosticStatisticsResponse {
