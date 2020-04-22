@@ -3,6 +3,63 @@ syntax = "proto3";
 package prixa.analytics.v1;
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/any.proto";
+import "google/protobuf/empty.proto";
+import "protoc-gen-swagger/options/annotations.proto";
+import "google/api/annotations.proto";
+
+option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
+    host: "engine2.prixa.ai";
+    info: {
+        title: "Prixa Analytic Service API";
+        version: "1.0";
+        contact: {
+            name: "Prixa Tech";
+            url: "https://github.com/prixa-ai/prixa-proto";
+            email: "tech@prixa.com";
+        };
+        license: {
+            name: "Prixa License";
+            url: "https://github.com/prixa-ai/prixa-proto/blob/master/LICENSE.txt";
+        };
+    };
+    schemes: HTTP;
+    schemes: HTTPS;
+    consumes: "application/json";
+    produces: "application/json";
+    security_definitions: {
+        security: {
+            key: "ApiKeyAuth";
+            value: {
+                type: TYPE_API_KEY;
+                in: IN_HEADER;
+                name: "X-Prixa-API-Key";
+            }
+        }
+        security: {
+            key: "Bearer";
+            value: {
+                type: TYPE_API_KEY;
+                in: IN_HEADER;
+                name: "Authorization";
+            }
+        }
+    }
+    security: {
+        security_requirement: {
+            key: "ApiKeyAuth";
+            value: {}
+        }
+    }
+};
+
+service AnalyticService {
+    rpc Track (EventLog) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/analytic/track"
+            body:"*"
+        };
+    }
+}
 
 message EventLog {
     string logID = 1;
