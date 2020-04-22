@@ -701,7 +701,19 @@
         "advice": {
           "type": "string"
         },
+        "nonMedicalTreatment": {
+          "type": "string"
+        },
+        "medicalTreatment": {
+          "type": "string"
+        },
+        "supportingLabs": {
+          "type": "string"
+        },
         "seeDoctor": {
+          "type": "string"
+        },
+        "howToPrevent": {
           "type": "string"
         },
         "prevention": {
