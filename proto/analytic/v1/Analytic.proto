@@ -53,7 +53,7 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
 };
 
 service AnalyticService {
-    rpc Track (EventLog) returns (google.protobuf.Empty) {
+    rpc Track (TrackEvent) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/api/v1/analytic/track"
             body:"*"
@@ -93,4 +93,12 @@ message NalarEvent {
     string nextState = 10;
     google.protobuf.Any reply = 11;
     google.protobuf.Any result = 12;
+}
+
+message TrackEvent {
+    string userId = 1;
+    string event = 2;
+    map<string, string> properties = 3;
+    map<string, string> context = 4;
+    google.protobuf.Timestamp timestamp = 5;
 }

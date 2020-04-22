@@ -32,7 +32,7 @@ var _ = utilities.NewDoubleArray
 var _ = descriptor.ForMessage
 
 func request_AnalyticService_Track_0(ctx context.Context, marshaler runtime.Marshaler, client AnalyticServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq EventLog
+	var protoReq TrackEvent
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -49,7 +49,7 @@ func request_AnalyticService_Track_0(ctx context.Context, marshaler runtime.Mars
 }
 
 func local_request_AnalyticService_Track_0(ctx context.Context, marshaler runtime.Marshaler, server AnalyticServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq EventLog
+	var protoReq TrackEvent
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
