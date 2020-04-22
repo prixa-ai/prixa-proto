@@ -97,5 +97,7 @@ message NalarEvent {
 
 message TrackEvent {
     string event = 1;
-    map<string, string> metadata = 2;
+    string email = 2;
+    string userName = 3;
+    map<string, string> metadata = 4;
 }
