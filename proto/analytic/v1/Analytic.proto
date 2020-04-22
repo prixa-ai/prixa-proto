@@ -96,9 +96,6 @@ message NalarEvent {
 }
 
 message TrackEvent {
-    string userId = 1;
-    string event = 2;
-    map<string, string> properties = 3;
-    map<string, string> context = 4;
-    google.protobuf.Timestamp timestamp = 5;
+    string event = 1;
+    map<string, string> metadata = 2;
 }

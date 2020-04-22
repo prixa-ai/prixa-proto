@@ -49,11 +49,5 @@ func (this *NalarEvent) Validate() error {
 }
 func (this *TrackEvent) Validate() error {
 	// Validation of proto3 map<> fields is unsupported.
-	// Validation of proto3 map<> fields is unsupported.
-	if this.Timestamp != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Timestamp); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("Timestamp", err)
-		}
-	}
 	return nil
 }
