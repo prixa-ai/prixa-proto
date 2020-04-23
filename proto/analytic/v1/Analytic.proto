@@ -58,6 +58,14 @@ service AnalyticService {
             post: "/api/v1/analytic/track"
             body:"*"
         };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+            }
+        };
     }
 }
 
