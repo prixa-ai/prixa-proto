@@ -101,6 +101,42 @@ message TrackEvent {
     string event = 3;
     string timestamp = 4;
     map<string, string> properties = 5;
-    map<string, string> context = 6;
-    map<string, string> integration = 7;
+    map<string, string> integration = 6;
+    ContextFields context = 7;
+}
+
+message ContextFields {
+    string appName = 1;
+    string appVersion = 2;
+    string appBuild = 3;
+    string campaignName = 4;
+    string campaignSource = 5;
+    string campaignMedium = 6;
+    string campaignTerm = 7;
+    string campaignContent = 8;
+    string deviceType = 9;
+    string deviceId = 10;
+    string deviceAdvertisingId = 11;
+    string deviceAdTrackingEnabled = 12;
+    string deviceManufacturer = 13;
+    string deviceModel = 14;
+    string deviceName= 15;
+    string locale = 16;
+    string locationLatitude = 17;
+    string locationLongitude = 18;
+    string locationSpeed = 19;
+    string networkBluetooth = 20;
+    string networkCarrier = 21;
+    string networkCellular = 22;
+    string networkWifi = 23;
+    string osName = 24;
+    string osVersion = 25;
+    string pagePath = 26;
+    string pageReferrer = 27;
+    string pageSearch = 28;
+    string pageTitle = 29;
+    string pageUrl = 30;
+    string screenDensity = 31;
+    string screenHeight = 32;
+    string screenWidth = 33;
 }
