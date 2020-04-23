@@ -3,6 +3,71 @@ syntax = "proto3";
 package prixa.analytics.v1;
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/any.proto";
+import "google/protobuf/empty.proto";
+import "protoc-gen-swagger/options/annotations.proto";
+import "google/api/annotations.proto";
+
+option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
+    host: "engine2.prixa.ai";
+    info: {
+        title: "Prixa Analytic Service API";
+        version: "1.0";
+        contact: {
+            name: "Prixa Tech";
+            url: "https://github.com/prixa-ai/prixa-proto";
+            email: "tech@prixa.com";
+        };
+        license: {
+            name: "Prixa License";
+            url: "https://github.com/prixa-ai/prixa-proto/blob/master/LICENSE.txt";
+        };
+    };
+    schemes: HTTP;
+    schemes: HTTPS;
+    consumes: "application/json";
+    produces: "application/json";
+    security_definitions: {
+        security: {
+            key: "ApiKeyAuth";
+            value: {
+                type: TYPE_API_KEY;
+                in: IN_HEADER;
+                name: "X-Prixa-API-Key";
+            }
+        }
+        security: {
+            key: "Bearer";
+            value: {
+                type: TYPE_API_KEY;
+                in: IN_HEADER;
+                name: "Authorization";
+            }
+        }
+    }
+    security: {
+        security_requirement: {
+            key: "ApiKeyAuth";
+            value: {}
+        }
+    }
+};
+
+service AnalyticService {
+    rpc Track (TrackEvent) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/analytic/track"
+            body:"*"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+            }
+        };
+    }
+}
 
 message EventLog {
     string logID = 1;
@@ -36,4 +101,82 @@ message NalarEvent {
     string nextState = 10;
     google.protobuf.Any reply = 11;
     google.protobuf.Any result = 12;
+}
+
+message TrackEvent {
+    string userId = 1;
+    string anonymousId = 2;
+    string event = 3;
+    string timestamp = 4;
+    map<string, string> properties = 5;
+    map<string, string> integration = 6;
+    ContextFields context = 7;
+}
+
+message ContextFields {
+    string locale = 1;
+    AppFields app = 2;
+    CampaignFields campaign = 3;
+    DeviceFields device = 4;
+    LocationFields location = 5;
+    NetworkFields netowrk = 6;
+    OsFields os = 7;
+    PageFields page = 8;
+    ScreenFields screen = 9;
+}
+
+message AppFields {
+    string name = 1;
+    string version = 2;
+    string build = 3;
+}
+
+message CampaignFields {
+    string name = 1;
+    string source = 2;
+    string medium = 3;
+    string term = 4;
+    string content = 5;
+}
+
+message DeviceFields {
+    string type = 1;
+    string id = 2;
+    string advertisingId = 3;
+    string adTrackingEnabled = 4;
+    string manufacturer = 5;
+    string model = 6;
+    string name = 7;
+}
+
+message LocationFields {
+    string latitude = 1;
+    string longitude = 2;
+    string speed = 3;
+}
+
+message NetworkFields {
+    string bluetooth = 1;
+    string carrier = 2;
+    string cellular = 3;
+    string wifi = 4;
+}
+
+message OsFields {
+    string name = 1;
+    string version = 2;
+}
+
+message PageFields {
+    string path = 1;
+    string referrer = 2;
+    string search = 3;
+    string title = 4;
+    string url = 5;
+}
+
+message ScreenFields {
+    string density = 1;
+    string height = 2;
+    string width = 3;
 }

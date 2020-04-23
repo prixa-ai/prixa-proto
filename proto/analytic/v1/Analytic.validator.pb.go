@@ -7,8 +7,11 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/golang/protobuf/ptypes/timestamp"
 	_ "github.com/golang/protobuf/ptypes/any"
+	_ "github.com/golang/protobuf/ptypes/empty"
+	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
+	_ "google.golang.org/genproto/googleapis/api/annotations"
+	_ "github.com/golang/protobuf/ptypes/timestamp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
 
@@ -42,5 +45,82 @@ func (this *NalarEvent) Validate() error {
 			return github_com_mwitkow_go_proto_validators.FieldError("Result", err)
 		}
 	}
+	return nil
+}
+func (this *TrackEvent) Validate() error {
+	// Validation of proto3 map<> fields is unsupported.
+	// Validation of proto3 map<> fields is unsupported.
+	if this.Context != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Context); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Context", err)
+		}
+	}
+	return nil
+}
+func (this *ContextFields) Validate() error {
+	if this.App != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.App); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("App", err)
+		}
+	}
+	if this.Campaign != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Campaign); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Campaign", err)
+		}
+	}
+	if this.Device != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Device); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Device", err)
+		}
+	}
+	if this.Location != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Location); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Location", err)
+		}
+	}
+	if this.Netowrk != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Netowrk); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Netowrk", err)
+		}
+	}
+	if this.Os != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Os); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Os", err)
+		}
+	}
+	if this.Page != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Page); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Page", err)
+		}
+	}
+	if this.Screen != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Screen); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Screen", err)
+		}
+	}
+	return nil
+}
+func (this *AppFields) Validate() error {
+	return nil
+}
+func (this *CampaignFields) Validate() error {
+	return nil
+}
+func (this *DeviceFields) Validate() error {
+	return nil
+}
+func (this *LocationFields) Validate() error {
+	return nil
+}
+func (this *NetworkFields) Validate() error {
+	return nil
+}
+func (this *OsFields) Validate() error {
+	return nil
+}
+func (this *PageFields) Validate() error {
+	return nil
+}
+func (this *ScreenFields) Validate() error {
 	return nil
 }
