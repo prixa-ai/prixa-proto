@@ -49,5 +49,7 @@ func (this *NalarEvent) Validate() error {
 }
 func (this *TrackEvent) Validate() error {
 	// Validation of proto3 map<> fields is unsupported.
+	// Validation of proto3 map<> fields is unsupported.
+	// Validation of proto3 map<> fields is unsupported.
 	return nil
 }
