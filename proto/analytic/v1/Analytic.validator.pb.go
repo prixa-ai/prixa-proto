@@ -78,9 +78,9 @@ func (this *ContextFields) Validate() error {
 			return github_com_mwitkow_go_proto_validators.FieldError("Location", err)
 		}
 	}
-	if this.Netowrk != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Netowrk); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("Netowrk", err)
+	if this.Network != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Network); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Network", err)
 		}
 	}
 	if this.Os != nil {

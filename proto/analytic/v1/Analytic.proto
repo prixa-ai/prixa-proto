@@ -134,7 +134,7 @@ message ContextFields {
     CampaignFields campaign = 3;
     DeviceFields device = 4;
     LocationFields location = 5;
-    NetworkFields netowrk = 6;
+    NetworkFields network = 6;
     OsFields os = 7;
     PageFields page = 8;
     ScreenFields screen = 9;
