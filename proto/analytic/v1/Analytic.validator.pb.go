@@ -7,11 +7,11 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
+	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
+	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/golang/protobuf/ptypes/timestamp"
 	_ "github.com/golang/protobuf/ptypes/any"
 	_ "github.com/golang/protobuf/ptypes/empty"
-	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
-	_ "google.golang.org/genproto/googleapis/api/annotations"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
 
@@ -24,6 +24,11 @@ func (this *EventLog) Validate() error {
 	if this.Date != nil {
 		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Date); err != nil {
 			return github_com_mwitkow_go_proto_validators.FieldError("Date", err)
+		}
+	}
+	if this.Context != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Context); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Context", err)
 		}
 	}
 	// Validation of proto3 map<> fields is unsupported.
