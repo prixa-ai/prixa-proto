@@ -100,7 +100,9 @@ message EventLog {
     string type = 13;
     string hostname = 14;
     string description = 15;
-    map<string, string> metadata = 16;
+    string sentAt = 16;
+    string name = 17;
+    map<string, string> metadata = 18;
 }
 
 message NalarEvent {
