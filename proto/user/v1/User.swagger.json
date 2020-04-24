@@ -589,6 +589,9 @@
     "v1AssessmentHistory": {
       "type": "object",
       "properties": {
+        "email": {
+          "type": "string"
+        },
         "date": {
           "type": "string",
           "format": "date-time"

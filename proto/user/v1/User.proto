@@ -393,19 +393,21 @@ message CallbackGoogleRequest {
 }
 
 message AssessmentHistory {
-    google.protobuf.Timestamp date = 1;
-    string chiefComplaint = 2;
-    string name = 3;
-    string age = 4;
-    string gender = 5;
+    string email = 1;
+    google.protobuf.Timestamp date = 2;
+    string chiefComplaint = 3;
+    string name = 4;
+    string age = 5;
+    string gender = 6;
 }
 
 message Preconditions {
-    string id = 1;
-    string type = 2;
-    int32 age = 3;
-    float height = 4;
-    float weight = 5;
+    string email = 1;
+    string id = 2;
+    string type = 3;
+    int32 age = 4;
+    float height = 5;
+    float weight = 6;
 }
 
 message GetAssessmentHistoryResponse {
