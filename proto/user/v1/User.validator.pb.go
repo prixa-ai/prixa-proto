@@ -7,11 +7,11 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/mwitkow/go-proto-validators"
 	_ "github.com/golang/protobuf/ptypes/empty"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/golang/protobuf/ptypes/timestamp"
 	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
+	_ "github.com/mwitkow/go-proto-validators"
 	regexp "regexp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
@@ -202,9 +202,9 @@ func (this *CallbackGoogleRequest) Validate() error {
 	return nil
 }
 func (this *AssessmentHistory) Validate() error {
-	if this.Date != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Date); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("Date", err)
+	if this.Datetime != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Datetime); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Datetime", err)
 		}
 	}
 	return nil

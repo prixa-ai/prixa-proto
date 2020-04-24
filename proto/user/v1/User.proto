@@ -394,7 +394,7 @@ message CallbackGoogleRequest {
 
 message AssessmentHistory {
     string email = 1;
-    google.protobuf.Timestamp date = 2;
+    google.protobuf.Timestamp datetime = 2;
     string chiefComplaint = 3;
     string name = 4;
     int32 age = 5;

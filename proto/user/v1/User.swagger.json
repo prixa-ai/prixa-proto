@@ -592,7 +592,7 @@
         "email": {
           "type": "string"
         },
-        "date": {
+        "datetime": {
           "type": "string",
           "format": "date-time"
         },
