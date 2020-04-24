@@ -125,7 +125,7 @@ message TrackEvent {
     string userId = 1;
     string anonymousId = 2;
     string event = 3;
-    string timestamp = 4;
+    string sentAt = 4;
     map<string, string> properties = 5;
     map<string, string> integration = 6;
     ContextFields context = 7;
