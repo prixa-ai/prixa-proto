@@ -56,7 +56,22 @@ service AnalyticService {
     rpc Track (TrackEvent) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/api/v1/analytic/track"
-            body:"*"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+            }
+        };
+    }
+
+    rpc Identify (IdentifyFields) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/analytic/identify"
+            body: "*"
         };
         option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
             security: {
@@ -119,7 +134,7 @@ message ContextFields {
     CampaignFields campaign = 3;
     DeviceFields device = 4;
     LocationFields location = 5;
-    NetworkFields netowrk = 6;
+    NetworkFields network = 6;
     OsFields os = 7;
     PageFields page = 8;
     ScreenFields screen = 9;
@@ -179,4 +194,47 @@ message ScreenFields {
     string density = 1;
     string height = 2;
     string width = 3;
+}
+
+message IdentifyFields {
+    string userId = 1;
+    string anonymousId = 2;
+    string timestamp = 4;
+    TraitsFields traits = 5;
+}
+
+message TraitsFields {
+    int32 age = 1;
+    string avatar = 2;
+    string birthday = 3;
+    string createdAt = 4;
+    string description = 5;
+    string email = 6;
+    string firstName = 7;
+    string gender = 8;
+    string id = 9;
+    string lastName = 10;
+    string name = 11;
+    string phone = 12;
+    string title = 13;
+    string username = 14;
+    string website = 15;
+    AddressFields address = 16;
+    CompanyFields company = 17;
+}
+
+message AddressFields {
+    string city = 1;
+    string country = 2;
+    string postalCode = 3;
+    string state = 4;
+    string street = 5;
+}
+
+message CompanyFields {
+    string id = 1;
+    string name = 2;
+    string industry = 3;
+    int32 employeeCount = 4;
+    string plan = 5;
 }

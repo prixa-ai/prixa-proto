@@ -7,11 +7,11 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
+	_ "google.golang.org/genproto/googleapis/api/annotations"
+	_ "github.com/golang/protobuf/ptypes/timestamp"
 	_ "github.com/golang/protobuf/ptypes/any"
 	_ "github.com/golang/protobuf/ptypes/empty"
 	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
-	_ "google.golang.org/genproto/googleapis/api/annotations"
-	_ "github.com/golang/protobuf/ptypes/timestamp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
 
@@ -78,9 +78,9 @@ func (this *ContextFields) Validate() error {
 			return github_com_mwitkow_go_proto_validators.FieldError("Location", err)
 		}
 	}
-	if this.Netowrk != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Netowrk); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("Netowrk", err)
+	if this.Network != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Network); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Network", err)
 		}
 	}
 	if this.Os != nil {
@@ -122,5 +122,32 @@ func (this *PageFields) Validate() error {
 	return nil
 }
 func (this *ScreenFields) Validate() error {
+	return nil
+}
+func (this *IdentifyFields) Validate() error {
+	if this.Traits != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Traits); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Traits", err)
+		}
+	}
+	return nil
+}
+func (this *TraitsFields) Validate() error {
+	if this.Address != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Address); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Address", err)
+		}
+	}
+	if this.Company != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Company); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Company", err)
+		}
+	}
+	return nil
+}
+func (this *AddressFields) Validate() error {
+	return nil
+}
+func (this *CompanyFields) Validate() error {
 	return nil
 }
