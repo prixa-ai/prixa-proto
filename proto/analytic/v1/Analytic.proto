@@ -100,7 +100,10 @@ message EventLog {
     string type = 13;
     string hostname = 14;
     string description = 15;
-    map<string, string> metadata = 16;
+    string sentAt = 16;
+    string name = 17;
+    ContextFields context = 18;
+    map<string, string> metadata = 19;
 }
 
 message NalarEvent {
@@ -122,7 +125,7 @@ message TrackEvent {
     string userId = 1;
     string anonymousId = 2;
     string event = 3;
-    string timestamp = 4;
+    string sentAt = 4;
     map<string, string> properties = 5;
     map<string, string> integration = 6;
     ContextFields context = 7;
