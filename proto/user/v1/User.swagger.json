@@ -603,7 +603,8 @@
           "type": "string"
         },
         "age": {
-          "type": "string"
+          "type": "integer",
+          "format": "int32"
         },
         "gender": {
           "type": "string"

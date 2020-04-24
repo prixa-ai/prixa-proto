@@ -397,7 +397,7 @@ message AssessmentHistory {
     google.protobuf.Timestamp date = 2;
     string chiefComplaint = 3;
     string name = 4;
-    string age = 5;
+    int32 age = 5;
     string gender = 6;
 }
 
