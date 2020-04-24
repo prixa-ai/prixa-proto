@@ -64,6 +64,35 @@
         ]
       }
     },
+    "/api/v1/history/assessment": {
+      "get": {
+        "summary": "GetAssessmentHistory gets user assessments history.",
+        "operationId": "UserService_GetAssessmentHistory",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetAssessmentHistoryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "UserService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "Bearer": []
+          }
+        ]
+      }
+    },
     "/api/v1/logout": {
       "get": {
         "summary": "Logout user after user logged in",
@@ -557,6 +586,27 @@
         }
       }
     },
+    "v1AssessmentHistory": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "chiefComplaint": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "age": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        }
+      }
+    },
     "v1AuthData": {
       "type": "object",
       "properties": {
@@ -636,6 +686,17 @@
       "properties": {
         "message": {
           "type": "string"
+        }
+      }
+    },
+    "v1GetAssessmentHistoryResponse": {
+      "type": "object",
+      "properties": {
+        "assessmentHistory": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1AssessmentHistory"
+          }
         }
       }
     },

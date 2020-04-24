@@ -3,6 +3,7 @@ syntax = "proto3";
 package prixa.user.v1;
 import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
 import "protoc-gen-swagger/options/annotations.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 
@@ -233,6 +234,25 @@ service UserService {
             }
         };
     }
+
+    // GetAssessmentHistory gets user assessments history.
+    rpc GetAssessmentHistory (google.protobuf.Empty) returns (GetAssessmentHistoryResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/history/assessment"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }
 }
 
 message AuthData {
@@ -370,4 +390,24 @@ message OauthGoogleURL {
 message CallbackGoogleRequest {
     string state = 1;
     string code = 2;
+}
+
+message AssessmentHistory {
+    google.protobuf.Timestamp date = 1;
+    string chiefComplaint = 2;
+    string name = 3;
+    string age = 4;
+    string gender = 5;
+}
+
+message Preconditions {
+    string id = 1;
+    string type = 2;
+    int32 age = 3;
+    float height = 4;
+    float weight = 5;
+}
+
+message GetAssessmentHistoryResponse {
+    repeated AssessmentHistory assessmentHistory = 1;
 }
