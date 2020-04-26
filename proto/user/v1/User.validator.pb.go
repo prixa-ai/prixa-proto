@@ -222,3 +222,6 @@ func (this *GetAssessmentHistoryResponse) Validate() error {
 	}
 	return nil
 }
+func (this *GetPreconditionRequest) Validate() error {
+	return nil
+}

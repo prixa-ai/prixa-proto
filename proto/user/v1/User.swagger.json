@@ -121,6 +121,80 @@
         ]
       }
     },
+    "/api/v1/precondition/get": {
+      "get": {
+        "operationId": "UserService_GetPrecondition",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Preconditions"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "UserService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/precondition/set": {
+      "post": {
+        "operationId": "UserService_SetPrecondition",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1Preconditions"
+            }
+          }
+        ],
+        "tags": [
+          "UserService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "Bearer": []
+          }
+        ]
+      }
+    },
     "/api/v1/user/consent": {
       "get": {
         "summary": "Get user consent information",
@@ -754,6 +828,32 @@
       "properties": {
         "authURL": {
           "type": "string"
+        }
+      }
+    },
+    "v1Preconditions": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "age": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "height": {
+          "type": "number",
+          "format": "float"
+        },
+        "weight": {
+          "type": "number",
+          "format": "float"
         }
       }
     },

@@ -253,6 +253,43 @@ service UserService {
             }
         };
     }
+
+    rpc SetPrecondition (Preconditions) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/precondition/set"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }
+
+    rpc GetPrecondition (GetPreconditionRequest) returns (Preconditions) {
+        option (google.api.http) = {
+            get: "/api/v1/precondition/get"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }
 }
 
 message AuthData {
@@ -412,4 +449,8 @@ message Preconditions {
 
 message GetAssessmentHistoryResponse {
     repeated AssessmentHistory assessmentHistory = 1;
+}
+
+message GetPreconditionRequest {
+    string email = 1;
 }
