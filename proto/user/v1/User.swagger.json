@@ -128,7 +128,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1Preconditions"
+              "$ref": "#/definitions/v1PreconditionsList"
             }
           },
           "default": {
@@ -138,14 +138,6 @@
             }
           }
         },
-        "parameters": [
-          {
-            "name": "email",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
         "tags": [
           "UserService"
         ],
@@ -180,7 +172,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1Preconditions"
+              "$ref": "#/definitions/v1PreconditionsList"
             }
           }
         ],
@@ -834,26 +826,50 @@
     "v1Preconditions": {
       "type": "object",
       "properties": {
-        "email": {
-          "type": "string"
-        },
         "id": {
           "type": "string"
         },
         "type": {
           "type": "string"
         },
-        "age": {
-          "type": "integer",
-          "format": "int32"
+        "nameIndo": {
+          "type": "string"
+        },
+        "preconditionsDescription": {
+          "type": "string"
+        },
+        "preconditionsDescriptionCopy": {
+          "type": "string"
+        },
+        "ageMonth": {
+          "type": "string",
+          "format": "int64"
+        },
+        "ageYear": {
+          "type": "string",
+          "format": "int64"
+        },
+        "weight": {
+          "type": "number",
+          "format": "float"
         },
         "height": {
           "type": "number",
           "format": "float"
         },
-        "weight": {
-          "type": "number",
-          "format": "float"
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "v1PreconditionsList": {
+      "type": "object",
+      "properties": {
+        "precondList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Preconditions"
+          }
         }
       }
     },
