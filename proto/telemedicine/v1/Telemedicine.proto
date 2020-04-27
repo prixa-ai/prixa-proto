@@ -461,6 +461,8 @@ message GetDoctorParamData{
     repeated string specialities = 3;
     // Doctor hospital ID
     repeated string hospitals = 4;
+    // using keywrod include search in specialityName
+    bool keywordIncludeSpeciality = 5;
 }
 
 message DoctorsResponseData{
