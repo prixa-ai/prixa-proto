@@ -7,6 +7,7 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
+	_ "github.com/golang/protobuf/ptypes/timestamp"
 	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
 	_ "github.com/mwitkow/go-proto-validators"
 	_ "github.com/golang/protobuf/ptypes/empty"
@@ -198,5 +199,36 @@ func (this *OauthGoogleURL) Validate() error {
 	return nil
 }
 func (this *CallbackGoogleRequest) Validate() error {
+	return nil
+}
+func (this *AssessmentHistory) Validate() error {
+	if this.Datetime != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Datetime); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Datetime", err)
+		}
+	}
+	return nil
+}
+func (this *Preconditions) Validate() error {
+	return nil
+}
+func (this *GetAssessmentHistoryResponse) Validate() error {
+	for _, item := range this.AssessmentHistory {
+		if item != nil {
+			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
+				return github_com_mwitkow_go_proto_validators.FieldError("AssessmentHistory", err)
+			}
+		}
+	}
+	return nil
+}
+func (this *PreconditionsList) Validate() error {
+	for _, item := range this.PrecondList {
+		if item != nil {
+			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
+				return github_com_mwitkow_go_proto_validators.FieldError("PrecondList", err)
+			}
+		}
+	}
 	return nil
 }

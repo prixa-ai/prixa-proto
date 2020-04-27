@@ -64,6 +64,35 @@
         ]
       }
     },
+    "/api/v1/history/assessment": {
+      "get": {
+        "summary": "GetAssessmentHistory gets user assessments history.",
+        "operationId": "UserService_GetAssessmentHistory",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetAssessmentHistoryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "UserService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "Bearer": []
+          }
+        ]
+      }
+    },
     "/api/v1/logout": {
       "get": {
         "summary": "Logout user after user logged in",
@@ -308,6 +337,70 @@
         ],
         "tags": [
           "UserService"
+        ]
+      }
+    },
+    "/api/v1/user/preconditions": {
+      "get": {
+        "operationId": "UserService_GetPrecondition",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1PreconditionsList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "UserService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "Bearer": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "UserService_SetPrecondition",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1PreconditionsList"
+            }
+          }
+        ],
+        "tags": [
+          "UserService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "Bearer": []
+          }
         ]
       }
     },
@@ -557,6 +650,31 @@
         }
       }
     },
+    "v1AssessmentHistory": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "datetime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "chiefComplaint": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "age": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "gender": {
+          "type": "string"
+        }
+      }
+    },
     "v1AuthData": {
       "type": "object",
       "properties": {
@@ -639,6 +757,17 @@
         }
       }
     },
+    "v1GetAssessmentHistoryResponse": {
+      "type": "object",
+      "properties": {
+        "assessmentHistory": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1AssessmentHistory"
+          }
+        }
+      }
+    },
     "v1GetSignedURLResponse": {
       "type": "object",
       "properties": {
@@ -689,6 +818,56 @@
       "properties": {
         "authURL": {
           "type": "string"
+        }
+      }
+    },
+    "v1Preconditions": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "nameIndo": {
+          "type": "string"
+        },
+        "preconditionsDescription": {
+          "type": "string"
+        },
+        "preconditionsDescriptionCopy": {
+          "type": "string"
+        },
+        "ageMonth": {
+          "type": "string",
+          "format": "int64"
+        },
+        "ageYear": {
+          "type": "string",
+          "format": "int64"
+        },
+        "weight": {
+          "type": "number",
+          "format": "float"
+        },
+        "height": {
+          "type": "number",
+          "format": "float"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "v1PreconditionsList": {
+      "type": "object",
+      "properties": {
+        "precondList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Preconditions"
+          }
         }
       }
     },

@@ -3,6 +3,7 @@ syntax = "proto3";
 package prixa.user.v1;
 import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
 import "protoc-gen-swagger/options/annotations.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 
@@ -233,6 +234,62 @@ service UserService {
             }
         };
     }
+
+    // GetAssessmentHistory gets user assessments history.
+    rpc GetAssessmentHistory (google.protobuf.Empty) returns (GetAssessmentHistoryResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/history/assessment"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }
+
+    rpc SetPrecondition (PreconditionsList) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/user/preconditions"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }
+
+    rpc GetPrecondition (google.protobuf.Empty) returns (PreconditionsList) {
+        option (google.api.http) = {
+            get: "/api/v1/user/preconditions"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }
 }
 
 message AuthData {
@@ -370,4 +427,34 @@ message OauthGoogleURL {
 message CallbackGoogleRequest {
     string state = 1;
     string code = 2;
+}
+
+message AssessmentHistory {
+    string email = 1;
+    google.protobuf.Timestamp datetime = 2;
+    string chiefComplaint = 3;
+    string name = 4;
+    int32 age = 5;
+    string gender = 6;
+}
+
+message Preconditions {
+    string id = 1;
+    string type = 2;
+    string nameIndo = 3;
+    string preconditionsDescription = 4;
+    string preconditionsDescriptionCopy = 5;
+    int64 ageMonth = 6;
+    int64 ageYear = 7;
+    float weight = 8;
+    float height = 9;
+    string name = 10;
+}
+
+message GetAssessmentHistoryResponse {
+    repeated AssessmentHistory assessmentHistory = 1;
+}
+
+message PreconditionsList {
+    repeated Preconditions precondList = 1;
 }
