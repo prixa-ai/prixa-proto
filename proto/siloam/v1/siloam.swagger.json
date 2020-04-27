@@ -204,20 +204,6 @@
         }
       }
     },
-    "v1GetAppointmentResponseData": {
-      "type": "object",
-      "properties": {
-        "status": {
-          "type": "string"
-        },
-        "message": {
-          "type": "string"
-        },
-        "data": {
-          "$ref": "#/definitions/v1GetAppointmentData"
-        }
-      }
-    },
     "v1GetAppointmentsResponseData": {
       "type": "object",
       "properties": {
@@ -227,11 +213,12 @@
         "message": {
           "type": "string"
         },
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
         "data": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1GetAppointmentData"
-          }
+          "$ref": "#/definitions/v1GetAppointmentData"
         }
       }
     },
@@ -243,6 +230,10 @@
         },
         "message": {
           "type": "string"
+        },
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
         },
         "data": {
           "type": "array",
@@ -261,6 +252,10 @@
         "message": {
           "type": "string"
         },
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
         "data": {
           "type": "array",
           "items": {
@@ -277,6 +272,10 @@
         },
         "message": {
           "type": "string"
+        },
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
         },
         "data": {
           "type": "array",
@@ -295,6 +294,10 @@
         "message": {
           "type": "string"
         },
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
         "data": {
           "type": "array",
           "items": {
@@ -311,6 +314,10 @@
         },
         "message": {
           "type": "string"
+        },
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
         },
         "data": {
           "type": "array",
@@ -329,6 +336,10 @@
         "message": {
           "type": "string"
         },
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
         "data": {
           "type": "array",
           "items": {
@@ -345,6 +356,10 @@
         },
         "message": {
           "type": "string"
+        },
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
         },
         "data": {
           "type": "array",
@@ -379,7 +394,7 @@
           "type": "number",
           "format": "float"
         },
-        "lattitude": {
+        "latitude": {
           "type": "number",
           "format": "float"
         },
@@ -552,32 +567,26 @@
           "type": "string"
         },
         "schedule_status_id": {
-          "type": "integer",
-          "format": "int32"
+          "type": "string"
         },
         "schedule_type_id": {
-          "type": "integer",
-          "format": "int32"
+          "type": "string"
         },
         "day": {
           "type": "integer",
           "format": "int32"
         },
         "from_time": {
-          "type": "string",
-          "format": "date-time"
+          "type": "string"
         },
         "to_time": {
-          "type": "string",
-          "format": "date-time"
+          "type": "string"
         },
         "from_date": {
-          "type": "string",
-          "format": "date-time"
+          "type": "string"
         },
         "to_date": {
-          "type": "string",
-          "format": "date-time"
+          "type": "string"
         },
         "doctor_name": {
           "type": "string"
