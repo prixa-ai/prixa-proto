@@ -256,7 +256,7 @@ service UserService {
 
     rpc SetPrecondition (PreconditionsList) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/api/v1/precondition/set"
+            post: "/api/v1/user/preconditions"
             body: "*"
         };
         option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
@@ -275,7 +275,7 @@ service UserService {
 
     rpc GetPrecondition (google.protobuf.Empty) returns (PreconditionsList) {
         option (google.api.http) = {
-            get: "/api/v1/precondition/get"
+            get: "/api/v1/user/preconditions"
         };
         option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
             security: {

@@ -1408,9 +1408,9 @@ var (
 
 	pattern_UserService_GetAssessmentHistory_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "history", "assessment"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserService_SetPrecondition_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "precondition", "set"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_UserService_SetPrecondition_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "user", "preconditions"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserService_GetPrecondition_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "precondition", "get"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_UserService_GetPrecondition_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "user", "preconditions"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (
