@@ -253,6 +253,43 @@ service UserService {
             }
         };
     }
+
+    rpc SetPrecondition (PreconditionsList) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/api/v1/user/preconditions"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }
+
+    rpc GetPrecondition (google.protobuf.Empty) returns (PreconditionsList) {
+        option (google.api.http) = {
+            get: "/api/v1/user/preconditions"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }
 }
 
 message AuthData {
@@ -402,14 +439,22 @@ message AssessmentHistory {
 }
 
 message Preconditions {
-    string email = 1;
-    string id = 2;
-    string type = 3;
-    int32 age = 4;
-    float height = 5;
-    float weight = 6;
+    string id = 1;
+    string type = 2;
+    string nameIndo = 3;
+    string preconditionsDescription = 4;
+    string preconditionsDescriptionCopy = 5;
+    int64 ageMonth = 6;
+    int64 ageYear = 7;
+    float weight = 8;
+    float height = 9;
+    string name = 10;
 }
 
 message GetAssessmentHistoryResponse {
     repeated AssessmentHistory assessmentHistory = 1;
+}
+
+message PreconditionsList {
+    repeated Preconditions precondList = 1;
 }
