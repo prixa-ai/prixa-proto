@@ -394,7 +394,7 @@
           "type": "number",
           "format": "float"
         },
-        "lattitude": {
+        "latitude": {
           "type": "number",
           "format": "float"
         },

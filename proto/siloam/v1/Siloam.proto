@@ -64,7 +64,7 @@ message HospitalData {
     string address = 5;
     string phone_number_1 = 6;
     float longitude = 7;
-    float lattitude = 8;
+    float latitude = 8;
     string area_id = 9;
     string area_name = 10;
     string image_url = 11; 
