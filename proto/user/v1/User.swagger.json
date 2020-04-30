@@ -802,6 +802,9 @@
         "isVerified": {
           "type": "boolean",
           "format": "boolean"
+        },
+        "websiteID": {
+          "type": "string"
         }
       }
     },
