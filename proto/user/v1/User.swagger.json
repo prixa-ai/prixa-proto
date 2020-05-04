@@ -868,6 +868,12 @@
           "items": {
             "$ref": "#/definitions/v1Preconditions"
           }
+        },
+        "AllPreconditions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Preconditions"
+          }
         }
       }
     },

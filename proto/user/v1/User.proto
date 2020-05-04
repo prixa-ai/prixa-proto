@@ -457,4 +457,5 @@ message GetAssessmentHistoryResponse {
 
 message PreconditionsList {
     repeated Preconditions precondList = 1;
+    repeated Preconditions AllPreconditions = 2;
 }
