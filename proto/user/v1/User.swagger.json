@@ -614,6 +614,59 @@
     }
   },
   "definitions": {
+    "prixauserv1ProfileData": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "height": {
+          "type": "number",
+          "format": "float"
+        },
+        "weight": {
+          "type": "number",
+          "format": "float"
+        },
+        "smokingStatus": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "alcoholStatus": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "emailVerified": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "phoneVerified": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "password": {
+          "type": "string"
+        },
+        "birthdate": {
+          "type": "string"
+        },
+        "avatarURL": {
+          "type": "string"
+        }
+      }
+    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -821,7 +874,7 @@
         }
       }
     },
-    "v1Preconditions": {
+    "v1PreconditionsData": {
       "type": "object",
       "properties": {
         "id": {
@@ -866,67 +919,14 @@
         "precondList": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1Preconditions"
+            "$ref": "#/definitions/v1PreconditionsData"
           }
         },
         "AllPreconditions": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1Preconditions"
+            "$ref": "#/definitions/v1PreconditionsData"
           }
-        }
-      }
-    },
-    "v1ProfileData": {
-      "type": "object",
-      "properties": {
-        "email": {
-          "type": "string"
-        },
-        "phone": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "gender": {
-          "type": "string"
-        },
-        "address": {
-          "type": "string"
-        },
-        "height": {
-          "type": "number",
-          "format": "float"
-        },
-        "weight": {
-          "type": "number",
-          "format": "float"
-        },
-        "smokingStatus": {
-          "type": "boolean",
-          "format": "boolean"
-        },
-        "alcoholStatus": {
-          "type": "boolean",
-          "format": "boolean"
-        },
-        "emailVerified": {
-          "type": "boolean",
-          "format": "boolean"
-        },
-        "phoneVerified": {
-          "type": "boolean",
-          "format": "boolean"
-        },
-        "password": {
-          "type": "string"
-        },
-        "birthdate": {
-          "type": "string"
-        },
-        "avatarURL": {
-          "type": "string"
         }
       }
     },
@@ -937,7 +937,7 @@
           "$ref": "#/definitions/v1AuthData"
         },
         "profileData": {
-          "$ref": "#/definitions/v1ProfileData"
+          "$ref": "#/definitions/prixauserv1ProfileData"
         }
       }
     },
@@ -992,7 +992,7 @@
       "type": "object",
       "properties": {
         "profileData": {
-          "$ref": "#/definitions/v1ProfileData"
+          "$ref": "#/definitions/prixauserv1ProfileData"
         }
       }
     },
@@ -1008,7 +1008,7 @@
       "type": "object",
       "properties": {
         "profileData": {
-          "$ref": "#/definitions/v1ProfileData"
+          "$ref": "#/definitions/prixauserv1ProfileData"
         },
         "isVerified": {
           "type": "boolean",

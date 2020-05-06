@@ -7,6 +7,8 @@ import "google/protobuf/timestamp.proto";
 import "protoc-gen-swagger/options/annotations.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
 
+option go_package = "github.com/prixa-ai/prixa-proto/proto/diagnostic/v1";
+
 option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
     host: "engine2.prixa.ai";
 	info: {
