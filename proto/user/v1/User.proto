@@ -331,6 +331,7 @@ message LoginResponse {
     string personID = 2 [(validator.field) = {string_not_empty: true}];
     string sessionID = 3 [(validator.field) = {string_not_empty: true}];
     bool isVerified = 4;
+    string websiteID = 5 [(validator.field) = {string_not_empty: true}];
 }
 
 message ConsentResponse {
