@@ -6,6 +6,7 @@ import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
 import "protoc-gen-swagger/options/annotations.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
+import "proto/diagnostic/v1/Diagnostic.proto";
 
 option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
     host: "engine2.prixa.ai";
@@ -456,6 +457,6 @@ message GetAssessmentHistoryResponse {
 }
 
 message PreconditionsList {
-    repeated Preconditions precondList = 1;
-    repeated Preconditions AllPreconditions = 2;
+    repeated prixa.diagnostic.v1.PreconditionsData precondList = 1;
+    repeated prixa.diagnostic.v1.PreconditionsData AllPreconditions = 2;
 }
