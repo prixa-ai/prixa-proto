@@ -210,7 +210,15 @@ func (this *GetAppMetadataRequest) Validate() error {
 	}
 	return nil
 }
+func (this *AncillaryControl) Validate() error {
+	return nil
+}
 func (this *AppMetadata) Validate() error {
+	if this.Ancillary != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Ancillary); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Ancillary", err)
+		}
+	}
 	return nil
 }
 func (this *GetAppMetadataResponse) Validate() error {

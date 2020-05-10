@@ -205,10 +205,20 @@ message GetAppMetadataRequest {
     string applicationId = 2 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
 }
 
+message AncillaryControl {
+    bool telemedicine = 1;
+    bool article = 2;
+    bool pharmacyDelivery = 3;
+    bool labTest = 4;
+    bool appointmenBooking = 5;
+    bool insurance = 6;
+}
+
 message AppMetadata {
     string formURL = 1;
     string hotline = 2;
     string rdtURL = 3;
+    AncillaryControl ancillary = 4;
 }
 
 message GetAppMetadataResponse {
