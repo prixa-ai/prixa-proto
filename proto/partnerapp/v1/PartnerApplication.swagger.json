@@ -362,6 +362,41 @@
         }
       }
     },
+    "v1Colors": {
+      "type": "object",
+      "properties": {
+        "primary": {
+          "type": "string"
+        },
+        "secondary": {
+          "type": "string"
+        },
+        "muted": {
+          "type": "string"
+        },
+        "success": {
+          "type": "string"
+        },
+        "danger": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "string"
+        },
+        "primaryLight": {
+          "type": "string"
+        },
+        "secondaryLight": {
+          "type": "string"
+        },
+        "default": {
+          "type": "string"
+        },
+        "light": {
+          "type": "string"
+        }
+      }
+    },
     "v1CreatePartnerApplicationRequest": {
       "type": "object",
       "properties": {
@@ -370,6 +405,9 @@
         },
         "partnerId": {
           "type": "string"
+        },
+        "theme": {
+          "$ref": "#/definitions/v1Theme"
         }
       }
     },
@@ -438,6 +476,20 @@
         "updatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "theme": {
+          "$ref": "#/definitions/v1Theme"
+        }
+      }
+    },
+    "v1Theme": {
+      "type": "object",
+      "properties": {
+        "partnerLogo": {
+          "type": "string"
+        },
+        "colors": {
+          "$ref": "#/definitions/v1Colors"
         }
       }
     },
@@ -474,6 +526,9 @@
         },
         "applicationId": {
           "type": "string"
+        },
+        "theme": {
+          "$ref": "#/definitions/v1Theme"
         }
       }
     },

@@ -48,6 +48,22 @@ func (this *PartnerAppResponseData) Validate() error {
 			return github_com_mwitkow_go_proto_validators.FieldError("UpdatedAt", err)
 		}
 	}
+	if this.Theme != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Theme); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Theme", err)
+		}
+	}
+	return nil
+}
+func (this *Colors) Validate() error {
+	return nil
+}
+func (this *Theme) Validate() error {
+	if this.Colors != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Colors); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Colors", err)
+		}
+	}
 	return nil
 }
 
@@ -62,6 +78,11 @@ func (this *CreatePartnerApplicationRequest) Validate() error {
 	}
 	if this.PartnerId == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("PartnerId", fmt.Errorf(`value '%v' must not be an empty string`, this.PartnerId))
+	}
+	if this.Theme != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Theme); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Theme", err)
+		}
 	}
 	return nil
 }
@@ -119,6 +140,11 @@ func (this *UpdatePartnerApplicationRequest) Validate() error {
 	}
 	if this.ApplicationId == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("ApplicationId", fmt.Errorf(`value '%v' must not be an empty string`, this.ApplicationId))
+	}
+	if this.Theme != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Theme); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Theme", err)
+		}
 	}
 	return nil
 }
