@@ -469,6 +469,9 @@
         },
         "geoLocation": {
           "$ref": "#/definitions/v1GeoLocation"
+        },
+        "uid": {
+          "type": "string"
         }
       }
     },

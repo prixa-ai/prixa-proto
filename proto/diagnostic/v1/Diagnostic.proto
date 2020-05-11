@@ -132,6 +132,7 @@ message BotConversationRequest {
     string sessionId = 1;
     ReplyData reply = 2;
     GeoLocation geoLocation = 3;
+    string uid = 4;
 }
 
 message ReplyData {
