@@ -388,9 +388,6 @@
         },
         "rdtURL": {
           "type": "string"
-        },
-        "ancillary": {
-          "$ref": "#/definitions/v1AncillaryControl"
         }
       }
     },
@@ -470,6 +467,9 @@
         "updatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "ancillary": {
+          "$ref": "#/definitions/v1AncillaryControl"
         }
       }
     },
