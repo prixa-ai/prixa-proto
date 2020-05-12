@@ -434,6 +434,9 @@
         },
         "partnerId": {
           "type": "string"
+        },
+        "theme": {
+          "$ref": "#/definitions/v1Theme"
         }
       }
     },
@@ -555,6 +558,9 @@
         },
         "applicationId": {
           "type": "string"
+        },
+        "theme": {
+          "$ref": "#/definitions/v1Theme"
         }
       }
     },

@@ -7,10 +7,10 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/mwitkow/go-proto-validators"
 	_ "github.com/golang/protobuf/ptypes/timestamp"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
+	_ "github.com/mwitkow/go-proto-validators"
 	regexp "regexp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
@@ -84,6 +84,11 @@ func (this *CreatePartnerApplicationRequest) Validate() error {
 	if this.PartnerId == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("PartnerId", fmt.Errorf(`value '%v' must not be an empty string`, this.PartnerId))
 	}
+	if this.Theme != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Theme); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Theme", err)
+		}
+	}
 	return nil
 }
 func (this *CreatePartnerApplicationResponse) Validate() error {
@@ -140,6 +145,11 @@ func (this *UpdatePartnerApplicationRequest) Validate() error {
 	}
 	if this.ApplicationId == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("ApplicationId", fmt.Errorf(`value '%v' must not be an empty string`, this.ApplicationId))
+	}
+	if this.Theme != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Theme); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Theme", err)
+		}
 	}
 	return nil
 }
