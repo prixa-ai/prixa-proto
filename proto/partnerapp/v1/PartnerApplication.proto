@@ -150,6 +150,25 @@ message PartnerAppResponseData {
     google.protobuf.Timestamp createdAt = 5;
     google.protobuf.Timestamp updatedAt = 6;
     AncillaryControl ancillary = 7;
+    Theme theme = 8;
+}
+
+message Colors {
+    string primary = 1;
+    string secondary = 2;
+    string muted = 3;
+    string success = 4;
+    string danger = 5;
+    string disabled = 6;
+    string primaryLight = 7;
+    string secondaryLight = 8;
+    string default = 9;
+    string light = 10;
+}
+
+message Theme {
+    string partnerLogo = 1;
+    Colors colors = 2;
 }
 
 message CreatePartnerApplicationRequest {
