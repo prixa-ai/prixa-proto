@@ -348,6 +348,35 @@
         }
       }
     },
+    "v1AncillaryControl": {
+      "type": "object",
+      "properties": {
+        "telemedicine": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "article": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "pharmacyDelivery": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "labTest": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "appointmenBooking": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "insurance": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
     "v1AppMetadata": {
       "type": "object",
       "properties": {
@@ -476,6 +505,9 @@
         "updatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "ancillary": {
+          "$ref": "#/definitions/v1AncillaryControl"
         },
         "theme": {
           "$ref": "#/definitions/v1Theme"

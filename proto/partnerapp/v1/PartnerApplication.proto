@@ -149,7 +149,8 @@ message PartnerAppResponseData {
     string secretKey = 4 [(validator.field) = {string_not_empty: true}];
     google.protobuf.Timestamp createdAt = 5;
     google.protobuf.Timestamp updatedAt = 6;
-    Theme theme = 7;
+    AncillaryControl ancillary = 7;
+    Theme theme = 8;
 }
 
 message Colors {
@@ -244,4 +245,13 @@ message UpdateAppMetadataRequest {
 
 message UpdateAppMetadataResponse {
     string message = 1;
+}
+
+message AncillaryControl {
+    bool telemedicine = 1;
+    bool article = 2;
+    bool pharmacyDelivery = 3;
+    bool labTest = 4;
+    bool appointmenBooking = 5;
+    bool insurance = 6;
 }
