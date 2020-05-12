@@ -7,10 +7,10 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/golang/protobuf/ptypes/timestamp"
-	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
 	_ "github.com/mwitkow/go-proto-validators"
+	_ "github.com/golang/protobuf/ptypes/timestamp"
+	_ "google.golang.org/genproto/googleapis/api/annotations"
 	regexp "regexp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
@@ -46,6 +46,11 @@ func (this *PartnerAppResponseData) Validate() error {
 	if this.UpdatedAt != nil {
 		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.UpdatedAt); err != nil {
 			return github_com_mwitkow_go_proto_validators.FieldError("UpdatedAt", err)
+		}
+	}
+	if this.Ancillary != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Ancillary); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Ancillary", err)
 		}
 	}
 	return nil
@@ -246,5 +251,8 @@ func (this *UpdateAppMetadataRequest) Validate() error {
 	return nil
 }
 func (this *UpdateAppMetadataResponse) Validate() error {
+	return nil
+}
+func (this *AncillaryControl) Validate() error {
 	return nil
 }
