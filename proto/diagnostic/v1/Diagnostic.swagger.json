@@ -363,6 +363,38 @@
         ]
       }
     },
+    "/api/v2/diagnosis": {
+      "post": {
+        "operationId": "DiagnosticService_BotConversationV22",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1BotConversationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1BotConversationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "DiagnosticService"
+        ]
+      }
+    },
     "/api/v2/prixa": {
       "post": {
         "operationId": "DiagnosticService_BotConversationV2",
