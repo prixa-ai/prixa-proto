@@ -437,6 +437,9 @@
         },
         "theme": {
           "$ref": "#/definitions/v1Theme"
+        },
+        "telemedicineSDKURL": {
+          "type": "string"
         }
       }
     },
@@ -511,6 +514,9 @@
         },
         "theme": {
           "$ref": "#/definitions/v1Theme"
+        },
+        "telemedicineSDKURL": {
+          "type": "string"
         }
       }
     },
@@ -561,6 +567,9 @@
         },
         "theme": {
           "$ref": "#/definitions/v1Theme"
+        },
+        "telemedicineSDKURL": {
+          "type": "string"
         }
       }
     },
