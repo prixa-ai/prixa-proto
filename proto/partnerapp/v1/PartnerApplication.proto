@@ -151,6 +151,7 @@ message PartnerAppResponseData {
     google.protobuf.Timestamp updatedAt = 6;
     AncillaryControl ancillary = 7;
     Theme theme = 8;
+    string telemedicineSDKURL = 9;
 }
 
 message Colors {
@@ -175,6 +176,7 @@ message CreatePartnerApplicationRequest {
     string name = 1 [(validator.field) = {string_not_empty: true}];
     string partnerId = 2 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
     Theme theme = 3;
+    string telemedicineSDKURL = 4;
 }
 
 message CreatePartnerApplicationResponse {
@@ -195,6 +197,7 @@ message UpdatePartnerApplicationRequest {
     string partnerId = 2 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
     string applicationId = 3 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
     Theme theme = 4;
+    string telemedicineSDKURL = 5;
 }
 
 message UpdatePartnerApplicationResponse {
