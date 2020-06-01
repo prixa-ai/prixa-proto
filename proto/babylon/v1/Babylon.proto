@@ -1,0 +1,227 @@
+syntax = "proto3";
+
+package prixa.babylon.v1;
+
+import "google/api/annotations.proto";
+import "protoc-gen-swagger/options/annotations.proto";
+import "github.com/mwitkow/go-proto-validators/validator.proto";
+
+
+option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
+    host: "engine2.prixa.ai";
+	info: {
+		title: "Prixa Babylon Service API";
+		version: "1.0";
+		contact: {
+			name: "Prixa Tech";
+			url: "https://github.com/prixa-ai/prixa-proto";
+			email: "tech@prixa.com";
+		};
+		license: {
+			name: "Prixa License";
+			url: "https://github.com/prixa-ai/prixa-proto/blob/master/LICENSE.txt";
+		};
+    };
+	schemes: HTTP;
+	schemes: HTTPS;
+    consumes: "application/json";
+    produces: "application/json";
+    security_definitions: {
+        security: {
+            key: "ApiKeyAuth";
+            value: {
+                type: TYPE_API_KEY;
+                in: IN_HEADER;
+                name: "X-Prixa-API-Key";
+            }
+        }
+        security: {
+            key: "Bearer";
+            value: {
+                type: TYPE_API_KEY;
+                in: IN_HEADER;
+                name: "Authorization";
+            }
+        }
+    }
+};
+
+service BabylonService {
+    rpc CreateDoctorAgent (CreateDoctorAgentRequest) returns (CreateDoctorAgentResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/babylon/doctor"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }
+
+    rpc GetDoctorAgent (GetDoctorAgentRequest) returns (GetDoctorAgentResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/babylon/doctor/{Id}"
+        };
+    }
+    rpc ListDoctorAgents (ListDoctorAgentsRequest) returns (ListDoctorAgentsResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/babylon/doctor"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }
+
+    rpc CreateChatInbox (CreateChatInboxRequest) returns (CreateChatInboxResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/babylon/inbox"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }
+
+    rpc GetChatInbox (GetChatInboxRequest) returns (GetChatInboxResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/babylon/inbox/{Id}"
+        };
+    }
+    rpc ListChatInboxes (ListChatInboxesRequest) returns (ListChatInboxesResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/babylon/inbox"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }    
+}
+
+message CreateDoctorAgentRequest{
+    uint32 id = 1;
+    string partnerId = 2 [(validator.field) = {string_not_empty: true}];
+    string specialityId = 3 [(validator.field) = {string_not_empty: true}];
+}
+
+message CreateDoctorAgentResponse{
+    // response status
+    string status = 1;
+    // response message
+    string message = 2;
+}
+
+message DoctorAgentData{
+    uint32 id = 1;
+    string partnerId = 2 [(validator.field) = {string_not_empty: true}];
+    string specialityId = 3 [(validator.field) = {string_not_empty: true}];
+    string status = 4 [(validator.field) = {string_not_empty: true}];
+    uint32 assignmentCount = 5;
+    uint32 totalAssignment = 6;
+    float rating = 7;
+}
+
+message CreateChatInboxRequest{
+    uint32 id = 1;
+    string partnerId = 2;
+    string specialityId = 3;
+}
+
+message CreateChatInboxResponse{
+    // response status
+    string status = 1;
+    // response message
+    string message = 2;
+}
+
+message ChatInboxData{
+    uint32 id = 1;
+    string partnerId = 2 [(validator.field) = {string_not_empty: true}];
+    string specialityId = 3 [(validator.field) = {string_not_empty: true}];
+}
+
+message GetDoctorAgentRequest {
+    uint32 Id = 1;
+}
+
+message GetDoctorAgentResponse {
+      // response status
+      string status = 1;
+      // response message
+      string message = 2;
+      // DoctorAgent data
+      DoctorAgentData data = 3;
+}
+
+message ListDoctorAgentsRequest {
+    uint32 page = 1;
+}
+
+message ListDoctorAgentsResponse {
+    // response status
+    string status = 1;
+    // response message
+    string message = 2;
+    // DoctorAgents data
+    repeated DoctorAgentData data = 3;
+}
+
+message GetChatInboxRequest {
+    uint32 Id = 1;
+}
+
+message GetChatInboxResponse {
+      // response status
+      string status = 1;
+      // response message
+      string message = 2;
+      // ChatInbox data
+      ChatInboxData data = 3;
+}
+
+message ListChatInboxesRequest {
+    uint32 page = 1;
+}
+
+message ListChatInboxesResponse {
+    // response status
+    string status = 1;
+    // response message
+    string message = 2;
+    // ChatInboxes data
+    repeated ChatInboxData data = 3;
+}

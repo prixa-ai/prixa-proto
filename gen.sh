@@ -32,6 +32,7 @@ WithSwagger=(
 	proto/telemedicine/v1/Telemedicine.proto 
 	proto/nalar/v1/Nalar.proto 
 	proto/analytic/v1/Analytic.proto
+	proto/babylon/v1/Babylon.proto
 )
 for protoSwaggerFile in ${WithSwagger[*]}; do
 	gen $protoSwaggerFile swagger
