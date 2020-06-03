@@ -31,8 +31,8 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = descriptor.ForMessage
 
-func request_BabylonService_CreateDoctorAgent_0(ctx context.Context, marshaler runtime.Marshaler, client BabylonServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateDoctorAgentRequest
+func request_BabylonService_CreateDoctorData_0(ctx context.Context, marshaler runtime.Marshaler, client BabylonServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq CreateDoctorRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -43,13 +43,13 @@ func request_BabylonService_CreateDoctorAgent_0(ctx context.Context, marshaler r
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.CreateDoctorAgent(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.CreateDoctorData(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_BabylonService_CreateDoctorAgent_0(ctx context.Context, marshaler runtime.Marshaler, server BabylonServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateDoctorAgentRequest
+func local_request_BabylonService_CreateDoctorData_0(ctx context.Context, marshaler runtime.Marshaler, server BabylonServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq CreateDoctorRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -60,13 +60,13 @@ func local_request_BabylonService_CreateDoctorAgent_0(ctx context.Context, marsh
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.CreateDoctorAgent(ctx, &protoReq)
+	msg, err := server.CreateDoctorData(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_BabylonService_GetDoctorAgent_0(ctx context.Context, marshaler runtime.Marshaler, client BabylonServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetDoctorAgentRequest
+func request_BabylonService_GetDoctorData_0(ctx context.Context, marshaler runtime.Marshaler, client BabylonServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetDoctorRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -87,13 +87,13 @@ func request_BabylonService_GetDoctorAgent_0(ctx context.Context, marshaler runt
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "Id", err)
 	}
 
-	msg, err := client.GetDoctorAgent(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetDoctorData(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_BabylonService_GetDoctorAgent_0(ctx context.Context, marshaler runtime.Marshaler, server BabylonServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetDoctorAgentRequest
+func local_request_BabylonService_GetDoctorData_0(ctx context.Context, marshaler runtime.Marshaler, server BabylonServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetDoctorRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -114,40 +114,40 @@ func local_request_BabylonService_GetDoctorAgent_0(ctx context.Context, marshale
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "Id", err)
 	}
 
-	msg, err := server.GetDoctorAgent(ctx, &protoReq)
+	msg, err := server.GetDoctorData(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
 var (
-	filter_BabylonService_ListDoctorAgents_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_BabylonService_ListDoctorData_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_BabylonService_ListDoctorAgents_0(ctx context.Context, marshaler runtime.Marshaler, client BabylonServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListDoctorAgentsRequest
+func request_BabylonService_ListDoctorData_0(ctx context.Context, marshaler runtime.Marshaler, client BabylonServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ListDoctorsRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_BabylonService_ListDoctorAgents_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_BabylonService_ListDoctorData_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.ListDoctorAgents(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.ListDoctorData(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_BabylonService_ListDoctorAgents_0(ctx context.Context, marshaler runtime.Marshaler, server BabylonServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListDoctorAgentsRequest
+func local_request_BabylonService_ListDoctorData_0(ctx context.Context, marshaler runtime.Marshaler, server BabylonServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ListDoctorsRequest
 	var metadata runtime.ServerMetadata
 
-	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_BabylonService_ListDoctorAgents_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_BabylonService_ListDoctorData_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.ListDoctorAgents(ctx, &protoReq)
+	msg, err := server.ListDoctorData(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -278,7 +278,7 @@ func local_request_BabylonService_ListChatInboxes_0(ctx context.Context, marshal
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 func RegisterBabylonServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server BabylonServiceServer) error {
 
-	mux.Handle("POST", pattern_BabylonService_CreateDoctorAgent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_BabylonService_CreateDoctorData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -287,18 +287,18 @@ func RegisterBabylonServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_BabylonService_CreateDoctorAgent_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_BabylonService_CreateDoctorData_0(rctx, inboundMarshaler, server, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_BabylonService_CreateDoctorAgent_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_BabylonService_CreateDoctorData_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_BabylonService_GetDoctorAgent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_BabylonService_GetDoctorData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -307,18 +307,18 @@ func RegisterBabylonServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_BabylonService_GetDoctorAgent_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_BabylonService_GetDoctorData_0(rctx, inboundMarshaler, server, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_BabylonService_GetDoctorAgent_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_BabylonService_GetDoctorData_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_BabylonService_ListDoctorAgents_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_BabylonService_ListDoctorData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -327,14 +327,14 @@ func RegisterBabylonServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_BabylonService_ListDoctorAgents_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_BabylonService_ListDoctorData_0(rctx, inboundMarshaler, server, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_BabylonService_ListDoctorAgents_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_BabylonService_ListDoctorData_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -439,7 +439,7 @@ func RegisterBabylonServiceHandler(ctx context.Context, mux *runtime.ServeMux, c
 // "BabylonServiceClient" to call the correct interceptors.
 func RegisterBabylonServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client BabylonServiceClient) error {
 
-	mux.Handle("POST", pattern_BabylonService_CreateDoctorAgent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_BabylonService_CreateDoctorData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -448,18 +448,18 @@ func RegisterBabylonServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_BabylonService_CreateDoctorAgent_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_BabylonService_CreateDoctorData_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_BabylonService_CreateDoctorAgent_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_BabylonService_CreateDoctorData_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_BabylonService_GetDoctorAgent_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_BabylonService_GetDoctorData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -468,18 +468,18 @@ func RegisterBabylonServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_BabylonService_GetDoctorAgent_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_BabylonService_GetDoctorData_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_BabylonService_GetDoctorAgent_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_BabylonService_GetDoctorData_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_BabylonService_ListDoctorAgents_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_BabylonService_ListDoctorData_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -488,14 +488,14 @@ func RegisterBabylonServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_BabylonService_ListDoctorAgents_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_BabylonService_ListDoctorData_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_BabylonService_ListDoctorAgents_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_BabylonService_ListDoctorData_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -563,11 +563,11 @@ func RegisterBabylonServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 }
 
 var (
-	pattern_BabylonService_CreateDoctorAgent_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "babylon", "doctor"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_BabylonService_CreateDoctorData_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "babylon", "doctor"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_BabylonService_GetDoctorAgent_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "babylon", "doctor", "Id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_BabylonService_GetDoctorData_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "v1", "babylon", "doctor", "Id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_BabylonService_ListDoctorAgents_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "babylon", "doctor"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_BabylonService_ListDoctorData_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "babylon", "doctor"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_BabylonService_CreateChatInbox_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "babylon", "inbox"}, "", runtime.AssumeColonVerbOpt(true)))
 
@@ -577,11 +577,11 @@ var (
 )
 
 var (
-	forward_BabylonService_CreateDoctorAgent_0 = runtime.ForwardResponseMessage
+	forward_BabylonService_CreateDoctorData_0 = runtime.ForwardResponseMessage
 
-	forward_BabylonService_GetDoctorAgent_0 = runtime.ForwardResponseMessage
+	forward_BabylonService_GetDoctorData_0 = runtime.ForwardResponseMessage
 
-	forward_BabylonService_ListDoctorAgents_0 = runtime.ForwardResponseMessage
+	forward_BabylonService_ListDoctorData_0 = runtime.ForwardResponseMessage
 
 	forward_BabylonService_CreateChatInbox_0 = runtime.ForwardResponseMessage
 

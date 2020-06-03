@@ -27,12 +27,12 @@
   "paths": {
     "/api/v1/babylon/doctor": {
       "get": {
-        "operationId": "ListDoctorAgents",
+        "operationId": "ListDoctorData",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1ListDoctorAgentsResponse"
+              "$ref": "#/definitions/v1ListDoctorsResponse"
             }
           },
           "default": {
@@ -62,12 +62,12 @@
         ]
       },
       "post": {
-        "operationId": "CreateDoctorAgent",
+        "operationId": "CreateDoctorData",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1CreateDoctorAgentResponse"
+              "$ref": "#/definitions/v1CreateDoctorResponse"
             }
           },
           "default": {
@@ -83,7 +83,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1CreateDoctorAgentRequest"
+              "$ref": "#/definitions/v1CreateDoctorRequest"
             }
           }
         ],
@@ -100,12 +100,12 @@
     },
     "/api/v1/babylon/doctor/{Id}": {
       "get": {
-        "operationId": "GetDoctorAgent",
+        "operationId": "GetDoctorData",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1GetDoctorAgentResponse"
+              "$ref": "#/definitions/v1GetDoctorResponse"
             }
           },
           "default": {
@@ -311,29 +311,34 @@
         "message": {
           "type": "string",
           "title": "response message"
-        },
-        "data": {
-          "$ref": "#/definitions/v1ChatInboxData",
-          "title": "ChatInbox data"
         }
       }
     },
-    "v1CreateDoctorAgentRequest": {
+    "v1CreateDoctorRequest": {
       "type": "object",
       "properties": {
         "id": {
           "type": "integer",
           "format": "int64"
         },
-        "partnerId": {
+        "name": {
           "type": "string"
         },
-        "specialityId": {
-          "type": "string"
+        "partners": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "specialities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },
-    "v1CreateDoctorAgentResponse": {
+    "v1CreateDoctorResponse": {
       "type": "object",
       "properties": {
         "status": {
@@ -343,25 +348,30 @@
         "message": {
           "type": "string",
           "title": "response message"
-        },
-        "data": {
-          "$ref": "#/definitions/v1DoctorAgentData",
-          "title": "DoctorAgent data"
         }
       }
     },
-    "v1DoctorAgentData": {
+    "v1DoctorData": {
       "type": "object",
       "properties": {
         "id": {
           "type": "integer",
           "format": "int64"
         },
-        "partnerId": {
+        "Name": {
           "type": "string"
         },
-        "specialityId": {
-          "type": "string"
+        "partners": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "specialities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "status": {
           "type": "string"
@@ -373,10 +383,6 @@
         "totalAssignment": {
           "type": "integer",
           "format": "int64"
-        },
-        "rating": {
-          "type": "number",
-          "format": "float"
         }
       }
     },
@@ -397,7 +403,7 @@
         }
       }
     },
-    "v1GetDoctorAgentResponse": {
+    "v1GetDoctorResponse": {
       "type": "object",
       "properties": {
         "status": {
@@ -409,7 +415,7 @@
           "title": "response message"
         },
         "data": {
-          "$ref": "#/definitions/v1DoctorAgentData",
+          "$ref": "#/definitions/v1DoctorData",
           "title": "DoctorAgent data"
         }
       }
@@ -434,7 +440,7 @@
         }
       }
     },
-    "v1ListDoctorAgentsResponse": {
+    "v1ListDoctorsResponse": {
       "type": "object",
       "properties": {
         "status": {
@@ -448,7 +454,7 @@
         "data": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1DoctorAgentData"
+            "$ref": "#/definitions/v1DoctorData"
           },
           "title": "DoctorAgents data"
         }

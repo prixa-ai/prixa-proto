@@ -10,6 +10,7 @@ import (
 	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
 	_ "github.com/mwitkow/go-proto-validators"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
+	regexp "regexp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
 
@@ -18,44 +19,41 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
-func (this *CreateDoctorAgentRequest) Validate() error {
-	if this.PartnerId == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("PartnerId", fmt.Errorf(`value '%v' must not be an empty string`, this.PartnerId))
-	}
-	if this.SpecialityId == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("SpecialityId", fmt.Errorf(`value '%v' must not be an empty string`, this.SpecialityId))
+func (this *CreateDoctorRequest) Validate() error {
+	if this.Name == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Name", fmt.Errorf(`value '%v' must not be an empty string`, this.Name))
 	}
 	return nil
 }
-func (this *CreateDoctorAgentResponse) Validate() error {
-	if this.Data != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Data); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
-		}
-	}
+func (this *CreateDoctorResponse) Validate() error {
 	return nil
 }
-func (this *DoctorAgentData) Validate() error {
-	if this.PartnerId == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("PartnerId", fmt.Errorf(`value '%v' must not be an empty string`, this.PartnerId))
-	}
-	if this.SpecialityId == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("SpecialityId", fmt.Errorf(`value '%v' must not be an empty string`, this.SpecialityId))
-	}
+func (this *DoctorData) Validate() error {
 	if this.Status == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("Status", fmt.Errorf(`value '%v' must not be an empty string`, this.Status))
 	}
 	return nil
 }
+
+var _regex_CreateChatInboxRequest_PartnerId = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
+var _regex_CreateChatInboxRequest_SpecialityId = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
+
 func (this *CreateChatInboxRequest) Validate() error {
+	if !_regex_CreateChatInboxRequest_PartnerId.MatchString(this.PartnerId) {
+		return github_com_mwitkow_go_proto_validators.FieldError("PartnerId", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.PartnerId))
+	}
+	if this.PartnerId == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("PartnerId", fmt.Errorf(`value '%v' must not be an empty string`, this.PartnerId))
+	}
+	if !_regex_CreateChatInboxRequest_SpecialityId.MatchString(this.SpecialityId) {
+		return github_com_mwitkow_go_proto_validators.FieldError("SpecialityId", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.SpecialityId))
+	}
+	if this.SpecialityId == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("SpecialityId", fmt.Errorf(`value '%v' must not be an empty string`, this.SpecialityId))
+	}
 	return nil
 }
 func (this *CreateChatInboxResponse) Validate() error {
-	if this.Data != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Data); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
-		}
-	}
 	return nil
 }
 func (this *ChatInboxData) Validate() error {
@@ -67,10 +65,10 @@ func (this *ChatInboxData) Validate() error {
 	}
 	return nil
 }
-func (this *GetDoctorAgentRequest) Validate() error {
+func (this *GetDoctorRequest) Validate() error {
 	return nil
 }
-func (this *GetDoctorAgentResponse) Validate() error {
+func (this *GetDoctorResponse) Validate() error {
 	if this.Data != nil {
 		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Data); err != nil {
 			return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
@@ -78,10 +76,10 @@ func (this *GetDoctorAgentResponse) Validate() error {
 	}
 	return nil
 }
-func (this *ListDoctorAgentsRequest) Validate() error {
+func (this *ListDoctorsRequest) Validate() error {
 	return nil
 }
-func (this *ListDoctorAgentsResponse) Validate() error {
+func (this *ListDoctorsResponse) Validate() error {
 	for _, item := range this.Data {
 		if item != nil {
 			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
