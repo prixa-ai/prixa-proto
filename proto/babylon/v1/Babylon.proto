@@ -47,7 +47,7 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
 };
 
 service BabylonService {
-    rpc CreateDoctorAgent (CreateDoctorAgentRequest) returns (CreateDoctorAgentResponse) {
+    rpc CreateDoctorData(CreateDoctorRequest) returns (CreateDoctorResponse) {
         option (google.api.http) = {
             post: "/api/v1/babylon/doctor"
             body: "*"
@@ -66,12 +66,12 @@ service BabylonService {
         };
     }
 
-    rpc GetDoctorAgent (GetDoctorAgentRequest) returns (GetDoctorAgentResponse) {
+    rpc GetDoctorData(GetDoctorRequest) returns (GetDoctorResponse) {
         option (google.api.http) = {
             get: "/api/v1/babylon/doctor/{Id}"
         };
     }
-    rpc ListDoctorAgents (ListDoctorAgentsRequest) returns (ListDoctorAgentsResponse) {
+    rpc ListDoctorData (ListDoctorsRequest) returns (ListDoctorsResponse) {
         option (google.api.http) = {
             get: "/api/v1/babylon/doctor"
         };
@@ -132,33 +132,34 @@ service BabylonService {
     }    
 }
 
-message CreateDoctorAgentRequest{
-    uint32 id = 1;
-    string partnerId = 2 [(validator.field) = {string_not_empty: true}];
-    string specialityId = 3 [(validator.field) = {string_not_empty: true}];
+message CreateDoctorRequest{
+    uint32 id = 1 [(validator.field) = {msg_exists : true}];
+    string name = 2  [(validator.field) = {string_not_empty: true}];
+    repeated string partners = 3;
+    repeated string specialities = 4;
 }
 
-message CreateDoctorAgentResponse{
+message CreateDoctorResponse{
     // response status
     string status = 1;
     // response message
     string message = 2;
 }
 
-message DoctorAgentData{
+message DoctorData{
     uint32 id = 1;
-    string partnerId = 2 [(validator.field) = {string_not_empty: true}];
-    string specialityId = 3 [(validator.field) = {string_not_empty: true}];
-    string status = 4 [(validator.field) = {string_not_empty: true}];
-    uint32 assignmentCount = 5;
-    uint32 totalAssignment = 6;
-    float rating = 7;
+    string Name = 2;
+    repeated string partners = 3;
+    repeated string specialities = 4;
+    string status = 5 [(validator.field) = {string_not_empty: true}];
+    uint32 assignmentCount = 6;
+    uint32 totalAssignment = 7;
 }
 
 message CreateChatInboxRequest{
-    uint32 id = 1;
-    string partnerId = 2;
-    string specialityId = 3;
+    uint32 id = 1 [(validator.field) = {msg_exists : true}];
+    string partnerId = 2 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+    string specialityId = 3 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
 }
 
 message CreateChatInboxResponse{
@@ -174,34 +175,34 @@ message ChatInboxData{
     string specialityId = 3 [(validator.field) = {string_not_empty: true}];
 }
 
-message GetDoctorAgentRequest {
-    uint32 Id = 1;
+message GetDoctorRequest {
+    uint32 Id = 1[(validator.field) = {msg_exists : true}];
 }
 
-message GetDoctorAgentResponse {
+message GetDoctorResponse {
       // response status
       string status = 1;
       // response message
       string message = 2;
       // DoctorAgent data
-      DoctorAgentData data = 3;
+      DoctorData data = 3;
 }
 
-message ListDoctorAgentsRequest {
+message ListDoctorsRequest {
     uint32 page = 1;
 }
 
-message ListDoctorAgentsResponse {
+message ListDoctorsResponse {
     // response status
     string status = 1;
     // response message
     string message = 2;
     // DoctorAgents data
-    repeated DoctorAgentData data = 3;
+    repeated DoctorData data = 3;
 }
 
 message GetChatInboxRequest {
-    uint32 Id = 1;
+    uint32 Id = 1 [(validator.field) = {msg_exists : true}];
 }
 
 message GetChatInboxResponse {
