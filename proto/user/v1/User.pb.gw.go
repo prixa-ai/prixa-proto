@@ -160,7 +160,10 @@ func local_request_UserService_CallbackOauthGoogle_0(ctx context.Context, marsha
 	var protoReq CallbackGoogleRequest
 	var metadata runtime.ServerMetadata
 
-	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_UserService_CallbackOauthGoogle_0); err != nil {
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_UserService_CallbackOauthGoogle_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -1373,31 +1376,31 @@ func RegisterUserServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux
 }
 
 var (
-	pattern_UserService_Login_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "user", "login"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_UserService_Login_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v2", "user", "login"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_UserService_Consent_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "user", "consent"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserService_Register_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "user", "register"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_UserService_Register_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v2", "user", "register"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_UserService_OauthGoogle_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "user", "oauth", "google"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_UserService_CallbackOauthGoogle_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 2, 5}, []string{"api", "v1", "user", "oauth", "google", "callback"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserService_ResendEmailVerification_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "user", "resend-email"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_UserService_ResendEmailVerification_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v2", "user", "resend-email"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserService_VerifyRegister_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "user", "register", "registerToken", "verify"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_UserService_VerifyRegister_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v2", "user", "register", "registerToken", "verify"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserService_ForgetPassword_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "user", "forget-password"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_UserService_ForgetPassword_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v2", "user", "forget-password"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserService_ForgetPasswordVerif_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v1", "user", "forget-password", "forgetPwdToken", "verify"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_UserService_ForgetPasswordVerif_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"api", "v2", "user", "forget-password", "forgetPwdToken", "verify"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserService_UpdatePassword_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "user", "forget-password"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_UserService_UpdatePassword_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v2", "user", "forget-password"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_UserService_UserInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "userinfo"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_UserService_ChangePassword_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "change-password"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserService_Logout_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "logout"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_UserService_Logout_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v2", "logout"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_UserService_UpdateUserInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"api", "v1", "user", "profile", "update"}, "", runtime.AssumeColonVerbOpt(true)))
 
