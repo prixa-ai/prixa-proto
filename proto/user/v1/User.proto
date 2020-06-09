@@ -57,7 +57,7 @@ service UserService {
     // User login given email and password
     rpc Login (LoginRequest) returns (LoginResponse) {
         option (google.api.http) = {
-            post: "/api/v1/user/login"
+            post: "/api/v2/user/login"
             body: "*"
         };
     }
@@ -72,7 +72,7 @@ service UserService {
     // New user registration
     rpc Register (RegisterRequest) returns (RegisterResponse) {
         option (google.api.http) = {
-            post: "/api/v1/user/register"
+            post: "/api/v2/user/register"
             body: "*"
         };
     }
@@ -94,7 +94,7 @@ service UserService {
     // Resend register email verification
     rpc ResendEmailVerification (google.protobuf.Empty) returns (ResendEmailVerificationResponse) {
         option (google.api.http) = {
-            get: "/api/v1/user/resend-email"
+            get: "/api/v2/user/resend-email"
         };
         option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
             security: {
@@ -113,7 +113,7 @@ service UserService {
     // Verify user registration
     rpc VerifyRegister (VerifyRegisterRequest) returns (VerifyRegisterResponse) {
         option (google.api.http) = {
-            post: "/api/v1/user/register/{registerToken}/verify"
+            post: "/api/v2/user/register/{registerToken}/verify"
             body: "*"
         };
     }
@@ -121,7 +121,7 @@ service UserService {
     // Trigger to reset user password due to forgotten password
     rpc ForgetPassword (ForgetPasswordRequest) returns (ForgetPasswordResponse) {
         option (google.api.http) = {
-            post: "/api/v1/user/forget-password"
+            post: "/api/v2/user/forget-password"
             body: "*"
         };
     }
@@ -129,7 +129,7 @@ service UserService {
     // Verify forget password token upon forget password action
     rpc ForgetPasswordVerif (ForgetPasswordVerifRequest) returns (ForgetPasswordVerifResponse) {
         option (google.api.http) = {
-            post: "/api/v1/user/forget-password/{forgetPwdToken}/verify"
+            post: "/api/v2/user/forget-password/{forgetPwdToken}/verify"
             body: "*"
         };
     }
@@ -137,7 +137,7 @@ service UserService {
     // Update user password upon forget password action
     rpc UpdatePassword (UpdatePasswordRequest) returns (UpdatePasswordResponse) {
         option (google.api.http) = {
-            put: "/api/v1/user/forget-password"
+            put: "/api/v2/user/forget-password"
             body: "*"
         };
     }
@@ -184,7 +184,7 @@ service UserService {
     // Logout user after user logged in
     rpc Logout (google.protobuf.Empty) returns (LogoutResponse) {
         option (google.api.http) = {
-            get: "/api/v1/logout"
+            get: "/api/v2/logout"
         };
         option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
             security: {
