@@ -1526,7 +1526,7 @@
     "v1ScheduleData": {
       "type": "object",
       "properties": {
-        "scheduleId": {
+        "id": {
           "type": "string"
         },
         "doctor": {
