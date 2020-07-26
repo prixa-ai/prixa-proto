@@ -512,6 +512,8 @@ message GetSpecialitiesRequestData{
     string hospitalId = 2 [(validator.field) = {uuid_ver: 4}];
     // Page
     int32 page = 3;
+    // Name
+    string name = 4;
 }
 
 message SpecialityData{

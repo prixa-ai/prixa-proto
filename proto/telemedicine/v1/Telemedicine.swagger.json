@@ -28,7 +28,7 @@
     "/api/v1/telemedicine/appointment": {
       "post": {
         "summary": "Create new appointment",
-        "operationId": "PostAppointmentBookingData",
+        "operationId": "TelemedicineService_PostAppointmentBookingData",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -67,7 +67,7 @@
     "/api/v1/telemedicine/appointment/{bookingId}": {
       "get": {
         "summary": "Get appointment booking data",
-        "operationId": "GetAppointmentBookingData",
+        "operationId": "TelemedicineService_GetAppointmentBookingData",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -103,7 +103,7 @@
       },
       "put": {
         "summary": "Cancel appointment booking data",
-        "operationId": "CancelAppointmentBookingData",
+        "operationId": "TelemedicineService_CancelAppointmentBookingData",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -149,7 +149,7 @@
     "/api/v1/telemedicine/appointments": {
       "get": {
         "summary": "Get all booking appointments data",
-        "operationId": "GetAppointmentBookingsData",
+        "operationId": "TelemedicineService_GetAppointmentBookingsData",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -217,7 +217,7 @@
     "/api/v1/telemedicine/area": {
       "get": {
         "summary": "Get areaa list data",
-        "operationId": "GetAreasData",
+        "operationId": "TelemedicineService_GetAreasData",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -250,7 +250,7 @@
     "/api/v1/telemedicine/area/{areaId}": {
       "get": {
         "summary": "Get area detail data",
-        "operationId": "GetAreaData",
+        "operationId": "TelemedicineService_GetAreaData",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -282,7 +282,7 @@
     "/api/v1/telemedicine/conversation/init": {
       "post": {
         "summary": "InitConversation is initialize conversation between user and doctor",
-        "operationId": "InitConversation",
+        "operationId": "TelemedicineService_InitConversation",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -321,7 +321,7 @@
     "/api/v1/telemedicine/doctor": {
       "get": {
         "summary": "Get doctors list data",
-        "operationId": "GetDoctorsData",
+        "operationId": "TelemedicineService_GetDoctorsData",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -398,7 +398,7 @@
     "/api/v1/telemedicine/doctor/{doctorId}": {
       "get": {
         "summary": "Get doctor data",
-        "operationId": "GetDoctorData",
+        "operationId": "TelemedicineService_GetDoctorData",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -430,7 +430,7 @@
     "/api/v1/telemedicine/hospital": {
       "get": {
         "summary": "Get hospitals list data",
-        "operationId": "GetHospitalsData",
+        "operationId": "TelemedicineService_GetHospitalsData",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -488,7 +488,7 @@
     "/api/v1/telemedicine/hospital-coordinate": {
       "get": {
         "summary": "Get hospitals list data",
-        "operationId": "GetHospitalsDataByCoordinate",
+        "operationId": "TelemedicineService_GetHospitalsDataByCoordinate",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -545,7 +545,7 @@
     "/api/v1/telemedicine/hospital/{hospitalId}": {
       "get": {
         "summary": "Get hostpital detail data",
-        "operationId": "GetHospitalData",
+        "operationId": "TelemedicineService_GetHospitalData",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -577,7 +577,7 @@
     "/api/v1/telemedicine/payment-method": {
       "get": {
         "summary": "Get Valid Payment Method data",
-        "operationId": "GetValidPaymentMethodsData",
+        "operationId": "TelemedicineService_GetValidPaymentMethodsData",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -600,7 +600,7 @@
     "/api/v1/telemedicine/schedules/hospital/{hospitalId}/doctor/{doctorId}": {
       "get": {
         "summary": "Get doctor Schedules data",
-        "operationId": "GetDoctorSchedulesData",
+        "operationId": "TelemedicineService_GetDoctorSchedulesData",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -644,7 +644,7 @@
     "/api/v1/telemedicine/speciality": {
       "get": {
         "summary": "Get specialities list data",
-        "operationId": "GetSpecialitiesData",
+        "operationId": "TelemedicineService_GetSpecialitiesData",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -681,6 +681,13 @@
             "required": false,
             "type": "integer",
             "format": "int32"
+          },
+          {
+            "name": "name",
+            "description": "Name.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -691,7 +698,7 @@
     "/api/v1/telemedicine/speciality/{specialityId}": {
       "get": {
         "summary": "Get speciality detail data",
-        "operationId": "GetSpecialityData",
+        "operationId": "TelemedicineService_GetSpecialityData",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -723,7 +730,7 @@
     "/api/v1/telemedicine/timeslot/hospital/{hospitalId}/doctor/{doctorId}/appointment-date/{appointmentDate}": {
       "get": {
         "summary": "Get doctor timeslot data",
-        "operationId": "GetDoctorTimeSlotsData",
+        "operationId": "TelemedicineService_GetDoctorTimeSlotsData",
         "responses": {
           "200": {
             "description": "A successful response.",
