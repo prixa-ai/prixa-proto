@@ -33,6 +33,7 @@ WithSwagger=(
 	proto/nalar/v1/Nalar.proto 
 	proto/analytic/v1/Analytic.proto
 	proto/babylon/v1/Babylon.proto
+	proto/labtest/v1/Labtest.proto
 )
 for protoSwaggerFile in ${WithSwagger[*]}; do
 	gen $protoSwaggerFile swagger

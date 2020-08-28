@@ -93,34 +93,6 @@
         ]
       }
     },
-    "/api/v1/labtest/coupon": {
-      "get": {
-        "operationId": "UserService_GetLabtestCoupon",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1GetLabtestCouponResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "tags": [
-          "UserService"
-        ],
-        "security": [
-          {
-            "ApiKeyAuth": [],
-            "Bearer": []
-          }
-        ]
-      }
-    },
     "/api/v1/user/consent": {
       "get": {
         "summary": "Get user consent information",
@@ -846,17 +818,6 @@
           "items": {
             "$ref": "#/definitions/v1AssessmentHistory"
           }
-        }
-      }
-    },
-    "v1GetLabtestCouponResponse": {
-      "type": "object",
-      "properties": {
-        "status": {
-          "type": "string"
-        },
-        "couponCode": {
-          "type": "string"
         }
       }
     },
