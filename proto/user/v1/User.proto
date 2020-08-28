@@ -291,29 +291,6 @@ service UserService {
             }
         };
     }
-
-    rpc GetLabtestCoupon (google.protobuf.Empty) returns (GetLabtestCouponResponse) {
-        option (google.api.http) = {
-            get: "/api/v1/labtest/coupon"
-        };
-        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
-            security: {
-                security_requirement: {
-                    key: "ApiKeyAuth";
-                    value: {}
-                }
-                security_requirement: {
-                    key: "Bearer";
-                    value: {}
-                }
-            }
-        };
-    }
-}
-
-message GetLabtestCouponResponse {
-    string status = 1;
-    string couponCode = 2;
 }
 
 message AuthData {
