@@ -257,4 +257,5 @@ message AncillaryControl {
     bool labTest = 4;
     bool appointmenBooking = 5;
     bool insurance = 6;
+    bool insuranceBanner = 7;
 }

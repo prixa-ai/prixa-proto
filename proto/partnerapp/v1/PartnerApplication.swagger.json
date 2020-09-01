@@ -374,6 +374,10 @@
         "insurance": {
           "type": "boolean",
           "format": "boolean"
+        },
+        "insuranceBanner": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
