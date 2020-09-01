@@ -109,6 +109,36 @@
         ]
       }
     },
+    "/api/v1/diagnosis/{diagnosticSessionID}/validate": {
+      "get": {
+        "operationId": "DiagnosticService_IsDiagnosisResultValid",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1IsDiagnosisResultValidResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "diagnosticSessionID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DiagnosticService"
+        ]
+      }
+    },
     "/api/v1/disease/article/{diseaseID}": {
       "get": {
         "operationId": "DiagnosticService_GetDiseaseArticle",
@@ -786,6 +816,14 @@
         "planToHaveInsurance": {
           "type": "boolean",
           "format": "boolean"
+        }
+      }
+    },
+    "v1IsDiagnosisResultValidResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
         }
       }
     },
