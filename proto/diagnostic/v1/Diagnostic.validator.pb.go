@@ -7,11 +7,11 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
-	_ "github.com/mwitkow/go-proto-validators"
 	_ "github.com/golang/protobuf/ptypes/empty"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/golang/protobuf/ptypes/timestamp"
+	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
+	_ "github.com/mwitkow/go-proto-validators"
 	regexp "regexp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
@@ -21,6 +21,12 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
+func (this *IsDiagnosisResultValidRequest) Validate() error {
+	return nil
+}
+func (this *IsDiagnosisResultValidResponse) Validate() error {
+	return nil
+}
 func (this *GeoLocation) Validate() error {
 	return nil
 }

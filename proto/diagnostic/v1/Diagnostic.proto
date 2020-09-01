@@ -123,8 +123,22 @@ service DiagnosticService {
         };
     }
 
+    rpc IsDiagnosisResultValid (IsDiagnosisResultValidRequest) returns (IsDiagnosisResultValidResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/diagnosis/{diagnosticSessionID}/validate"
+        };
+    }
+
     // Internal GRPC API, DO NOT EXPOSE
     rpc UpdateDiagnosticData (UpdateSourceRequest) returns (google.protobuf.Empty) {}
+}
+
+message IsDiagnosisResultValidRequest {
+    string diagnosticSessionID = 1;
+}
+
+message IsDiagnosisResultValidResponse {
+    string message = 1;
 }
 
 message GeoLocation {
