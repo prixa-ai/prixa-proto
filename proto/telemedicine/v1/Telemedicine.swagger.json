@@ -187,6 +187,13 @@
             "type": "string"
           },
           {
+            "name": "param.email",
+            "description": "User Email.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "fromDate",
             "description": "From date.",
             "in": "query",
@@ -1256,6 +1263,10 @@
         "doctorId": {
           "type": "string",
           "title": "Doctor ID"
+        },
+        "email": {
+          "type": "string",
+          "title": "User Email"
         }
       }
     },

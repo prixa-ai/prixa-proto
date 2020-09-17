@@ -51,6 +51,7 @@ func (this *GetAppointmentBookingsRequestData) Validate() error {
 
 var _regex_FindAppointmentBookingParamData_HospitalId = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
 var _regex_FindAppointmentBookingParamData_DoctorId = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
+var _regex_FindAppointmentBookingParamData_Email = regexp.MustCompile(`^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$`)
 
 func (this *FindAppointmentBookingParamData) Validate() error {
 	if !_regex_FindAppointmentBookingParamData_HospitalId.MatchString(this.HospitalId) {
@@ -58,6 +59,12 @@ func (this *FindAppointmentBookingParamData) Validate() error {
 	}
 	if !_regex_FindAppointmentBookingParamData_DoctorId.MatchString(this.DoctorId) {
 		return github_com_mwitkow_go_proto_validators.FieldError("DoctorId", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.DoctorId))
+	}
+	if !_regex_FindAppointmentBookingParamData_Email.MatchString(this.Email) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Email", fmt.Errorf(`value '%v' must be a string conforming to regex "^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"`, this.Email))
+	}
+	if this.Email == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Email", fmt.Errorf(`value '%v' must not be an empty string`, this.Email))
 	}
 	return nil
 }
