@@ -111,12 +111,12 @@
     },
     "/api/v1/diagnosis/{diagnosticSessionID}/validate": {
       "get": {
-        "operationId": "DiagnosticService_IsDiagnosisResultValid",
+        "operationId": "DiagnosticService_GetDiagnosisResult",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1IsDiagnosisResultValidResponse"
+              "$ref": "#/definitions/v1GetDiagnosisResultResponse"
             }
           },
           "default": {
@@ -395,12 +395,12 @@
     },
     "/api/v1/prognosis/{diagnosticSessionID}": {
       "get": {
-        "operationId": "DiagnosticService_IsDiagnosisResultValid2",
+        "operationId": "DiagnosticService_GetDiagnosisResult2",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1IsDiagnosisResultValidResponse"
+              "$ref": "#/definitions/v1GetDiagnosisResultResponse"
             }
           },
           "default": {
@@ -763,6 +763,17 @@
         }
       }
     },
+    "v1GetDiagnosisResultResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1BaymaxDiagnosisResultPayload"
+        }
+      }
+    },
     "v1GetDiagnosticStatisticsResponse": {
       "type": "object",
       "properties": {
@@ -866,17 +877,6 @@
         "planToHaveInsurance": {
           "type": "boolean",
           "format": "boolean"
-        }
-      }
-    },
-    "v1IsDiagnosisResultValidResponse": {
-      "type": "object",
-      "properties": {
-        "message": {
-          "type": "string"
-        },
-        "data": {
-          "$ref": "#/definitions/v1BaymaxDiagnosisResultPayload"
         }
       }
     },

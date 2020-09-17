@@ -123,7 +123,7 @@ service DiagnosticService {
         };
     }
 
-    rpc IsDiagnosisResultValid (IsDiagnosisResultValidRequest) returns (IsDiagnosisResultValidResponse) {
+    rpc GetDiagnosisResult (GetDiagnosisResultRequest) returns (GetDiagnosisResultResponse) {
         option (google.api.http) = {
             get: "/api/v1/diagnosis/{diagnosticSessionID}/validate"
             additional_bindings {
@@ -136,11 +136,11 @@ service DiagnosticService {
     rpc UpdateDiagnosticData (UpdateSourceRequest) returns (google.protobuf.Empty) {}
 }
 
-message IsDiagnosisResultValidRequest {
+message GetDiagnosisResultRequest {
     string diagnosticSessionID = 1;
 }
 
-message IsDiagnosisResultValidResponse {
+message GetDiagnosisResultResponse {
     string message = 1;
     BaymaxDiagnosisResultPayload data = 2;
 }
