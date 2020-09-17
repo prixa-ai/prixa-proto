@@ -242,9 +242,11 @@ message GetAppointmentBookingsRequestData{
     // Param
     FindAppointmentBookingParamData param = 1 [(validator.field) = {msg_exists : true}];
     // From date
-    google.protobuf.Timestamp fromDate = 2 [(validator.field) = {msg_exists : true}];
+    string fromDate = 2 [(validator.field) = {msg_exists : true}];
     // To date
-    google.protobuf.Timestamp toDate = 3 [(validator.field) = {msg_exists : true}];
+    string toDate = 3 [(validator.field) = {msg_exists : true}];
+    // User Email
+    string email = 4 [(validator.field) = {string_not_empty: true, regex: "^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"}];
 }
 
 message FindAppointmentBookingParamData{

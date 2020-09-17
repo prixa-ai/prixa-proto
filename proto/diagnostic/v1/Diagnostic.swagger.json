@@ -111,12 +111,12 @@
     },
     "/api/v1/diagnosis/{diagnosticSessionID}/validate": {
       "get": {
-        "operationId": "DiagnosticService_IsDiagnosisResultValid",
+        "operationId": "DiagnosticService_GetDiagnosisResult",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1IsDiagnosisResultValidResponse"
+              "$ref": "#/definitions/v1GetDiagnosisResultResponse"
             }
           },
           "default": {
@@ -393,6 +393,36 @@
         ]
       }
     },
+    "/api/v1/prognosis/{diagnosticSessionID}": {
+      "get": {
+        "operationId": "DiagnosticService_GetDiagnosisResult2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetDiagnosisResultResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "diagnosticSessionID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DiagnosticService"
+        ]
+      }
+    },
     "/api/v2/diagnosis": {
       "post": {
         "operationId": "DiagnosticService_BotConversationV22",
@@ -517,6 +547,26 @@
         },
         "diagnosisResult": {
           "$ref": "#/definitions/v1DiagnosisResultData"
+        }
+      }
+    },
+    "v1BaymaxDiagnosisResultPayload": {
+      "type": "object",
+      "properties": {
+        "patient": {
+          "$ref": "#/definitions/v1PatientData"
+        },
+        "diseases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "symptoms": {
+          "$ref": "#/definitions/v1SymptomsData"
+        },
+        "associatedSymptoms": {
+          "$ref": "#/definitions/v1SymptomsData"
         }
       }
     },
@@ -713,6 +763,17 @@
         }
       }
     },
+    "v1GetDiagnosisResultResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1BaymaxDiagnosisResultPayload"
+        }
+      }
+    },
     "v1GetDiagnosticStatisticsResponse": {
       "type": "object",
       "properties": {
@@ -819,14 +880,6 @@
         }
       }
     },
-    "v1IsDiagnosisResultValidResponse": {
-      "type": "object",
-      "properties": {
-        "message": {
-          "type": "string"
-        }
-      }
-    },
     "v1LabInfo": {
       "type": "object",
       "properties": {
@@ -898,6 +951,35 @@
         },
         "sourceURL": {
           "type": "string"
+        }
+      }
+    },
+    "v1PatientData": {
+      "type": "object",
+      "properties": {
+        "gender": {
+          "type": "string"
+        },
+        "weight": {
+          "type": "number",
+          "format": "float"
+        },
+        "height": {
+          "type": "number",
+          "format": "float"
+        },
+        "age": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "bmi": {
+          "type": "string"
+        },
+        "preconditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },
@@ -1177,6 +1259,20 @@
         },
         "answer": {
           "type": "string"
+        }
+      }
+    },
+    "v1SymptomsData": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "properties": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },

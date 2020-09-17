@@ -21,10 +21,15 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
-func (this *IsDiagnosisResultValidRequest) Validate() error {
+func (this *GetDiagnosisResultRequest) Validate() error {
 	return nil
 }
-func (this *IsDiagnosisResultValidResponse) Validate() error {
+func (this *GetDiagnosisResultResponse) Validate() error {
+	if this.Data != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Data); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
+		}
+	}
 	return nil
 }
 func (this *GeoLocation) Validate() error {
@@ -154,6 +159,30 @@ func (this *DiagnosisResultData) Validate() error {
 			}
 		}
 	}
+	return nil
+}
+func (this *BaymaxDiagnosisResultPayload) Validate() error {
+	if this.Patient != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Patient); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Patient", err)
+		}
+	}
+	if this.Symptoms != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Symptoms); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Symptoms", err)
+		}
+	}
+	if this.AssociatedSymptoms != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.AssociatedSymptoms); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("AssociatedSymptoms", err)
+		}
+	}
+	return nil
+}
+func (this *PatientData) Validate() error {
+	return nil
+}
+func (this *SymptomsData) Validate() error {
 	return nil
 }
 func (this *UserDetailsData) Validate() error {
