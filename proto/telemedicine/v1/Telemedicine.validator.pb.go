@@ -7,11 +7,11 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
+	_ "github.com/golang/protobuf/ptypes/timestamp"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/golang/protobuf/ptypes/empty"
 	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
 	_ "github.com/mwitkow/go-proto-validators"
-	_ "github.com/golang/protobuf/ptypes/timestamp"
 	regexp "regexp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
@@ -20,6 +20,8 @@ import (
 var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
+
+var _regex_GetAppointmentBookingsRequestData_Email = regexp.MustCompile(`^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$`)
 
 func (this *GetAppointmentBookingsRequestData) Validate() error {
 	if nil == this.Param {
@@ -30,28 +32,17 @@ func (this *GetAppointmentBookingsRequestData) Validate() error {
 			return github_com_mwitkow_go_proto_validators.FieldError("Param", err)
 		}
 	}
-	if nil == this.FromDate {
-		return github_com_mwitkow_go_proto_validators.FieldError("FromDate", fmt.Errorf("message must exist"))
+	if !_regex_GetAppointmentBookingsRequestData_Email.MatchString(this.Email) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Email", fmt.Errorf(`value '%v' must be a string conforming to regex "^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"`, this.Email))
 	}
-	if this.FromDate != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.FromDate); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("FromDate", err)
-		}
-	}
-	if nil == this.ToDate {
-		return github_com_mwitkow_go_proto_validators.FieldError("ToDate", fmt.Errorf("message must exist"))
-	}
-	if this.ToDate != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.ToDate); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("ToDate", err)
-		}
+	if this.Email == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Email", fmt.Errorf(`value '%v' must not be an empty string`, this.Email))
 	}
 	return nil
 }
 
 var _regex_FindAppointmentBookingParamData_HospitalId = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
 var _regex_FindAppointmentBookingParamData_DoctorId = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
-var _regex_FindAppointmentBookingParamData_Email = regexp.MustCompile(`^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$`)
 
 func (this *FindAppointmentBookingParamData) Validate() error {
 	if !_regex_FindAppointmentBookingParamData_HospitalId.MatchString(this.HospitalId) {
@@ -59,12 +50,6 @@ func (this *FindAppointmentBookingParamData) Validate() error {
 	}
 	if !_regex_FindAppointmentBookingParamData_DoctorId.MatchString(this.DoctorId) {
 		return github_com_mwitkow_go_proto_validators.FieldError("DoctorId", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.DoctorId))
-	}
-	if !_regex_FindAppointmentBookingParamData_Email.MatchString(this.Email) {
-		return github_com_mwitkow_go_proto_validators.FieldError("Email", fmt.Errorf(`value '%v' must be a string conforming to regex "^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"`, this.Email))
-	}
-	if this.Email == "" {
-		return github_com_mwitkow_go_proto_validators.FieldError("Email", fmt.Errorf(`value '%v' must not be an empty string`, this.Email))
 	}
 	return nil
 }

@@ -187,27 +187,25 @@
             "type": "string"
           },
           {
-            "name": "param.email",
-            "description": "User Email.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
             "name": "fromDate",
             "description": "From date.",
             "in": "query",
             "required": false,
-            "type": "string",
-            "format": "date-time"
+            "type": "string"
           },
           {
             "name": "toDate",
             "description": "To date.",
             "in": "query",
             "required": false,
-            "type": "string",
-            "format": "date-time"
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "description": "User Email.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -1263,10 +1261,6 @@
         "doctorId": {
           "type": "string",
           "title": "Doctor ID"
-        },
-        "email": {
-          "type": "string",
-          "title": "User Email"
         }
       }
     },
