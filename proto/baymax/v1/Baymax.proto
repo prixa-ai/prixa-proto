@@ -8,21 +8,21 @@ import "github.com/mwitkow/go-proto-validators/validator.proto";
 
 option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
     host: "engine2.prixa.ai";
-	info: {
-		title: "Prixa Babylon Service API";
-		version: "1.0";
-		contact: {
-			name: "Prixa Tech";
-			url: "https://github.com/prixa-ai/prixa-proto";
-			email: "tech@prixa.com";
-		};
-		license: {
-			name: "Prixa License";
-			url: "https://github.com/prixa-ai/prixa-proto/blob/master/LICENSE.txt";
-		};
+    info: {
+        title: "Prixa Babylon Service API";
+        version: "1.0";
+        contact: {
+            name: "Prixa Tech";
+            url: "https://github.com/prixa-ai/prixa-proto";
+            email: "tech@prixa.com";
+        };
+        license: {
+            name: "Prixa License";
+            url: "https://github.com/prixa-ai/prixa-proto/blob/master/LICENSE.txt";
+        };
     };
-	schemes: HTTP;
-	schemes: HTTPS;
+    schemes: HTTP;
+    schemes: HTTPS;
     consumes: "application/json";
     produces: "application/json";
     security_definitions: {
