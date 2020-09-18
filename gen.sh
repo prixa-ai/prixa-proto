@@ -34,6 +34,7 @@ WithSwagger=(
 	proto/analytic/v1/Analytic.proto
 	proto/babylon/v1/Babylon.proto
 	proto/labtest/v1/Labtest.proto
+	proto/baymax/v1/Baymax.proto
 )
 for protoSwaggerFile in ${WithSwagger[*]}; do
 	gen $protoSwaggerFile swagger
