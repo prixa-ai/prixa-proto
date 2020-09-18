@@ -21,10 +21,29 @@ var _ = math.Inf
 func (this *MessageData) Validate() error {
 	return nil
 }
+func (this *MessageContent) Validate() error {
+	return nil
+}
 func (this *ConversationMessageRequest) Validate() error {
 	return nil
 }
 func (this *ConversationMessageResponse) Validate() error {
+	if this.Data != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Data); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
+		}
+	}
+	return nil
+}
+func (this *WidgetMessageRequest) Validate() error {
+	if this.Message != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Message); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Message", err)
+		}
+	}
+	return nil
+}
+func (this *WidgetMessageResponse) Validate() error {
 	if this.Data != nil {
 		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Data); err != nil {
 			return github_com_mwitkow_go_proto_validators.FieldError("Data", err)

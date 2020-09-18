@@ -63,7 +63,43 @@
         ],
         "security": [
           {
-            "ApiKeyAuth": [],
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/baymax/widgets/messages": {
+      "post": {
+        "operationId": "BaymaxService_CreateWidgetMessage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1WidgetMessageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1WidgetMessageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BaymaxService"
+        ],
+        "security": [
+          {
             "Bearer": []
           }
         ]
@@ -132,6 +168,14 @@
         }
       }
     },
+    "v1MessageContent": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string"
+        }
+      }
+    },
     "v1MessageData": {
       "type": "object",
       "properties": {
@@ -166,14 +210,34 @@
           "type": "string"
         }
       }
+    },
+    "v1WidgetMessageRequest": {
+      "type": "object",
+      "properties": {
+        "website_token": {
+          "type": "string"
+        },
+        "cw_conversation": {
+          "type": "string"
+        },
+        "message": {
+          "$ref": "#/definitions/v1MessageContent"
+        }
+      }
+    },
+    "v1WidgetMessageResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1MessageData"
+        }
+      }
     }
   },
   "securityDefinitions": {
-    "ApiKeyAuth": {
-      "type": "apiKey",
-      "name": "X-Prixa-API-Key",
-      "in": "header"
-    },
     "Bearer": {
       "type": "apiKey",
       "name": "Authorization",

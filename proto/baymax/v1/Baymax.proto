@@ -27,14 +27,6 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
     produces: "application/json";
     security_definitions: {
         security: {
-            key: "ApiKeyAuth";
-            value: {
-                type: TYPE_API_KEY;
-                in: IN_HEADER;
-                name: "X-Prixa-API-Key";
-            }
-        }
-        security: {
             key: "Bearer";
             value: {
                 type: TYPE_API_KEY;
@@ -54,9 +46,20 @@ service BaymaxService {
         option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
             security: {
                 security_requirement: {
-                    key: "ApiKeyAuth";
+                    key: "Bearer";
                     value: {}
                 }
+            }
+        };
+    }
+
+    rpc CreateWidgetMessage(WidgetMessageRequest) returns (WidgetMessageResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/baymax/widgets/messages"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
                 security_requirement: {
                     key: "Bearer";
                     value: {}
@@ -79,6 +82,10 @@ message MessageData{
     string conversation_id = 10;
 }
 
+message MessageContent{
+    string content = 1;
+}
+
 message ConversationMessageRequest{
     string id = 1;
     string content = 2;
@@ -86,6 +93,17 @@ message ConversationMessageRequest{
 }
 
 message ConversationMessageResponse{
+    string status = 1;
+    MessageData data = 2;
+}
+
+message WidgetMessageRequest{
+    string website_token = 1;
+    string cw_conversation = 2;
+    MessageContent message = 3;
+}
+
+message WidgetMessageResponse{
     string status = 1;
     MessageData data = 2;
 }
