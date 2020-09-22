@@ -758,7 +758,7 @@
             "type": "string"
           }
         },
-        "symptoms": {
+        "symptom": {
           "$ref": "#/definitions/v1SymptomsData"
         },
         "associatedSymptoms": {

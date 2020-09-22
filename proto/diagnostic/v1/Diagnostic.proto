@@ -144,7 +144,7 @@ message GetDiagnosisResultResponse {
     string message = 1;
     PatientData patient = 2;
     repeated string diseases = 3;
-    SymptomsData symptoms = 4;
+    SymptomsData symptom = 4;
     repeated SymptomsData associatedSymptoms = 5;
 }
 
