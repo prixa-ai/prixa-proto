@@ -27,7 +27,7 @@
   "paths": {
     "/api/v1/baymax/conversations/{id}/messages": {
       "post": {
-        "operationId": "BaymaxService_CreateConversationMessage",
+        "operationId": "CreateConversationMessage",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -36,7 +36,7 @@
             }
           },
           "default": {
-            "description": "An unexpected error response.",
+            "description": "An unexpected error response",
             "schema": {
               "$ref": "#/definitions/runtimeError"
             }
@@ -68,9 +68,50 @@
         ]
       }
     },
+    "/api/v1/baymax/transactions/{patientId}": {
+      "get": {
+        "operationId": "GetActiveTransactionByPatient",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetActiveTransactionByPatientResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "patientId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "trxId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "BaymaxService"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
     "/api/v1/baymax/widgets/messages": {
       "post": {
-        "operationId": "BaymaxService_CreateWidgetMessage",
+        "operationId": "CreateWidgetMessage",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -79,7 +120,7 @@
             }
           },
           "default": {
-            "description": "An unexpected error response.",
+            "description": "An unexpected error response",
             "schema": {
               "$ref": "#/definitions/runtimeError"
             }
@@ -143,6 +184,44 @@
         }
       }
     },
+    "v1ActiveTransaction": {
+      "type": "object",
+      "properties": {
+        "patient_id": {
+          "type": "string"
+        },
+        "patient_card_number": {
+          "type": "string"
+        },
+        "transaction_id": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "doctor_id": {
+          "type": "string"
+        },
+        "chat_room_id": {
+          "type": "string"
+        },
+        "conversation_id": {
+          "type": "string"
+        },
+        "inbox_id": {
+          "type": "string"
+        },
+        "website_token": {
+          "type": "string"
+        },
+        "pubsub_token": {
+          "type": "string"
+        },
+        "cw_token": {
+          "type": "string"
+        }
+      }
+    },
     "v1ConversationMessageRequest": {
       "type": "object",
       "properties": {
@@ -153,7 +232,8 @@
           "type": "string"
         },
         "private": {
-          "type": "boolean"
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -165,6 +245,20 @@
         },
         "data": {
           "$ref": "#/definitions/v1MessageData"
+        }
+      }
+    },
+    "v1GetActiveTransactionByPatientResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ActiveTransaction"
+          }
         }
       }
     },
@@ -198,7 +292,8 @@
           "type": "string"
         },
         "private": {
-          "type": "boolean"
+          "type": "boolean",
+          "format": "boolean"
         },
         "message_type": {
           "type": "string"

@@ -67,6 +67,20 @@ service BaymaxService {
             }
         };
     }
+
+    rpc GetActiveTransactionByPatient(GetActiveTransactionByPatientRequest) returns (GetActiveTransactionByPatientResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/baymax/transactions/{patientId}"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }
 }
 
 message MessageData{
@@ -107,3 +121,28 @@ message WidgetMessageResponse{
     string status = 1;
     MessageData data = 2;
 }
+
+message GetActiveTransactionByPatientRequest{
+    string patientId = 1 [(validator.field) = {string_not_empty: true}];
+    string trxId = 2;
+}
+
+message GetActiveTransactionByPatientResponse{
+    string status = 1;
+    repeated ActiveTransaction data = 2;
+}
+
+message ActiveTransaction{
+    string patient_id = 1;
+    string patient_card_number = 2;
+    string transaction_id = 3;
+    string state = 4;
+    string doctor_id = 5;
+    string chat_room_id = 6;
+    string conversation_id = 7;
+    string inbox_id = 8;
+    string website_token = 9;
+    string pubsub_token = 10;
+    string cw_token = 11;
+}
+
