@@ -221,7 +221,7 @@ message BaymaxDiagnosisResultPayload {
     PatientData patient = 1;
     repeated string diseases = 2;
     SymptomsData symptoms = 3;
-    SymptomsData associatedSymptoms = 4;
+    repeated SymptomsData associatedSymptoms = 4;
 }
 
 message PatientData {
