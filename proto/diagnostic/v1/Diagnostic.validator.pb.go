@@ -7,11 +7,11 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/mwitkow/go-proto-validators"
 	_ "github.com/golang/protobuf/ptypes/empty"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/golang/protobuf/ptypes/timestamp"
 	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
+	_ "github.com/mwitkow/go-proto-validators"
 	regexp "regexp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
@@ -25,11 +25,29 @@ func (this *GetDiagnosisResultRequest) Validate() error {
 	return nil
 }
 func (this *GetDiagnosisResultResponse) Validate() error {
-	if this.Data != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Data); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
+	if this.Patient != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Patient); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Patient", err)
 		}
 	}
+	if this.Symptoms != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Symptoms); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Symptoms", err)
+		}
+	}
+	for _, item := range this.AssociatedSymptoms {
+		if item != nil {
+			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
+				return github_com_mwitkow_go_proto_validators.FieldError("AssociatedSymptoms", err)
+			}
+		}
+	}
+	return nil
+}
+func (this *PatientData) Validate() error {
+	return nil
+}
+func (this *SymptomsData) Validate() error {
 	return nil
 }
 func (this *GeoLocation) Validate() error {
@@ -159,32 +177,6 @@ func (this *DiagnosisResultData) Validate() error {
 			}
 		}
 	}
-	return nil
-}
-func (this *BaymaxDiagnosisResultPayload) Validate() error {
-	if this.Patient != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Patient); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("Patient", err)
-		}
-	}
-	if this.Symptoms != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Symptoms); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("Symptoms", err)
-		}
-	}
-	for _, item := range this.AssociatedSymptoms {
-		if item != nil {
-			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
-				return github_com_mwitkow_go_proto_validators.FieldError("AssociatedSymptoms", err)
-			}
-		}
-	}
-	return nil
-}
-func (this *PatientData) Validate() error {
-	return nil
-}
-func (this *SymptomsData) Validate() error {
 	return nil
 }
 func (this *UserDetailsData) Validate() error {
