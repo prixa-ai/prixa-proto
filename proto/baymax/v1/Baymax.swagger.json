@@ -91,6 +91,12 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "trxId",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -178,33 +184,7 @@
         }
       }
     },
-    "v1ConversationMessageRequest": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "content": {
-          "type": "string"
-        },
-        "private": {
-          "type": "boolean",
-          "format": "boolean"
-        }
-      }
-    },
-    "v1ConversationMessageResponse": {
-      "type": "object",
-      "properties": {
-        "status": {
-          "type": "string"
-        },
-        "data": {
-          "$ref": "#/definitions/v1MessageData"
-        }
-      }
-    },
-    "v1GetActiveTransactionByPatientResponse": {
+    "v1ActiveTransaction": {
       "type": "object",
       "properties": {
         "patient_id": {
@@ -239,6 +219,46 @@
         },
         "cw_token": {
           "type": "string"
+        }
+      }
+    },
+    "v1ConversationMessageRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "private": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "v1ConversationMessageResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/v1MessageData"
+        }
+      }
+    },
+    "v1GetActiveTransactionByPatientResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ActiveTransaction"
+          }
         }
       }
     },

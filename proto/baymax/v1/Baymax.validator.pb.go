@@ -10,7 +10,6 @@ import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
 	_ "github.com/mwitkow/go-proto-validators"
-	regexp "regexp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
 
@@ -52,18 +51,22 @@ func (this *WidgetMessageResponse) Validate() error {
 	}
 	return nil
 }
-
-var _regex_GetActiveTransactionByPatientRequest_PatientId = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
-
 func (this *GetActiveTransactionByPatientRequest) Validate() error {
-	if !_regex_GetActiveTransactionByPatientRequest_PatientId.MatchString(this.PatientId) {
-		return github_com_mwitkow_go_proto_validators.FieldError("PatientId", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.PatientId))
-	}
 	if this.PatientId == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("PatientId", fmt.Errorf(`value '%v' must not be an empty string`, this.PatientId))
 	}
 	return nil
 }
 func (this *GetActiveTransactionByPatientResponse) Validate() error {
+	for _, item := range this.Data {
+		if item != nil {
+			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
+				return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
+			}
+		}
+	}
+	return nil
+}
+func (this *ActiveTransaction) Validate() error {
 	return nil
 }
