@@ -566,7 +566,10 @@
           "$ref": "#/definitions/v1SymptomsData"
         },
         "associatedSymptoms": {
-          "$ref": "#/definitions/v1SymptomsData"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1SymptomsData"
+          }
         }
       }
     },
