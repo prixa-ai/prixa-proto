@@ -142,7 +142,24 @@ message GetDiagnosisResultRequest {
 
 message GetDiagnosisResultResponse {
     string message = 1;
-    BaymaxDiagnosisResultPayload data = 2;
+    PatientData patient = 2;
+    repeated string diseases = 3;
+    SymptomsData symptom = 4;
+    repeated SymptomsData associatedSymptoms = 5;
+}
+
+message PatientData {
+    string gender = 1;
+    float weight = 2;
+    float height = 3;
+    int32 age = 4;
+    string bmi = 5;
+    repeated string preconditions = 6;
+}
+
+message SymptomsData {
+    string name = 1;
+    repeated string properties = 2;
 }
 
 message GeoLocation {
@@ -215,27 +232,6 @@ message DiagnosisResultData {
     repeated ProfileData profiles = 3;
     repeated SymptomDesc symptoms = 4;
     repeated PotentialDisease diseases = 5;
-}
-
-message BaymaxDiagnosisResultPayload {
-    PatientData patient = 1;
-    repeated string diseases = 2;
-    SymptomsData symptoms = 3;
-    repeated SymptomsData associatedSymptoms = 4;
-}
-
-message PatientData {
-    string gender = 1;
-    float weight = 2;
-    float height = 3;
-    int32 age = 4;
-    string bmi = 5;
-    repeated string preconditions = 6;
-}
-
-message SymptomsData {
-    string name = 1;
-    repeated string properties = 2;
 }
 
 message UserDetailsData {
