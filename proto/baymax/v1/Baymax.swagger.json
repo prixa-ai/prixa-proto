@@ -25,9 +25,105 @@
     "application/json"
   ],
   "paths": {
+    "/api/v1/baymax/conversations": {
+      "get": {
+        "operationId": "BaymaxService_ConversationList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ConversationListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "inbox_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "BaymaxService"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/baymax/conversations/count": {
+      "get": {
+        "operationId": "BaymaxService_ConversationCount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ConversationCountResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "inbox_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "BaymaxService"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
     "/api/v1/baymax/conversations/{id}/messages": {
       "post": {
-        "operationId": "CreateConversationMessage",
+        "operationId": "BaymaxService_CreateConversationMessage",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -36,7 +132,7 @@
             }
           },
           "default": {
-            "description": "An unexpected error response",
+            "description": "An unexpected error response.",
             "schema": {
               "$ref": "#/definitions/runtimeError"
             }
@@ -70,7 +166,7 @@
     },
     "/api/v1/baymax/transactions/{patientId}": {
       "get": {
-        "operationId": "GetActiveTransactionByPatient",
+        "operationId": "BaymaxService_GetActiveTransactionByPatient",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -79,7 +175,7 @@
             }
           },
           "default": {
-            "description": "An unexpected error response",
+            "description": "An unexpected error response.",
             "schema": {
               "$ref": "#/definitions/runtimeError"
             }
@@ -111,7 +207,7 @@
     },
     "/api/v1/baymax/widgets/messages": {
       "post": {
-        "operationId": "CreateWidgetMessage",
+        "operationId": "BaymaxService_CreateWidgetMessage",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -120,7 +216,7 @@
             }
           },
           "default": {
-            "description": "An unexpected error response",
+            "description": "An unexpected error response.",
             "schema": {
               "$ref": "#/definitions/runtimeError"
             }
@@ -222,6 +318,80 @@
         }
       }
     },
+    "v1ConversationCountResponse": {
+      "type": "object",
+      "properties": {
+        "resolved": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "unread": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "read": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "v1ConversationListConversation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "client_id": {
+          "type": "string"
+        },
+        "inbox_id": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "transaction_id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "patient": {
+          "$ref": "#/definitions/v1Patient"
+        },
+        "last_message": {
+          "$ref": "#/definitions/v1Message"
+        }
+      }
+    },
+    "v1ConversationListResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ConversationListConversation"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
     "v1ConversationMessageRequest": {
       "type": "object",
       "properties": {
@@ -232,8 +402,7 @@
           "type": "string"
         },
         "private": {
-          "type": "boolean",
-          "format": "boolean"
+          "type": "boolean"
         }
       }
     },
@@ -259,6 +428,55 @@
           "items": {
             "$ref": "#/definitions/v1ActiveTransaction"
           }
+        }
+      }
+    },
+    "v1Message": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "client_id": {
+          "type": "string"
+        },
+        "inbox_id": {
+          "type": "string"
+        },
+        "conversation_id": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "private": {
+          "type": "boolean"
+        },
+        "doctor_id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "content_type": {
+          "type": "string"
+        },
+        "patient_id": {
+          "type": "string"
+        },
+        "message_type": {
+          "type": "string"
+        },
+        "message_subtype": {
+          "type": "string"
         }
       }
     },
@@ -292,8 +510,7 @@
           "type": "string"
         },
         "private": {
-          "type": "boolean",
-          "format": "boolean"
+          "type": "boolean"
         },
         "message_type": {
           "type": "string"
@@ -302,6 +519,17 @@
           "type": "string"
         },
         "conversation_id": {
+          "type": "string"
+        }
+      }
+    },
+    "v1Patient": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
           "type": "string"
         }
       }

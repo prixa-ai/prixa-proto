@@ -5,6 +5,7 @@ package prixa.baymax.v1;
 import "google/api/annotations.proto";
 import "protoc-gen-swagger/options/annotations.proto";
 import "github.com/mwitkow/go-proto-validators/validator.proto";
+import "google/protobuf/timestamp.proto";
 
 option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
     host: "engine2.prixa.ai";
@@ -81,6 +82,34 @@ service BaymaxService {
             }
         };
     }
+
+    rpc ConversationList(ConversationListRequest) returns (ConversationListResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/baymax/conversations"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }
+
+    rpc ConversationCount(ConversationCountRequest) returns (ConversationCountResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/baymax/conversations/count"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }
 }
 
 message MessageData{
@@ -146,3 +175,61 @@ message ActiveTransaction{
     string cw_token = 11;
 }
 
+message  ConversationListRequest{
+    int32 limit = 1;
+    int32 offset = 2;
+    string inbox_id = 3;
+    string order_by = 4;
+    string status = 5;
+}
+
+message ConversationListResponse{
+    repeated ConversationListConversation data = 1;
+    int32 total = 2;
+    int32 limit = 3;
+    int32 offset = 4;
+}
+
+message ConversationListConversation{
+    string id = 1;
+    string client_id = 2;
+    string inbox_id = 3;
+    google.protobuf.Timestamp created_at = 4;
+    google.protobuf.Timestamp updated_at = 5;
+    string transaction_id = 6;
+    string status = 7;
+    Patient patient = 8;
+    Message last_message = 9;
+}
+
+message Patient{
+    string id = 1;
+    string name = 2;
+}
+
+message Message{
+    string id = 1;
+    string content = 2;
+    string client_id = 3;
+    string inbox_id = 4;
+    string conversation_id = 5;
+    google.protobuf.Timestamp created_at = 6;
+    google.protobuf.Timestamp updated_at = 7;
+    bool private = 8;
+    string doctor_id = 9;
+    string status = 10;
+    string content_type = 11;
+    string patient_id = 12;
+    string message_type = 13;
+    string message_subtype = 14;
+}
+
+message ConversationCountRequest{
+    string inbox_id = 1;
+}
+
+message ConversationCountResponse{
+    int32 resolved = 1;
+    int32 unread = 2;
+    int32 read = 3;
+}
