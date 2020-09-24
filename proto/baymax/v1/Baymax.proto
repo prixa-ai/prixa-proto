@@ -50,6 +50,20 @@ service BaymaxService {
                     value: {}
                 }
             }
+        };  
+    }
+
+    rpc GetConversationMessage(GetConversationMessagesRequest) returns (GetConversationMessagesResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/baymax/conversations/{id}/messages"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
         };
     }
 
@@ -94,6 +108,9 @@ message MessageData{
     string message_type = 8;
     string message_subtype = 9;
     string conversation_id = 10;
+    string status = 11;
+    string created_at = 12;
+    string updated_at = 13;
 }
 
 message MessageContent{
@@ -123,7 +140,7 @@ message WidgetMessageResponse{
 }
 
 message GetActiveTransactionByPatientRequest{
-    string patientId = 1 [(validator.field) = {string_not_empty: true}];
+    string patientId = 1 [(validator.field) = {uuid_ver: 0, string_not_empty: true}];
     string trxId = 2;
 }
 
@@ -144,5 +161,15 @@ message ActiveTransaction{
     string website_token = 9;
     string pubsub_token = 10;
     string cw_token = 11;
+}
+
+message GetConversationMessagesRequest{
+    string id = 1 [(validator.field) = {uuid_ver: 0, string_not_empty: true}];
+    string before = 2;
+}
+
+message GetConversationMessagesResponse{
+    string status = 1;
+    repeated MessageData data = 2;
 }
 

@@ -26,6 +26,45 @@
   ],
   "paths": {
     "/api/v1/baymax/conversations/{id}/messages": {
+      "get": {
+        "operationId": "GetConversationMessage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetConversationMessagesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "before",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "BaymaxService"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      },
       "post": {
         "operationId": "CreateConversationMessage",
         "responses": {
@@ -262,6 +301,20 @@
         }
       }
     },
+    "v1GetConversationMessagesResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1MessageData"
+          }
+        }
+      }
+    },
     "v1MessageContent": {
       "type": "object",
       "properties": {
@@ -302,6 +355,15 @@
           "type": "string"
         },
         "conversation_id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
           "type": "string"
         }
       }
