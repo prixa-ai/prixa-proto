@@ -7,9 +7,9 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
 	_ "github.com/mwitkow/go-proto-validators"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
+	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
 	regexp "regexp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
@@ -101,5 +101,40 @@ func (this *GetConversationMessagesResponse) Validate() error {
 			}
 		}
 	}
+	return nil
+}
+func (this *ConversationListRequest) Validate() error {
+	return nil
+}
+func (this *ConversationListResponse) Validate() error {
+	for _, item := range this.Data {
+		if item != nil {
+			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
+				return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
+			}
+		}
+	}
+	return nil
+}
+func (this *ConversationListConversation) Validate() error {
+	if this.Patient != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Patient); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Patient", err)
+		}
+	}
+	if this.LastMessage != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.LastMessage); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("LastMessage", err)
+		}
+	}
+	return nil
+}
+func (this *Patient) Validate() error {
+	return nil
+}
+func (this *ConversationCountRequest) Validate() error {
+	return nil
+}
+func (this *ConversationCountResponse) Validate() error {
 	return nil
 }
