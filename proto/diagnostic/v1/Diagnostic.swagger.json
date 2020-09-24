@@ -550,29 +550,6 @@
         }
       }
     },
-    "v1BaymaxDiagnosisResultPayload": {
-      "type": "object",
-      "properties": {
-        "patient": {
-          "$ref": "#/definitions/v1PatientData"
-        },
-        "diseases": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "symptoms": {
-          "$ref": "#/definitions/v1SymptomsData"
-        },
-        "associatedSymptoms": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1SymptomsData"
-          }
-        }
-      }
-    },
     "v1BotConversationRequest": {
       "type": "object",
       "properties": {
@@ -772,8 +749,23 @@
         "message": {
           "type": "string"
         },
-        "data": {
-          "$ref": "#/definitions/v1BaymaxDiagnosisResultPayload"
+        "patient": {
+          "$ref": "#/definitions/v1PatientData"
+        },
+        "diseases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "symptom": {
+          "$ref": "#/definitions/v1SymptomsData"
+        },
+        "associatedSymptoms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1SymptomsData"
+          }
         }
       }
     },
