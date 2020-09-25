@@ -358,7 +358,10 @@
         "inbox_name": {
           "type": "string"
         },
-        "doctor_name": {
+        "doctor_first_name": {
+          "type": "string"
+        },
+        "doctor_last_name": {
           "type": "string"
         }
       }

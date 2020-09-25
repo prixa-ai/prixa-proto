@@ -191,7 +191,8 @@ message ActiveTransaction{
     string pubsub_token = 10;
     string cw_token = 11;
     string inbox_name = 12;
-    string doctor_name = 13;
+    string doctor_first_name = 13;
+    string doctor_last_name = 14;
 }
 
 message GetConversationMessagesRequest{
