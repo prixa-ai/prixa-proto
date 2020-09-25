@@ -190,6 +190,8 @@ message ActiveTransaction{
     string website_token = 9;
     string pubsub_token = 10;
     string cw_token = 11;
+    string inbox_name = 12;
+    string doctor_name = 13;
 }
 
 message GetConversationMessagesRequest{

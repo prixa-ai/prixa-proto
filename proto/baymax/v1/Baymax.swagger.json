@@ -354,6 +354,12 @@
         },
         "cw_token": {
           "type": "string"
+        },
+        "inbox_name": {
+          "type": "string"
+        },
+        "doctor_name": {
+          "type": "string"
         }
       }
     },
