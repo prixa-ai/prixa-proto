@@ -245,6 +245,51 @@
       }
     },
     "/api/v1/baymax/widgets/messages": {
+      "get": {
+        "operationId": "GetWidgetMessages",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetWidgetMessagesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "website_token",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "cw_conversation",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "before",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "BaymaxService"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      },
       "post": {
         "operationId": "CreateWidgetMessage",
         "responses": {
@@ -479,6 +524,20 @@
       }
     },
     "v1GetConversationMessagesResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1MessageData"
+          }
+        }
+      }
+    },
+    "v1GetWidgetMessagesResponse": {
       "type": "object",
       "properties": {
         "status": {

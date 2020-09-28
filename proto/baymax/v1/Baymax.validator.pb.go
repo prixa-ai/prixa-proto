@@ -7,9 +7,9 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
+	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
 	_ "github.com/mwitkow/go-proto-validators"
-	_ "google.golang.org/genproto/googleapis/api/annotations"
 	regexp "regexp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
@@ -136,5 +136,30 @@ func (this *ConversationCountRequest) Validate() error {
 	return nil
 }
 func (this *ConversationCountResponse) Validate() error {
+	return nil
+}
+
+var _regex_GetWidgetMessagesRequest_Before = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
+
+func (this *GetWidgetMessagesRequest) Validate() error {
+	if this.WebsiteToken == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("WebsiteToken", fmt.Errorf(`value '%v' must not be an empty string`, this.WebsiteToken))
+	}
+	if this.CwConversation == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("CwConversation", fmt.Errorf(`value '%v' must not be an empty string`, this.CwConversation))
+	}
+	if !_regex_GetWidgetMessagesRequest_Before.MatchString(this.Before) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Before", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.Before))
+	}
+	return nil
+}
+func (this *GetWidgetMessagesResponse) Validate() error {
+	for _, item := range this.Data {
+		if item != nil {
+			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
+				return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
+			}
+		}
+	}
 	return nil
 }
