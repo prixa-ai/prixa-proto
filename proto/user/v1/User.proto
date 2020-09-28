@@ -291,6 +291,62 @@ service UserService {
             }
         };
     }
+
+    rpc CreateFamilyMembers (CreateFamilyMembersRequest) returns (CreateFamilyMembersResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/user/family"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }
+
+    rpc GetFamilyMembers (google.protobuf.Empty) returns (GetFamilyMembersResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/user/family"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "ApiKeyAuth";
+                    value: {}
+                }
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }
+}
+
+message CreateFamilyMembersRequest {
+    string name = 1;
+    repeated prixa.diagnostic.v1.PreconditionsData preconditions = 2;
+}
+
+message CreateFamilyMembersResponse {
+    string status = 1;
+}
+
+message FamilyMember {
+    string id = 1;
+    string name = 2;
+    repeated prixa.diagnostic.v1.PreconditionsData preconditions = 3;
+}
+
+message GetFamilyMembersResponse {
+    string status = 1;
+    repeated FamilyMember data = 2;
 }
 
 message AuthData {
