@@ -50,6 +50,20 @@ service BaymaxService {
                     value: {}
                 }
             }
+        };  
+    }
+
+    rpc GetConversationMessage(GetConversationMessagesRequest) returns (GetConversationMessagesResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/baymax/conversations/{id}/messages"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
         };
     }
 
@@ -57,6 +71,20 @@ service BaymaxService {
         option (google.api.http) = {
             post: "/api/v1/baymax/widgets/messages"
             body: "*"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }
+
+    rpc GetWidgetMessages(GetWidgetMessagesRequest) returns (GetWidgetMessagesResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/baymax/widgets/messages"
         };
         option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
             security: {
@@ -81,6 +109,34 @@ service BaymaxService {
             }
         };
     }
+
+    rpc ConversationList(ConversationListRequest) returns (ConversationListResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/baymax/conversations"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }
+
+    rpc ConversationCount(ConversationCountRequest) returns (ConversationCountResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/baymax/conversations/count"
+        };
+        option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+            security: {
+                security_requirement: {
+                    key: "Bearer";
+                    value: {}
+                }
+            }
+        };
+    }
 }
 
 message MessageData{
@@ -94,6 +150,10 @@ message MessageData{
     string message_type = 8;
     string message_subtype = 9;
     string conversation_id = 10;
+    string status = 11;
+    string content_type = 12;
+    string created_at = 13;
+    string updated_at = 14;
 }
 
 message MessageContent{
@@ -123,7 +183,7 @@ message WidgetMessageResponse{
 }
 
 message GetActiveTransactionByPatientRequest{
-    string patientId = 1 [(validator.field) = {string_not_empty: true}];
+    string patientId = 1 [(validator.field) = {uuid_ver: 0, string_not_empty: true}];
     string trxId = 2;
 }
 
@@ -144,5 +204,70 @@ message ActiveTransaction{
     string website_token = 9;
     string pubsub_token = 10;
     string cw_token = 11;
+    string inbox_name = 12;
+    string doctor_first_name = 13;
+    string doctor_last_name = 14;
 }
 
+message GetConversationMessagesRequest{
+    string id = 1 [(validator.field) = {uuid_ver: 0, string_not_empty: true}];
+    string before = 2  [(validator.field) = {uuid_ver: 0}];
+}
+
+message GetConversationMessagesResponse{
+    string status = 1;
+    repeated MessageData data = 2;
+}
+
+message  ConversationListRequest{
+    int32 limit = 1;
+    int32 offset = 2;
+    string inbox_id = 3;
+    string order_by = 4;
+    string status = 5;
+}
+
+message ConversationListResponse{
+    repeated ConversationListConversation data = 1;
+    int32 total = 2;
+    int32 limit = 3;
+    int32 offset = 4;
+}
+
+message ConversationListConversation{
+    string id = 1;
+    string client_id = 2;
+    string inbox_id = 3;
+    string created_at = 4;
+    string updated_at = 5;
+    string transaction_id = 6;
+    string status = 7;
+    Patient patient = 8;
+    MessageData last_message = 9;
+}
+
+message Patient{
+    string id = 1;
+    string name = 2;
+}
+
+message ConversationCountRequest{
+    string inbox_id = 1;
+}
+
+message ConversationCountResponse{
+    int32 resolved = 1;
+    int32 unread = 2;
+    int32 read = 3;
+}
+
+message GetWidgetMessagesRequest{
+    string website_token = 1 [(validator.field) = {string_not_empty: true}];
+    string cw_conversation = 2 [(validator.field) = {string_not_empty: true}];
+    string before = 3 [(validator.field) = {uuid_ver: 0}];
+}
+
+message GetWidgetMessagesResponse{
+    string status = 1;
+    repeated MessageData data = 2;
+}

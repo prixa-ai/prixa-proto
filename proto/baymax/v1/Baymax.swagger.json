@@ -25,7 +25,142 @@
     "application/json"
   ],
   "paths": {
+    "/api/v1/baymax/conversations": {
+      "get": {
+        "operationId": "ConversationList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ConversationListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "inbox_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "BaymaxService"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/baymax/conversations/count": {
+      "get": {
+        "operationId": "ConversationCount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ConversationCountResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "inbox_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "BaymaxService"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
     "/api/v1/baymax/conversations/{id}/messages": {
+      "get": {
+        "operationId": "GetConversationMessage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetConversationMessagesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "before",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "BaymaxService"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      },
       "post": {
         "operationId": "CreateConversationMessage",
         "responses": {
@@ -110,6 +245,51 @@
       }
     },
     "/api/v1/baymax/widgets/messages": {
+      "get": {
+        "operationId": "GetWidgetMessages",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetWidgetMessagesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "website_token",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "cw_conversation",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "before",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "BaymaxService"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      },
       "post": {
         "operationId": "CreateWidgetMessage",
         "responses": {
@@ -219,6 +399,87 @@
         },
         "cw_token": {
           "type": "string"
+        },
+        "inbox_name": {
+          "type": "string"
+        },
+        "doctor_first_name": {
+          "type": "string"
+        },
+        "doctor_last_name": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ConversationCountResponse": {
+      "type": "object",
+      "properties": {
+        "resolved": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "unread": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "read": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "v1ConversationListConversation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "client_id": {
+          "type": "string"
+        },
+        "inbox_id": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "transaction_id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "patient": {
+          "$ref": "#/definitions/v1Patient"
+        },
+        "last_message": {
+          "$ref": "#/definitions/v1MessageData"
+        }
+      }
+    },
+    "v1ConversationListResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ConversationListConversation"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
@@ -258,6 +519,34 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1ActiveTransaction"
+          }
+        }
+      }
+    },
+    "v1GetConversationMessagesResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1MessageData"
+          }
+        }
+      }
+    },
+    "v1GetWidgetMessagesResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1MessageData"
           }
         }
       }
@@ -302,6 +591,29 @@
           "type": "string"
         },
         "conversation_id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "content_type": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      }
+    },
+    "v1Patient": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
           "type": "string"
         }
       }

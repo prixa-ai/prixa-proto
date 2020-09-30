@@ -38,6 +38,10 @@ type MessageData struct {
 	MessageType          string   `protobuf:"bytes,8,opt,name=message_type,json=messageType,proto3" json:"message_type,omitempty"`
 	MessageSubtype       string   `protobuf:"bytes,9,opt,name=message_subtype,json=messageSubtype,proto3" json:"message_subtype,omitempty"`
 	ConversationId       string   `protobuf:"bytes,10,opt,name=conversation_id,json=conversationId,proto3" json:"conversation_id,omitempty"`
+	Status               string   `protobuf:"bytes,11,opt,name=status,proto3" json:"status,omitempty"`
+	ContentType          string   `protobuf:"bytes,12,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
+	CreatedAt            string   `protobuf:"bytes,13,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt            string   `protobuf:"bytes,14,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -134,6 +138,34 @@ func (m *MessageData) GetMessageSubtype() string {
 func (m *MessageData) GetConversationId() string {
 	if m != nil {
 		return m.ConversationId
+	}
+	return ""
+}
+
+func (m *MessageData) GetStatus() string {
+	if m != nil {
+		return m.Status
+	}
+	return ""
+}
+
+func (m *MessageData) GetContentType() string {
+	if m != nil {
+		return m.ContentType
+	}
+	return ""
+}
+
+func (m *MessageData) GetCreatedAt() string {
+	if m != nil {
+		return m.CreatedAt
+	}
+	return ""
+}
+
+func (m *MessageData) GetUpdatedAt() string {
+	if m != nil {
+		return m.UpdatedAt
 	}
 	return ""
 }
@@ -487,6 +519,9 @@ type ActiveTransaction struct {
 	WebsiteToken         string   `protobuf:"bytes,9,opt,name=website_token,json=websiteToken,proto3" json:"website_token,omitempty"`
 	PubsubToken          string   `protobuf:"bytes,10,opt,name=pubsub_token,json=pubsubToken,proto3" json:"pubsub_token,omitempty"`
 	CwToken              string   `protobuf:"bytes,11,opt,name=cw_token,json=cwToken,proto3" json:"cw_token,omitempty"`
+	InboxName            string   `protobuf:"bytes,12,opt,name=inbox_name,json=inboxName,proto3" json:"inbox_name,omitempty"`
+	DoctorFirstName      string   `protobuf:"bytes,13,opt,name=doctor_first_name,json=doctorFirstName,proto3" json:"doctor_first_name,omitempty"`
+	DoctorLastName       string   `protobuf:"bytes,14,opt,name=doctor_last_name,json=doctorLastName,proto3" json:"doctor_last_name,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -594,6 +629,601 @@ func (m *ActiveTransaction) GetCwToken() string {
 	return ""
 }
 
+func (m *ActiveTransaction) GetInboxName() string {
+	if m != nil {
+		return m.InboxName
+	}
+	return ""
+}
+
+func (m *ActiveTransaction) GetDoctorFirstName() string {
+	if m != nil {
+		return m.DoctorFirstName
+	}
+	return ""
+}
+
+func (m *ActiveTransaction) GetDoctorLastName() string {
+	if m != nil {
+		return m.DoctorLastName
+	}
+	return ""
+}
+
+type GetConversationMessagesRequest struct {
+	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Before               string   `protobuf:"bytes,2,opt,name=before,proto3" json:"before,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetConversationMessagesRequest) Reset()         { *m = GetConversationMessagesRequest{} }
+func (m *GetConversationMessagesRequest) String() string { return proto.CompactTextString(m) }
+func (*GetConversationMessagesRequest) ProtoMessage()    {}
+func (*GetConversationMessagesRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4ef96f37b1164af8, []int{9}
+}
+
+func (m *GetConversationMessagesRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetConversationMessagesRequest.Unmarshal(m, b)
+}
+func (m *GetConversationMessagesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetConversationMessagesRequest.Marshal(b, m, deterministic)
+}
+func (m *GetConversationMessagesRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetConversationMessagesRequest.Merge(m, src)
+}
+func (m *GetConversationMessagesRequest) XXX_Size() int {
+	return xxx_messageInfo_GetConversationMessagesRequest.Size(m)
+}
+func (m *GetConversationMessagesRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetConversationMessagesRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetConversationMessagesRequest proto.InternalMessageInfo
+
+func (m *GetConversationMessagesRequest) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *GetConversationMessagesRequest) GetBefore() string {
+	if m != nil {
+		return m.Before
+	}
+	return ""
+}
+
+type GetConversationMessagesResponse struct {
+	Status               string         `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	Data                 []*MessageData `protobuf:"bytes,2,rep,name=data,proto3" json:"data,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *GetConversationMessagesResponse) Reset()         { *m = GetConversationMessagesResponse{} }
+func (m *GetConversationMessagesResponse) String() string { return proto.CompactTextString(m) }
+func (*GetConversationMessagesResponse) ProtoMessage()    {}
+func (*GetConversationMessagesResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4ef96f37b1164af8, []int{10}
+}
+
+func (m *GetConversationMessagesResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetConversationMessagesResponse.Unmarshal(m, b)
+}
+func (m *GetConversationMessagesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetConversationMessagesResponse.Marshal(b, m, deterministic)
+}
+func (m *GetConversationMessagesResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetConversationMessagesResponse.Merge(m, src)
+}
+func (m *GetConversationMessagesResponse) XXX_Size() int {
+	return xxx_messageInfo_GetConversationMessagesResponse.Size(m)
+}
+func (m *GetConversationMessagesResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetConversationMessagesResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetConversationMessagesResponse proto.InternalMessageInfo
+
+func (m *GetConversationMessagesResponse) GetStatus() string {
+	if m != nil {
+		return m.Status
+	}
+	return ""
+}
+
+func (m *GetConversationMessagesResponse) GetData() []*MessageData {
+	if m != nil {
+		return m.Data
+	}
+	return nil
+}
+
+type ConversationListRequest struct {
+	Limit                int32    `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset               int32    `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`
+	InboxId              string   `protobuf:"bytes,3,opt,name=inbox_id,json=inboxId,proto3" json:"inbox_id,omitempty"`
+	OrderBy              string   `protobuf:"bytes,4,opt,name=order_by,json=orderBy,proto3" json:"order_by,omitempty"`
+	Status               string   `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ConversationListRequest) Reset()         { *m = ConversationListRequest{} }
+func (m *ConversationListRequest) String() string { return proto.CompactTextString(m) }
+func (*ConversationListRequest) ProtoMessage()    {}
+func (*ConversationListRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4ef96f37b1164af8, []int{11}
+}
+
+func (m *ConversationListRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ConversationListRequest.Unmarshal(m, b)
+}
+func (m *ConversationListRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ConversationListRequest.Marshal(b, m, deterministic)
+}
+func (m *ConversationListRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ConversationListRequest.Merge(m, src)
+}
+func (m *ConversationListRequest) XXX_Size() int {
+	return xxx_messageInfo_ConversationListRequest.Size(m)
+}
+func (m *ConversationListRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ConversationListRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ConversationListRequest proto.InternalMessageInfo
+
+func (m *ConversationListRequest) GetLimit() int32 {
+	if m != nil {
+		return m.Limit
+	}
+	return 0
+}
+
+func (m *ConversationListRequest) GetOffset() int32 {
+	if m != nil {
+		return m.Offset
+	}
+	return 0
+}
+
+func (m *ConversationListRequest) GetInboxId() string {
+	if m != nil {
+		return m.InboxId
+	}
+	return ""
+}
+
+func (m *ConversationListRequest) GetOrderBy() string {
+	if m != nil {
+		return m.OrderBy
+	}
+	return ""
+}
+
+func (m *ConversationListRequest) GetStatus() string {
+	if m != nil {
+		return m.Status
+	}
+	return ""
+}
+
+type ConversationListResponse struct {
+	Data                 []*ConversationListConversation `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
+	Total                int32                           `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	Limit                int32                           `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset               int32                           `protobuf:"varint,4,opt,name=offset,proto3" json:"offset,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                        `json:"-"`
+	XXX_unrecognized     []byte                          `json:"-"`
+	XXX_sizecache        int32                           `json:"-"`
+}
+
+func (m *ConversationListResponse) Reset()         { *m = ConversationListResponse{} }
+func (m *ConversationListResponse) String() string { return proto.CompactTextString(m) }
+func (*ConversationListResponse) ProtoMessage()    {}
+func (*ConversationListResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4ef96f37b1164af8, []int{12}
+}
+
+func (m *ConversationListResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ConversationListResponse.Unmarshal(m, b)
+}
+func (m *ConversationListResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ConversationListResponse.Marshal(b, m, deterministic)
+}
+func (m *ConversationListResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ConversationListResponse.Merge(m, src)
+}
+func (m *ConversationListResponse) XXX_Size() int {
+	return xxx_messageInfo_ConversationListResponse.Size(m)
+}
+func (m *ConversationListResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ConversationListResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ConversationListResponse proto.InternalMessageInfo
+
+func (m *ConversationListResponse) GetData() []*ConversationListConversation {
+	if m != nil {
+		return m.Data
+	}
+	return nil
+}
+
+func (m *ConversationListResponse) GetTotal() int32 {
+	if m != nil {
+		return m.Total
+	}
+	return 0
+}
+
+func (m *ConversationListResponse) GetLimit() int32 {
+	if m != nil {
+		return m.Limit
+	}
+	return 0
+}
+
+func (m *ConversationListResponse) GetOffset() int32 {
+	if m != nil {
+		return m.Offset
+	}
+	return 0
+}
+
+type ConversationListConversation struct {
+	Id                   string       `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	ClientId             string       `protobuf:"bytes,2,opt,name=client_id,json=clientId,proto3" json:"client_id,omitempty"`
+	InboxId              string       `protobuf:"bytes,3,opt,name=inbox_id,json=inboxId,proto3" json:"inbox_id,omitempty"`
+	CreatedAt            string       `protobuf:"bytes,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt            string       `protobuf:"bytes,5,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	TransactionId        string       `protobuf:"bytes,6,opt,name=transaction_id,json=transactionId,proto3" json:"transaction_id,omitempty"`
+	Status               string       `protobuf:"bytes,7,opt,name=status,proto3" json:"status,omitempty"`
+	Patient              *Patient     `protobuf:"bytes,8,opt,name=patient,proto3" json:"patient,omitempty"`
+	LastMessage          *MessageData `protobuf:"bytes,9,opt,name=last_message,json=lastMessage,proto3" json:"last_message,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}     `json:"-"`
+	XXX_unrecognized     []byte       `json:"-"`
+	XXX_sizecache        int32        `json:"-"`
+}
+
+func (m *ConversationListConversation) Reset()         { *m = ConversationListConversation{} }
+func (m *ConversationListConversation) String() string { return proto.CompactTextString(m) }
+func (*ConversationListConversation) ProtoMessage()    {}
+func (*ConversationListConversation) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4ef96f37b1164af8, []int{13}
+}
+
+func (m *ConversationListConversation) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ConversationListConversation.Unmarshal(m, b)
+}
+func (m *ConversationListConversation) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ConversationListConversation.Marshal(b, m, deterministic)
+}
+func (m *ConversationListConversation) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ConversationListConversation.Merge(m, src)
+}
+func (m *ConversationListConversation) XXX_Size() int {
+	return xxx_messageInfo_ConversationListConversation.Size(m)
+}
+func (m *ConversationListConversation) XXX_DiscardUnknown() {
+	xxx_messageInfo_ConversationListConversation.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ConversationListConversation proto.InternalMessageInfo
+
+func (m *ConversationListConversation) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *ConversationListConversation) GetClientId() string {
+	if m != nil {
+		return m.ClientId
+	}
+	return ""
+}
+
+func (m *ConversationListConversation) GetInboxId() string {
+	if m != nil {
+		return m.InboxId
+	}
+	return ""
+}
+
+func (m *ConversationListConversation) GetCreatedAt() string {
+	if m != nil {
+		return m.CreatedAt
+	}
+	return ""
+}
+
+func (m *ConversationListConversation) GetUpdatedAt() string {
+	if m != nil {
+		return m.UpdatedAt
+	}
+	return ""
+}
+
+func (m *ConversationListConversation) GetTransactionId() string {
+	if m != nil {
+		return m.TransactionId
+	}
+	return ""
+}
+
+func (m *ConversationListConversation) GetStatus() string {
+	if m != nil {
+		return m.Status
+	}
+	return ""
+}
+
+func (m *ConversationListConversation) GetPatient() *Patient {
+	if m != nil {
+		return m.Patient
+	}
+	return nil
+}
+
+func (m *ConversationListConversation) GetLastMessage() *MessageData {
+	if m != nil {
+		return m.LastMessage
+	}
+	return nil
+}
+
+type Patient struct {
+	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name                 string   `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *Patient) Reset()         { *m = Patient{} }
+func (m *Patient) String() string { return proto.CompactTextString(m) }
+func (*Patient) ProtoMessage()    {}
+func (*Patient) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4ef96f37b1164af8, []int{14}
+}
+
+func (m *Patient) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Patient.Unmarshal(m, b)
+}
+func (m *Patient) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Patient.Marshal(b, m, deterministic)
+}
+func (m *Patient) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Patient.Merge(m, src)
+}
+func (m *Patient) XXX_Size() int {
+	return xxx_messageInfo_Patient.Size(m)
+}
+func (m *Patient) XXX_DiscardUnknown() {
+	xxx_messageInfo_Patient.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Patient proto.InternalMessageInfo
+
+func (m *Patient) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *Patient) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+type ConversationCountRequest struct {
+	InboxId              string   `protobuf:"bytes,1,opt,name=inbox_id,json=inboxId,proto3" json:"inbox_id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ConversationCountRequest) Reset()         { *m = ConversationCountRequest{} }
+func (m *ConversationCountRequest) String() string { return proto.CompactTextString(m) }
+func (*ConversationCountRequest) ProtoMessage()    {}
+func (*ConversationCountRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4ef96f37b1164af8, []int{15}
+}
+
+func (m *ConversationCountRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ConversationCountRequest.Unmarshal(m, b)
+}
+func (m *ConversationCountRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ConversationCountRequest.Marshal(b, m, deterministic)
+}
+func (m *ConversationCountRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ConversationCountRequest.Merge(m, src)
+}
+func (m *ConversationCountRequest) XXX_Size() int {
+	return xxx_messageInfo_ConversationCountRequest.Size(m)
+}
+func (m *ConversationCountRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ConversationCountRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ConversationCountRequest proto.InternalMessageInfo
+
+func (m *ConversationCountRequest) GetInboxId() string {
+	if m != nil {
+		return m.InboxId
+	}
+	return ""
+}
+
+type ConversationCountResponse struct {
+	Resolved             int32    `protobuf:"varint,1,opt,name=resolved,proto3" json:"resolved,omitempty"`
+	Unread               int32    `protobuf:"varint,2,opt,name=unread,proto3" json:"unread,omitempty"`
+	Read                 int32    `protobuf:"varint,3,opt,name=read,proto3" json:"read,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ConversationCountResponse) Reset()         { *m = ConversationCountResponse{} }
+func (m *ConversationCountResponse) String() string { return proto.CompactTextString(m) }
+func (*ConversationCountResponse) ProtoMessage()    {}
+func (*ConversationCountResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4ef96f37b1164af8, []int{16}
+}
+
+func (m *ConversationCountResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ConversationCountResponse.Unmarshal(m, b)
+}
+func (m *ConversationCountResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ConversationCountResponse.Marshal(b, m, deterministic)
+}
+func (m *ConversationCountResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ConversationCountResponse.Merge(m, src)
+}
+func (m *ConversationCountResponse) XXX_Size() int {
+	return xxx_messageInfo_ConversationCountResponse.Size(m)
+}
+func (m *ConversationCountResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ConversationCountResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ConversationCountResponse proto.InternalMessageInfo
+
+func (m *ConversationCountResponse) GetResolved() int32 {
+	if m != nil {
+		return m.Resolved
+	}
+	return 0
+}
+
+func (m *ConversationCountResponse) GetUnread() int32 {
+	if m != nil {
+		return m.Unread
+	}
+	return 0
+}
+
+func (m *ConversationCountResponse) GetRead() int32 {
+	if m != nil {
+		return m.Read
+	}
+	return 0
+}
+
+type GetWidgetMessagesRequest struct {
+	WebsiteToken         string   `protobuf:"bytes,1,opt,name=website_token,json=websiteToken,proto3" json:"website_token,omitempty"`
+	CwConversation       string   `protobuf:"bytes,2,opt,name=cw_conversation,json=cwConversation,proto3" json:"cw_conversation,omitempty"`
+	Before               string   `protobuf:"bytes,3,opt,name=before,proto3" json:"before,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetWidgetMessagesRequest) Reset()         { *m = GetWidgetMessagesRequest{} }
+func (m *GetWidgetMessagesRequest) String() string { return proto.CompactTextString(m) }
+func (*GetWidgetMessagesRequest) ProtoMessage()    {}
+func (*GetWidgetMessagesRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4ef96f37b1164af8, []int{17}
+}
+
+func (m *GetWidgetMessagesRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetWidgetMessagesRequest.Unmarshal(m, b)
+}
+func (m *GetWidgetMessagesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetWidgetMessagesRequest.Marshal(b, m, deterministic)
+}
+func (m *GetWidgetMessagesRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetWidgetMessagesRequest.Merge(m, src)
+}
+func (m *GetWidgetMessagesRequest) XXX_Size() int {
+	return xxx_messageInfo_GetWidgetMessagesRequest.Size(m)
+}
+func (m *GetWidgetMessagesRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetWidgetMessagesRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetWidgetMessagesRequest proto.InternalMessageInfo
+
+func (m *GetWidgetMessagesRequest) GetWebsiteToken() string {
+	if m != nil {
+		return m.WebsiteToken
+	}
+	return ""
+}
+
+func (m *GetWidgetMessagesRequest) GetCwConversation() string {
+	if m != nil {
+		return m.CwConversation
+	}
+	return ""
+}
+
+func (m *GetWidgetMessagesRequest) GetBefore() string {
+	if m != nil {
+		return m.Before
+	}
+	return ""
+}
+
+type GetWidgetMessagesResponse struct {
+	Status               string         `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	Data                 []*MessageData `protobuf:"bytes,2,rep,name=data,proto3" json:"data,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *GetWidgetMessagesResponse) Reset()         { *m = GetWidgetMessagesResponse{} }
+func (m *GetWidgetMessagesResponse) String() string { return proto.CompactTextString(m) }
+func (*GetWidgetMessagesResponse) ProtoMessage()    {}
+func (*GetWidgetMessagesResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4ef96f37b1164af8, []int{18}
+}
+
+func (m *GetWidgetMessagesResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetWidgetMessagesResponse.Unmarshal(m, b)
+}
+func (m *GetWidgetMessagesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetWidgetMessagesResponse.Marshal(b, m, deterministic)
+}
+func (m *GetWidgetMessagesResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetWidgetMessagesResponse.Merge(m, src)
+}
+func (m *GetWidgetMessagesResponse) XXX_Size() int {
+	return xxx_messageInfo_GetWidgetMessagesResponse.Size(m)
+}
+func (m *GetWidgetMessagesResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetWidgetMessagesResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetWidgetMessagesResponse proto.InternalMessageInfo
+
+func (m *GetWidgetMessagesResponse) GetStatus() string {
+	if m != nil {
+		return m.Status
+	}
+	return ""
+}
+
+func (m *GetWidgetMessagesResponse) GetData() []*MessageData {
+	if m != nil {
+		return m.Data
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*MessageData)(nil), "prixa.baymax.v1.MessageData")
 	proto.RegisterType((*MessageContent)(nil), "prixa.baymax.v1.MessageContent")
@@ -604,76 +1234,120 @@ func init() {
 	proto.RegisterType((*GetActiveTransactionByPatientRequest)(nil), "prixa.baymax.v1.GetActiveTransactionByPatientRequest")
 	proto.RegisterType((*GetActiveTransactionByPatientResponse)(nil), "prixa.baymax.v1.GetActiveTransactionByPatientResponse")
 	proto.RegisterType((*ActiveTransaction)(nil), "prixa.baymax.v1.ActiveTransaction")
+	proto.RegisterType((*GetConversationMessagesRequest)(nil), "prixa.baymax.v1.GetConversationMessagesRequest")
+	proto.RegisterType((*GetConversationMessagesResponse)(nil), "prixa.baymax.v1.GetConversationMessagesResponse")
+	proto.RegisterType((*ConversationListRequest)(nil), "prixa.baymax.v1.ConversationListRequest")
+	proto.RegisterType((*ConversationListResponse)(nil), "prixa.baymax.v1.ConversationListResponse")
+	proto.RegisterType((*ConversationListConversation)(nil), "prixa.baymax.v1.ConversationListConversation")
+	proto.RegisterType((*Patient)(nil), "prixa.baymax.v1.Patient")
+	proto.RegisterType((*ConversationCountRequest)(nil), "prixa.baymax.v1.ConversationCountRequest")
+	proto.RegisterType((*ConversationCountResponse)(nil), "prixa.baymax.v1.ConversationCountResponse")
+	proto.RegisterType((*GetWidgetMessagesRequest)(nil), "prixa.baymax.v1.GetWidgetMessagesRequest")
+	proto.RegisterType((*GetWidgetMessagesResponse)(nil), "prixa.baymax.v1.GetWidgetMessagesResponse")
 }
 
 func init() { proto.RegisterFile("proto/baymax/v1/baymax.proto", fileDescriptor_4ef96f37b1164af8) }
 
 var fileDescriptor_4ef96f37b1164af8 = []byte{
-	// 1014 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x56, 0x4f, 0x6f, 0x1b, 0x45,
-	0x14, 0x67, 0x37, 0xff, 0x9c, 0xe7, 0xc4, 0x6d, 0x27, 0x05, 0x39, 0x6e, 0xa2, 0xb8, 0x4b, 0x42,
-	0x82, 0xa9, 0xbd, 0x8d, 0x11, 0x91, 0x08, 0x07, 0x6a, 0x9b, 0x80, 0x2c, 0x95, 0x2a, 0x72, 0x22,
-	0x81, 0xb8, 0x98, 0xd9, 0xdd, 0xd1, 0x7a, 0xa8, 0xbd, 0xb3, 0xec, 0x8c, 0xbd, 0x36, 0x55, 0x2f,
-	0x48, 0x7c, 0x81, 0x72, 0xe0, 0xc0, 0x01, 0xf1, 0x31, 0xe0, 0xc0, 0x95, 0x2b, 0x12, 0x1f, 0x00,
-	0x09, 0xf1, 0x41, 0xd0, 0xce, 0x8c, 0x9d, 0xf5, 0x9f, 0x92, 0x20, 0xf5, 0xe4, 0x9d, 0xdf, 0xfb,
-	0xbd, 0x99, 0xf7, 0xfb, 0xed, 0xbc, 0xe7, 0x85, 0x9d, 0x30, 0x62, 0x82, 0xd9, 0x0e, 0x1e, 0xf5,
-	0xf0, 0xd0, 0x1e, 0x1c, 0xeb, 0xa7, 0x8a, 0x84, 0xd1, 0xad, 0x30, 0xa2, 0x43, 0x5c, 0xd1, 0xd8,
-	0xe0, 0xb8, 0xb0, 0xe3, 0x33, 0xe6, 0x77, 0x89, 0x8d, 0x43, 0x6a, 0xe3, 0x20, 0x60, 0x02, 0x0b,
-	0xca, 0x02, 0xae, 0xe8, 0x85, 0x07, 0xf2, 0xc7, 0x2d, 0xfb, 0x24, 0x28, 0xf3, 0x18, 0xfb, 0x3e,
-	0x89, 0x6c, 0x16, 0x4a, 0xc6, 0x02, 0xf6, 0x89, 0x4f, 0x45, 0xa7, 0xef, 0x54, 0x5c, 0xd6, 0xb3,
-	0x7b, 0x31, 0x15, 0x4f, 0x59, 0x6c, 0xfb, 0xac, 0x2c, 0x83, 0xe5, 0x01, 0xee, 0x52, 0x0f, 0x0b,
-	0x16, 0x71, 0x7b, 0xf2, 0xa8, 0xf2, 0xac, 0x5f, 0x4d, 0xc8, 0x7e, 0x4a, 0x38, 0xc7, 0x3e, 0xf9,
-	0x08, 0x0b, 0x8c, 0x72, 0x60, 0x52, 0x2f, 0x6f, 0x14, 0x8d, 0xa3, 0xf5, 0x96, 0x49, 0x3d, 0x74,
-	0x0f, 0xd6, 0xdd, 0x2e, 0x25, 0x81, 0x68, 0x53, 0x2f, 0x6f, 0x4a, 0x38, 0xa3, 0x80, 0xa6, 0x87,
-	0x76, 0x01, 0x42, 0x2c, 0xc6, 0xd1, 0x25, 0x19, 0x5d, 0xd7, 0x48, 0x53, 0xe6, 0x7a, 0xcc, 0x15,
-	0x2c, 0x4a, 0xa2, 0xcb, 0x2a, 0x57, 0x01, 0x4d, 0x0f, 0xe5, 0x61, 0xcd, 0x65, 0x81, 0x20, 0x81,
-	0xc8, 0xaf, 0xc8, 0xd0, 0x78, 0x89, 0xb6, 0x21, 0x43, 0x03, 0x87, 0x0d, 0x93, 0xac, 0x55, 0x15,
-	0x92, 0x6b, 0x95, 0x14, 0x46, 0x74, 0x80, 0x05, 0xc9, 0xaf, 0x15, 0x8d, 0xa3, 0x4c, 0x6b, 0xbc,
-	0x44, 0xf7, 0x61, 0xa3, 0xa7, 0x64, 0xb4, 0xc5, 0x28, 0x24, 0xf9, 0x8c, 0x4c, 0xcc, 0x6a, 0xec,
-	0x72, 0x14, 0x12, 0x74, 0x08, 0xb7, 0xc6, 0x14, 0xde, 0x77, 0x24, 0x6b, 0x5d, 0xb2, 0x72, 0x1a,
-	0xbe, 0x50, 0x68, 0x42, 0x74, 0x59, 0x30, 0x20, 0x11, 0x97, 0x16, 0x27, 0x75, 0x80, 0x22, 0xa6,
-	0xe1, 0xa6, 0x67, 0x95, 0x20, 0xa7, 0xbd, 0x6b, 0xe8, 0xda, 0x53, 0xaa, 0x8c, 0x29, 0x55, 0xd6,
-	0x97, 0x50, 0x68, 0xa4, 0xb2, 0x75, 0x5e, 0x8b, 0x7c, 0xdd, 0x27, 0x5c, 0xcc, 0xd9, 0x9e, 0xda,
-	0xc7, 0x9c, 0x76, 0x27, 0x65, 0xc1, 0xd2, 0x94, 0x05, 0x96, 0x0f, 0xf7, 0x16, 0x9e, 0xc0, 0x43,
-	0x16, 0x70, 0x82, 0xde, 0x80, 0x55, 0x2e, 0xb0, 0xe8, 0x73, 0x7d, 0x8c, 0x5e, 0xa1, 0x87, 0xb0,
-	0xec, 0x61, 0x81, 0xe5, 0x39, 0xd9, 0xea, 0x4e, 0x65, 0xe6, 0x96, 0x56, 0x52, 0xb7, 0xa3, 0x25,
-	0x99, 0xd6, 0x4f, 0x06, 0xdc, 0xfd, 0x8c, 0x7a, 0x3e, 0x11, 0x33, 0x2a, 0xde, 0x84, 0xcd, 0x98,
-	0x38, 0x9c, 0x0a, 0xd2, 0x16, 0xec, 0x29, 0x09, 0xf4, 0x49, 0x1b, 0x1a, 0xbc, 0x4c, 0x30, 0xe9,
-	0x6e, 0xdc, 0x4e, 0x3b, 0xa9, 0x25, 0xe6, 0xdc, 0x38, 0x5d, 0x3f, 0x7a, 0x1f, 0xd6, 0xf4, 0x8b,
-	0x91, 0x4a, 0xb3, 0xd5, 0xbd, 0x97, 0xd5, 0xa6, 0xdd, 0x6f, 0x8d, 0xf9, 0x16, 0x86, 0xd7, 0x67,
-	0x0a, 0x7c, 0xe5, 0x26, 0x38, 0xb0, 0xff, 0x09, 0x11, 0x35, 0x57, 0xd0, 0x01, 0xb9, 0x8c, 0x70,
-	0xc0, 0xb1, 0x9b, 0x54, 0x5d, 0x1f, 0x9d, 0xab, 0xfb, 0x3f, 0xf6, 0x64, 0x1f, 0xae, 0x3a, 0x42,
-	0x1d, 0x5a, 0x5f, 0xfd, 0xfb, 0xaf, 0x3d, 0xf3, 0x73, 0x23, 0xdd, 0x2a, 0x77, 0x61, 0x45, 0x44,
-	0xc3, 0xe6, 0xb8, 0xc5, 0xd4, 0xc2, 0x8a, 0xe1, 0xe0, 0x9a, 0x33, 0xae, 0x91, 0x75, 0x32, 0x91,
-	0xb5, 0x74, 0x94, 0xad, 0x5a, 0x73, 0xb2, 0xe6, 0xb6, 0xd6, 0xe2, 0xbe, 0x5b, 0x82, 0x3b, 0x73,
-	0xb1, 0x99, 0x76, 0x37, 0x66, 0xdb, 0xbd, 0x02, 0x5b, 0xe3, 0xb0, 0x8b, 0x23, 0xaf, 0x1d, 0xf4,
-	0x7b, 0x0e, 0x89, 0xb4, 0xa2, 0x3b, 0x3a, 0xd4, 0xc0, 0x91, 0xf7, 0x44, 0x06, 0xd0, 0x01, 0xe4,
-	0xc4, 0xd5, 0xee, 0x57, 0x13, 0x64, 0x33, 0x85, 0x2a, 0x6b, 0x12, 0x35, 0x44, 0x4f, 0x10, 0xb5,
-	0x98, 0x9e, 0x2d, 0x2b, 0x33, 0xb3, 0xa5, 0x08, 0x1b, 0x6e, 0x07, 0x8b, 0x76, 0xc4, 0x58, 0xef,
-	0x6a, 0x8a, 0x40, 0x82, 0xb5, 0x18, 0xeb, 0x35, 0xbd, 0x45, 0x2d, 0xbe, 0xb6, 0xa8, 0xc5, 0xa7,
-	0x86, 0x51, 0x66, 0x7a, 0x18, 0xcd, 0xdd, 0xf6, 0xf5, 0x05, 0xb7, 0xfd, 0x3e, 0x6c, 0x84, 0x7d,
-	0x87, 0xf7, 0x1d, 0xcd, 0x51, 0x83, 0x24, 0xab, 0x30, 0x45, 0xd9, 0x86, 0x8c, 0x1b, 0xeb, 0x70,
-	0x56, 0x37, 0x7b, 0x2c, 0x43, 0xd5, 0xdf, 0x97, 0x61, 0xb3, 0x2e, 0xdf, 0xd6, 0x05, 0x89, 0x06,
-	0xd4, 0x25, 0xe8, 0x37, 0x03, 0xb6, 0x1b, 0x11, 0xc1, 0x82, 0x2c, 0xe8, 0x75, 0xf4, 0xce, 0xdc,
-	0x1b, 0x7e, 0xf9, 0xcc, 0x29, 0x3c, 0xb8, 0x19, 0x59, 0x5d, 0x31, 0xeb, 0xe3, 0x17, 0xb5, 0x9c,
-	0xb3, 0x01, 0x00, 0xab, 0x75, 0x82, 0x23, 0x12, 0xa1, 0xd7, 0xbe, 0xfd, 0xf3, 0x9f, 0xef, 0x4d,
-	0xdb, 0x2a, 0xc9, 0xff, 0xaf, 0xc9, 0x9f, 0x9d, 0x9d, 0x36, 0x90, 0xdb, 0xcf, 0xa8, 0xf7, 0xdc,
-	0xd6, 0x6d, 0xc9, 0x4f, 0x8d, 0x12, 0xfa, 0xd9, 0x80, 0x2d, 0x25, 0x60, 0xaa, 0x43, 0xd1, 0xc1,
-	0x5c, 0x35, 0x8b, 0x46, 0x4c, 0xe1, 0xad, 0xeb, 0x68, 0xba, 0xdc, 0x0f, 0x16, 0x97, 0xbb, 0x6f,
-	0xed, 0xcd, 0x94, 0x1b, 0xcb, 0x74, 0x3e, 0x55, 0xe3, 0x1f, 0x06, 0xec, 0xfe, 0x67, 0xe3, 0xa1,
-	0xf7, 0xe6, 0xca, 0xb8, 0xc9, 0x30, 0x28, 0x9c, 0xfc, 0xdf, 0x34, 0xad, 0xe6, 0xd1, 0x62, 0x35,
-	0x6f, 0xa3, 0xc3, 0x19, 0x35, 0xa9, 0xd6, 0xe1, 0xf6, 0xb3, 0x49, 0x6f, 0x3e, 0xaf, 0xff, 0x68,
-	0xbe, 0xa8, 0xfd, 0x60, 0xa2, 0x5f, 0x0c, 0xd8, 0x3e, 0x4f, 0x4a, 0x28, 0xd6, 0xb1, 0x33, 0xea,
-	0xb2, 0xa0, 0xa8, 0x2f, 0x56, 0xb1, 0x76, 0xde, 0xb4, 0xce, 0x00, 0x54, 0xf0, 0x92, 0xb8, 0x1d,
-	0x74, 0xd8, 0x11, 0x22, 0xe4, 0xa7, 0xb6, 0x9d, 0xfa, 0xb4, 0x90, 0xe5, 0x97, 0x31, 0xd5, 0x0f,
-	0xea, 0xdb, 0x23, 0x27, 0x88, 0xdb, 0x79, 0xa4, 0x94, 0xb9, 0xac, 0x57, 0x3a, 0x87, 0x4d, 0xb5,
-	0xcd, 0x63, 0xea, 0x92, 0x64, 0x3c, 0x7d, 0x78, 0xc3, 0x9d, 0x6c, 0xa7, 0xcb, 0x1c, 0xbb, 0x87,
-	0xb9, 0x20, 0x91, 0xfd, 0xb8, 0xd9, 0x38, 0x7b, 0x72, 0x71, 0x56, 0x11, 0x43, 0x51, 0x5d, 0x3a,
-	0xae, 0x3c, 0x2c, 0xdc, 0x26, 0x81, 0x4f, 0x03, 0x52, 0xd5, 0x1e, 0x62, 0x5a, 0x32, 0x0d, 0xb3,
-	0x7a, 0x1b, 0x87, 0x61, 0x97, 0xba, 0xf2, 0xba, 0xd9, 0x5f, 0x71, 0x16, 0x9c, 0xce, 0x21, 0x5f,
-	0xec, 0xc1, 0xee, 0xc4, 0xb9, 0xad, 0x8c, 0x59, 0xd8, 0xac, 0xf5, 0x45, 0x87, 0x45, 0xf4, 0x1b,
-	0xc9, 0x29, 0x9a, 0xce, 0xaa, 0x3c, 0xfe, 0xdd, 0x7f, 0x03, 0x00, 0x00, 0xff, 0xff, 0x90, 0x4d,
-	0xc8, 0x9f, 0xc1, 0x09, 0x00, 0x00,
+	// 1565 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x58, 0xd1, 0x6e, 0x1b, 0x45,
+	0x17, 0xee, 0xda, 0x71, 0x6c, 0x1f, 0x27, 0x6e, 0x32, 0xed, 0xdf, 0xdf, 0x76, 0x93, 0x3a, 0x5d,
+	0x5a, 0x92, 0xa6, 0x8d, 0xb7, 0x35, 0x6a, 0x05, 0xe5, 0xa2, 0xb5, 0x43, 0x5b, 0x59, 0x0a, 0x55,
+	0xe4, 0x46, 0xa2, 0x42, 0x48, 0x66, 0x76, 0x77, 0xe2, 0x2c, 0xb5, 0x77, 0xcc, 0xee, 0xd8, 0x4e,
+	0xa8, 0x7a, 0xc3, 0x13, 0xa0, 0x22, 0x84, 0x10, 0x12, 0xa8, 0x12, 0x12, 0x0f, 0xc0, 0x15, 0x37,
+	0x88, 0x47, 0x40, 0xe2, 0x86, 0xbb, 0x4a, 0x15, 0x4f, 0x81, 0xb8, 0x40, 0x3b, 0x33, 0x6b, 0xef,
+	0x7a, 0x37, 0x8e, 0x2b, 0xf5, 0x2a, 0x3b, 0xe7, 0x9c, 0x99, 0x39, 0xdf, 0x37, 0xe7, 0x7c, 0x33,
+	0x31, 0xac, 0xf4, 0x1c, 0xca, 0xa8, 0xa6, 0xe3, 0xa3, 0x2e, 0x3e, 0xd4, 0x06, 0x37, 0xe4, 0x57,
+	0x85, 0x9b, 0xd1, 0xe9, 0x9e, 0x63, 0x1d, 0xe2, 0x8a, 0xb4, 0x0d, 0x6e, 0x94, 0x56, 0xda, 0x94,
+	0xb6, 0x3b, 0x44, 0xc3, 0x3d, 0x4b, 0xc3, 0xb6, 0x4d, 0x19, 0x66, 0x16, 0xb5, 0x5d, 0x11, 0x5e,
+	0xba, 0xc6, 0xff, 0x18, 0x5b, 0x6d, 0x62, 0x6f, 0xb9, 0x43, 0xdc, 0x6e, 0x13, 0x47, 0xa3, 0x3d,
+	0x1e, 0x11, 0x13, 0x7d, 0xab, 0x6d, 0xb1, 0x83, 0xbe, 0x5e, 0x31, 0x68, 0x57, 0xeb, 0x0e, 0x2d,
+	0xf6, 0x84, 0x0e, 0xb5, 0x36, 0xdd, 0xe2, 0xce, 0xad, 0x01, 0xee, 0x58, 0x26, 0x66, 0xd4, 0x71,
+	0xb5, 0xd1, 0xa7, 0x98, 0xa7, 0xfe, 0x92, 0x84, 0xdc, 0x87, 0xc4, 0x75, 0x71, 0x9b, 0x7c, 0x80,
+	0x19, 0x46, 0x79, 0x48, 0x58, 0x66, 0x41, 0x59, 0x53, 0x36, 0xb2, 0xcd, 0x84, 0x65, 0xa2, 0xf3,
+	0x90, 0x35, 0x3a, 0x16, 0xb1, 0x59, 0xcb, 0x32, 0x0b, 0x09, 0x6e, 0xce, 0x08, 0x43, 0xc3, 0x44,
+	0xab, 0x00, 0x3d, 0xcc, 0x7c, 0x6f, 0x92, 0x7b, 0xb3, 0xd2, 0xd2, 0xe0, 0x73, 0x4d, 0x6a, 0x30,
+	0xea, 0x78, 0xde, 0x39, 0x31, 0x57, 0x18, 0x1a, 0x26, 0x2a, 0x40, 0xda, 0xa0, 0x36, 0x23, 0x36,
+	0x2b, 0xa4, 0xb8, 0xcb, 0x1f, 0xa2, 0x22, 0x64, 0x2c, 0x5b, 0xa7, 0x87, 0xde, 0xac, 0x79, 0xe1,
+	0xe2, 0x63, 0x31, 0xa9, 0xe7, 0x58, 0x03, 0xcc, 0x48, 0x21, 0xbd, 0xa6, 0x6c, 0x64, 0x9a, 0xfe,
+	0x10, 0x5d, 0x84, 0x85, 0xae, 0x80, 0xd1, 0x62, 0x47, 0x3d, 0x52, 0xc8, 0xf0, 0x89, 0x39, 0x69,
+	0xdb, 0x3b, 0xea, 0x11, 0xb4, 0x0e, 0xa7, 0xfd, 0x10, 0xb7, 0xaf, 0xf3, 0xa8, 0x2c, 0x8f, 0xca,
+	0x4b, 0xf3, 0x23, 0x61, 0xf5, 0x02, 0x0d, 0x6a, 0x0f, 0x88, 0xe3, 0x72, 0x8a, 0xbd, 0x3c, 0x40,
+	0x04, 0x06, 0xcd, 0x0d, 0x13, 0x9d, 0x83, 0x79, 0x97, 0x61, 0xd6, 0x77, 0x0b, 0x39, 0xee, 0x97,
+	0x23, 0x2f, 0x19, 0x09, 0x46, 0x24, 0xb3, 0x20, 0x92, 0x91, 0x36, 0x9e, 0xcc, 0x2a, 0x80, 0xe1,
+	0x10, 0xcc, 0x88, 0xd9, 0xc2, 0xac, 0xb0, 0x28, 0xa8, 0x93, 0x96, 0x1a, 0xf3, 0xdc, 0xfd, 0x9e,
+	0xe9, 0xbb, 0xf3, 0xc2, 0x2d, 0x2d, 0x35, 0xa6, 0x6e, 0x42, 0x5e, 0x1e, 0xda, 0xb6, 0x24, 0x2d,
+	0x40, 0xa7, 0x12, 0xa2, 0x53, 0xfd, 0x14, 0x4a, 0xdb, 0x81, 0xb4, 0xe5, 0xbc, 0x26, 0xf9, 0xbc,
+	0x4f, 0x5c, 0x16, 0x39, 0xef, 0xc0, 0x3a, 0x89, 0xf0, 0xb1, 0x04, 0xb8, 0x4f, 0x86, 0xb8, 0x57,
+	0xdb, 0x70, 0x3e, 0x76, 0x07, 0xb7, 0x47, 0x6d, 0x97, 0x04, 0x58, 0x52, 0x42, 0x2c, 0x5d, 0x87,
+	0x39, 0x13, 0x33, 0xcc, 0xf7, 0xc9, 0x55, 0x57, 0x2a, 0x13, 0xed, 0x51, 0x09, 0x94, 0x65, 0x93,
+	0x47, 0xaa, 0x3f, 0x2a, 0x70, 0xf6, 0x23, 0xcb, 0x6c, 0x13, 0x36, 0x81, 0xe2, 0x2d, 0x58, 0x1c,
+	0x12, 0xdd, 0xb5, 0x18, 0x69, 0x31, 0xfa, 0x84, 0xd8, 0x72, 0xa7, 0x05, 0x69, 0xdc, 0xf3, 0x6c,
+	0xfc, 0x58, 0x87, 0xad, 0xe0, 0x11, 0x4a, 0x88, 0x79, 0x63, 0x18, 0xcc, 0x1f, 0xbd, 0x07, 0x69,
+	0x59, 0x11, 0x1c, 0x69, 0xae, 0x5a, 0x3e, 0x2e, 0x37, 0xc9, 0x7e, 0xd3, 0x8f, 0x57, 0x31, 0xfc,
+	0x6f, 0x22, 0xc1, 0x37, 0x4e, 0x02, 0x81, 0x4b, 0x0f, 0x08, 0xab, 0x19, 0xcc, 0x1a, 0x90, 0x3d,
+	0x07, 0xdb, 0x2e, 0x36, 0xbc, 0xac, 0xeb, 0x47, 0xbb, 0xa2, 0xf1, 0x7c, 0x4e, 0xd6, 0x61, 0xdc,
+	0x8a, 0x62, 0xd3, 0x7a, 0xf6, 0xd5, 0xcb, 0x72, 0xea, 0xb1, 0xf2, 0x95, 0x72, 0x2a, 0xd8, 0xa6,
+	0x67, 0x21, 0xc5, 0x9c, 0xc3, 0x86, 0xdf, 0xde, 0x62, 0xa0, 0x0e, 0xe1, 0xf2, 0x09, 0xdb, 0x9c,
+	0x80, 0xec, 0xd6, 0x08, 0x59, 0x72, 0x23, 0x57, 0x55, 0x23, 0xc8, 0x22, 0x4b, 0x4b, 0x7c, 0xff,
+	0x24, 0x61, 0x39, 0xe2, 0x9b, 0x90, 0x1a, 0x65, 0x52, 0x6a, 0x2a, 0x70, 0xc6, 0x77, 0x1b, 0xd8,
+	0x31, 0x5b, 0x76, 0xbf, 0xab, 0x13, 0x47, 0x22, 0x5a, 0x96, 0xae, 0x6d, 0xec, 0x98, 0x0f, 0xb9,
+	0x03, 0x5d, 0x86, 0x3c, 0x1b, 0xaf, 0x3e, 0x56, 0xaf, 0xc5, 0x80, 0x55, 0x50, 0xe3, 0xa1, 0x21,
+	0x52, 0xbd, 0xc4, 0x20, 0xac, 0x6b, 0xa9, 0x09, 0x5d, 0x5b, 0x83, 0x05, 0xe3, 0x00, 0xb3, 0x96,
+	0x43, 0x69, 0x77, 0xac, 0x60, 0xe0, 0xd9, 0x9a, 0x94, 0x76, 0x1b, 0x66, 0x9c, 0xbc, 0xa4, 0x63,
+	0xe5, 0x25, 0x28, 0x84, 0x99, 0xb0, 0x10, 0x46, 0x0a, 0x3e, 0x1b, 0x53, 0xf0, 0x17, 0x61, 0xa1,
+	0xd7, 0xd7, 0xdd, 0xbe, 0x2e, 0x63, 0x84, 0x88, 0xe5, 0x84, 0x4d, 0x84, 0x14, 0x21, 0x63, 0x0c,
+	0xa5, 0x3b, 0x27, 0xfb, 0x7d, 0x28, 0x5c, 0xab, 0x00, 0x62, 0x77, 0x1b, 0x77, 0x7d, 0x09, 0xcb,
+	0x72, 0xcb, 0x43, 0xdc, 0x25, 0x68, 0x13, 0x96, 0x25, 0x09, 0xfb, 0x96, 0xe3, 0x32, 0x11, 0x25,
+	0x74, 0xec, 0xb4, 0x70, 0xdc, 0xf7, 0xec, 0x3c, 0x76, 0x03, 0x96, 0x64, 0x6c, 0x07, 0xfb, 0xa1,
+	0x42, 0xd3, 0xf2, 0xc2, 0xbe, 0x83, 0x45, 0xa4, 0xfa, 0x09, 0x5c, 0x78, 0x40, 0x58, 0x8c, 0x9a,
+	0xb8, 0x7e, 0x59, 0x17, 0xc7, 0x82, 0x15, 0xac, 0x67, 0x4f, 0xbb, 0xca, 0x30, 0xaf, 0x93, 0x7d,
+	0xea, 0x10, 0x71, 0xee, 0xf5, 0xf4, 0xab, 0x97, 0xe5, 0xa4, 0xe7, 0x94, 0x66, 0xf5, 0x09, 0x94,
+	0x8f, 0x5d, 0x7d, 0xe6, 0x3e, 0x4d, 0xce, 0xd8, 0xa7, 0xdf, 0x28, 0xf0, 0xff, 0xe0, 0x56, 0x3b,
+	0x96, 0x3b, 0xea, 0xcd, 0xb3, 0x90, 0xea, 0x58, 0x5d, 0x4b, 0x68, 0x75, 0xaa, 0x29, 0x06, 0xde,
+	0xde, 0x74, 0x7f, 0xdf, 0x25, 0x42, 0x7a, 0x53, 0x4d, 0x39, 0x0a, 0xd5, 0x41, 0x32, 0x5c, 0x07,
+	0x45, 0xc8, 0x50, 0xc7, 0x24, 0x4e, 0x4b, 0x3f, 0x92, 0x35, 0x9a, 0xe6, 0xe3, 0xfa, 0x51, 0x00,
+	0x49, 0x2a, 0x88, 0x44, 0x7d, 0xa1, 0x40, 0x21, 0x9a, 0x97, 0x84, 0x5f, 0x93, 0x30, 0x15, 0x0e,
+	0x73, 0x2b, 0x02, 0x73, 0x72, 0x62, 0x70, 0x2c, 0x70, 0x73, 0x39, 0xa1, 0x0c, 0x77, 0x24, 0x08,
+	0x31, 0x18, 0x23, 0x4e, 0xc6, 0x23, 0x9e, 0x0b, 0x22, 0x56, 0xff, 0x4a, 0xc0, 0xca, 0xb4, 0xad,
+	0x5e, 0xef, 0x99, 0x32, 0x85, 0xbf, 0xf0, 0x35, 0x3c, 0x37, 0xfd, 0x1a, 0x4e, 0x4d, 0x5c, 0xc3,
+	0x31, 0x2a, 0x32, 0x1f, 0xa7, 0x22, 0xe3, 0x93, 0x48, 0x87, 0x6a, 0xaa, 0x0a, 0x69, 0xa9, 0x4c,
+	0xbc, 0xbd, 0x73, 0xd5, 0x42, 0x84, 0x6f, 0x5f, 0x6c, 0xfd, 0x40, 0x74, 0x07, 0x16, 0x78, 0x0f,
+	0xf9, 0x17, 0x54, 0x76, 0x86, 0x7b, 0x23, 0xe7, 0xcd, 0x90, 0x06, 0x75, 0x0b, 0xd2, 0x72, 0xd1,
+	0x08, 0x89, 0x08, 0xe6, 0x78, 0x6b, 0x0a, 0xfe, 0xf8, 0xb7, 0x7a, 0x33, 0x5c, 0x2c, 0xdb, 0xb4,
+	0x3f, 0xbe, 0x61, 0x82, 0xbc, 0x2a, 0x21, 0x5e, 0x55, 0x03, 0x8a, 0x31, 0xd3, 0x64, 0x91, 0x95,
+	0x20, 0xe3, 0x10, 0x97, 0x76, 0x06, 0xc4, 0x94, 0x0d, 0x30, 0x1a, 0x7b, 0x5c, 0xf5, 0x6d, 0x87,
+	0x60, 0xd3, 0xef, 0x01, 0x31, 0xf2, 0x72, 0xe3, 0x56, 0x51, 0x3e, 0xfc, 0x5b, 0xfd, 0x4e, 0x81,
+	0xc2, 0x03, 0xc2, 0x42, 0x17, 0xee, 0x48, 0x27, 0xae, 0xc6, 0x3e, 0x09, 0xea, 0xf3, 0xaf, 0x5e,
+	0x96, 0x13, 0x8f, 0x95, 0x09, 0xa5, 0xd4, 0x8e, 0x79, 0x1a, 0x8c, 0xc2, 0x27, 0x9f, 0x08, 0x63,
+	0xa9, 0x49, 0xc6, 0x4b, 0x0d, 0x81, 0x62, 0x4c, 0x6a, 0x6f, 0x5a, 0x64, 0xaa, 0xff, 0x66, 0x61,
+	0xb1, 0xce, 0xfd, 0x8f, 0x88, 0x33, 0xb0, 0x0c, 0x82, 0x7e, 0x53, 0xa0, 0xb8, 0xcd, 0x0b, 0x38,
+	0x46, 0xe7, 0xd0, 0xd5, 0xa9, 0x1d, 0x1d, 0x7e, 0x55, 0x95, 0xae, 0xcd, 0x16, 0x2c, 0x40, 0xa9,
+	0xf7, 0x9f, 0xd7, 0xf2, 0xfa, 0x02, 0x00, 0xcc, 0xd7, 0x09, 0x76, 0x88, 0x83, 0x4e, 0x7d, 0xf9,
+	0xe7, 0xdf, 0x5f, 0x27, 0x34, 0x75, 0x93, 0xff, 0x83, 0x33, 0xfa, 0x6f, 0x48, 0x0b, 0xd2, 0xec,
+	0x6a, 0x4f, 0x2d, 0xf3, 0x99, 0x26, 0xab, 0xd9, 0xbd, 0xad, 0x6c, 0xa2, 0xdf, 0x15, 0x38, 0x17,
+	0xaf, 0xd2, 0x48, 0x8b, 0x24, 0x34, 0xfd, 0xb2, 0x28, 0x5d, 0x9f, 0x7d, 0x82, 0x44, 0xb1, 0x1d,
+	0x8f, 0xe2, 0x1a, 0x7a, 0x0d, 0x14, 0xe8, 0x85, 0x02, 0x67, 0xc4, 0x19, 0x84, 0x0a, 0x00, 0x5d,
+	0x8e, 0xa4, 0x13, 0xf7, 0x9a, 0x2d, 0xbd, 0x7d, 0x52, 0x98, 0xcc, 0xf5, 0xfd, 0xf8, 0x5c, 0x2f,
+	0xa9, 0xe5, 0x89, 0x5c, 0x87, 0x7c, 0xba, 0x1b, 0xa2, 0xf9, 0x27, 0x05, 0x96, 0x23, 0x15, 0x8a,
+	0xae, 0xc4, 0x11, 0x16, 0xdb, 0x60, 0xa5, 0xcd, 0x59, 0x42, 0x65, 0xa6, 0xef, 0xc6, 0x67, 0x7a,
+	0x11, 0x9d, 0x94, 0x29, 0xfa, 0x43, 0x81, 0xd5, 0xa9, 0xef, 0x50, 0x74, 0x33, 0x2e, 0x8f, 0x13,
+	0x9f, 0xc7, 0xa5, 0x5b, 0xaf, 0x3b, 0x4d, 0x42, 0xb9, 0x1b, 0x0f, 0xe5, 0x0a, 0x5a, 0x9f, 0x80,
+	0x12, 0xb8, 0x03, 0x5c, 0xed, 0xe9, 0xe8, 0xa9, 0xfa, 0x0c, 0xfd, 0xa0, 0xc0, 0xd2, 0xe4, 0xe5,
+	0x86, 0x36, 0x4e, 0xbc, 0x6a, 0xfd, 0xc4, 0xaf, 0xcc, 0x10, 0x29, 0x73, 0xbd, 0x19, 0x9f, 0xeb,
+	0x05, 0xb4, 0x32, 0xad, 0x98, 0xd1, 0xcf, 0x0a, 0x2c, 0x47, 0xd4, 0x1b, 0x4d, 0xdf, 0x37, 0x78,
+	0x31, 0xc4, 0x94, 0xc6, 0xb1, 0x97, 0xc1, 0xb1, 0x45, 0x8c, 0xd4, 0xa9, 0x0d, 0x67, 0x78, 0x8b,
+	0xd4, 0xbf, 0x4f, 0x3c, 0xaf, 0x7d, 0x9b, 0x40, 0xbf, 0x2a, 0x50, 0xdc, 0xf5, 0x76, 0x5c, 0xab,
+	0x63, 0xfd, 0xa8, 0x43, 0xed, 0x35, 0xa9, 0x86, 0x6b, 0xb5, 0xdd, 0x86, 0x7a, 0x0f, 0x40, 0x38,
+	0xf7, 0x88, 0x71, 0x80, 0xd6, 0x0f, 0x18, 0xeb, 0xb9, 0xb7, 0x35, 0x2d, 0xf0, 0x83, 0x09, 0xcf,
+	0x76, 0x0b, 0x5b, 0xf2, 0x43, 0xfc, 0xa2, 0x92, 0x67, 0xc4, 0x38, 0xb8, 0x2b, 0x80, 0x18, 0xb4,
+	0xbb, 0xb9, 0x0b, 0x8b, 0x62, 0x99, 0x1d, 0xcb, 0x20, 0x9e, 0x8a, 0xdf, 0x99, 0x71, 0x25, 0x4d,
+	0xef, 0x50, 0x5d, 0xeb, 0x62, 0x97, 0x11, 0x47, 0xdb, 0x69, 0x6c, 0xdf, 0x7b, 0xf8, 0xe8, 0x5e,
+	0x85, 0x1d, 0xb2, 0x6a, 0xf2, 0x46, 0xe5, 0x7a, 0x69, 0x89, 0xd8, 0x6d, 0xcb, 0x26, 0x55, 0x49,
+	0x19, 0xb6, 0x36, 0x13, 0x4a, 0xa2, 0xba, 0x84, 0x7b, 0xbd, 0x8e, 0x65, 0x70, 0xb0, 0xda, 0x67,
+	0x2e, 0xb5, 0x6f, 0x47, 0x2c, 0x1f, 0x97, 0x61, 0x75, 0x44, 0xda, 0x99, 0x4c, 0xa2, 0xb4, 0x58,
+	0xeb, 0xb3, 0x03, 0xea, 0x58, 0x5f, 0xf0, 0x98, 0xb5, 0x84, 0x3e, 0xcf, 0xb7, 0x7f, 0xe7, 0xbf,
+	0x00, 0x00, 0x00, 0xff, 0xff, 0x02, 0x77, 0x04, 0xfc, 0x97, 0x12, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -689,8 +1363,12 @@ const _ = grpc.SupportPackageIsVersion6
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type BaymaxServiceClient interface {
 	CreateConversationMessage(ctx context.Context, in *ConversationMessageRequest, opts ...grpc.CallOption) (*ConversationMessageResponse, error)
+	GetConversationMessage(ctx context.Context, in *GetConversationMessagesRequest, opts ...grpc.CallOption) (*GetConversationMessagesResponse, error)
 	CreateWidgetMessage(ctx context.Context, in *WidgetMessageRequest, opts ...grpc.CallOption) (*WidgetMessageResponse, error)
+	GetWidgetMessages(ctx context.Context, in *GetWidgetMessagesRequest, opts ...grpc.CallOption) (*GetWidgetMessagesResponse, error)
 	GetActiveTransactionByPatient(ctx context.Context, in *GetActiveTransactionByPatientRequest, opts ...grpc.CallOption) (*GetActiveTransactionByPatientResponse, error)
+	ConversationList(ctx context.Context, in *ConversationListRequest, opts ...grpc.CallOption) (*ConversationListResponse, error)
+	ConversationCount(ctx context.Context, in *ConversationCountRequest, opts ...grpc.CallOption) (*ConversationCountResponse, error)
 }
 
 type baymaxServiceClient struct {
@@ -710,9 +1388,27 @@ func (c *baymaxServiceClient) CreateConversationMessage(ctx context.Context, in 
 	return out, nil
 }
 
+func (c *baymaxServiceClient) GetConversationMessage(ctx context.Context, in *GetConversationMessagesRequest, opts ...grpc.CallOption) (*GetConversationMessagesResponse, error) {
+	out := new(GetConversationMessagesResponse)
+	err := c.cc.Invoke(ctx, "/prixa.baymax.v1.BaymaxService/GetConversationMessage", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *baymaxServiceClient) CreateWidgetMessage(ctx context.Context, in *WidgetMessageRequest, opts ...grpc.CallOption) (*WidgetMessageResponse, error) {
 	out := new(WidgetMessageResponse)
 	err := c.cc.Invoke(ctx, "/prixa.baymax.v1.BaymaxService/CreateWidgetMessage", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *baymaxServiceClient) GetWidgetMessages(ctx context.Context, in *GetWidgetMessagesRequest, opts ...grpc.CallOption) (*GetWidgetMessagesResponse, error) {
+	out := new(GetWidgetMessagesResponse)
+	err := c.cc.Invoke(ctx, "/prixa.baymax.v1.BaymaxService/GetWidgetMessages", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -728,11 +1424,33 @@ func (c *baymaxServiceClient) GetActiveTransactionByPatient(ctx context.Context,
 	return out, nil
 }
 
+func (c *baymaxServiceClient) ConversationList(ctx context.Context, in *ConversationListRequest, opts ...grpc.CallOption) (*ConversationListResponse, error) {
+	out := new(ConversationListResponse)
+	err := c.cc.Invoke(ctx, "/prixa.baymax.v1.BaymaxService/ConversationList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *baymaxServiceClient) ConversationCount(ctx context.Context, in *ConversationCountRequest, opts ...grpc.CallOption) (*ConversationCountResponse, error) {
+	out := new(ConversationCountResponse)
+	err := c.cc.Invoke(ctx, "/prixa.baymax.v1.BaymaxService/ConversationCount", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BaymaxServiceServer is the server API for BaymaxService service.
 type BaymaxServiceServer interface {
 	CreateConversationMessage(context.Context, *ConversationMessageRequest) (*ConversationMessageResponse, error)
+	GetConversationMessage(context.Context, *GetConversationMessagesRequest) (*GetConversationMessagesResponse, error)
 	CreateWidgetMessage(context.Context, *WidgetMessageRequest) (*WidgetMessageResponse, error)
+	GetWidgetMessages(context.Context, *GetWidgetMessagesRequest) (*GetWidgetMessagesResponse, error)
 	GetActiveTransactionByPatient(context.Context, *GetActiveTransactionByPatientRequest) (*GetActiveTransactionByPatientResponse, error)
+	ConversationList(context.Context, *ConversationListRequest) (*ConversationListResponse, error)
+	ConversationCount(context.Context, *ConversationCountRequest) (*ConversationCountResponse, error)
 }
 
 // UnimplementedBaymaxServiceServer can be embedded to have forward compatible implementations.
@@ -742,11 +1460,23 @@ type UnimplementedBaymaxServiceServer struct {
 func (*UnimplementedBaymaxServiceServer) CreateConversationMessage(ctx context.Context, req *ConversationMessageRequest) (*ConversationMessageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateConversationMessage not implemented")
 }
+func (*UnimplementedBaymaxServiceServer) GetConversationMessage(ctx context.Context, req *GetConversationMessagesRequest) (*GetConversationMessagesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetConversationMessage not implemented")
+}
 func (*UnimplementedBaymaxServiceServer) CreateWidgetMessage(ctx context.Context, req *WidgetMessageRequest) (*WidgetMessageResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateWidgetMessage not implemented")
 }
+func (*UnimplementedBaymaxServiceServer) GetWidgetMessages(ctx context.Context, req *GetWidgetMessagesRequest) (*GetWidgetMessagesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetWidgetMessages not implemented")
+}
 func (*UnimplementedBaymaxServiceServer) GetActiveTransactionByPatient(ctx context.Context, req *GetActiveTransactionByPatientRequest) (*GetActiveTransactionByPatientResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetActiveTransactionByPatient not implemented")
+}
+func (*UnimplementedBaymaxServiceServer) ConversationList(ctx context.Context, req *ConversationListRequest) (*ConversationListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConversationList not implemented")
+}
+func (*UnimplementedBaymaxServiceServer) ConversationCount(ctx context.Context, req *ConversationCountRequest) (*ConversationCountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConversationCount not implemented")
 }
 
 func RegisterBaymaxServiceServer(s *grpc.Server, srv BaymaxServiceServer) {
@@ -771,6 +1501,24 @@ func _BaymaxService_CreateConversationMessage_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BaymaxService_GetConversationMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetConversationMessagesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BaymaxServiceServer).GetConversationMessage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/prixa.baymax.v1.BaymaxService/GetConversationMessage",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BaymaxServiceServer).GetConversationMessage(ctx, req.(*GetConversationMessagesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _BaymaxService_CreateWidgetMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(WidgetMessageRequest)
 	if err := dec(in); err != nil {
@@ -785,6 +1533,24 @@ func _BaymaxService_CreateWidgetMessage_Handler(srv interface{}, ctx context.Con
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BaymaxServiceServer).CreateWidgetMessage(ctx, req.(*WidgetMessageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BaymaxService_GetWidgetMessages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetWidgetMessagesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BaymaxServiceServer).GetWidgetMessages(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/prixa.baymax.v1.BaymaxService/GetWidgetMessages",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BaymaxServiceServer).GetWidgetMessages(ctx, req.(*GetWidgetMessagesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -807,6 +1573,42 @@ func _BaymaxService_GetActiveTransactionByPatient_Handler(srv interface{}, ctx c
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BaymaxService_ConversationList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ConversationListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BaymaxServiceServer).ConversationList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/prixa.baymax.v1.BaymaxService/ConversationList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BaymaxServiceServer).ConversationList(ctx, req.(*ConversationListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BaymaxService_ConversationCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ConversationCountRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BaymaxServiceServer).ConversationCount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/prixa.baymax.v1.BaymaxService/ConversationCount",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BaymaxServiceServer).ConversationCount(ctx, req.(*ConversationCountRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _BaymaxService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "prixa.baymax.v1.BaymaxService",
 	HandlerType: (*BaymaxServiceServer)(nil),
@@ -816,12 +1618,28 @@ var _BaymaxService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _BaymaxService_CreateConversationMessage_Handler,
 		},
 		{
+			MethodName: "GetConversationMessage",
+			Handler:    _BaymaxService_GetConversationMessage_Handler,
+		},
+		{
 			MethodName: "CreateWidgetMessage",
 			Handler:    _BaymaxService_CreateWidgetMessage_Handler,
 		},
 		{
+			MethodName: "GetWidgetMessages",
+			Handler:    _BaymaxService_GetWidgetMessages_Handler,
+		},
+		{
 			MethodName: "GetActiveTransactionByPatient",
 			Handler:    _BaymaxService_GetActiveTransactionByPatient_Handler,
+		},
+		{
+			MethodName: "ConversationList",
+			Handler:    _BaymaxService_ConversationList_Handler,
+		},
+		{
+			MethodName: "ConversationCount",
+			Handler:    _BaymaxService_ConversationCount_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

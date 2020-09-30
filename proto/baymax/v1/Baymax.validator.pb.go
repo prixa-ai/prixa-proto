@@ -10,6 +10,7 @@ import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
 	_ "github.com/mwitkow/go-proto-validators"
+	regexp "regexp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
 
@@ -51,7 +52,13 @@ func (this *WidgetMessageResponse) Validate() error {
 	}
 	return nil
 }
+
+var _regex_GetActiveTransactionByPatientRequest_PatientId = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
+
 func (this *GetActiveTransactionByPatientRequest) Validate() error {
+	if !_regex_GetActiveTransactionByPatientRequest_PatientId.MatchString(this.PatientId) {
+		return github_com_mwitkow_go_proto_validators.FieldError("PatientId", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.PatientId))
+	}
 	if this.PatientId == "" {
 		return github_com_mwitkow_go_proto_validators.FieldError("PatientId", fmt.Errorf(`value '%v' must not be an empty string`, this.PatientId))
 	}
@@ -68,5 +75,91 @@ func (this *GetActiveTransactionByPatientResponse) Validate() error {
 	return nil
 }
 func (this *ActiveTransaction) Validate() error {
+	return nil
+}
+
+var _regex_GetConversationMessagesRequest_Id = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
+var _regex_GetConversationMessagesRequest_Before = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
+
+func (this *GetConversationMessagesRequest) Validate() error {
+	if !_regex_GetConversationMessagesRequest_Id.MatchString(this.Id) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Id", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.Id))
+	}
+	if this.Id == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("Id", fmt.Errorf(`value '%v' must not be an empty string`, this.Id))
+	}
+	if !_regex_GetConversationMessagesRequest_Before.MatchString(this.Before) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Before", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.Before))
+	}
+	return nil
+}
+func (this *GetConversationMessagesResponse) Validate() error {
+	for _, item := range this.Data {
+		if item != nil {
+			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
+				return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
+			}
+		}
+	}
+	return nil
+}
+func (this *ConversationListRequest) Validate() error {
+	return nil
+}
+func (this *ConversationListResponse) Validate() error {
+	for _, item := range this.Data {
+		if item != nil {
+			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
+				return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
+			}
+		}
+	}
+	return nil
+}
+func (this *ConversationListConversation) Validate() error {
+	if this.Patient != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Patient); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Patient", err)
+		}
+	}
+	if this.LastMessage != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.LastMessage); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("LastMessage", err)
+		}
+	}
+	return nil
+}
+func (this *Patient) Validate() error {
+	return nil
+}
+func (this *ConversationCountRequest) Validate() error {
+	return nil
+}
+func (this *ConversationCountResponse) Validate() error {
+	return nil
+}
+
+var _regex_GetWidgetMessagesRequest_Before = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
+
+func (this *GetWidgetMessagesRequest) Validate() error {
+	if this.WebsiteToken == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("WebsiteToken", fmt.Errorf(`value '%v' must not be an empty string`, this.WebsiteToken))
+	}
+	if this.CwConversation == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("CwConversation", fmt.Errorf(`value '%v' must not be an empty string`, this.CwConversation))
+	}
+	if !_regex_GetWidgetMessagesRequest_Before.MatchString(this.Before) {
+		return github_com_mwitkow_go_proto_validators.FieldError("Before", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.Before))
+	}
+	return nil
+}
+func (this *GetWidgetMessagesResponse) Validate() error {
+	for _, item := range this.Data {
+		if item != nil {
+			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
+				return github_com_mwitkow_go_proto_validators.FieldError("Data", err)
+			}
+		}
+	}
 	return nil
 }
