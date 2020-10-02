@@ -176,70 +176,6 @@
         ]
       }
     },
-    "/api/v1/user/preconditions": {
-      "get": {
-        "operationId": "UserService_GetPrecondition",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1PreconditionsList"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "tags": [
-          "UserService"
-        ],
-        "security": [
-          {
-            "ApiKeyAuth": [],
-            "Bearer": []
-          }
-        ]
-      },
-      "post": {
-        "operationId": "UserService_SetPrecondition",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1PreconditionsList"
-            }
-          }
-        ],
-        "tags": [
-          "UserService"
-        ],
-        "security": [
-          {
-            "ApiKeyAuth": [],
-            "Bearer": []
-          }
-        ]
-      }
-    },
     "/api/v1/user/profile/update": {
       "post": {
         "summary": "UpdateUserInfo updates user info (name, address, contact)",
@@ -304,6 +240,84 @@
             "required": true,
             "schema": {
               "properties": {}
+            }
+          }
+        ],
+        "tags": [
+          "UserService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/user/{patientID}/preconditions": {
+      "get": {
+        "operationId": "UserService_GetPrecondition",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1PreconditionsList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "patientID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "UserService"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "Bearer": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "UserService_SetPrecondition",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "patientID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1PreconditionsList"
             }
           }
         ],
@@ -930,6 +944,9 @@
           "items": {
             "$ref": "#/definitions/v1PreconditionsData"
           }
+        },
+        "patientID": {
+          "type": "string"
         }
       }
     },

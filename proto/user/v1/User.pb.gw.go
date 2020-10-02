@@ -566,6 +566,24 @@ func request_UserService_SetPrecondition_0(ctx context.Context, marshaler runtim
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["patientID"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "patientID")
+	}
+
+	protoReq.PatientID, err = runtime.String(val)
+
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "patientID", err)
+	}
+
 	msg, err := client.SetPrecondition(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
@@ -583,14 +601,50 @@ func local_request_UserService_SetPrecondition_0(ctx context.Context, marshaler 
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["patientID"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "patientID")
+	}
+
+	protoReq.PatientID, err = runtime.String(val)
+
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "patientID", err)
+	}
+
 	msg, err := server.SetPrecondition(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
 func request_UserService_GetPrecondition_0(ctx context.Context, marshaler runtime.Marshaler, client UserServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq empty.Empty
+	var protoReq GetPreconditionRequest
 	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["patientID"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "patientID")
+	}
+
+	protoReq.PatientID, err = runtime.String(val)
+
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "patientID", err)
+	}
 
 	msg, err := client.GetPrecondition(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
@@ -598,8 +652,26 @@ func request_UserService_GetPrecondition_0(ctx context.Context, marshaler runtim
 }
 
 func local_request_UserService_GetPrecondition_0(ctx context.Context, marshaler runtime.Marshaler, server UserServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq empty.Empty
+	var protoReq GetPreconditionRequest
 	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["patientID"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "patientID")
+	}
+
+	protoReq.PatientID, err = runtime.String(val)
+
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "patientID", err)
+	}
 
 	msg, err := server.GetPrecondition(ctx, &protoReq)
 	return msg, metadata, err
@@ -1408,9 +1480,9 @@ var (
 
 	pattern_UserService_GetAssessmentHistory_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "history", "assessment"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserService_SetPrecondition_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "user", "preconditions"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_UserService_SetPrecondition_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"api", "v1", "user", "patientID", "preconditions"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_UserService_GetPrecondition_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "user", "preconditions"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_UserService_GetPrecondition_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"api", "v1", "user", "patientID", "preconditions"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (
