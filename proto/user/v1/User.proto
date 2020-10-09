@@ -257,7 +257,7 @@ service UserService {
 
     rpc SetPrecondition (PreconditionsList) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/api/v1/user/preconditions"
+            post: "/api/v1/user/{patientID}/preconditions"
             body: "*"
         };
         option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
@@ -274,9 +274,9 @@ service UserService {
         };
     }
 
-    rpc GetPrecondition (google.protobuf.Empty) returns (PreconditionsList) {
+    rpc GetPrecondition (GetPreconditionRequest) returns (PreconditionsList) {
         option (google.api.http) = {
-            get: "/api/v1/user/preconditions"
+            get: "/api/v1/user/{patientID}/preconditions"
         };
         option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
             security: {
@@ -460,4 +460,9 @@ message GetAssessmentHistoryResponse {
 message PreconditionsList {
     repeated prixa.diagnostic.v1.PreconditionsData precondList = 1;
     repeated prixa.diagnostic.v1.PreconditionsData AllPreconditions = 2;
+    string patientID = 3 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
+}
+
+message GetPreconditionRequest {
+    string patientID = 1 [(validator.field) = {uuid_ver: 4, string_not_empty: true}];
 }

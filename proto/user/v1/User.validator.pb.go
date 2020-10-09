@@ -7,12 +7,12 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
+	_ "github.com/golang/protobuf/ptypes/empty"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "github.com/golang/protobuf/ptypes/timestamp"
 	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
 	_ "github.com/mwitkow/go-proto-validators"
 	_ "github.com/prixa-ai/prixa-proto/proto/diagnostic/v1"
-	_ "github.com/golang/protobuf/ptypes/empty"
 	regexp "regexp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
@@ -226,6 +226,9 @@ func (this *GetAssessmentHistoryResponse) Validate() error {
 	}
 	return nil
 }
+
+var _regex_PreconditionsList_PatientID = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
+
 func (this *PreconditionsList) Validate() error {
 	for _, item := range this.PrecondList {
 		if item != nil {
@@ -240,6 +243,24 @@ func (this *PreconditionsList) Validate() error {
 				return github_com_mwitkow_go_proto_validators.FieldError("AllPreconditions", err)
 			}
 		}
+	}
+	if !_regex_PreconditionsList_PatientID.MatchString(this.PatientID) {
+		return github_com_mwitkow_go_proto_validators.FieldError("PatientID", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.PatientID))
+	}
+	if this.PatientID == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("PatientID", fmt.Errorf(`value '%v' must not be an empty string`, this.PatientID))
+	}
+	return nil
+}
+
+var _regex_GetPreconditionRequest_PatientID = regexp.MustCompile(`^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$`)
+
+func (this *GetPreconditionRequest) Validate() error {
+	if !_regex_GetPreconditionRequest_PatientID.MatchString(this.PatientID) {
+		return github_com_mwitkow_go_proto_validators.FieldError("PatientID", fmt.Errorf(`value '%v' must be a string conforming to regex "^([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[4][a-fA-F0-9]{3}-[8|9|aA|bB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})?$"`, this.PatientID))
+	}
+	if this.PatientID == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("PatientID", fmt.Errorf(`value '%v' must not be an empty string`, this.PatientID))
 	}
 	return nil
 }
